@@ -59,7 +59,7 @@ cd 02-lineup-intelligence
 pip install -r requirements.txt          # pandas/numpy/sklearn/xgboost/requests (+ nba_api, playwright optional)
 
 python cli.py demo --site ../site/lineup  # generate (auto source) -> train -> recommend + rotations -> exports -> report + site page
-python verify_report.py                   # headless Playwright check at 375×812 and 1280×900 + _preview_*.png
+python verify_report.py                   # headless Playwright check at 390×844 and 1280×900, light + dark, + _preview_*.png
 
 # data
 python cli.py generate                    # auto: stats.nba.com (15 s timeout) -> ESPN -> sample
@@ -90,59 +90,64 @@ Outputs
 | `models/model.json`, `models/model_off.json`, `models/ridge.pkl`, `models/hgb.pkl`, `models/meta.json` | XGBoost net + off boosters, Ridge, HistGB, feature list / metrics / learning curve / fit calibration / data source |
 | `output/recommendations.json` | top-10 fives, swaps and rotation for every team + `data_source`, `metrics` (read by `../build_site.py`) |
 | `output/all_lineups_<team>.csv` · `output/synergy_<team>.csv` | every scored five · every pair's synergy, per team |
-| `output/report.html` + `output/data/<ABBR>.json` | standalone page (shell inlined, first team embedded) + per-team tables; serve the folder over http for the lazy loads (`python -m http.server`) |
-| `../site/lineup/index.html` + `../site/lineup/data/<ABBR>.json` | static-site page written by `--site` (references `../assets/shell.*`) + per-team tables |
-| `../site/lineup/_preview_mobile.png`, `_preview_desktop.png` | 375×812 and 1280×900 screenshots written by `verify_report.py` |
+| `output/report.html` + `output/data/<ABBR>.json` | standalone page (app foundation inlined, default team embedded) + per-team tables; serve the folder over http for the lazy loads (`python -m http.server`) |
+| `../site/lineup/index.html` + `../site/lineup/data/<ABBR>.json` | static-site page written by `--site` (references `../assets/app.css` + `app-shell.js`) + per-team tables |
+| `../site/lineup/_preview_mobile.png`, `_preview_desktop.png` | 390×844 and 1280×900 screenshots (light) written by `verify_report.py` |
 
-## Design notes — shared "NBA Projects" shell (wave 3)
+## Design notes — app-polish redesign
 
-The page follows `../DESIGN_BRIEF.md` and uses the shared shell in `../site/assets/`
-(`shell.css` tokens + components, `shell.js` top bar with app switcher and
-service-worker registration). Nothing is loaded from a CDN.
+The page follows the app-polish skill and the shared foundation in `../site/assets/`
+(`app.css` tokens, grouped lists, stats, buttons, badges, sheets, toast; `app-shell.js`
+translucent top bar with large-title collapse, bottom tab bar on phones, inline nav on desktop,
+`App.toast`, service worker). Page-only CSS lives in the generated page's `<style>`. No CDN.
+Reference apps: Apple Sports (centred score hero, team as the context), ESPN Fantasy and Sleeper
+(roster grouped by position, checkmark picks, max five, live score while you pick).
 
-* **Mobile-first.** 375 px is the primary viewport: single column, KPI tiles first,
-  then the builder, then evidence. Desktop (≥ 900 px) goes to two columns (roster
-  tiles beside the court, heatmap beside the duos) and opens the model lab.
-* **One accent.** Lime `var(--accent)` is used only for the hero fit score, selected
-  roster tiles, active controls and the five markers on the court. Everything else
-  is colour-as-meaning: `--pos` / `--neg` for contributions, swap deltas, duos and
-  the diverging synergy scale (`--neg → --surface-2 → --pos`); `--warn` only for the
-  "heuristic" label. Player role tags (S / H / B / DNP, positions) are plain `.chip`s.
-* **Hierarchy.** Fit /100 with "rank x of 1 287", predicted net, off / def and
-  S / H / B answer "so what" before any interaction. Every panel ends with a
-  one-sentence **Read:** line generated from the data (main driver / drag, best
-  swap, duo lift, rotation split, league board, model lift).
-* **Progressive disclosure.** Model lab (metrics table, per-fold bars, learning
-  curve, gain share) sits in `<details class="more">`, collapsed on phones. Method &
-  limits — including the opponent heuristic formula — is stated once in the footer.
-* **Touch.** Tiles, swaps, buttons, selects, summary and board rows are ≥ 40 px;
-  wide tables and the 13×13 heatmap scroll horizontally with a fade hint; charts are
-  SVG sized by `viewBox`.
-* **Payload.** The main page is ~190 KB: every team's roster, rotation, matchup profile
-  and top-50 fives, plus the default team's full table. Each `data/<ABBR>.json`
-  (≤ 160 KB, C(17,5) = 6 188 rows) is columnar — delta-encoded bitmasks, net × 100,
-  off × 10, a feasibility bit-string and contributions packed two characters per
-  (feature, value) pair (quantised to 0.2) — and is fetched when the team is selected;
-  rank is recomputed in the browser. No gzip is needed on Pages.
-* **Provenance.** Header chip "Live data · ESPN" (or "· NBA Stats") with the fetch
-  timestamp, footer "Data: ESPN public API · updated <ts>"; the shared top-bar chip is
-  relabelled from the page script (the shell hard-codes "Sample data").
+* **Screen order (390 px first).** Large title "Lineups" -> team picker (a native `<select>`
+  styled as a field showing the team name) -> hero: the five as initials avatars, the fit score
+  with a plain verdict ("Top 3% of possible lineups for the Cavaliers", "Ranked 57th of 6,188"),
+  net rating with a coloured ▲/▼ delta, points scored and allowed as a score-style "121–110",
+  and the observed history in one sentence -> "Matchup" row (sheet; result badged "Estimate")
+  -> roster grouped into Guards / Forwards / Centers with height, 3P% and Out / Day-to-day
+  badges -> "Why this works" (3–4 plain-English traits with centred +/− bars) -> "Best swaps"
+  (tap applies, toast "Swapped in X") -> "Best pairs" (top / bottom three; tap tries the pair;
+  the full heatmap is in a "See all" sheet that scrolls sideways) -> "Rotation" (starters, bench,
+  closing five as three compact lists with "Use this five") -> "Around the league" (top 10,
+  all 30 in a sheet) -> "About this model".
+* **Live score bar.** Once the hero scrolls away, a blurred bar above the tab bar shows five
+  pips, "3 of 5" and the live fit, so swaps and picks further down give instant feedback.
+  Tap it to jump back to the hero.
+* **Colour.** One brand colour (basketball orange from `app.css`) for the fit score,
+  checkmarks, "See all" / text buttons and the selected team row. Green / red only for
+  contributions, swap and pair deltas, net rating and the heatmap. Light and dark follow the
+  system setting.
+* **Copy.** Sentence case, no eyebrows, no monospace, no "Read:" lines. Model names, rank
+  correlation, the honest result (ridge regression edges XGBoost on held-out teams), the data
+  source, the matchup and rotation heuristics and every box-score approximation live in the
+  "About this model" sheet (opened from the top-bar info button or the last row).
+* **States.** Empty (five open slots, "Pick five players to score a lineup"), partial
+  ("Pick 2 more players"), loading (skeleton rows shaped like the lists while a team's full
+  table downloads), error ("Couldn't load every Nuggets lineup..." with Try again), full five
+  (toast + haptic). Team choice is kept in the URL hash.
+* **Payload.** Unchanged: every team's roster, rotation, matchup profile and top-50 fives are
+  embedded; each `data/<ABBR>.json` (≤ 160 KB, columnar, delta-encoded bitmasks, packed
+  contributions) is fetched when the team is selected. Feature labels in the payload are the
+  plain-English names from `report.PLAIN_LABELS`.
 
 ### Static site output (`--site`)
 
 ```bash
-python cli.py demo --site ../site/lineup                 # also writes ../site/lineup/index.html
-python cli.py recommend --team Northgate --site ../site/lineup   # rebuilds the page after printing
-python verify_report.py                                  # Playwright: 375×812 + 1280×900, writes _preview_*.png
+python cli.py demo --site ../site/lineup --no-refresh    # retrain from cache + write ../site/lineup/index.html
+python report.py ../site/lineup                          # rebuild only the page from models/ + output/recommendations.json
+python verify_report.py                                  # Playwright: 390×844 + 1280×900, light + dark, writes _preview_*.png
 ```
 
-`output/report.html` is standalone (shell CSS + JS inlined, `data-depth` points the
-top-bar links at `../../site/`); it embeds the first team and loads the others from
-`output/data/`, so open it over http (Chrome blocks `fetch` on `file://`; the page then
-says so and keeps working with the embedded top fives). `<site>/index.html` references `../assets/shell.css`
-and `../assets/shell.js`, declares `<body data-app="lineup" data-title="Lineup
-Intelligence" data-mark="LI">` and carries the PWA meta tags; the manifest, service
-worker and icons live at the site root and are owned by the hub.
+`output/report.html` is standalone (`app.css` + `app-shell.js` inlined, PWA meta tags without the
+`../` links, `data-depth` points the nav at `../../site/`); it embeds the default team and loads
+the others from `output/data/`, so open it over http (Chrome blocks `fetch` on `file://`; the page
+then shows the error state with Try again and keeps working with the embedded top fives).
+`<site>/index.html` uses the tags from `site/_head_snippet.html`, `../assets/app.css` and
+`../assets/app-shell.js` (defer) and declares `<body data-app="lineup" data-title="Lineups">`.
 
 ## Data sources
 

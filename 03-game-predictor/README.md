@@ -2,10 +2,9 @@
 
 Pre-game win probabilities from recent performance: Elo, rolling form, rest and
 matchup features feeding a calibrated XGBoost classifier, evaluated the only
-honest way for a sports model — forward in time. Shipped as a mobile-first
-analytics page on the shared NBA Projects shell: KPI tiles, an interactive slate
-picker, power rankings, a Monte Carlo season simulator, team drawers, an upset
-detector and a three-model lab.
+honest way for a sports model — forward in time. Shipped as the "Games"
+screen of the NBA Projects app: a day-by-day game list with live scores, power
+rankings, Monte Carlo playoff odds, team sheets, biggest upsets and an About-the-model sheet.
 
 > **This is a learning project, not a betting tool.** It runs on real NBA games
 > pulled from ESPN's free, *unofficial* public API (a synthetic sample league is
@@ -27,8 +26,8 @@ Python 3.13 · pandas · numpy · scikit-learn · XGBoost · stdlib `urllib` +
 `zoneinfo` for the ESPN loader (legacy `nba_api` loader kept, optional).
 No JS build; the report is one HTML file with inline SVG charts, one embedded
 JSON blob (~150 KB, floats rounded to 3 dp) and ~200 lines of vanilla JS. Styling
-comes from the shared shell (`../site/assets/shell.css` + `shell.js`) plus a
-small page-level `<style>` block. No CDN, no webfonts.
+comes from the shared app foundation (`../site/assets/app.css` + `app-shell.js`)
+plus a page-level `<style>` block. No CDN, no webfonts.
 
 ## Run
 
@@ -36,9 +35,9 @@ small page-level `<style>` block. No CDN, no webfonts.
 cd 03-game-predictor
 pip install -r requirements.txt
 python cli.py demo                        # ESPN refresh -> train -> predict -> simulate -> report (~15 s warm, ~35 s cold cache)
-open output/report.html                   # standalone copy: shell.css/js inlined, works from file://
+open output/report.html                   # standalone copy: app.css/app-shell.js inlined, works from file://
 
-# also publish into the shared static site (../site/predictor/index.html references ../assets/shell.*)
+# also publish into the shared static site (../site/predictor/index.html references ../assets/app.css + app-shell.js)
 python cli.py demo --site ../site/predictor
 python cli.py report --site ../site/predictor   # re-render only
 
@@ -60,7 +59,7 @@ python cli.py report                      # output/report.html (recomputes analy
 
 If ESPN cannot be reached, `generate`/`demo` print a banner and (1) rebuild from
 the committed cache if it exists (real but stale data), else (2) fall back to the
-sample league. The page footer and top-bar chip always say which data it runs on.
+sample league. The footer note and the About sheet always say which data the page runs on.
 
 ## Data source: ESPN public API
 
@@ -106,8 +105,7 @@ retries with exponential backoff on 429 / 5xx / network errors, 20 s timeout.
 
 Refresh command: `python cli.py generate` (or just `python cli.py demo`, which
 refreshes first). Build-time snapshot in `data/meta.json`
-(`updated_at`, counts, request count); the report prints it in the top-bar chip
-and footer.
+(`updated_at`, counts, request count); the report prints it in the footer note and the About sheet.
 
 **Data quirks handled:** the NBA Cup final is tagged as a regular-season game by
 ESPN but does not count in the standings — it is kept for Elo/training
@@ -123,51 +121,48 @@ Outputs in `output/`: `report.html`, `predictions.json`,
 Models in `models/`: `model.json` (XGBoost), `calibrator.pkl`, `elo_logit.pkl`,
 `hgb.pkl`, `feature_columns.json`, `metrics.json`.
 
-## Report features
+## Report features ("Games" screen)
 
-| Section | What it does | Where |
+| Part | What it does | Where |
 |---|---|---|
-| **Top-bar chip / footer** | "Live data · ESPN" with the data timestamp (UTC) and final-game count; footer "Data: ESPN public API · updated …". On the sample league both say so instead. | `report.py`, JS |
-| **KPI tiles** | Current-season accuracy (hero, with n and the full prior-season holdout underneath), log loss, season hindcast x/n with small-sample flag, #1 Elo team | top |
-| **Slate** | Every played game day of the current season plus the next 7 days of scheduled games, pre-scored by the frozen model and embedded as JSON. Defaults to **today (US/Eastern)** or the next day with games; upcoming dates are marked ▸. Date select, prev/next buttons and arrow keys switch the board instantly. Per game: away @ home, away→home probability bar, both probabilities, pick chip, final score and Hit/Miss chip — or the ET tip time and no chip for unplayed games; on desktop the same rows also show pre-game Elo and three SHAP-style drivers. Day/season-to-date chips plus a running-accuracy sparkline. Cards on mobile, table rows on desktop (one DOM, CSS grid reflow). | `analytics.season_predictions`, JS |
-| **Live scores strip** | In the browser the page fetches today's ESPN scoreboard (CORS `*`), shows "n live · n final · n upcoming", and overlays live status/score (and a Hit/Miss chip once final) on the matching cards via `data-espn-id`; refreshes every 60 s while the tab is visible, silent when offline. No logos or images. | JS |
-| **Season simulator** | Monte Carlo from today over ESPN's published remaining schedule: standings from final games (Cup final excluded), Elo as of today, remaining games drawn N=2000 times from Elo probabilities with in-path Elo updates. Per team: expected wins (pro-rated to 82 while Cup games are unscheduled), 5–95% interval, top-6-seed odds per conference (random tiebreak), #1-seed odds. Win-total histogram for one team. On the sample league it is a mid-season hindcast with the actual finish and a playoff-odds Brier. | `simulate.py` |
-| **Power rankings** | Elo table with rank change vs 30 days earlier, Δ30d (green/red), L10 form dots, Net10, W-L, Off10/Def10 (points for/against per game over the last 10 — rating proxies). Horizontal scroll with fade hint on mobile. | `analytics.power_rankings` |
-| **Team drawer** | Tap any team code anywhere → bottom sheet (mobile) / side panel (desktop): record, home/away, back-to-back vs rested, as favourite / as underdog, model accuracy on that team, Elo curve, biggest upset wins/losses, full schedule with model p(win) and hit/miss. Esc or scrim closes; focus returns to the tapped code. | `analytics.team_pages`, JS |
-| **Upset detector** *(in "Upsets & confidence tiers" details)* | Current-season games where the model gave the eventual winner < 35%, with "what the model missed" read from the winner's side (favourite on B2B, hotter L10, streak, H2H) — or the honest label *noise*. | `analytics.upsets` |
-| **Confidence tiers** | Bins of pick confidence → actual hit rate, n, gap, pred/actual bars. Calibration, product view. | `analytics.tiers` |
-| **Model lab** *(details)* | XGBoost vs Elo-logit vs sklearn HistGradientBoosting on the same split: accuracy / log loss / Brier / AUC, XGBoost gain share, HGB permutation importance, walk-forward curves for all models on one chart, reliability diagram + table. | `model.py` |
+| **Large title + summary line** | "Games", then one sentence: "The model picked 90 of 139 games right this season (65%). See how" which opens the About sheet. No KPI cards. | `report.py` |
+| **Date strip** | Horizontally scrolling day pills for every game day of the season plus the next 7 days ("Today", "Sat 7", "Mon 9", with a month marker where the month changes). The selected pill is brand-filled and scrolled to the centre. A calendar button in the top bar opens a sheet with a native `<select>` for far jumps plus "Go to today". Arrow keys still move a day; at 900 px and up there are also chevron buttons. | JS |
+| **Game cards** | Apple Sports-style row cards: away team above home (abbreviation in bold, full name in secondary text), each team's win chance on the right (favourite bold), a thin two-tone bar (favourite in brand), and the status: "7:00 PM ET" / red "Live" badge + clock / "Final" with the score plus a "Picked right" or "Missed" badge. Tap opens the game sheet. | JS |
+| **Live scores** | The browser fetches today's ESPN scoreboard (CORS `*`) every 60 s while the tab is visible and overlays live/final status and score on matching games (`eid`). If the fetch fails the page stays complete without it. | JS |
+| **Game sheet** | Both win chances as large numbers, the score/result, "Why the model leans X" in plain English (built in `why_lines()` from the model's top SHAP-style drivers plus the raw rest days: team strength, season record, recent form, rest...), then rows that push to either team's sheet (with Back). | `report.why_lines`, JS |
+| **Power rankings** | Top 10 rows: rank, team, record, 30-day rank move, last-10 form dots, rating sparkline. "See all" opens a sheet with all 30. | `analytics.power_rankings` |
+| **Playoff odds** | East/West segmented control; rows with team, projected record, a percentage bar and value; the top 8 are shown, then "Show all 15". From the Monte Carlo season simulator. | `simulate.py` |
+| **Biggest upsets** | Five rows ("Warriors beat Nuggets", date, score, the chance the model gave the winner); tapping one opens that game's sheet. | `analytics.upsets` |
+| **Team sheet** | Opens from any team row: record, projected wins, playoff odds, splits (home/away, back-to-back, rested, as favourite/underdog, recent point margin, how often the model got them right), a rating chart, projected-wins range (full histogram for the simulator's focus team), the next 5 games with win chance, and results with "Upset win"/"Upset loss" badges. | `analytics.team_pages`, JS |
+| **About this model sheet** | Accuracy against "team ratings only" and "always pick the home team" (this season and the last full season), a calibration chart, month-by-month walk-forward, how-sure-vs-how-often-right tiers, top inputs, a detailed metric table (log loss, Brier, AUC), the method and limits, the data source with timestamp, and the disclaimer. | `report.about_html` |
 
-Every section ends with a one-sentence **Read:** line in plain English.
-"Not betting advice. Nothing here is guaranteed." is stated once in the Method &
-limits footer and in the drawer.
+"Not betting advice. Nothing here is guaranteed." appears in the footer note, the About sheet, and at the
+bottom of the game and team sheets.
 
 ## Design notes
 
-Follows `../DESIGN_BRIEF.md` ("NBA internship ready", wave 3) and the shared
-shell in `../site/assets/`:
+Built on the shared app foundation (`../site/assets/app.css` + `app-shell.js`) following the
+app-polish skill, with Apple Sports as the main reference (ESPN and The Athletic as secondary):
 
-- **Mobile-first.** 375 px is the primary viewport: single column, KPI tiles in
-  a 2×2 grid, each game a compact card; at ≥ 900 px the same DOM reflows into
-  a 10-column table via CSS grid (`.game` areas → `display:contents`). Wide
-  tables scroll horizontally with a fade hint. All controls, team codes and
-  the drawer close button are ≥ 40 px touch targets (team codes get padding +
-  negative margin so the hit area is larger than the glyph).
-- **One accent, color = meaning.** Magenta `var(--accent)` is used only for
-  the hero number, the selected date, the active app icon and focus rings.
-  Win/loss, hit/miss, up/down use `var(--pos)` / `var(--neg)`; back-to-back
-  flags use `var(--warn)`. Charts are greyscale except where a value means
-  something (actual final in the histogram, Elo curve direction).
-- **Hierarchy.** Eyebrow → h1 → lede → 4 KPI tiles → interactive slate →
-  rankings → simulator → progressive disclosure (`<details class="more">`) for
-  upsets/tiers and the model lab → Method & limits → footer.
-- **Numbers.** Probabilities as whole %, ratings (Net10/Off10/Def10, expected
-  wins) to 1 dp, Elo as integers, tabular monospace figures.
-- **No chrome of its own.** The top bar comes from `shell.js` (`data-app`,
-  `data-title`, `data-mark` on `<body>`); no ticker, scanlines or cursor.
-- **Two outputs, one body.** `output/report.html` inlines shell.css/js so it
-  opens from `file://`; `--site DIR` writes `DIR/index.html` that links
-  `../assets/shell.css` and `../assets/shell.js` for the GitHub Pages site.
+- **Chrome from the shell.** `<body data-app="predictor" data-title="Games">`; the shell renders the
+  translucent top bar (the large title collapses into it on scroll), the bottom tab bar on mobile and
+  the inline nav on desktop. The page adds one top-bar action (calendar) through `<template id="top-actions">`.
+- **Hierarchy.** The day's games are the hero. Rankings, playoff odds and upsets sit below on mobile
+  and in a right-hand column at 900 px and up. Methodology lives only in the About sheet.
+- **Colour.** One brand colour (basketball orange from app.css), used for the selected day, the
+  favourite's share of each bar, links and the highlighted chart series. Semantic colours carry
+  meaning only: green for picked right, wins, rank up and the form dot for a win; `--neg` red for
+  live, rank down and negative margins. Everything else uses the label tiers. Light and dark mode
+  both come from the system setting.
+- **Type.** The system UI font with tabular figures for numbers; sentence case throughout; no
+  eyebrows, all-caps, monospace, "Read:" lines, decorative chips or arrows in buttons. Model names
+  (Elo, XGBoost) appear only in the About sheet.
+- **Interaction.** One reusable sheet (a bottom sheet with grabber and drag-to-dismiss on mobile, a
+  centred modal on desktop) with a Back stack, Done, Esc and scrim close, focus return and
+  `inert` when closed. Pressed states on every tappable thing; every target is at least 44 px.
+- **Two outputs, one body.** `output/report.html` inlines app.css and app-shell.js so it opens from
+  `file://`; `--site DIR` writes `DIR/index.html`, which links `../assets/app.css` and
+  `../assets/app-shell.js` and includes the shared PWA head tags.
 
 ## Offline fallback: the sample league
 

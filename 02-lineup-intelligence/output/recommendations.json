@@ -4,7 +4,7 @@
     "source": "espn",
     "label": "ESPN",
     "chip": "Live data \u00b7 ESPN",
-    "fetched_at": "2026-11-08 16:19 UTC",
+    "fetched_at": "2026-11-08 22:27 UTC",
     "seasons": [
       "2025-26",
       "2026-27"
@@ -14,7 +14,7 @@
     "games_current_season": 139,
     "games_cached": 795,
     "new_games_fetched": 0,
-    "requests": 43,
+    "requests": 1,
     "latest_game_date": "2026-11-08",
     "prev_games_per_team": 40,
     "players": 641,
@@ -24,7 +24,7 @@
     "lineups_starting": 623,
     "lineups_closing": 728,
     "lineup_definition": "starting five / closing five (top-5 minutes) per game; net = sum(+/-)/5 per 100 est. possessions; NOT stint-level data",
-    "seconds": 16.3
+    "seconds": 2.9
   },
   "fit_score_transform": "100 * sigmoid((net_pred - 0.354) / 15.899)",
   "metrics": {

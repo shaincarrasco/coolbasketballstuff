@@ -1,244 +1,167 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
-<title>Jumpshot Analyzer — fix your jumper · NBA Projects</title>
-<meta name="description" content="Film your jump shot on your phone and get an instant on-device form analysis: mechanics score, style match to the closest reference, frame-by-frame overlay, and a coaching plan. Your video never leaves your device.">
+<title>Jumpshot — NBA Projects</title>
+<meta name="description" content="Film your jump shot and get an on-device form analysis: a mechanics score, the one thing to fix first, an overlay on your own video and a practice plan. Your video never leaves your device.">
 <!-- NBA Projects PWA head tags (paths relative from site/<app>/index.html) -->
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0b0d12">
+<meta name="theme-color" content="#f9f9fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161618" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="NBA Projects">
 <link rel="manifest" href="../manifest.webmanifest">
 <link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="../icons/icon-192.png">
-<link rel="stylesheet" href="../assets/shell.css">
+<link rel="stylesheet" href="../assets/app.css">
 <link rel="stylesheet" href="app/ui.css">
+<script src="../assets/app-shell.js" defer></script>
 <link rel="modulepreload" href="app/ui.js">
 </head>
-<body data-app="jumpshot" data-title="Jumpshot Analyzer" data-mark="JS" data-chip="On-device AI">
-<main class="wrap" id="app">
+<body data-app="jumpshot" data-title="Jumpshot">
+<template id="top-actions">
+  <button class="icon-btn" id="tb-share" type="button" aria-label="Share" hidden><svg viewBox="0 0 24 24"><path d="M12 15V3.5M7.5 8 12 3.5 16.5 8"/><path d="M5.5 11.5v7.5a1.5 1.5 0 0 0 1.5 1.5h10a1.5 1.5 0 0 0 1.5-1.5v-7.5"/></svg></button>
+  <button class="icon-btn" id="tb-more" type="button" aria-label="More options" hidden><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="8" cy="12" r=".6" fill="currentColor"/><circle cx="12" cy="12" r=".6" fill="currentColor"/><circle cx="16" cy="12" r=".6" fill="currentColor"/></svg></button>
+</template>
 
-  <nav class="subnav" aria-label="Jumpshot sections">
-    <a href="#/" data-nav="home" class="on">Analyze</a>
-    <a href="#/history" data-nav="history">History <span class="count num" id="hist-count"></span></a>
-    <a href="sample/index.html" class="ext">Sample report <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a>
-  </nav>
+<main class="page" id="app">
 
-  <!-- ============================================================ LANDING -->
-  <section class="view" data-view="home" aria-labelledby="h-home">
-    <div class="hero">
-      <div class="eyebrow">NBA Projects · 01 · Computer vision</div>
-      <h1 id="h-home">Fix your jumper.</h1>
-      <p class="lede">Film one shot from the side. Get a mechanics score checked against published jump-shot ranges, the pro-style reference you're closest to, a frame-by-frame overlay on your own video and the drills that fix your biggest gap — in under a minute, all on your phone.</p>
+  <!-- Large title + Analyze / History switch (home and history only) -->
+  <header class="js-head" id="js-head">
+    <h1 class="large-title">Jumpshot</h1>
+    <p class="subtitle">Film one shot. Find out what to fix.</p>
+    <div class="seg js-seg" role="tablist" aria-label="Jumpshot">
+      <button type="button" role="tab" data-nav="home" class="on" aria-selected="true">Analyze</button>
+      <button type="button" role="tab" data-nav="history" aria-selected="false">History</button>
     </div>
+  </header>
 
-    <div class="actions">
-      <label class="action primary" for="file-upload">
-        <span class="ic"><svg viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg></span>
-        <span class="tx"><b>Upload a clip</b><small>From your camera roll · MP4 / MOV / WebM</small></span>
-        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
-      </label>
-      <input type="file" id="file-upload" accept="video/*" class="sr-file">
-      <button class="action" id="btn-record" type="button">
-        <span class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3z"/></svg></span>
-        <span class="tx"><b>Record now</b><small id="record-sub">Use your camera · 2–6 seconds</small></span>
-        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
-      </button>
-      <input type="file" id="file-capture" accept="video/*" capture="environment" class="sr-file">
-      <button class="action" id="btn-sample" type="button">
-        <span class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l6-3.5z"/></svg></span>
-        <span class="tx"><b>Try a sample</b><small>No video needed · see the full analysis</small></span>
-        <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
-      </button>
+  <!-- ============================== HOME -->
+  <section class="view" data-view="home">
+    <div class="home-actions">
+      <label class="btn primary block" for="file-upload">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5V4M7.5 8.5 12 4l4.5 4.5"/><path d="M4.5 14.5v3.5a2 2 0 0 0 2 2h11a2 2 0 0 0 2-2v-3.5"/></svg>Upload a clip</label>
+      <input type="file" id="file-upload" accept="video/*" class="sr-only">
+      <button class="btn block" id="btn-record" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6.5" width="12.5" height="11" rx="2.5"/><path d="m15.5 10.5 5-3v9l-5-3z"/></svg>Record</button>
+      <input type="file" id="file-capture" accept="video/*" capture="environment" class="sr-only">
+      <button class="btn plain sample-btn" id="btn-sample" type="button">Try a sample</button>
     </div>
-    <p class="privacy"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
-      <span><b>Private by design.</b> Your video is analysed by an AI model running in this browser tab. It is never uploaded — only the skeleton numbers are saved, on this device.</span></p>
+    <p class="privacy"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="10.5" width="13" height="9.5" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/></svg>Your video never leaves this device.</p>
 
-    <div class="home-grid">
-      <div class="card film">
-        <div class="sec-h"><h2>How to film</h2><span class="read">30 seconds of setup = a much better read</span></div>
-        <svg class="film-svg" viewBox="0 0 360 190" role="img" aria-label="Illustration: phone on the side at chest height, whole body and ball in frame">
-          <defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#242a36" stroke-width="2"/></pattern></defs>
-          <rect x="0" y="168" width="360" height="22" fill="url(#hatch)"/><line x1="0" y1="168" x2="360" y2="168" stroke="#2e3545"/>
-          <!-- field of view -->
-          <path d="M70 92 L236 22 L236 166 Z" fill="rgba(255,160,48,.07)" stroke="rgba(255,160,48,.45)" stroke-dasharray="3 4"/>
-          <!-- frame box around shooter -->
-          <rect x="196" y="26" width="92" height="140" rx="6" fill="none" stroke="#5b6478" stroke-dasharray="5 4"/>
-          <!-- shooter (side view, release) -->
-          <g stroke="#e6e9f0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none">
-            <circle cx="238" cy="62" r="8" fill="#0b0d12"/>
-            <path d="M236 72 L232 112"/><path d="M232 112 L240 138 L236 162"/><path d="M232 112 L226 138 L222 162"/>
-            <path d="M236 78 L224 92 L216 104"/>
-          </g>
-          <g stroke="#ffa030" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"><path d="M236 76 L246 56 L252 36"/></g>
-          <circle cx="258" cy="28" r="9" fill="none" stroke="#ffa030" stroke-width="2.5"/><path d="M249.5 28h17M258 19.5v17" stroke="#ffa030" stroke-width="1.2"/>
-          <!-- tripod + phone -->
-          <g stroke="#8a93a6" stroke-width="2" stroke-linecap="round" fill="none"><path d="M64 100 L64 140 M64 140 L52 166 M64 140 L76 166 M64 140 L64 166"/></g>
-          <rect x="56" y="80" width="16" height="26" rx="3" fill="#181c25" stroke="#e6e9f0" stroke-width="2"/><circle cx="68" cy="86" r="1.8" fill="#ffa030"/>
-          <!-- labels -->
-          <g font-family="ui-monospace,Menlo,monospace" font-size="11" fill="#8a93a6">
-            <text x="16" y="20">PHONE AT</text><text x="16" y="34">CHEST HEIGHT</text>
-            <path d="M40 40 L58 76" stroke="#5b6478" fill="none"/>
-            <text x="296" y="54">WHOLE</text><text x="296" y="68">BODY +</text><text x="296" y="82">BALL</text>
-            <text x="110" y="184" fill="#8a93a6">3–5 m · side-on</text>
-          </g>
-          <path d="M80 176 L190 176 M184 172 L190 176 L184 180" stroke="#5b6478" fill="none"/>
-        </svg>
-        <ul class="tips">
-          <li><b>Side view</b>, shooting arm toward the camera if you can.</li>
-          <li><b>Whole body + ball</b> in frame — feet to fingertips at release, with headroom.</li>
-          <li><b>Phone at chest height</b>, steady (lean it on something), 3–5 m away.</li>
-          <li><b>2–6 seconds</b>: start just before the dip, end after the follow-through.</li>
-          <li><b>Good light</b>, and <b>60 fps</b> if your camera has it (Settings → Camera → Record Video).</li>
-        </ul>
-      </div>
-      <div class="side-stack">
-        <div class="card" id="home-last" hidden></div>
-        <a class="card sample-link" href="sample/index.html">
-          <div><div class="label">See the sample report</div><b>Full static report from the Python pipeline</b>
-          <p class="muted">Same engine, same references — every section explained on a demo shot.</p></div>
-          <svg class="chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
-        </a>
-        <div class="card how">
-          <div class="label">What you get</div>
-          <ol class="how-list">
-            <li><b>Mechanics score</b> 0–100 from 8 checks against published ranges</li>
-            <li><b>Style match</b> to the closest reference in the library</li>
-            <li><b>Overlay</b> on your own video, with a reference ghost</li>
-            <li><b>12 mechanics</b> measured in degrees, seconds &amp; torso-lengths</li>
-            <li><b>Coaching plan</b> ordered by your biggest gap</li>
-            <li><b>History</b> &amp; shot-to-shot consistency</li>
-          </ol>
+    <div id="home-last"></div>
+
+    <section class="section">
+      <div class="section-h"><h2>How to film</h2></div>
+      <div class="list film">
+        <div class="film-art">
+          <svg viewBox="0 0 360 170" role="img" aria-label="A phone on a tripod at chest height films the shooter from the side, whole body and ball in frame">
+            <line x1="20" y1="150" x2="340" y2="150" class="fa-floor"/>
+            <path d="M76 84 L232 24 L232 150 Z" class="fa-cone"/>
+            <g class="fa-tripod"><path d="M70 96v30M70 126l-12 24M70 126l12 24M70 126v24"/></g>
+            <rect x="62" y="72" width="16" height="26" rx="3.5" class="fa-phone"/>
+            <g class="fa-body"><circle cx="246" cy="58" r="8"/><path d="M244 68l-4 40M240 108l8 22-4 20M240 108l-6 22-4 20M244 74l-12 14-8 12"/></g>
+            <path d="M244 72l10-20 6-20" class="fa-arm"/>
+            <circle cx="266" cy="24" r="9" class="fa-ball"/>
+            <text x="70" y="62" text-anchor="middle" class="fa-t">Chest height</text>
+            <text x="154" y="166" text-anchor="middle" class="fa-t">3–5 m, side-on</text>
+          </svg>
         </div>
+        <div class="row inset"><span class="tip-ic"><svg viewBox="0 0 24 24"><path d="M4 8.5h3l1.5-2h7L17 8.5h3v10H4z"/><circle cx="12" cy="13.5" r="3"/></svg></span><div class="grow"><div class="title">Film from the side</div><div class="sub">Shooting arm toward the camera</div></div></div>
+        <div class="row inset"><span class="tip-ic"><svg viewBox="0 0 24 24"><path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16"/><circle cx="12" cy="8.5" r="1.8"/><path d="M12 10.5v4.5M9.5 17.5 12 15l2.5 2.5M9 12.5h6"/></svg></span><div class="grow"><div class="title">Whole body and ball in frame</div><div class="sub">Feet to fingertips, with some headroom</div></div></div>
+        <div class="row inset"><span class="tip-ic"><svg viewBox="0 0 24 24"><rect x="8" y="3.5" width="8" height="13" rx="2"/><path d="M12 16.5v4M8.5 20.5h7"/></svg></span><div class="grow"><div class="title">Phone steady at chest height</div><div class="sub">Lean it on something, 3–5 m away</div></div></div>
+        <div class="row inset"><span class="tip-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9.5V13l2.5 1.5M10 3h4"/></svg></span><div class="grow"><div class="title">Keep it to 2–6 seconds</div><div class="sub">From the dip to the follow-through</div></div></div>
       </div>
+    </section>
+
+    <section class="section">
+      <div class="list">
+        <a class="row" href="sample/index.html"><div class="grow"><div class="title">Sample report</div></div><svg class="chev" viewBox="0 0 8 13" aria-hidden="true"><path d="M1.5 1.5 6.5 6.5 1.5 11.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <button class="row" id="btn-about" type="button"><div class="grow"><div class="title">How the analysis works</div></div><svg class="chev" viewBox="0 0 8 13" aria-hidden="true"><path d="M1.5 1.5 6.5 6.5 1.5 11.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </section>
+  </section>
+
+  <!-- ============================== RECORD (desktop, in-page camera) -->
+  <section class="view" data-view="record" hidden>
+    <button class="back" data-back type="button"><svg viewBox="0 0 12 20" aria-hidden="true"><path d="M10 2 2 10l8 8"/></svg>Jumpshot</button>
+    <h1 class="large-title">Record</h1>
+    <div class="stage rec-stage">
+      <video id="rec-video" playsinline muted autoplay></video>
+      <div class="rec-count num" id="rec-count" aria-live="assertive"></div>
+      <div class="rec-badge" id="rec-badge" hidden><i></i><span id="rec-time" class="num">0.0 s</span></div>
+      <div class="rec-bar"><i id="rec-prog"></i></div>
+    </div>
+    <div class="rec-ctl">
+      <button class="icon-btn" id="rec-flip" type="button" aria-label="Switch camera"><svg viewBox="0 0 24 24"><path d="M4 8h12.5l-3-3M20 16H7.5l3 3"/></svg></button>
+      <button class="recbtn" id="rec-go" type="button" aria-label="Start recording"><i></i></button>
+      <button class="btn plain" id="rec-stop" type="button" disabled>Stop</button>
+    </div>
+    <p class="section-foot center" id="rec-note">A 3-second countdown, then up to 6 seconds of video.</p>
+  </section>
+
+  <!-- ============================== CLIP / TRIM -->
+  <section class="view" data-view="clip" hidden>
+    <button class="back" data-back type="button"><svg viewBox="0 0 12 20" aria-hidden="true"><path d="M10 2 2 10l8 8"/></svg>Jumpshot</button>
+    <h1 class="large-title">Trim your clip</h1>
+    <p class="subtitle num" id="clip-meta">&nbsp;</p>
+    <div class="stage bleed" id="clip-stage"><video id="clip-video" playsinline muted preload="auto"></video><span class="stage-time num" id="clip-cur">0.00 s</span></div>
+    <div class="trimmer">
+      <button class="trim-play" id="trim-play" type="button" aria-label="Play selection"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></svg></button>
+      <div class="trim" id="trim">
+        <div class="strip" id="trim-strip"></div>
+        <div class="trim-shade" id="trim-shade-l"></div><div class="trim-shade" id="trim-shade-r"></div>
+        <div class="trim-sel" id="trim-sel"></div>
+        <input type="range" id="trim-a" min="0" max="1000" value="0" step="1" aria-label="Trim start">
+        <input type="range" id="trim-b" min="0" max="1000" value="1000" step="1" aria-label="Trim end">
+      </div>
+    </div>
+    <div class="trim-info num"><span id="trim-range">&nbsp;</span><span id="trim-len"></span></div>
+    <p class="section-foot" id="trim-note"></p>
+    <section class="section">
+      <div class="list">
+        <div class="row opt"><div class="grow"><div class="title">Shooting hand</div></div>
+          <div class="seg" role="radiogroup" aria-label="Shooting hand" id="opt-side"><button type="button" role="radio" data-v="auto" class="on" aria-checked="true">Auto</button><button type="button" role="radio" data-v="left" aria-checked="false">Left</button><button type="button" role="radio" data-v="right" aria-checked="false">Right</button></div></div>
+        <div class="row opt"><div class="grow"><div class="title">Accuracy</div></div>
+          <div class="seg" role="radiogroup" aria-label="Accuracy" id="opt-model"><button type="button" role="radio" data-v="lite" class="on" aria-checked="true">Fast</button><button type="button" role="radio" data-v="full" aria-checked="false">High</button></div></div>
+      </div>
+      <p class="section-foot" id="model-sub">&nbsp;</p>
+    </section>
+    <div class="pin"><button class="btn primary block" id="btn-analyze" type="button" disabled>Analyze</button></div>
+  </section>
+
+  <!-- ============================== PROCESSING -->
+  <section class="view" data-view="processing" hidden>
+    <div class="proc">
+      <div class="stage proc-stage" id="proc-stage">
+        <video id="proc-video" playsinline muted preload="auto"></video>
+        <canvas id="proc-canvas"></canvas>
+        <div class="proc-idle skel" id="proc-idle"></div>
+      </div>
+      <div class="meter proc-bar" role="progressbar" aria-label="Progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="proc-bar"><i></i></div>
+      <p class="proc-status" id="proc-status" aria-live="polite">Getting ready…</p>
+      <p class="proc-sub num" id="proc-eta">&nbsp;</p>
+      <button class="btn plain" id="btn-cancel" type="button">Cancel</button>
     </div>
   </section>
 
-  <!-- ============================================================ RECORDER (desktop / in-page) -->
-  <section class="view" data-view="record" aria-labelledby="h-record" hidden>
-    <div class="view-h"><button class="btn ghost back" data-back type="button" aria-label="Back"><svg viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></svg></button>
-      <div><div class="eyebrow">Record</div><h2 id="h-record">Record a shot</h2></div></div>
-    <div class="card rec">
-      <div class="rec-stage">
-        <video id="rec-video" playsinline muted autoplay></video>
-        <div class="rec-guide" aria-hidden="true"><span>keep your whole body + ball inside</span></div>
-        <div class="rec-count" id="rec-count" aria-live="assertive"></div>
-        <div class="rec-badge" id="rec-badge" hidden><i></i><span id="rec-time">0.0 s</span></div>
-        <div class="rec-bar"><i id="rec-prog"></i></div>
-      </div>
-      <div class="rec-ctl">
-        <button class="btn" id="rec-flip" type="button" aria-label="Switch camera"><svg viewBox="0 0 24 24"><path d="M4 7h11l-3-3M20 17H9l3 3"/></svg><span>Flip</span></button>
-        <button class="recbtn" id="rec-go" type="button" aria-label="Start recording"><i></i></button>
-        <button class="btn" id="rec-stop" type="button" disabled>Stop</button>
-      </div>
-      <p class="note center" id="rec-note">3-2-1 countdown, then records up to 6 s. Shoot when you see the red dot.</p>
-    </div>
-  </section>
-
-  <!-- ============================================================ CLIP STEP -->
-  <section class="view" data-view="clip" aria-labelledby="h-clip" hidden>
-    <div class="view-h"><button class="btn ghost back" data-back type="button" aria-label="Back"><svg viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></svg></button>
-      <div><div class="eyebrow">Step 1 of 2 · Clip</div><h2 id="h-clip">Trim to your shot</h2></div></div>
-    <div class="clip-grid">
-      <div class="card flush">
-        <div class="vstage" id="clip-stage"><video id="clip-video" playsinline muted preload="auto"></video>
-          <div class="vtime num" id="clip-cur">0.00 s</div></div>
-        <div class="clip-meta" id="clip-meta"><span class="chip skel">loading…</span></div>
-      </div>
-      <div class="stack">
-        <div class="card">
-          <div class="row-between"><h3>Trim</h3><span class="num muted" id="trim-len">—</span></div>
-          <div class="trim" id="trim">
-            <div class="strip"><div class="strip-in" id="trim-strip"></div><div class="trim-sel" id="trim-sel"></div></div>
-            <input type="range" id="trim-a" min="0" max="1000" value="0" step="1" aria-label="Trim start">
-            <input type="range" id="trim-b" min="0" max="1000" value="1000" step="1" aria-label="Trim end">
-          </div>
-          <div class="row-between trim-labels"><span class="num" id="trim-a-l">0.00 s</span>
-            <button class="btn sm" id="trim-play" type="button"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg><span>Play selection</span></button>
-            <span class="num" id="trim-b-l">0.00 s</span></div>
-          <p class="note" id="trim-note">Up to 15 s is analysed. Tight trims around one shot are faster and more accurate.</p>
-        </div>
-        <div class="card opts">
-          <div class="opt"><div><b>Shooting hand</b><small>Auto works for most side-on clips</small></div>
-            <div class="seg" role="radiogroup" aria-label="Shooting hand" id="opt-side">
-              <button type="button" role="radio" data-v="auto" class="on" aria-checked="true">Auto</button><button type="button" role="radio" data-v="right" aria-checked="false">Right</button><button type="button" role="radio" data-v="left" aria-checked="false">Left</button></div></div>
-          <div class="opt"><div><b>AI model</b><small id="model-sub">Fast · 5.8 MB download</small></div>
-            <div class="seg" role="radiogroup" aria-label="AI model" id="opt-model">
-              <button type="button" role="radio" data-v="lite" class="on" aria-checked="true">Fast</button><button type="button" role="radio" data-v="full" aria-checked="false">Accurate</button></div></div>
-        </div>
-        <div class="cta-bar"><button class="btn primary big" id="btn-analyze" type="button" disabled>
-          <svg viewBox="0 0 24 24"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg>Analyze shot</button>
-          <p class="note center">Runs on this device · nothing is uploaded</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================ PROCESSING -->
-  <section class="view" data-view="processing" aria-labelledby="h-proc" hidden>
-    <div class="view-h"><div><div class="eyebrow">Step 2 of 2 · Analysing</div><h2 id="h-proc">Reading your shot…</h2></div></div>
-    <div class="proc-grid">
-      <div class="card flush">
-        <div class="vstage proc-stage" id="proc-stage">
-          <video id="proc-video" playsinline muted preload="auto"></video>
-          <canvas id="proc-canvas"></canvas>
-          <div class="proc-idle" id="proc-idle"><div class="pulse"></div></div>
-          <div class="vtime num" id="proc-fps"></div>
-        </div>
-      </div>
-      <div class="stack">
-        <div class="card">
-          <ol class="steps" id="proc-steps">
-            <li data-step="model"><i></i><div><b>Download AI model</b><small id="st-model">one time · cached for offline use</small></div></li>
-            <li data-step="init"><i></i><div><b>Start the pose model</b><small id="st-init">GPU if available</small></div></li>
-            <li data-step="track"><i></i><div><b>Track your body, frame by frame</b><small id="st-track">33 landmarks per frame</small></div></li>
-            <li data-step="analyze"><i></i><div><b>Score mechanics &amp; match the library</b><small id="st-analyze">mechanics · timing · drills</small></div></li>
-          </ol>
-          <div class="pbar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="proc-bar"><i></i></div>
-          <div class="row-between proc-nums"><span class="num" id="proc-count">—</span><span class="num muted" id="proc-eta"></span></div>
-          <div class="row-between"><span class="chip" id="proc-delegate" hidden></span>
-            <button class="btn" id="btn-cancel" type="button">Cancel</button></div>
-        </div>
-        <p class="note">Keep this tab open — processing pauses in the background. Your screen stays awake while it runs.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================ SHOT PICKER -->
-  <section class="view" data-view="shots" aria-labelledby="h-shots" hidden>
-    <div class="view-h"><button class="btn ghost back" data-back type="button" aria-label="Back"><svg viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></svg></button>
-      <div><div class="eyebrow">Shots found</div><h2 id="h-shots">Pick a shot</h2></div></div>
+  <!-- ============================== SHOT PICKER -->
+  <section class="view" data-view="shots" hidden>
+    <button class="back" data-back type="button"><svg viewBox="0 0 12 20" aria-hidden="true"><path d="M10 2 2 10l8 8"/></svg>Trim</button>
     <div id="shots-body"></div>
   </section>
 
-  <!-- ============================================================ RESULTS -->
-  <section class="view" data-view="results" aria-labelledby="h-res" hidden>
-    <div id="results-body"></div>
-  </section>
+  <!-- ============================== RESULTS -->
+  <section class="view" data-view="results" hidden><div id="results-body"></div></section>
 
-  <!-- ============================================================ HISTORY -->
-  <section class="view" data-view="history" aria-labelledby="h-hist" hidden>
-    <div id="history-body"></div>
-  </section>
+  <!-- ============================== HISTORY -->
+  <section class="view" data-view="history" hidden><div id="history-body"></div></section>
 
-  <!-- ============================================================ COMPARE -->
-  <section class="view" data-view="compare" aria-labelledby="h-cmp" hidden>
-    <div id="compare-body"></div>
-  </section>
-
-  <!-- ============================================================ ERROR -->
-  <section class="view" data-view="error" aria-labelledby="h-err" hidden>
-    <div class="card errcard" id="error-body"></div>
-  </section>
-
-  <footer class="method" id="method">
-    <b>Method &amp; limits.</b> MediaPipe Pose (tasks-vision 1.2.2) runs in your browser and finds 33 body landmarks per frame; the analysis engine turns them into nine per-frame mechanics, detects onset → set → release → follow-through, scores eight mechanics checks (elbow at set, knee dip, elbow and shoulder at release, release timing vs the jump peak, follow-through, balance) against ranges from published jump-shot kinematics, and separately matches the time-normalised shot to a reference library with dynamic time warping (+ a small learned encoder where available) for the style match. The published ranges come from 3-D lab studies of skilled shooters; here they are applied to 2-D phone video, so treat them as coaching ranges, not laws. Single camera, 2-D only: depth, ball flight and make/miss are not measured, and angles drift if the camera is not side-on. The references are synthetic stand-ins for pro shooters. Drills are generic form-shooting work, not professional coaching.
-    <div class="foot"><span>Jumpshot Analyzer</span><span>on-device · no upload</span><span>MediaPipe Pose</span></div>
-  </footer>
+  <!-- ============================== ERROR -->
+  <section class="view" data-view="error" hidden><div id="error-body"></div></section>
 </main>
 
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-<input type="file" id="file-import" accept="application/json,.json" class="sr-file">
-<script src="../assets/shell.js"></script>
+<input type="file" id="file-import" accept="application/json,.json" class="sr-only">
 <script type="module" src="app/ui.js"></script>
 </body></html>

@@ -2,19 +2,50 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<script>
+/* GitHub Pages serves this file at any missing path, so resolve assets and links from the site root. */
+(function () {
+  var m = location.pathname.match(/^\/coolbasketballstuff\//);
+  var root = m ? m[0] : './';
+  var base = document.createElement('base'); base.href = root; document.head.appendChild(base);
+  var css = document.createElement('link'); css.rel = 'stylesheet'; css.href = root + 'assets/app.css'; document.head.appendChild(css);
+  document.addEventListener('DOMContentLoaded', function () {
+    var js = document.createElement('script'); js.src = root + 'assets/app-shell.js'; document.body.appendChild(js);
+  });
+})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0b0d12">
-<title>Not found · NBA Projects</title>
+<meta name="theme-color" content="#f9f9fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161618" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="NBA Projects">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
-<link rel="stylesheet" href="./assets/shell.css">
+<title>Page not found</title>
+<style>
+html{background:#f2f2f7}@media (prefers-color-scheme:dark){html{background:#000}}
+.nf{min-height:calc(100vh - var(--topbar-h) - var(--sat) - var(--tabbar-h) - var(--sab) - 48px);display:grid;place-items:center}
+.nf .empty{max-width:340px}
+.nf .glyph{width:64px;height:64px;border-radius:18px;background:var(--fill);color:var(--label-2);display:grid;place-items:center;margin:0 auto 16px}
+.nf .glyph svg{width:34px;height:34px;margin:0;color:inherit;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.nf .empty h1{font:700 var(--t-1)/1.2 var(--font-display);letter-spacing:-.015em;margin:0 0 8px}
+.nf .empty p{color:var(--label-2);font-size:var(--t-sub);line-height:1.4;margin:0 0 24px}
+.nf .btn{min-width:200px}
+@media (max-width:899px){.ap-top .ap-brandname{display:none}}
+</style>
 </head>
-<body data-app="hub" data-depth="" data-title="NBA Projects" data-mark="NP">
-<main class="wrap">
-  <p class="eyebrow">404</p>
-  <h1>That page isn't here.</h1>
-  <p class="lede">The link may be out of date, or the app page hasn't been built yet.</p>
-  <p><a class="btn primary" href="./index.html">Back to NBA Projects</a></p>
+<body data-app="none" data-title="Page not found" data-depth="">
+<main class="page nf">
+  <div class="empty">
+    <span class="glyph" aria-hidden="true"><svg viewBox="0 0 34 34"><circle cx="17" cy="17" r="11.5"/><path d="M5.5 17h23"/><path d="M17 5.5c-3.4 3-5.1 6.9-5.1 11.5s1.7 8.5 5.1 11.5"/><path d="M17 5.5c3.4 3 5.1 6.9 5.1 11.5s-1.7 8.5-5.1 11.5"/></svg></span>
+    <h1>Page not found</h1>
+    <p>This link may be out of date. Head back home to find all three apps.</p>
+    <a class="btn primary" href="./index.html">Go home</a>
+  </div>
 </main>
-<script src="./assets/shell.js"></script>
 </body>
 </html>

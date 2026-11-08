@@ -1,21 +1,24 @@
 """
-Build the Lineup Intelligence page.
+Build the Lineups page (NBA Projects).
 
 Two outputs from the same builder:
 
-* ``output/report.html`` — standalone: the shared shell (site/assets/shell.css + shell.js)
+* ``output/report.html`` — standalone: the shared app foundation (site/assets/app.css + app-shell.js)
   is inlined so the file opens from anywhere, no CDN, no server.
-* ``<site>/index.html`` (``cli.py demo --site <dir>``) — the GitHub-Pages version that
-  references ``../assets/shell.css`` / ``../assets/shell.js`` and renders the shared top bar.
+* ``<site>/index.html`` (``cli.py demo --site <dir>``) — the GitHub-Pages version that references
+  ``../assets/app.css`` / ``../assets/app-shell.js`` (top bar, tab bar, toast) and the PWA head tags
+  from ``site/_head_snippet.html``.
 
-The page embeds a compact JSON payload with EVERY C(n,5) lineup of every team
-(bitmask, predicted net / off, feasibility, rank, top contributions) so the builder,
-what-if swaps, pairwise synergy, rotation and the opponent heuristic all run in the
-browser from a ``Map<bitmask, row>`` lookup.
+The page embeds a compact JSON payload (every team's top fives + the default team's full C(n,5) table:
+bitmask, predicted net / off, feasibility, rank, top contributions); the other teams' full tables are
+fetched lazily from ``data/<ABBR>.json``. The builder, swaps, pair synergy, rotation and the matchup
+estimate all run in the browser from a ``Map<bitmask, row>`` lookup.
 
-Page order (mobile-first): KPI tiles for the current five -> builder (team / opponent,
-roster tiles, court, "Why" bars, Read line) -> what-if swaps -> rotation -> synergy
-heatmap + duos -> team board -> model lab (collapsed) -> method & limits -> foot.
+Screen (mobile-first, app-polish skill): large title + team picker -> hero (the five as initials avatars,
+fit score with a plain verdict, net rating) -> matchup row (sheet, labelled as an estimate) -> roster
+grouped by position with checkmarks (max 5) + a live score bar -> why this works -> best swaps ->
+best pairs (full heatmap in a sheet) -> rotation -> around the league (top 10, all in a sheet) ->
+about this model (sheet: metrics, honesty note, data, approximations).
 """
 from __future__ import annotations
 
@@ -31,10 +34,37 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT_DIR = os.path.join(ROOT, "output")
 SITE_ASSETS = os.path.normpath(os.path.join(ROOT, "..", "site", "assets"))
 
-# Model-lab series colours: neutral greys only (the accent is reserved for the hero
-# number, selected tiles, active controls and the five on the court).
-SERIES = {"xgb": "var(--text)", "hgb": "var(--muted)", "ridge": "var(--faint)"}
+# Learning-curve series: the production model is the one highlighted series (brand), the rest use label tiers.
+SERIES = {"xgb": "var(--brand)", "hgb": "var(--label-3)", "ridge": "var(--label-2)"}
 SERIES_NAME = {"xgb": "XGBoost", "hgb": "HistGB", "ridge": "Ridge"}
+
+# Fan-facing names for the model's lineup features ("Why this works" rows, About sheet). The sign of a
+# contribution says whether the trait helps or hurts, so every label names the trait neutrally.
+PLAIN_LABELS = {
+    "fg3_pct_mean": "Three-point shooting", "fg3_pct_std": "Gap between best and worst shooter",
+    "fg3_pct_min": "Weakest shooter", "fg3a_rate_sum": "Three-point volume", "shooters": "Number of shooters",
+    "non_shooters": "Players who don't shoot threes", "ast_pct_sum": "Passing", "ast_pct_max": "Best passer",
+    "usage_sum": "Shot creation", "usage_max": "Go-to scorer", "usage_std": "Balance of touches",
+    "handlers": "Ball handlers", "height_mean": "Size", "height_std": "Mix of sizes", "height_min": "Smallest player",
+    "height_max": "Tallest player", "bigs": "Number of bigs", "reb_pct_sum": "Rebounding",
+    "dbpm_sum": "Defensive impact", "blk_pct_max": "Rim protection", "blk_pct_sum": "Shot blocking",
+    "stl_pct_sum": "Ball pressure", "def_rating_proxy_mean": "Individual defense", "obpm_sum": "Offensive impact",
+    "obpm_min": "Weakest offensive player", "bpm_sum": "Overall player impact", "tov_pct_sum": "Turnovers",
+    "tov_pct_max": "Most turnover-prone player", "minutes_mean_log": "Minutes played this season",
+    "zero_minute_players": "Players without minutes", "pair_usage_absdiff_mean": "Complementary roles",
+    "pair_height_absdiff_mean": "Complementary sizes", "pair_both_handlers": "Overlapping ball handlers",
+    "pair_both_nonshooters": "Non-shooters sharing the floor", "shooters_x_bigs": "Shooters around bigs",
+    "shooters_x_ast_max": "Shooters with a playmaker", "handlers_x_usage_max": "Creators with a go-to scorer",
+    "stl_x_blk": "Steals plus rim protection", "spacing_x_rim": "Spacing with a rim protector",
+}
+
+
+def nickname(team: str) -> str:
+    """'Cleveland Cavaliers' -> 'Cavaliers', 'Portland Trail Blazers' -> 'Trail Blazers'."""
+    for two in ("Trail Blazers",):
+        if team.endswith(two):
+            return two
+    return team.split()[-1]
 
 
 # ------------------------------------------------------------------ payload ---
@@ -144,7 +174,8 @@ def _payload(tables: dict, meta: dict, all_recs: dict, players: pd.DataFrame, so
         teams[team] = full if team == default_team else _team_payload(tt, rec, full=False)
     main = {
         "fit": {"center": round(meta["fit_center"], 4), "scale": round(meta["fit_scale"], 4)},
-        "features": feats, "labels": {f: FEATURE_LABELS.get(f, f) for f in feats},
+        "features": feats, "labels": {f: PLAIN_LABELS.get(f, FEATURE_LABELS.get(f, f)) for f in feats},
+        "nick": {t: nickname(t) for t in tables},
         "teams": teams, "matchup": MATCHUP,
         "league_profile": {k: round(v, 2) for k, v in league_profile(players).items()},
         "source": {"source": source.get("source", "sample"), "label": source.get("label", "Sample league"), "updated": source.get("fetched_at") or ""},
@@ -152,79 +183,49 @@ def _payload(tables: dict, meta: dict, all_recs: dict, players: pd.DataFrame, so
     return main, files
 
 
+
+
 # ------------------------------------------------------------- static svg ---
-def _fold_chart(per_fold: list[dict]) -> str:
-    W, H, pad_l, pad_b, pad_t = 720, 260, 40, 58, 12
-    n = len(per_fold)
-    gw = (W - pad_l - 10) / n
-    bw = gw / 4.2
-    vals = [f[f"{k}_spearman"] for f in per_fold for k in ("ridge", "xgb", "hgb")]
-    ymin = min(0.0, float(np.floor(min(vals) * 10) / 10))
-    ymax = max(0.6, float(np.ceil(max(vals) * 10) / 10))
-
-    def y(v):
-        return pad_t + (H - pad_b - pad_t) * (1 - (v - ymin) / (ymax - ymin))
-    out = [f'<svg class="chart" viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Spearman per held-out team">']
-    for v in np.arange(ymin, ymax + 1e-9, 0.1):
-        out.append(f'<line class="grid" x1="{pad_l}" x2="{W-10}" y1="{y(v):.1f}" y2="{y(v):.1f}"/>')
-        out.append(f'<text x="{pad_l-6}" y="{y(v)+4:.1f}" text-anchor="end">{v:.1f}</text>')
-    for i, f in enumerate(per_fold):
-        x0 = pad_l + i * gw + gw * 0.15
-        for k, key in enumerate(("ridge", "xgb", "hgb")):
-            v = f[f"{key}_spearman"]
-            top, base = (y(v), y(0.0)) if v >= 0 else (y(0.0), y(v))
-            out.append(f'<rect x="{x0 + k*bw:.1f}" y="{top:.1f}" width="{bw-2:.1f}" height="{max(0.0, base-top):.1f}" fill="{SERIES[key]}" rx="1">'
-                       f'<title>{html.escape(", ".join(f["held_out_teams"]))} · {SERIES_NAME[key]}: {v:.3f}</title></rect>')
-        label = f.get("label") or ", ".join(t.split()[0] for t in f["held_out_teams"])
-        out.append(f'<text x="{x0 + 1.5*bw:.1f}" y="{H-pad_b+14}" text-anchor="end" transform="rotate(-28 {x0 + 1.5*bw:.1f} {H-pad_b+14})">{html.escape(label)}</text>')
-    out.append(f'<line class="axis" x1="{pad_l}" x2="{W-10}" y1="{y(0.0):.1f}" y2="{y(0.0):.1f}"/>')
-    lx = pad_l
-    for key in ("xgb", "hgb", "ridge"):
-        out.append(f'<rect x="{lx}" y="{H-13}" width="10" height="10" rx="2" fill="{SERIES[key]}"/><text x="{lx+14}" y="{H-4}">{SERIES_NAME[key]}</text>')
-        lx += 84
-    out.append("</svg>")
-    return "".join(out)
-
-
 def _curve_chart(lc: dict) -> str:
+    """Learning curve (held-out rank correlation vs training lineups), sized for a phone-width sheet."""
     if not lc:
-        return '<div class="muted">learning curve not computed</div>'
-    W, H, pad_l, pad_b, pad_t = 720, 260, 40, 36, 12
-    keys = ("ridge", "xgboost", "hgb")
+        return ""
+    W, H, pad_l, pad_r, pad_b, pad_t = 360, 200, 34, 92, 26, 10
+    keys = ("xgboost", "ridge", "hgb")
     skey = {"ridge": "ridge", "xgboost": "xgb", "hgb": "hgb"}
     xs = lc["n_train"]
-    ymin = min(min(lc[k]) - max(lc[k + "_sd"]) for k in keys)
-    ymin = max(0.0, np.floor((ymin - 0.02) * 20) / 20)
-    ymax = min(1.0, float(np.ceil((max(max(lc[k]) + max(lc[k + "_sd"]) for k in keys) + 0.02) * 20) / 20))
+    lo = min(min(lc[k]) for k in keys)
+    hi = max(max(lc[k]) for k in keys)
+    ymin = max(0.0, float(np.floor((lo - 0.03) * 20) / 20))
+    ymax = min(1.0, float(np.ceil((hi + 0.03) * 20) / 20))
 
     def x(v):
-        return pad_l + (W - pad_l - 70) * (v - xs[0] * 0.8) / (xs[-1] * 1.05 - xs[0] * 0.8)
+        return pad_l + (W - pad_l - pad_r) * (v - xs[0]) / max(1, (xs[-1] - xs[0]))
 
     def y(v):
-        return pad_t + (H - pad_b - pad_t) * (1 - (v - ymin) / (ymax - ymin))
-    out = [f'<svg class="chart" viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Learning curve">']
-    for v in np.arange(ymin, ymax + 1e-9, 0.05):
-        out.append(f'<line class="grid" x1="{pad_l}" x2="{W-70}" y1="{y(v):.1f}" y2="{y(v):.1f}"/><text x="{pad_l-6}" y="{y(v)+4:.1f}" text-anchor="end">{v:.2f}</text>')
-    for n in xs:
-        out.append(f'<text x="{x(n):.1f}" y="{H-pad_b+16}" text-anchor="middle">n={n}</text>')
-    out.append(f'<text x="{(pad_l+W-70)/2:.0f}" y="{H-4}" text-anchor="middle">training lineups · mean of 4 team-folds · band = ±1 sd</text>')
+        return pad_t + (H - pad_b - pad_t) * (1 - (v - ymin) / max(1e-9, (ymax - ymin)))
+    out = [f'<svg class="chart curve" viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" role="img" '
+           f'aria-label="Held-out rank correlation as training data grows">']
+    ticks = np.linspace(ymin, ymax, 3)
+    for v in ticks:
+        out.append(f'<line class="grid" x1="{pad_l}" x2="{W - pad_r + 6}" y1="{y(v):.1f}" y2="{y(v):.1f}"/>'
+                   f'<text x="{pad_l - 6}" y="{y(v) + 4:.1f}" text-anchor="end">{v:.2f}</text>')
+    for n in (xs[0], xs[-1]):
+        out.append(f'<text x="{x(n):.1f}" y="{H - 6}" text-anchor="middle">{n:,} lineups</text>')
     label_y = {k: y(lc[k][-1]) for k in keys}
-    for _ in range(6):
+    for _ in range(8):
         for a, b in itertools.combinations(sorted(keys, key=label_y.get), 2):
-            if abs(label_y[a] - label_y[b]) < 13:
+            if abs(label_y[a] - label_y[b]) < 15:
                 mid = (label_y[a] + label_y[b]) / 2
-                label_y[a], label_y[b] = mid - 6.5, mid + 6.5
-    for key in keys:
+                lo_k, hi_k = (a, b) if label_y[a] <= label_y[b] else (b, a)
+                label_y[lo_k], label_y[hi_k] = mid - 7.5, mid + 7.5
+    for key in keys[::-1]:
         col = SERIES[skey[key]]
-        ys, sd = lc[key], lc[key + "_sd"]
-        band = " ".join(f"{x(a):.1f},{y(b+s):.1f}" for a, b, s in zip(xs, ys, sd)) + " " + " ".join(f"{x(a):.1f},{y(b-s):.1f}" for a, b, s in zip(xs[::-1], ys[::-1], sd[::-1]))
-        out.append(f'<polygon points="{band}" fill="{col}" opacity=".08"/>')
-        pts = " ".join(f"{x(a):.1f},{y(b):.1f}" for a, b in zip(xs, ys))
-        dash = ' stroke-dasharray="5 4"' if key == "ridge" else ""
-        out.append(f'<polyline points="{pts}" fill="none" stroke="{col}" stroke-width="2"{dash}/>')
-        for a, b in zip(xs, ys):
-            out.append(f'<circle cx="{x(a):.1f}" cy="{y(b):.1f}" r="3.5" fill="{col}"><title>{SERIES_NAME[skey[key]]} n={a}: {b:.3f}</title></circle>')
-        out.append(f'<text x="{x(xs[-1])+8:.1f}" y="{label_y[key]+4:.1f}" style="fill:{col}">{SERIES_NAME[skey[key]]} {ys[-1]:.3f}</text>')
+        pts = " ".join(f"{x(a):.1f},{y(b):.1f}" for a, b in zip(xs, lc[key]))
+        w = 2.2 if key == "xgboost" else 1.6
+        out.append(f'<polyline points="{pts}" fill="none" stroke="{col}" stroke-width="{w}" stroke-linejoin="round" stroke-linecap="round"/>')
+        out.append(f'<circle cx="{x(xs[-1]):.1f}" cy="{y(lc[key][-1]):.1f}" r="3" fill="{col}"/>')
+        out.append(f'<text class="dl" x="{x(xs[-1]) + 8:.1f}" y="{label_y[key] + 4:.1f}">{SERIES_NAME[skey[key]]} {lc[key][-1]:.2f}</text>')
     out.append("</svg>")
     return "".join(out)
 
@@ -234,239 +235,318 @@ def _ordinal(n: int) -> str:
     return f"{n}{'th' if 10 <= n % 100 <= 20 else {1: 'st', 2: 'nd', 3: 'rd'}.get(n % 10, 'th')}"
 
 
-def _board(all_recs: dict, best_team: str) -> str:
+def _nice_date(ts: str) -> str:
+    """'2026-11-08 16:19 UTC' -> 'Nov 8, 2026' (falls back to the raw string)."""
+    import datetime as _dt
+    try:
+        d = _dt.datetime.strptime(ts[:10], "%Y-%m-%d")
+        return f"{d.strftime('%b')} {d.day}, {d.year}"
+    except (ValueError, TypeError):
+        return ts or ""
+
+
+_CHEV = '<svg class="chev" viewBox="0 0 8 13" aria-hidden="true"><path d="M1.5 1.5 6.5 6.5l-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+
+
+def _last_name(name: str) -> str:
+    """'Jaren Jackson Jr.' -> 'Jackson' (suffixes skipped)."""
+    p = name.split()
+    return p[-2] if len(p) > 2 and p[-1].rstrip(".") in ("Jr", "Sr", "II", "III", "IV") else p[-1]
+
+
+def _board_rows(all_recs: dict, current: str, limit: int | None = None) -> str:
+    """Around-the-league rows: each team's best feasible five, best first. Tapping a row loads that team."""
     rows = []
-    for t, o in sorted(all_recs.items(), key=lambda kv: -kv[1]["recommendations"][0]["fit_score"]):
+    ranked = sorted(all_recs.items(), key=lambda kv: -kv[1]["recommendations"][0]["fit_score"])
+    for i, (t, o) in enumerate(ranked[:limit] if limit else ranked, 1):
         r = o["recommendations"][0]
-        mu = o.get("most_used_lineup") or {}
-        names = ", ".join(p["name"].split()[-1] for p in r["players"])
+        names = ", ".join(_last_name(p["name"]) for p in r["players"])
         rows.append(
-            f'<tr data-team="{html.escape(t)}"{" class=on" if t == best_team else ""}><td>{html.escape(t)}</td>'
-            f'<td class="n"><b>{r["fit_score"]:.0f}</b></td><td class="n {"pos" if r["predicted_net"] >= 0 else "neg"}">{r["predicted_net"]:+.1f}</td>'
-            f'<td class="n">{r["predicted_off"]:.1f}</td><td class="n">{r["predicted_def"]:.1f}</td>'
-            f'<td class="n">{r["shooters"]} / {r["handlers"]} / {r["bigs"]}</td>'
-            f'<td class="n">{mu.get("fit_score", 0):.0f}<span class="rank">#{mu.get("rank_all", "–")}</span></td>'
-            f'<td class="muted">{html.escape(names)}</td></tr>')
-    return ("<table><thead><tr><th>Team</th><th class=n>Fit</th><th class=n>Net</th><th class=n>Off</th><th class=n>Def</th>"
-            "<th class=n>S / H / B</th><th class=n>Coach's five</th><th>Model's best five</th></tr></thead><tbody>" + "".join(rows) + "</tbody></table>")
+            f'<button type="button" class="row league-row{" selected" if t == current else ""}" data-team="{html.escape(t)}">'
+            f'<span class="lrank num">{i}</span>'
+            f'<span class="grow"><span class="title">{html.escape(t)}</span><span class="sub">{html.escape(names)}</span></span>'
+            f'<span class="lfit num">{r["fit_score"]:.0f}</span></button>')
+    return "".join(rows)
 
 
 def _read_asset(name: str) -> str:
     p = os.path.join(SITE_ASSETS, name)
     if not os.path.exists(p):
-        raise FileNotFoundError(f"shared shell asset missing: {p} (expected site/assets/{name} next to the project)")
+        raise FileNotFoundError(f"shared app asset missing: {p} (expected site/assets/{name} next to the project)")
     with open(p, encoding="utf-8") as fh:
         return fh.read()
 
 
+def _head_snippet(standalone: bool) -> str:
+    """PWA head tags shared by every app page. The standalone report drops the ../ links (no manifest / icons next to it)."""
+    p = os.path.join(os.path.dirname(SITE_ASSETS), "_head_snippet.html")
+    if os.path.exists(p):
+        with open(p, encoding="utf-8") as fh:
+            lines = [ln.strip() for ln in fh if ln.strip() and not ln.strip().startswith("<!--")]
+    else:
+        lines = ['<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">',
+                 '<meta name="color-scheme" content="light dark">']
+    if standalone:
+        lines = [ln for ln in lines if 'href="../' not in ln]
+    return "\n".join(lines)
+
+
 def _source_bits(source: dict, n_lineups: int) -> dict:
-    """Header chip, lede, lineup wording, limits and footer text per data source."""
+    """Plain-language data description, approximations and footer per data source."""
     src = source.get("source", "sample")
-    ts = source.get("fetched_at") or ""
+    upd = _nice_date(source.get("fetched_at") or "")
     if src == "espn":
-        seasons = " + ".join(source.get("seasons", []))
+        seasons = " and ".join(source.get("seasons", []))
         return {
-            "chip": f'<span class="chip accent">Live data · ESPN</span><span class="muted upd">updated {html.escape(ts)}</span>',
-            "lede": (f"Real NBA data from ESPN's public box scores ({seasons}, {source.get('games_used', 0):,} games, latest "
-                     f"{html.escape(str(source.get('latest_game_date') or ''))}). A gradient-boosted model learns which five-man combinations "
-                     f"outperform the sum of their parts from {n_lineups:,} starting- and closing-five observations, then scores every possible five "
-                     f"on all 30 current rosters."),
-            "lineup_word": "starting / closing fives (box-score approximation)",
-            "hist_none": "never a starting or closing five in the data",
-            "limits": ("<b>Data are an approximation, not stint data:</b> each team-game contributes its starting five (and its top-5-minutes "
-                       "closing five when different); lineup net = Σ(the five players' +/−) / 5 per 100 estimated possessions "
-                       "(0.96 · (FGA + 0.44 FTA + TOV − OREB) scaled by shared minutes), minutes = mean of the five. The off / def split assumes the "
-                       "lineup's deviation from the team's game net splits evenly. BPM-style columns are proxies (Game-Score halves per 36 blended with "
-                       "shrunk +/− per 36) and share games with the target, so held-out metrics are optimistic. Rosters are ESPN's current rosters "
-                       "capped at 17 by minutes; DNP = no minutes this season; injury chips are ESPN's status at build time."),
-            "foot": f"Data: ESPN public API · updated {html.escape(ts)}",
-            "foot_tags": '<span>ESPN public API</span><span>30 NBA teams</span>',
+            "data": (f"Box scores from ESPN's public API for the {seasons} seasons: {source.get('games_used', 0):,} games, "
+                     f"the latest on {html.escape(_nice_date(str(source.get('latest_game_date') or '')))}. The model learned from "
+                     f"{n_lineups:,} starting and closing fives, then scored every possible five on all 30 current rosters."),
+            "approx": [
+                "Lineups come from box scores, not play-by-play. Each game adds its starting five, plus its closing five "
+                "(the five players with the most minutes) when that's different.",
+                "A lineup's net rating is the average plus-minus of its five players, scaled to 100 possessions. Possessions are "
+                "estimated from shots, free throws, turnovers and offensive rebounds.",
+                "Offense and defense are split by assuming the lineup's edge over the team's game result is shared evenly.",
+                "Player impact numbers are box-score estimates built from the same games, so test results are a little optimistic.",
+                "Rosters are ESPN's current rosters, up to 17 players by minutes. Injury labels are ESPN's status when the page was built.",
+            ],
+            "foot": f"Data from ESPN, updated {html.escape(upd)}",
+            "hist_none": "Never started or closed a game together",
+            "updated": upd,
         }
     if src == "nba_api":
         return {
-            "chip": f'<span class="chip accent">Live data · NBA Stats</span><span class="muted upd">updated {html.escape(ts)}</span>',
-            "lede": (f"Real 5-man stint lineups from stats.nba.com ({', '.join(source.get('seasons', []))}): {n_lineups:,} lineups with ≥ 10 minutes. "
-                     "A gradient-boosted model learns which fives outperform the sum of their parts, then scores every possible five on every roster."),
-            "lineup_word": "5-man stint lineups (stats.nba.com)",
-            "hist_none": "never played together in the data",
-            "limits": "<b>Data:</b> stats.nba.com leaguedashlineups (Advanced, ≥ 10 min); BPM columns are on/off-rating proxies.",
-            "foot": f"Data: stats.nba.com via nba_api · updated {html.escape(ts)}",
-            "foot_tags": '<span>stats.nba.com</span>',
+            "data": (f"Five-man lineup stints from stats.nba.com ({', '.join(source.get('seasons', []))}): {n_lineups:,} lineups "
+                     "with at least 10 minutes together."),
+            "approx": ["Player impact numbers are on/off estimates from the same seasons."],
+            "foot": f"Data from NBA Stats, updated {html.escape(upd)}",
+            "hist_none": "Never played together in the data",
+            "updated": upd,
         }
     return {
-        "chip": '<span class="chip">Sample data · synthetic</span>',
-        "lede": "A gradient-boosted model learns which five-man combinations outperform the sum of their parts in a seeded, fictional league — build any lineup and every panel updates instantly.",
-        "lineup_word": "synthetic lineups",
-        "hist_none": "never played together in the sample",
-        "limits": "<b>Limits:</b> synthetic 8-team league with an invented synergy function; fit scores are for demonstration only.",
-        "foot": "Data: synthetic sample league",
-        "foot_tags": '<span>Sample league</span><span>synthetic data</span>',
+        "data": "A seeded, fictional league with an invented chemistry function. Scores are for demonstration only.",
+        "approx": ["Teams, players and results are synthetic."],
+        "foot": "Sample data (fictional league)",
+        "hist_none": "Never played together in the sample",
+        "updated": "",
     }
+
+
+def _about(meta: dict, sb: dict, n_combos: int, n_teams: int) -> str:
+    """Body of the "About this model" sheet: what fit means, how well it predicts (with the honest
+    Ridge-vs-XGBoost result), what it weighs, the data and every approximation."""
+    from optimize import MATCHUP, ROTATION
+    ev = meta["evaluation"]
+    m = ev["metrics"]
+    folds = ev["folds"]
+    order = sorted(("ridge", "xgboost", "hgb"), key=lambda k: -m[k]["spearman_pooled"])
+    names = {"ridge": "Ridge regression", "xgboost": "XGBoost", "hgb": "Histogram gradient boosting"}
+    rows = []
+    for k in order + ["mean_baseline"]:
+        x = m[k]
+        tag = ' <span class="badge brand">In use</span>' if k == "xgboost" else ""
+        sub = (f"Best on {x.get('folds_won', 0)} of {folds} test splits" if k != "mean_baseline"
+               else "Guesses the average for every lineup")
+        rows.append(f'<div class="row"><span class="grow"><span class="title">{names.get(k, "Average guess")}{tag}</span>'
+                    f'<span class="sub">{sub}</span></span><span class="value num">{x["spearman_pooled"]:.2f}</span></div>')
+    lift = m["xgboost"]["spearman_pooled"] - m["ridge"]["spearman_pooled"]
+    if lift > 0.01:
+        honest = (f"XGBoost ranks lineups a little better than a simple linear model ({m['xgboost']['spearman_pooled']:.2f} vs "
+                  f"{m['ridge']['spearman_pooled']:.2f}). The edge is real but modest with this much data.")
+    else:
+        honest = (f"A simple linear model (ridge regression) ranks lineups slightly better than XGBoost on teams neither model saw "
+                  f"({m['ridge']['spearman_pooled']:.2f} vs {m['xgboost']['spearman_pooled']:.2f}). With a few thousand noisy box-score "
+                  f"lineups, most of the signal is simply how good the five players are. The app keeps XGBoost because it can say "
+                  f"exactly how much each trait adds or costs, which powers “Why this works.”")
+    imp = meta["feature_importance"][:6]
+    top = imp[0][1] if imp else 1
+    imp_html = "".join(
+        f'<div class="imp"><div class="imp-top"><span>{html.escape(PLAIN_LABELS.get(k, k))}</span>'
+        f'<span class="num muted">{100 * v:.0f}%</span></div><div class="meter"><i style="width:{100 * v / top:.0f}%"></i></div></div>'
+        for k, v in imp)
+    approx = "".join(f"<li>{html.escape(a)}</li>" for a in sb["approx"])
+    lc = ev.get("learning_curve") or {}
+    curve = _curve_chart(lc)
+    return f"""
+      <h4>What fit means</h4>
+      <p>Fit is a 0 to 100 score for how well five players are predicted to play together, based on their predicted net rating
+      (points scored minus points allowed per 100 possessions). 50 is an average lineup, 73 is a clearly good one and 88 is elite.
+      All {n_combos:,} possible fives across {n_teams} rosters are scored.</p>
+      <h4>How well it predicts</h4>
+      <p class="muted small">How well each model orders lineups for teams it never saw in training (rank correlation, 1.00 is perfect).</p>
+      <div class="list">{''.join(rows)}</div>
+      <p class="note">{html.escape(honest)}</p>
+      {f'<h4>More data helps</h4><p class="muted small">Test accuracy as the number of training lineups grows.</p>{curve}' if curve else ''}
+      <h4>What the model weighs most</h4>
+      <div class="imps">{imp_html}</div>
+      <h4>Data</h4>
+      <p>{sb['data']}</p>
+      <h4>Estimates and approximations</h4>
+      <ul class="plain">{approx}
+        <li>The matchup adjustment is a hand-set rule, not part of the model: it penalizes non-shooters against strong rim protection
+        and turnover-prone players against ball pressure, and rewards a size edge, capped at {MATCHUP['clip']:.0f} points either way.</li>
+        <li>The rotation splits 240 minutes by each player's share of season minutes (at most {ROTATION['budget_cap']:.0f}),
+        with starters at {ROTATION['starter_minutes'][0]:.0f} to {ROTATION['starter_minutes'][1]:.0f} minutes and bench players at
+        {ROTATION['bench_minutes'][0]:.0f} to {ROTATION['bench_minutes'][1]:.0f}. The closing five ignores minutes.</li>
+        <li>Pair scores average every five that includes both players. They show association, not cause.</li>
+        <li>Scores are point predictions with no error bars. Treat close calls as ties.</li>
+      </ul>"""
+
+
+_INFO_ICON = ('<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/>'
+              '<circle cx="12" cy="7.6" r=".6" fill="currentColor"/></svg>')
 
 
 def _page(meta: dict, all_recs: dict, tables: dict, data_json: str, head: str, tail: str, body_attrs: str,
           source: dict, default_team: str, data_url: str) -> str:
-    from optimize import MATCHUP, ROTATION, FEATURE_LABELS
     ev = meta["evaluation"]
-    m = ev["metrics"]
-    best_team = default_team
     n_combos = sum(len(t.combos) for t in tables.values())
-    n_per = int(np.median([len(t.combos) for t in tables.values()]))
     sb = _source_bits(source, ev["n_rows"])
-    team_opts = "".join(f'<option value="{html.escape(t)}"{" selected" if t == best_team else ""}>{html.escape(t)}</option>' for t in all_recs)
-
-    def mrow(name, label, win=False):
-        x = m[name]
-        return (f'<tr{" class=on" if win else ""}><td>{label}</td><td class="n">{x["rmse_weighted"]:.2f}</td><td class="n">{x["r2_weighted"]:.3f}</td>'
-                f'<td class="n">{x["spearman_pooled"]:.3f}</td><td class="n">{x["spearman_fold_mean"]:.3f}</td><td class="n">{x.get("folds_won", "–")}</td></tr>')
-    metrics_rows = (mrow("mean_baseline", "Predict the mean") + mrow("ridge", "Ridge (standardised)") +
-                    mrow("xgboost", "<b>XGBoost</b> · production", True) + mrow("hgb", "HistGradientBoosting"))
-    lift = m["xgboost"]["spearman_pooled"] - m["ridge"]["spearman_pooled"]
-    lift_h = m["xgboost"]["spearman_pooled"] - m["hgb"]["spearman_pooled"]
-    imp = meta["feature_importance"][:10]
-    top = imp[0][1] if imp else 1
-    inter = {"shooters_x_bigs", "spacing_x_rim", "shooters_x_ast_max", "handlers_x_usage_max", "stl_x_blk", "pair_both_nonshooters", "pair_both_handlers"}
-    inter_share = sum(v for k, v in meta["feature_importance"] if k in inter)
-    if imp and imp[0][0] in ("bpm_sum", "obpm_sum", "dbpm_sum"):
-        imp_read = (f"Additive talent dominates on real box-score data: {FEATURE_LABELS.get(imp[0][0], imp[0][0])} carries {100*imp[0][1]:.0f}% of the gain and "
-                    f"interaction features only {100*inter_share:.0f}% combined — fit effects exist but are second-order next to who is on the floor.")
-    else:
-        imp_read = "Interaction features dominate — spacing only pays with a rim protector behind it, and shooters only pay when someone can find them. None of that is visible in a single player's box score."
-    imp_html = "".join(
-        f'<div class="imp-row"><span>{html.escape(FEATURE_LABELS.get(k, k))}</span><span class="num muted" style="text-align:right">{100*v:.1f}%</span>'
-        f'<div class="bar"><i style="width:{100*v/top:.0f}%"></i></div></div>' for k, v in imp)
-    mu_ranks = [o["most_used_lineup"]["rank_all"] for o in all_recs.values() if o.get("most_used_lineup") and o["most_used_lineup"].get("rank_all")]
-    med_rank = int(np.median(mu_ranks)) if mu_ranks else None
-    best_fit = all_recs[best_team]["recommendations"][0]["fit_score"]
-    board_read = (f"{best_team} owns the league's best five at fit {best_fit:.0f}. "
-                  + (f"Coaches' most-used fives sit at a median rank of {med_rank} of ~{n_per:,} — the lineups actually played are rarely the model's first choice." if med_rank else ""))
-    if lift > 0.01:
-        lab_read = (f"XGBoost beats the Ridge baseline by {lift:+.3f} Spearman on held-out teams — a real but modest edge with "
-                    f"{ev['n_rows']} noisy lineups; HistGB lands at {lift_h:+.3f} relative to XGBoost.")
-    else:
-        lab_read = (f"XGBoost does not beat the Ridge baseline on held-out teams ({lift:+.3f} pooled Spearman, Ridge wins "
-                    f"{m['ridge']['folds_won']} of {ev['folds']} folds): with {ev['n_rows']} noisy box-score lineups the signal is mostly additive talent, "
-                    f"and a well-featured linear model is the honest benchmark. XGBoost stays the production model for its exact per-feature attributions.")
-    lc = ev.get("learning_curve") or {}
-    src_name = source.get("label", "Sample league")
+    team_opts = "".join(f'<option value="{html.escape(t)}"{" selected" if t == default_team else ""}>{html.escape(t)}</option>'
+                        for t in sorted(all_recs))
+    about = _about(meta, sb, n_combos, len(tables))
+    check = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 12.5l3.6 3.6 7.4-8.2"/></svg>'
 
     return f"""<!DOCTYPE html>
 <html lang="en"><head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b0d12">
-<meta name="description" content="Lineup Intelligence — every five-man lineup of all 30 NBA rosters scored by a gradient-boosted model: builder, swaps, synergy, rotation.">
-<title>Lineup Intelligence · NBA Projects</title>
 {head}
+<meta name="description" content="Pick five players from any NBA roster and see how well they fit together: a predicted lineup score, net rating, best swaps, rotation and best pairs.">
+<title>Lineups | NBA Projects</title>
 <style>{_CSS}</style>
 </head>
-<body data-app="lineup" data-title="Lineup Intelligence" data-mark="LI" data-chip="{html.escape(source.get('chip') or 'Sample data')}"{body_attrs}>
-<main class="wrap" data-url="{html.escape(data_url)}">
-  <div class="eyebrow-row"><div class="eyebrow">NBA Projects · lineup optimisation</div>{sb['chip']}</div>
-  <h1>Lineup Intelligence</h1>
-  <p class="lede">{sb['lede']} All {n_combos:,} possible fives across {len(tables)} rosters are scored; each team's full table loads when you select it.</p>
-
-  <section class="sec" id="current" aria-label="Current five">
-    <div class="sec-h"><h2>Current five</h2><span class="read" id="roTitle">–</span></div>
-    <div class="grid g4">
-      <div class="card kpi"><div class="label">Fit / 100</div><b class="hero" id="roFit">–</b><div class="sub" id="roRank">select five players</div></div>
-      <div class="card kpi"><div class="label">Pred net</div><b id="roNet">–</b><div class="sub" id="roHist">per 100 possessions</div></div>
-      <div class="card kpi"><div class="label">Pred off / def</div><b class="sm"><span id="roOff">–</span><span class="muted"> / </span><span id="roDef">–</span></b><div class="sub">offensive / defensive rating</div></div>
-      <div class="card kpi"><div class="label">Shooters / handlers / bigs</div><b id="roSHB">–</b><div class="sub" id="roFeas">3P% &gt; 36 · AST% &amp; USG &gt; 20 · ≥ 81 in or C</div></div>
-    </div>
-    <div id="roAdj"></div>
-  </section>
-
-  <section class="sec" id="builder" aria-label="Lineup builder">
-    <div class="sec-h"><h2>Builder</h2><span class="read">tap five tiles · bitmask lookup in the browser</span></div>
-    <div class="controls">
-      <label class="field"><span>Team</span><select id="teamSel" aria-label="Team">{team_opts}</select></label>
-      <label class="field"><span>Opponent <em>heuristic</em></span><select id="oppSel" aria-label="Opponent"><option value="">— none —</option></select></label>
-    </div>
-    <div class="controls btns">
-      <button class="btn" id="btnBest">Model's best five</button>
-      <button class="btn" id="btnMost">Coach's most-used</button>
-      <button class="btn" id="btnClear">Clear</button>
-    </div>
-    <div class="status" id="status" aria-live="polite"></div>
-    <div class="builder">
-      <div><div class="tiles" id="tiles" role="group" aria-label="Roster"></div><div class="hint">height · 3P% · <span class="chip xs">S</span> shooter <span class="chip xs">H</span> handler <span class="chip xs">B</span> big · <span class="chip xs">DNP</span> no minutes this season · <span class="chip xs warn">OUT</span> injury status</div></div>
-      <div id="court"></div>
-    </div>
-    <div class="card why">
-      <div class="sec-h"><h2 class="h3">Why</h2><span class="read">SHAP-style contributions to predicted net</span></div>
-      <div id="roContrib"></div>
-    </div>
-    <div class="read-line" id="readLine"></div>
-  </section>
-
-  <section class="sec" id="swapsSec" aria-label="What-if swaps">
-    <div class="sec-h"><h2>What-if swaps</h2><span class="read">best single substitutions · tap to apply</span></div>
-    <div class="swaps" id="swaps"></div>
-    <div class="read-line" id="swapsRead"></div>
-  </section>
-
-  <section class="sec" id="rotationSec" aria-label="Rotation">
-    <div class="sec-h"><h2>Rotation</h2><span class="read">starters · bench · closing five under a minutes budget</span></div>
-    <div class="grid rotgrid" id="rotation"></div>
-    <div class="read-line" id="rotRead"></div>
-  </section>
-
-  <section class="sec" id="synergy" aria-label="Pairwise synergy">
-    <div class="sec-h"><h2>Pairwise synergy</h2><span class="read" id="heatTitle">mean fit with both players − team mean</span></div>
-    <div class="grid heatgrid">
-      <div class="card">
-        <div class="heatwrap" id="heatmap"></div>
-        <div class="legend"><span id="scaleLo">−</span><i></i><span id="scaleHi">+</span><span class="muted">· tap a cell</span></div>
-        <div class="heatval" id="heatVal"></div>
-      </div>
-      <div class="card duocard">
-        <div class="grid g2 duos2">
-          <div><div class="label">Best duos</div><ul class="duos" id="duosBest"></ul></div>
-          <div><div class="label">Worst duos</div><ul class="duos" id="duosWorst"></ul></div>
-        </div>
-      </div>
-    </div>
-    <div class="read-line" id="synRead"></div>
-  </section>
-
-  <section class="sec" id="board" aria-label="Team board">
-    <div class="sec-h"><h2>Team board</h2><span class="read">best constraint-feasible five per roster · tap a row to load</span></div>
-    <div class="tbl board">{_board(all_recs, best_team)}</div>
-    <div class="read-line"><b>Read:</b> {html.escape(board_read)}</div>
-  </section>
-
-  <details class="more sec" id="lab">
-    <summary>Model lab · GroupKFold by team ({ev['folds']} folds) · {ev['n_rows']} {sb['lineup_word']} · {ev['n_features']} features</summary>
-    <div class="body">
-      <div class="tbl"><table><thead><tr><th>Model</th><th class=n>RMSE (w)</th><th class=n>R² (w)</th><th class=n>Spearman</th><th class=n>Spearman / fold</th><th class=n>Folds won</th></tr></thead><tbody>{metrics_rows}</tbody></table></div>
-      <div class="grid g3 lab-k">
-        <div class="card kpi"><div class="label">XGB lift vs Ridge</div><b class="{'pos' if lift > 0 else 'neg'}">{lift:+.3f}</b><div class="sub">pooled Spearman</div></div>
-        <div class="card kpi"><div class="label">XGB lift vs HistGB</div><b class="{'pos' if lift_h > 0 else 'neg'}">{lift_h:+.3f}</b><div class="sub">pooled Spearman</div></div>
-        <div class="card kpi"><div class="label">Fit transform</div><b class="sm">σ = {meta['fit_scale']:.1f}</b><div class="sub">100 · sigmoid((net − {meta['fit_center']:.2f}) / σ)</div></div>
-      </div>
-      <div class="read-line"><b>Read:</b> {html.escape(lab_read)} Rank correlation is the metric that matters — the optimizer only has to <i>order</i> lineups.</div>
-      <div class="grid g2" style="margin-top:14px">
-        <div class="card"><div class="label">Spearman per held-out team</div>{_fold_chart(ev['per_fold'])}</div>
-        <div class="card"><div class="label">Learning curve · held-out Spearman</div>{_curve_chart(lc)}</div>
-      </div>
-      <div class="card" style="margin-top:10px"><div class="label">What drives fit · XGBoost gain share, top {len(imp)} of {ev['n_features']}</div><div style="margin-top:8px">{imp_html}</div>
-        <div class="read-line"><b>Read:</b> {html.escape(imp_read)}</div></div>
-    </div>
-  </details>
-
-  <div class="method" id="method">
-    <b>Method &amp; limits.</b> Features: {ev['n_features']} order-invariant lineup features (sums / spreads of shooting, creation, size, defence; shooter, handler and big counts; pairwise and interaction terms).
-    Model: minutes-weighted XGBoost (depth-2, 1 500 rounds) predicts lineup net rating; a second booster predicts offensive rating and defence = off − net.
-    Evaluated with GroupKFold by team, so every number in the lab is on rosters the model never saw. Fit = 100 · sigmoid((net − μ) / σ) with μ, σ from the minutes-weighted history (50 = average, 73 = +1σ, 88 = +2σ).
-    Contributions are XGBoost <span class="num">pred_contribs</span> (exact SHAP values for trees).
-    <b>Opponent mode is a heuristic, not learned:</b> adj = {MATCHUP['rim_vs_nonshooters']} · (opp rim BLK% − league) · max(0, our non-shooters − 1) {MATCHUP['hands_vs_turnovers']:+} · (opp STL% − league) · (our TOV% − league) {MATCHUP['size_edge']:+} · (our avg height − opp avg height), clipped to ±{MATCHUP['clip']:.0f}; "opp" is the opponent's best feasible five, "league" the mean of all {len(tables)} teams' best fives. Read it as a direction to think in, not a prediction.
-    <b>Rotation is a heuristic too:</b> minutes budgets are season-minute share × 240 capped at {ROTATION['budget_cap']:.0f}; starters {ROTATION['starter_minutes'][0]:.0f}–{ROTATION['starter_minutes'][1]:.0f} min, bench {ROTATION['bench_minutes'][0]:.0f}–{ROTATION['bench_minutes'][1]:.0f}; leftover minutes go to the rest of the roster.
-    {sb['limits']}
-    <b>Limits:</b> {ev['n_rows']} lineups; no uncertainty on predictions; synergy is marginal (averaged over every five containing the pair), not causal; fit scores are calibrated point predictions, not probabilities. CLI: <span class="num">python cli.py recommend --team X --vs Y --rotation</span>.
+<body data-app="lineup" data-title="Lineups"{body_attrs}>
+<template id="top-actions"><button type="button" class="icon-btn" data-sheet="aboutSheet" aria-label="About this model">{_INFO_ICON}</button></template>
+<main class="page wide" id="app" data-url="{html.escape(data_url)}" data-hist-none="{html.escape(sb['hist_none'])}">
+  <div class="head">
+    <h1 class="large-title">Lineups</h1>
+    <label class="teampick">
+      <span class="tp-name" id="teamName">{html.escape(default_team)}</span>
+      <svg class="tp-chev" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.5l5 5 5-5"/></svg>
+      <select id="teamSel" aria-label="Team">{team_opts}</select>
+    </label>
   </div>
-  <div class="foot"><span>{sb['foot']}</span>{sb['foot_tags']}<span>Python</span><span>Pandas</span><span>scikit-learn</span><span>XGBoost</span></div>
+
+  <div class="layout">
+    <div class="col-a">
+      <section class="hero card" id="hero" aria-label="Your lineup">
+        <div class="five" id="five"></div>
+        <div class="score" aria-live="polite">
+          <div class="fit-v num" id="fitV">–</div>
+          <div class="verdict" id="verdict">&nbsp;</div>
+          <div class="rankline" id="rankline">&nbsp;</div>
+        </div>
+        <div class="nets">
+          <div class="stat"><div class="v num" id="netV">–</div><div class="c">Net rating per 100 possessions</div></div>
+          <div class="stat"><div class="v num" id="offdefV">–</div><div class="c">Points scored and allowed per 100</div></div>
+        </div>
+        <p class="hist" id="hist">&nbsp;</p>
+        <div class="matchnote" id="matchNote" hidden></div>
+        <div class="actions">
+          <button type="button" class="btn sm" id="btnBest">Best five</button>
+          <button type="button" class="btn sm" id="btnMost">Most used</button>
+          <button type="button" class="btn sm plain" id="btnClear">Clear</button>
+        </div>
+      </section>
+
+      <div class="list matchup-list">
+        <button type="button" class="row" data-sheet="matchupSheet">
+          <span class="grow title">Matchup</span><span class="value" id="oppVal">None</span>{_CHEV}
+        </button>
+      </div>
+
+      <section class="section" id="rosterSec" aria-label="Roster">
+        <div class="section-h"><h2>Roster</h2><span class="count num" id="count">0 of 5</span></div>
+        <div id="roster" role="group" aria-label="Roster"></div>
+      </section>
+    </div>
+
+    <div class="col-b">
+      <section class="section first" id="whySec" aria-label="Why this works">
+        <div class="section-h"><h2 id="whyH">Why this works</h2></div>
+        <div class="list" id="why"></div>
+        <p class="section-foot" id="whyFoot"></p>
+      </section>
+
+      <section class="section" id="swapSec" aria-label="Best swaps">
+        <div class="section-h"><h2>Best swaps</h2></div>
+        <div class="list" id="swaps"></div>
+        <p class="section-foot" id="swapFoot"></p>
+      </section>
+
+      <section class="section" id="pairSec" aria-label="Best pairs">
+        <div class="section-h"><h2>Best pairs</h2><button type="button" class="more linkbtn" data-sheet="heatSheet">See all</button></div>
+        <div class="pairs">
+          <div><h3 class="sub-h">Work best together</h3><div class="list" id="pairsBest"></div></div>
+          <div><h3 class="sub-h">Struggle together</h3><div class="list" id="pairsWorst"></div></div>
+        </div>
+        <p class="section-foot">Compared with the team's average lineup. Tap a pair to try it.</p>
+      </section>
+    </div>
+  </div>
+
+  <section class="section" id="rotationSec" aria-label="Rotation">
+    <div class="section-h"><h2>Rotation</h2></div>
+    <div class="rot" id="rotation"></div>
+  </section>
+
+  <section class="section" id="leagueSec" aria-label="Around the league">
+    <div class="section-h"><h2>Around the league</h2><button type="button" class="more linkbtn" data-sheet="leagueSheet">See all</button></div>
+    <div class="list" id="leagueTop">{_board_rows(all_recs, default_team, 10)}</div>
+    <p class="section-foot">Each team's best possible five. Tap a team to open it.</p>
+  </section>
+
+  <section class="section">
+    <div class="list">
+      <button type="button" class="row" data-sheet="aboutSheet"><span class="grow title">About this model</span>{_CHEV}</button>
+    </div>
+    <p class="footer-note">{sb['foot']}. Lineup scores are model estimates, not official stats.</p>
+  </section>
 </main>
+
+<div class="livebar" id="livebar" aria-hidden="true">
+  <button type="button" class="lb-in" id="lbBtn" tabindex="-1">
+    <span class="lb-av" id="lbAv"></span>
+    <span class="lb-txt"><b id="lbCount">0 of 5</b><span id="lbSub">Pick five players</span></span>
+    <span class="lb-fit"><b class="num" id="lbFit">–</b><small>Fit</small></span>
+  </button>
+</div>
+
+<div class="scrim" id="scrim"></div>
+
+<div class="sheet" id="matchupSheet" role="dialog" aria-modal="true" tabindex="-1" aria-labelledby="matchH" inert>
+  <div class="grabber"></div>
+  <div class="sheet-h"><h3 id="matchH">Matchup</h3><button type="button" class="btn plain sm" data-close>Done</button></div>
+  <p class="muted small">Pick an opponent for a rough read on how your five matches up with their best lineup.</p>
+  <label class="flabel" for="oppSel">Opponent</label>
+  <select id="oppSel" class="field"><option value="">None</option></select>
+  <div class="opp-result" id="oppResult"></div>
+  <p class="note"><span class="badge warn">Estimate</span> This uses simple hand-set rules for size, rim protection and ball pressure.
+  It isn't part of the prediction model.</p>
+</div>
+
+<div class="sheet" id="heatSheet" role="dialog" aria-modal="true" tabindex="-1" aria-labelledby="heatH" inert>
+  <div class="grabber"></div>
+  <div class="sheet-h"><h3 id="heatH">All pairs</h3><button type="button" class="btn plain sm" data-close>Done</button></div>
+  <p class="muted small" id="heatSub">Each square compares lineups with both players to the team's average. Tap one for details.</p>
+  <div class="heatwrap" id="heatmap"></div>
+  <div class="heatlegend"><span id="scaleLo">Worse</span><i></i><span id="scaleHi">Better</span></div>
+  <div class="heatval" id="heatVal"></div>
+</div>
+
+<div class="sheet" id="leagueSheet" role="dialog" aria-modal="true" tabindex="-1" aria-labelledby="leagueH" inert>
+  <div class="grabber"></div>
+  <div class="sheet-h"><h3 id="leagueH">Every team's best five</h3><button type="button" class="btn plain sm" data-close>Done</button></div>
+  <div class="list" id="leagueAll">{_board_rows(all_recs, default_team)}</div>
+</div>
+
+<div class="sheet" id="aboutSheet" role="dialog" aria-modal="true" tabindex="-1" aria-labelledby="aboutH" inert>
+  <div class="grabber"></div>
+  <div class="sheet-h"><h3 id="aboutH">About this model</h3><button type="button" class="btn plain sm" data-close>Done</button></div>
+  <div class="about">{about}</div>
+</div>
+
+<template id="checkIcon">{check}</template>
 <script id="data" type="application/json">{data_json}</script>
 {tail}
 <script>{_JS}</script>
@@ -490,7 +570,7 @@ def build_report(meta: dict, all_recs: dict, tables: dict | None = None, players
     default_team = max(all_recs, key=lambda t: all_recs[t]["recommendations"][0]["fit_score"])
     main, files = _payload(tables, meta, all_recs, players, source, default_team)
     data_json = json.dumps(main, separators=(",", ":")).replace("</", "<\\/")
-    css, js = _read_asset("shell.css"), _read_asset("shell.js")
+    css, js = _read_asset("app.css"), _read_asset("app-shell.js")
     paths = []
 
     def write_team_files(root: str) -> None:
@@ -503,9 +583,9 @@ def build_report(meta: dict, all_recs: dict, tables: dict | None = None, players
             if stale.endswith(".json") and stale[:-5] not in files:
                 os.remove(os.path.join(d, stale))
 
-    # standalone: shell inlined; data-depth points the top-bar links back at the site folder
+    # standalone: foundation inlined; data-depth points the top-bar / tab-bar links back at the site folder
     depth = os.path.relpath(os.path.dirname(SITE_ASSETS), out_dir).replace(os.sep, "/") + "/"
-    page = _page(meta, all_recs, tables, data_json, head=f"<style>{css}</style>",
+    page = _page(meta, all_recs, tables, data_json, head=_head_snippet(True) + f"\n<style>{css}</style>",
                  tail=f"<script>{js.replace('</', '<\\/')}</script>", body_attrs=f' data-depth="{html.escape(depth)}"',
                  source=source, default_team=default_team, data_url="data/")
     p = os.path.join(out_dir, "report.html")
@@ -520,13 +600,9 @@ def build_report(meta: dict, all_recs: dict, tables: dict | None = None, players
 
     if site_dir:
         os.makedirs(site_dir, exist_ok=True)
-        head = ('<link rel="stylesheet" href="../assets/shell.css">'
-                '<link rel="manifest" href="../manifest.webmanifest">'
-                '<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">'
-                '<link rel="icon" type="image/png" sizes="192x192" href="../icons/icon-192.png">'
-                '<meta name="apple-mobile-web-app-capable" content="yes">'
-                '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">')
-        page = _page(meta, all_recs, tables, data_json, head=head, tail='<script src="../assets/shell.js"></script>', body_attrs="",
+        head = (_head_snippet(False) + '\n<link rel="stylesheet" href="../assets/app.css">'
+                '\n<script src="../assets/app-shell.js" defer></script>')
+        page = _page(meta, all_recs, tables, data_json, head=head, tail="", body_attrs="",
                      source=source, default_team=default_team, data_url="data/")
         p = os.path.join(site_dir, "index.html")
         with open(p, "w", encoding="utf-8") as fh:
@@ -537,104 +613,199 @@ def build_report(meta: dict, all_recs: dict, tables: dict | None = None, players
 
 
 # -------------------------------------------------------------------- css ---
+# Page-only styles. Tokens, chrome, lists, rows, stats, buttons, sheets, badges come from site/assets/app.css.
 _CSS = r"""
-.h3{font-size:14px}
-.eyebrow-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
-.eyebrow-row .upd{font:500 11px var(--mono);letter-spacing:.04em}
-.chip.xs.warn{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 45%,transparent)}
-.tile.out{border-style:dashed}
-.sec-h{flex-wrap:wrap;row-gap:2px}
-.sec-h h2{white-space:nowrap}
-.hint{color:var(--muted);font-size:12px;margin-top:8px;display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px}
-@media(max-width:479px){.topbar .brand > span:not(.mark){display:none}}
-.field{display:flex;flex-direction:column;gap:5px;font:600 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.field em{font-style:normal;color:var(--warn)}
-.field select{width:100%}
-.controls.btns{margin-top:8px}
-.controls.btns .btn{justify-content:center}
-.status{min-height:18px;color:var(--warn);font-size:12px;margin-top:6px}
-.builder{display:grid;gap:12px;margin-top:4px}
-@media(min-width:900px){.builder{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);align-items:start}}
-.tiles{display:grid;gap:8px;grid-template-columns:repeat(2,minmax(0,1fr))}
-@media(min-width:560px){.tiles{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.tile{appearance:none;font:inherit;color:var(--text);text-align:left;width:100%;display:flex;flex-direction:column;gap:7px;min-height:76px;padding:10px 11px;-webkit-tap-highlight-color:transparent;transition:border-color .12s}
-.tile .top{display:flex;justify-content:space-between;align-items:center;gap:6px}
-.tile .nm{font-weight:600;font-size:13px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.tile .st{font:12px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums;display:flex;justify-content:space-between;align-items:center;gap:6px;white-space:nowrap}
-.tile .roles{display:inline-flex;gap:3px}
-.tile.dnp{opacity:.55}
-.tile.on .nm{color:var(--accent)}
-.chip.xs{padding:3px 6px;font-size:10px;letter-spacing:.04em;gap:3px}
-.court{width:100%;height:auto;display:block;border-radius:var(--r);border:1px solid var(--line);background:var(--surface)}
-.court text{font-family:var(--sans)}
-.kpi b.sm{font-size:18px;white-space:nowrap}
-@media(min-width:700px){.kpi b.sm{font-size:22px}}
-.why{margin-top:12px}
-.why .sec-h{margin-bottom:4px}
-.why-row{display:grid;grid-template-columns:minmax(0,1fr) 48px;gap:3px 10px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line)}
-.why-row:last-child{border-bottom:0;padding-bottom:0}
-.why-row .lbl{font-size:13px}
-.why-row .val{text-align:right;font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums}
-.why-row .bar{grid-column:1/-1;position:relative;height:6px}
-.why-row .bar::after{content:"";position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--line-2)}
-.why-row .bar i{position:absolute;top:0;height:100%}
-.why-row .bar i.p{left:50%;background:var(--pos)}
-.why-row .bar i.n{right:50%;background:var(--neg)}
-.adj{margin-top:10px;display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
-.adj b{color:var(--text)}
-.swaps{display:grid;gap:8px}
-@media(min-width:700px){.swaps{grid-template-columns:1fr 1fr}}
-@media(min-width:1100px){.swaps{grid-template-columns:repeat(3,1fr)}}
-.swap{appearance:none;width:100%;min-height:48px;display:flex;align-items:center;gap:10px;padding:8px 12px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);color:var(--text);font:14px/1.3 var(--sans);text-align:left;cursor:pointer}
-.swap:hover{border-color:var(--line-2)}
-.swap .who{flex:1;min-width:0}
-.swap .who b{font-weight:600}
-.swap .who i{font-style:normal;color:var(--muted);margin:0 4px}
-.swap .to{font:12px var(--mono);color:var(--muted);white-space:nowrap}
-.unit .label{font:600 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.unit .top{display:flex;align-items:baseline;gap:10px;margin-top:8px}
-.unit .top b{font:700 26px/1 var(--mono);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
-.unit .top span{color:var(--muted);font-size:12px}
-.unit ul{list-style:none;margin:8px 0 10px;padding:0}
-.unit li{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--line);font-size:13px}
-.unit li:last-child{border-bottom:0}
-.unit li .mins{font:12px var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
-.unit .btn{width:100%;justify-content:center}
-.rotgrid{grid-template-columns:minmax(0,1fr)}
-@media(min-width:700px){.rotgrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-.unit li .mins{white-space:nowrap}
-.rot-note{grid-column:1/-1;color:var(--muted);font-size:12px}
-.heatgrid{grid-template-columns:minmax(0,1fr)}
-.heatgrid > .card{min-width:0}
-@media(min-width:900px){.heatgrid{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}}
-.heatwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;mask-image:linear-gradient(90deg,#000 calc(100% - 20px),transparent);-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 20px),transparent)}
-.heatwrap svg{display:block;min-width:660px;width:100%;height:auto}
-@media(min-width:900px){.heatwrap{mask-image:none;-webkit-mask-image:none}}
-.heatwrap text{font:12px var(--sans);fill:var(--muted)}
+body{padding-bottom:calc(var(--tabbar-h) + var(--sab) + 96px)}
+@media (min-width:900px){body{padding-bottom:120px}}
+.small{font-size:var(--t-foot);line-height:1.4}
+.row .grow > .title,.row .grow > .sub{display:block}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* header: large title + team picker (native select styled as a field) */
+.head{display:flex;flex-direction:column;gap:10px}
+.teampick{position:relative;display:flex;align-items:center;gap:10px;height:52px;padding:0 16px;border-radius:14px;
+  background:var(--surface);box-shadow:var(--shadow-1);cursor:pointer;user-select:none;transition:transform 120ms var(--ease)}
+.teampick:active{transform:scale(.985)}
+.teampick:focus-within{outline:2px solid var(--brand);outline-offset:2px}
+.tp-name{flex:1;min-width:0;font:600 var(--t-body)/1.2 var(--font);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tp-chev{width:12px;height:8px;flex:none;fill:none;stroke:var(--label-3);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.teampick select{position:absolute;inset:0;width:100%;height:100%;opacity:0;font-size:16px;cursor:pointer;appearance:none;-webkit-appearance:none;border:0}
+@media (min-width:900px){
+  .head{flex-direction:row;align-items:flex-end;justify-content:space-between;gap:24px}
+  .head .large-title{margin-bottom:0}
+  .teampick{width:340px;flex:none}
+}
+
+/* layout */
+.layout{display:block;margin-top:20px}
+@media (min-width:900px){
+  .layout{display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);gap:0 40px;align-items:start}
+  .col-b .section.first{margin-top:0}
+}
+
+/* hero */
+.hero{padding:20px 16px 16px;text-align:center;scroll-margin-top:calc(var(--topbar-h) + var(--sat) + 12px)}
+.five{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;margin-bottom:18px}
+.slot{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:0}
+.slot .nm{font:600 var(--t-foot)/1.2 var(--font);max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.slot .ps{font:400 var(--t-cap)/1 var(--font);color:var(--label-2)}
+.av{width:36px;height:36px;border-radius:50%;flex:none;display:grid;place-items:center;background:var(--fill);color:var(--label);
+  font:600 var(--t-foot)/1 var(--font);letter-spacing:.01em;user-select:none}
+.av.lg{width:52px;height:52px;font-size:var(--t-callout)}
+.av.open{background:none;box-shadow:inset 0 0 0 1.5px var(--fill-2);color:var(--label-3)}
+.av.open svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+.fit-v{font:700 64px/1 var(--font-display);letter-spacing:-.03em;color:var(--brand-text);min-height:64px}
+.fit-v small{font:500 var(--t-body)/1 var(--font);color:var(--label-2);letter-spacing:0;margin-left:3px}
+.fit-v.none{color:var(--label-3);font-weight:300}
+.verdict{font:600 var(--t-body)/1.3 var(--font);margin-top:8px;min-height:22px;text-wrap:balance}
+.rankline{font:400 var(--t-foot)/1.3 var(--font);color:var(--label-2);margin-top:3px;min-height:17px}
+.nets{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px;padding-top:16px;position:relative;text-align:left}
+.nets::before{content:"";position:absolute;top:0;left:0;right:0;height:.5px;background:var(--separator)}
+.nets .stat .v{font-size:var(--t-1);font-weight:600}
+.nets .stat .v .tri{font-size:.55em;vertical-align:.25em;margin-right:3px}
+.nets .stat .v .faint{font-weight:500}
+.hist{margin:12px 0 0;font:400 var(--t-foot)/1.4 var(--font);color:var(--label-2);text-align:left;min-height:18px}
+.matchnote{margin-top:10px;display:flex;align-items:center;gap:8px;text-align:left;font:400 var(--t-foot)/1.35 var(--font);color:var(--label-2)}
+.matchnote b{color:var(--label);font-weight:600}
+.actions{display:flex;gap:8px;margin-top:16px}
+.actions .btn{flex:1;height:44px}
+.actions .btn.plain{flex:0 0 auto}
+.hero.skel-on .fit-v{color:transparent;background:var(--fill);border-radius:12px;width:96px;margin:0 auto;animation:skel 1.2s linear infinite;
+  background:linear-gradient(90deg,var(--fill) 0%,var(--fill-2) 50%,var(--fill) 100%);background-size:200% 100%}
+
+.matchup-list{margin-top:12px}
+
+/* roster */
+.count{font:400 var(--t-sub)/1 var(--font);color:var(--label-2)}
+.count.full{color:var(--brand-text);font-weight:600}
+.sub-h{font:600 var(--t-foot)/1.2 var(--font);color:var(--label-2);margin:18px 4px 8px}
+#roster .sub-h:first-child{margin-top:4px}
+.prow{min-height:60px}
+.prow .title{font-weight:500}
+.prow .sub{display:block}
+.prow.dnp .grow,.prow.dnp .av{opacity:.55}
+.ck{width:26px;height:26px;border-radius:50%;flex:none;box-shadow:inset 0 0 0 1.5px var(--label-3);display:grid;place-items:center;
+  transition:background-color 160ms var(--ease),box-shadow 160ms var(--ease)}
+.ck svg{width:18px;height:18px;fill:none;stroke:var(--on-brand);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;opacity:0;transform:scale(.6);
+  transition:opacity 160ms var(--ease),transform 160ms var(--ease)}
+.prow[aria-pressed="true"] .ck{background:var(--brand);box-shadow:none}
+.prow[aria-pressed="true"] .ck svg{opacity:1;transform:none}
+.prow[aria-pressed="true"] .av{background:var(--brand-tint);color:var(--brand-text)}
+@media (hover:hover){a.row:hover,button.row:hover{background:var(--surface-2)}}
+
+/* why this works: contribution rows */
+.why-row{min-height:56px}
+.why-row .grow{display:flex;flex-direction:column;gap:7px}
+.why-row .title{white-space:normal;font-size:var(--t-callout)}
+.cbar{position:relative;height:6px;border-radius:3px;background:var(--fill)}
+.cbar::after{content:"";position:absolute;left:50%;top:-3px;bottom:-3px;width:1.5px;margin-left:-.75px;background:var(--label-3);border-radius:1px}
+.cbar i{position:absolute;top:0;height:100%}
+.cbar i.p{left:50%;background:var(--pos);border-radius:0 3px 3px 0}
+.cbar i.n{right:50%;background:var(--neg);border-radius:3px 0 0 3px}
+.delta{font:600 var(--t-body)/1 var(--font);font-variant-numeric:tabular-nums;white-space:nowrap;min-width:52px;text-align:right}
+.empty-row{padding:16px;color:var(--label-2);font-size:var(--t-sub)}
+
+/* swaps */
+.swap .title b{font-weight:600}
+.swap .title{white-space:normal}
+
+/* pairs */
+.pairs{display:grid;gap:0}
+.pairs > div,.rot > div,.layout > div{min-width:0}
+.pairs .sub-h{margin-top:4px}
+.pairs > div + div .sub-h{margin-top:18px}
+@media (min-width:600px) and (max-width:899px){.pairs{grid-template-columns:1fr 1fr;gap:16px}.pairs > div + div .sub-h{margin-top:4px}}
+.duo{display:flex;flex:none;gap:3px}
+.duo .av{width:30px;height:30px;font-size:var(--t-cap);box-shadow:0 0 0 2px var(--surface)}
+
+/* rotation */
+.rot{display:grid;gap:0}
+.rot > div + div .sub-h{margin-top:20px}
+@media (min-width:900px){.rot{grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.rot > div + div .sub-h{margin-top:4px}}
+.rot .sub-h{display:flex;justify-content:space-between;align-items:baseline;margin-top:4px}
+.rot .sub-h span{font-weight:400}
+.rot .row{min-height:44px}
+.rot .usefive{color:var(--brand-text);font-weight:500;justify-content:center}
+.rot-foot{grid-column:1/-1}
+
+/* around the league */
+.league-row .lrank{width:22px;flex:none;color:var(--label-2);font:500 var(--t-sub)/1 var(--font);text-align:center}
+.league-row .title{display:block}
+.league-row .sub{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.league-row .lfit{font:600 var(--t-body)/1 var(--font);min-width:32px;text-align:right}
+.league-row.selected .title{color:var(--brand-text);font-weight:600}
+.linkbtn{appearance:none;border:0;background:none;padding:10px 0 10px 12px;margin:-10px 0;cursor:pointer;color:var(--brand-text);font:400 var(--t-sub)/1 var(--font)}
+.linkbtn:active{opacity:.5}
+
+/* live score bar: appears once the hero scrolls away */
+.livebar{position:fixed;left:0;right:0;bottom:calc(var(--tabbar-h) + var(--sab) + 8px);z-index:45;padding:0 12px;pointer-events:none;
+  opacity:0;transform:translateY(12px);transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease)}
+.livebar.show{opacity:1;transform:none}
+.livebar.show .lb-in{pointer-events:auto}
+.lb-in{appearance:none;border:0;width:100%;max-width:560px;margin:0 auto;display:flex;align-items:center;gap:12px;height:60px;padding:0 16px 0 12px;
+  border-radius:16px;background:var(--bar);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);
+  box-shadow:var(--shadow-2),0 0 0 .5px var(--separator);color:var(--label);text-align:left;cursor:pointer}
+.lb-in:active{transform:scale(.985)}
+.lb-av{display:grid;grid-template-columns:repeat(5,8px);gap:4px;flex:none;padding-left:4px}
+.lb-av i{width:8px;height:8px;border-radius:50%;background:var(--fill-2);transition:background-color 160ms var(--ease)}
+.lb-av i.on{background:var(--brand)}
+.lb-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.lb-txt b{font:600 var(--t-sub)/1.2 var(--font)}
+.lb-txt span{font:400 var(--t-foot)/1.2 var(--font);color:var(--label-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lb-fit{display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.lb-fit b{font:700 var(--t-2)/1 var(--font-display);color:var(--brand-text);transition:transform 200ms var(--ease)}
+.lb-fit b.bump{transform:scale(1.15)}
+.lb-fit small{font:400 var(--t-cap)/1 var(--font);color:var(--label-2)}
+@media (min-width:900px){.livebar{bottom:24px}}
+html.sheet-open .livebar{opacity:0;pointer-events:none}
+.toast{bottom:calc(var(--tabbar-h) + var(--sab) + 80px)}
+@media (min-width:900px){.toast{bottom:96px}}
+.hero.partial .nets,.hero.partial .hist{display:none}
+
+/* sheets */
+.sheet:focus{outline:none}
+.sheet-h{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 -8px 4px 0}
+.sheet-h h3{margin:4px 0}
+.sheet .btn.plain.sm{height:44px;font-weight:600;font-size:var(--t-body)}
+.sheet p{margin:0 0 12px;line-height:1.45}
+.sheet .note{background:var(--fill);border-radius:12px;padding:12px 14px;font-size:var(--t-sub);margin-top:12px}
+.sheet .note .badge{margin-right:6px;vertical-align:1px}
+.flabel{display:block;font:600 var(--t-foot)/1 var(--font);color:var(--label-2);margin:16px 4px 8px}
+.opp-result{min-height:24px;margin:14px 2px 0;font-size:var(--t-sub);color:var(--label-2)}
+.opp-result b{color:var(--label);font-weight:600}
+.sheet .list{box-shadow:none;background:var(--surface-2)}
+@media (prefers-color-scheme:dark){.sheet .list{background:var(--surface-2)}}
+.about h4{font:600 var(--t-body)/1.3 var(--font);margin:24px 0 8px}
+.about h4:first-child{margin-top:8px}
+.about p{font-size:var(--t-sub);color:var(--label)}
+.about p.muted{color:var(--label-2)}
+.about .row .title .badge{margin-left:6px;vertical-align:1px}
+.about .row .title{white-space:normal}
+ul.plain{margin:0;padding:0 0 0 18px;font-size:var(--t-sub);line-height:1.45}
+ul.plain li{margin:0 0 8px}
+.imps{display:flex;flex-direction:column;gap:12px}
+.imp-top{display:flex;justify-content:space-between;gap:12px;font-size:var(--t-sub);margin-bottom:6px}
+.imp .meter > i{background:var(--label-3)}
+.imp:first-child .meter > i{background:var(--brand)}
+svg.curve{margin:4px 0 4px}
+svg.curve .dl{font-size:12px;fill:var(--label-2)}
+
+/* heatmap in a sheet: horizontal scroll */
+.heatwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 calc(-1 * var(--margin));padding:0 var(--margin);overscroll-behavior-x:contain}
+.heatwrap svg{display:block;max-width:none}
+.heatwrap text{font:400 12px var(--font);fill:var(--label-2)}
 .heat-cell{cursor:pointer}
-.heat-cell.on{stroke:var(--text);stroke-width:2.5}
-.legend{display:flex;align-items:center;gap:8px;font:11px var(--mono);color:var(--muted);margin-top:10px}
-.legend i{flex:0 0 110px;height:8px;border-radius:99px;background:linear-gradient(90deg,var(--neg),var(--surface-2),var(--pos))}
-.heatval{margin-top:10px;min-height:40px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;font-size:13px;color:var(--muted)}
-.heatval b{color:var(--text)}
-.duos2{gap:14px}
-.duocard .label{font:600 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
-.duos{list-style:none;margin:0;padding:0}
-.duos li{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px}
-.duos li:last-child{border-bottom:0}
-.duos li b{font-family:var(--mono);font-weight:600;font-variant-numeric:tabular-nums}
-.board td{padding:12px}
-.board tbody tr{cursor:pointer}
-.board tr.on td:first-child{color:var(--accent);font-weight:600}
-table tr.on td{background:color-mix(in srgb,var(--text) 4%,transparent)}
-details.more.sec summary{min-height:48px}
-details.more .body > .tbl{margin-top:2px}
-.lab-k{margin:12px 0}
-.imp-row{display:grid;grid-template-columns:minmax(0,1fr) 52px;gap:4px 10px;align-items:center;padding:6px 0;font-size:13px}
-.imp-row .bar{grid-column:1/-1}
-.imp-row .bar i{background:var(--muted)}
-.card .label{font:600 11px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.card > svg.chart{margin-top:10px}
+.heat-cell.on{stroke:var(--label);stroke-width:2.5}
+.heatlegend{display:flex;align-items:center;gap:8px;font-size:var(--t-foot);color:var(--label-2);margin:12px 0 0}
+.heatlegend i{flex:0 0 120px;height:8px;border-radius:4px;background:linear-gradient(90deg,var(--neg),var(--surface-2),var(--pos))}
+.heatval{margin-top:14px;min-height:50px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;font-size:var(--t-sub);color:var(--label-2)}
+.heatval b{color:var(--label);font-weight:600}
+
+/* loading + error */
+.skrow{display:flex;align-items:center;gap:12px;min-height:56px;padding:11px 16px}
+.skrow .skel{height:14px}
+.err{padding:20px 16px;text-align:center}
+.err p{margin:0 0 12px;color:var(--label-2);font-size:var(--t-sub)}
 """
 
 
@@ -643,22 +814,26 @@ _JS = r"""
 (function () {
   const D = JSON.parse(document.getElementById('data').textContent);
   const $ = id => document.getElementById(id);
+  const APP = $('app');
   const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const fit = net => 100 / (1 + Math.exp(-(net - D.fit.center) / D.fit.scale));
-  const last = n => n.split(' ').slice(-1)[0];
-  const initials = n => { const p = n.split(' '); return (p[0][0] + p[p.length - 1][0]).toUpperCase(); };
+  const SUF = /^(Jr\.?|Sr\.?|II|III|IV)$/;
+  const last = n => { const p = n.split(' '); return p.length > 2 && SUF.test(p[p.length - 1]) ? p[p.length - 2] : p[p.length - 1]; };
+  const initials = n => { const p = n.split(' '); return (p[0][0] + (last(n)[0] || '')).toUpperCase(); };
   const sgn = (v, d) => (v >= 0 ? '+' : '−') + Math.abs(v).toFixed(d);
   const ord = n => n + (n % 100 >= 11 && n % 100 <= 13 ? 'th' : ['th', 'st', 'nd', 'rd'][n % 10] || 'th');
   const ht = h => { let f = Math.floor(h / 12), i = Math.round(h - f * 12); if (i === 12) { f++; i = 0; } return f + '′' + i + '″'; };
-  const pct = v => (v * 100).toFixed(1) + '%';
-  const css = getComputedStyle(document.body);
-  const hex = v => { v = v.trim().replace('#', ''); return [0, 2, 4].map(k => parseInt(v.slice(k, k + 2), 16)); };
-  const POS = hex(css.getPropertyValue('--pos') || '#3ddc84'), NEG = hex(css.getPropertyValue('--neg') || '#ff5c7a'), MID = hex(css.getPropertyValue('--surface-2') || '#181c25');
+  const plural = (n, w) => `${n} ${w}${n === 1 ? '' : 's'}`;
+  const toast = m => { if (window.App && window.App.toast) window.App.toast(m); };
+  const haptic = () => { try { navigator.vibrate && navigator.vibrate(10); } catch (e) {} };
+  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const CHECK = $('checkIcon').innerHTML;
+  const GROUP = { G: 'Guards', F: 'Forwards', C: 'Centers' }, POSN = { G: 'Guard', F: 'Forward', C: 'Center' }, PORD = { G: 0, F: 1, C: 2 };
+  const DATA_URL = APP.dataset.url || 'data/';
+  const HIST_NONE = APP.dataset.histNone || 'Never played together in the data';
 
-  let team = null, T = null, lookup = null, sel = new Set(), opp = '', byId = null, heatSel = null, loadSeq = 0;
+  let team = null, T = null, lookup = null, sel = new Set(), opp = '', byId = null, loadSeq = 0, loadState = 'ok';
   const teams = Object.keys(D.teams);
-  const DATA_URL = document.querySelector('main.wrap').dataset.url || 'data/';
-  const REAL = D.source && D.source.source !== 'sample';
 
   // columnar payload -> rows [mask, net, off, feasible, rank, [feature_idx, contribution, ...]]
   const B64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_', STEP = 0.2;
@@ -680,59 +855,69 @@ _JS = r"""
     byId = new Map(T.players.map((p, i) => [p.id, i]));
   }
 
-  function setTeam(name, keepSel) {
+  function setTeam(name, opts) {
+    opts = opts || {};
     bind(name);
-    $('teamSel').value = name;
+    $('teamSel').value = name; $('teamName').textContent = name;
     const os = $('oppSel');
-    os.innerHTML = '<option value="">— none —</option>' + teams.filter(t => t !== name).map(t => `<option value="${esc(t)}">${esc(t)}</option>`).join('');
     if (opp === name) opp = '';
+    os.innerHTML = '<option value="">None</option>' + teams.filter(t => t !== name).sort().map(t => `<option value="${esc(t)}">${esc(t)}</option>`).join('');
     os.value = opp;
-    if (!keepSel) maskToSel(T.best_mask);
-    heatSel = null;
-    document.querySelectorAll('.board tbody tr').forEach(tr => tr.classList.toggle('on', tr.dataset.team === name));
-    renderTiles(); renderHeat(); renderRotation(); update();
+    maskToSel(T.best_mask);
+    loadState = T.full ? 'ok' : 'loading';
+    document.querySelectorAll('.league-row').forEach(r => r.classList.toggle('selected', r.dataset.team === name));
+    try { history.replaceState(null, '', '#' + T.abbr); } catch (e) {}
+    renderRoster(); renderPairs(); renderRotation(); update();
     if (!T.full) loadFull(name);
   }
 
-  // The main page embeds every team's top fives; the full C(n,5) table is fetched on demand (~100-250 KB per team).
+  // The page embeds every team's top fives; the full C(n,5) table is fetched on demand (~100-250 KB per team).
   function loadFull(name) {
     const seq = ++loadSeq, abbr = D.teams[name].abbr;
-    $('status').textContent = `loading the full ${D.teams[name].total.toLocaleString()}-lineup table for ${name}…`;
+    loadState = 'loading';
     fetch(DATA_URL + abbr + '.json', { cache: 'force-cache' }).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(full => {
         D.teams[name] = full;
         if (seq !== loadSeq || team !== name) return;
-        bind(name); $('status').textContent = '';
-        renderHeat(); update();
+        const keep = [...sel].map(i => T.players[i].id);
+        bind(name); loadState = 'ok';
+        sel = new Set(keep.map(id => byId.get(id)).filter(i => i !== undefined));
+        renderPairs(); update();
       })
       .catch(() => {
         if (seq !== loadSeq || team !== name) return;
-        $('status').textContent = `Full table for ${name} could not be loaded (open the page over http, not file://) — showing the top ${T.combos.length} fives only.`;
+        loadState = 'error';
+        renderPairs(); update();
       });
   }
   function maskToSel(mask) { sel = new Set(); for (let i = 0; i < T.n; i++) if (mask & (1 << i)) sel.add(i); }
   const selMask = () => [...sel].reduce((m, i) => m | (1 << i), 0);
+  const selIds = () => [...sel].sort((a, b) => (PORD[T.players[a].pos] ?? 1) - (PORD[T.players[b].pos] ?? 1) || T.players[b].min - T.players[a].min);
 
-  function roles(p) { return (p.s ? '<span class="chip xs" title="shooter">S</span>' : '') + (p.h ? '<span class="chip xs" title="handler">H</span>' : '') + (p.b ? '<span class="chip xs" title="big">B</span>' : ''); }
-  const injShort = s => /out/i.test(s) ? 'OUT' : /day/i.test(s) ? 'DTD' : /quest/i.test(s) ? 'GTD' : /doubt/i.test(s) ? 'DBT' : s.slice(0, 3).toUpperCase();
-  function injChip(p) { return p.inj ? `<span class="chip xs warn" title="${esc(p.inj)}">${injShort(p.inj)}</span>` : ''; }
-  function renderTiles() {
-    $('tiles').innerHTML = T.players.map((p, i) => `
-      <button type="button" class="tile${sel.has(i) ? ' on' : ''}${p.min <= 0 ? ' dnp' : ''}${/out/i.test(p.inj || '') ? ' out' : ''}" data-i="${i}" aria-pressed="${sel.has(i)}" title="${esc(p.name)} · ${p.pos} · ${ht(p.ht)} · 3P ${pct(p.fg3)} · ${p.min} min${p.inj ? ' · ' + esc(p.inj) : ''}">
-        <span class="top"><span class="nm">${esc(p.name)}</span><span class="roles">${injChip(p)}<span class="chip xs">${p.pos}</span></span></span>
-        <span class="st"><span>${ht(p.ht)} · ${pct(p.fg3)}</span><span class="roles">${p.min <= 0 ? '<span class="chip xs">DNP</span>' : roles(p)}</span></span>
-      </button>`).join('');
-    $('tiles').querySelectorAll('.tile').forEach(el => el.addEventListener('click', () => toggle(+el.dataset.i)));
+  // ---- roster: grouped by position, checkmark when selected, max five
+  const injBadge = s => !s ? '' : /out/i.test(s) ? '<span class="badge neg">Out</span>' : /day/i.test(s) ? '<span class="badge warn">Day-to-day</span>' : `<span class="badge warn">${esc(s)}</span>`;
+  function prow(i) {
+    const p = T.players[i], bits = [ht(p.ht)];
+    if (p.min <= 0) bits.push('no minutes yet'); else if (p.fg3 > 0) bits.push(`${Math.round(p.fg3 * 100)}% from three`);
+    return `<button type="button" class="row prow${p.min <= 0 ? ' dnp' : ''}" data-i="${i}" aria-pressed="${sel.has(i)}">
+      <span class="av" aria-hidden="true">${initials(p.name)}</span>
+      <span class="grow"><span class="title">${esc(p.name)}</span><span class="sub">${bits.join(', ')}</span></span>
+      ${injBadge(p.inj)}<span class="ck" aria-hidden="true">${CHECK}</span></button>`;
   }
+  function renderRoster() {
+    const groups = { G: [], F: [], C: [] };
+    T.players.forEach((p, i) => (groups[p.pos] || groups.F).push(i));
+    $('roster').innerHTML = ['G', 'F', 'C'].filter(k => groups[k].length).map(k =>
+      `<h3 class="sub-h">${GROUP[k]}</h3><div class="list">${groups[k].map(prow).join('')}</div>`).join('');
+  }
+  $('roster').addEventListener('click', e => { const b = e.target.closest('.prow'); if (b) toggle(+b.dataset.i); });
   function toggle(i) {
     if (sel.has(i)) sel.delete(i);
-    else if (sel.size >= 5) { flash('Five already selected — remove one first.'); return; }
-    else sel.add(i);
-    syncTiles(); update();
+    else if (sel.size >= 5) { toast('Your five is full. Remove a player first.'); haptic(); return; }
+    else { sel.add(i); if (sel.size === 5) haptic(); }
+    syncRoster(); update();
   }
-  function syncTiles() { $('tiles').querySelectorAll('.tile').forEach(el => { const on = sel.has(+el.dataset.i); el.classList.toggle('on', on); el.setAttribute('aria-pressed', on); }); }
-  let flashT; function flash(msg) { $('status').textContent = msg; clearTimeout(flashT); flashT = setTimeout(() => $('status').textContent = '', 2200); }
-  function scrollTop() { window.scrollTo({ top: $('current').getBoundingClientRect().top + window.scrollY - 64, behavior: 'smooth' }); }
+  function syncRoster() { document.querySelectorAll('#roster .prow').forEach(el => el.setAttribute('aria-pressed', sel.has(+el.dataset.i))); }
 
   function shb(ids) { const ps = ids.map(i => T.players[i]); return [ps.filter(p => p.s).length, ps.filter(p => p.h).length, ps.filter(p => p.b).length]; }
   function heightMean(ids) { return ids.reduce((a, i) => a + T.players[i].ht, 0) / ids.length; }
@@ -747,182 +932,282 @@ _JS = r"""
     return Math.max(-M.clip, Math.min(M.clip, a));
   }
 
+  function verdict(rank, total) {
+    const nick = D.nick[team] || team;
+    if (rank === 1) return `Best possible lineup for the ${nick}`;
+    const p = rank / total * 100;
+    if (p <= 50) return `Top ${p < 1 ? 1 : Math.ceil(p)}% of possible lineups for the ${nick}`;
+    return `Bottom ${Math.max(1, Math.ceil((total - rank + 1) / total * 100))}% of possible lineups for the ${nick}`;
+  }
+  const skRows = k => Array.from({ length: k }, (_, j) => `<div class="skrow"><div class="skel" style="width:${[62, 48, 56, 40, 52][j % 5]}%"></div></div>`).join('');
+
+  function renderFive(ids) {
+    let s = '';
+    for (let k = 0; k < 5; k++) {
+      const i = ids[k];
+      if (i === undefined) { s += `<div class="slot"><span class="av lg open" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 7v10M7 12h10"/></svg></span><span class="nm faint">Open</span><span class="ps">&nbsp;</span></div>`; continue; }
+      const p = T.players[i];
+      s += `<div class="slot"><span class="av lg" aria-hidden="true">${initials(p.name)}</span><span class="nm">${esc(last(p.name))}</span><span class="ps">${POSN[p.pos] || p.pos}</span></div>`;
+    }
+    $('five').innerHTML = s;
+    $('five').setAttribute('aria-label', ids.length ? 'Your five: ' + ids.map(i => T.players[i].name).join(', ') : 'No players selected');
+    $('lbAv').innerHTML = [0, 1, 2, 3, 4].map(k => `<i class="${k < ids.length ? 'on' : ''}"></i>`).join('');
+  }
+
+  let lastFit = null;
+  function setLive(n, f, sub) {
+    $('lbCount').textContent = `${n} of 5`;
+    $('lbSub').textContent = sub;
+    const el = $('lbFit'), txt = f === null ? '–' : f.toFixed(0);
+    if (el.textContent !== txt && f !== null && lastFit !== null) { el.classList.add('bump'); setTimeout(() => el.classList.remove('bump'), 200); }
+    el.textContent = txt; lastFit = f;
+    const c = $('count'); c.textContent = `${n} of 5`; c.classList.toggle('full', n === 5);
+  }
+
+  function blankHero(msg, sub) {
+    $('fitV').className = 'fit-v num none'; $('fitV').textContent = '–';
+    $('verdict').textContent = msg; $('rankline').innerHTML = sub || '&nbsp;';
+    $('netV').textContent = '–'; $('netV').className = 'v num'; $('offdefV').textContent = '–';
+    $('hist').innerHTML = '&nbsp;'; $('matchNote').hidden = true; $('oppResult').innerHTML = opp ? 'Pick five players to see the matchup.' : '';
+  }
+
   function update() {
-    const ids = [...sel].sort((a, b) => a - b), n = ids.length;
-    renderCourt(ids);
+    const ids = selIds(), n = ids.length;
+    renderFive(ids);
+    $('hero').classList.remove('skel-on');
+    $('hero').classList.toggle('partial', n !== 5);
+    $('oppVal').textContent = opp ? 'vs ' + (D.nick[opp] || opp) : 'None';
     if (n !== 5) {
       const need = 5 - n;
-      $('roTitle').textContent = need === 5 ? 'no players selected' : ids.map(i => last(T.players[i].name)).join(' · ');
-      $('roFit').textContent = '–'; $('roRank').textContent = `select ${need} more player${need === 1 ? '' : 's'}`;
-      $('roNet').textContent = '–'; $('roOff').textContent = '–'; $('roDef').textContent = '–'; $('roNet').className = '';
-      $('roSHB').textContent = n ? shb(ids).join(' / ') : '–'; $('roFeas').textContent = 'shooters · handlers · bigs';
-      $('roContrib').innerHTML = '<div class="muted" style="font-size:13px">Pick five players to see what drives the prediction.</div>';
-      $('roHist').textContent = 'per 100 possessions'; $('roAdj').innerHTML = ''; $('swaps').innerHTML = '';
-      $('readLine').innerHTML = `<b>Read:</b> Select ${need} more player${need === 1 ? '' : 's'} to score the five.`;
-      $('swapsRead').innerHTML = '';
+      const msg = n === 0 ? 'Pick five players to score a lineup' : `Pick ${plural(need, 'more player')}`;
+      blankHero(msg, n === 0 ? 'Or start from the best five below' : '');
+      setLive(n, null, n === 0 ? 'Pick five players' : `${need} to go`);
+      $('whyH').textContent = 'Why this works';
+      $('why').innerHTML = '<div class="empty-row">Pick five players to see what drives the score.</div>'; $('whyFoot').textContent = '';
+      $('swaps').innerHTML = '<div class="empty-row">Swaps appear once you have five players.</div>'; $('swapFoot').textContent = '';
       return;
     }
     const r = lookup.get(selMask());
     if (!r) {
-      $('roTitle').textContent = ids.map(i => last(T.players[i].name)).join(' · ');
-      $('roFit').textContent = '–'; $('roRank').textContent = T.full ? 'lineup not in table' : 'not in the embedded top fives — full table still loading';
-      $('roNet').textContent = '–'; $('roOff').textContent = '–'; $('roDef').textContent = '–'; $('roNet').className = '';
-      $('roContrib').innerHTML = ''; $('roAdj').innerHTML = ''; $('swaps').innerHTML = ''; $('swapsRead').innerHTML = '';
-      $('readLine').innerHTML = `<b>Read:</b> ${T.full ? 'This five is not in the scored table.' : 'Waiting for the full table of this team to load.'}`;
+      if (loadState === 'loading') {
+        blankHero(`Loading every ${D.nick[team] || team} lineup`, '&nbsp;'); $('hero').classList.add('skel-on');
+        $('why').innerHTML = skRows(3); $('swaps').innerHTML = skRows(4);
+      } else {
+        blankHero('Not enough data for this lineup', loadState === 'error' ? 'Only the top lineups loaded. <button type="button" class="linkbtn" data-retry>Try again</button>' : '');
+        $('why').innerHTML = ''; $('swaps').innerHTML = '';
+      }
+      setLive(5, null, 'Loading'); $('whyFoot').textContent = ''; $('swapFoot').textContent = '';
       return;
     }
     const [mask, net, off, feas, rank, cs] = r;
     const f = fit(net);
-    $('roTitle').textContent = ids.map(i => last(T.players[i].name)).join(' · ');
-    $('roFit').textContent = f.toFixed(0);
-    $('roRank').innerHTML = `rank <span class="num" style="color:var(--text)">${rank}</span> of ${T.total.toLocaleString()}`;
-    $('roNet').textContent = sgn(net, 1); $('roNet').className = net >= 0 ? 'pos' : 'neg';
-    $('roOff').textContent = off.toFixed(1); $('roDef').textContent = (off - net).toFixed(1);
-    $('roSHB').textContent = shb(ids).join(' / ');
-    $('roFeas').innerHTML = feas ? 'constraint-feasible' : '<span class="warn">violates constraints · no big or DNP player</span>';
+    $('fitV').className = 'fit-v num'; $('fitV').innerHTML = `${f.toFixed(0)}<small>/100</small>`;
+    $('verdict').textContent = verdict(rank, T.total);
+    $('rankline').textContent = `Ranked ${ord(rank)} of ${T.total.toLocaleString()}` + (feas ? '' : '. Needs a true big and only active players to count as a real option');
+    $('netV').innerHTML = `<span class="tri" aria-hidden="true">${net >= 0 ? '▲' : '▼'}</span>${sgn(net, 1)}`; $('netV').className = 'v num ' + (net >= 0 ? 'pos' : 'neg');
+    $('offdefV').innerHTML = `${Math.round(off)}<span class="faint">–</span>${Math.round(off - net)}`;
     const h = T.hist[String(mask)];
-    $('roHist').textContent = h ? `observed ${sgn(h[1], 1)} over ${h[0]} min${h[3] ? ` as a ${h[3]} five` : ' together'}${h[2] ? ` · ${h[2]} game${h[2] === 1 ? '' : 's'}` : ''}`
-      : (REAL ? 'never a starting or closing five in the data' : 'never played together in the sample');
+    if (h) {
+      const g = h[2], what = h[3] === 'starting' ? `Started ${plural(g, 'game')} together` : h[3] === 'closing' ? `Closed ${plural(g, 'game')} together` : 'Played together';
+      $('hist').textContent = `${what}: ${sgn(h[1], 1)} net rating in ${h[0]} minutes.`;
+    } else $('hist').textContent = HIST_NONE + '.';
+    setLive(5, f, verdict(rank, T.total).replace(' of possible lineups for the ' + (D.nick[team] || team), '').replace('Best possible lineup for the ' + (D.nick[team] || team), 'Best possible five'));
     const adj = adjustment(ids);
-    $('roAdj').innerHTML = adj === null ? '' : `<div class="adj"><span class="chip">heuristic</span><span>vs <b>${esc(opp)}</b>: ${sgn(adj, 1)} net → adjusted net <b>${sgn(net + adj, 1)}</b>, adjusted fit <b>${fit(net + adj).toFixed(0)}</b></span></div>`;
-    let ch = '';
-    for (let k = 0; k < cs.length; k += 2) {
-      const v = cs[k + 1], w = Math.min(50, Math.abs(v) / 5 * 50);
-      ch += `<div class="why-row"><span class="lbl">${esc(D.labels[D.features[cs[k]]])}</span><span class="val ${v > 0 ? 'pos' : 'neg'}">${sgn(v, 1)}</span><div class="bar"><i class="${v > 0 ? 'p' : 'n'}" style="width:${w}%"></i></div></div>`;
+    if (adj === null) { $('matchNote').hidden = true; $('oppResult').innerHTML = ''; }
+    else {
+      const txt = `Against the ${esc(D.nick[opp] || opp)}: <b>${sgn(adj, 1)}</b> net rating, fit about <b>${fit(net + adj).toFixed(0)}</b>`;
+      $('matchNote').hidden = false; $('matchNote').innerHTML = `<span class="badge warn">Estimate</span><span>${txt}</span>`;
+      $('oppResult').innerHTML = txt + '.';
     }
-    $('roContrib').innerHTML = ch || '<div class="muted" style="font-size:13px">No single feature moves this five by more than ±0.15.</div>';
-    const pos = [], neg = [];
-    for (let k = 0; k < cs.length; k += 2) (cs[k + 1] > 0 ? pos : neg).push(D.labels[D.features[cs[k]]]);
-    let read = `This five is the model's ${ord(rank)}-ranked lineup of ${T.total.toLocaleString()}`;
-    read += pos.length ? `; ${pos[0]} is the main driver` : '';
-    read += neg.length ? `${pos.length ? ', ' : '; '}${neg[0]} is the main drag` : '';
-    read += '.';
-    if (!feas) read += ' It breaks the ≥ 1 big / no-DNP constraint, so the optimizer would never pick it.';
-    if (adj !== null) read += ` Against ${opp} the heuristic moves it ${sgn(adj, 1)} to fit ${fit(net + adj).toFixed(0)}.`;
-    $('readLine').innerHTML = `<b>Read:</b> ${esc(read)}`;
-    renderSwaps(ids, net, f);
+    renderWhy(ids, cs, f);
+    renderSwaps(ids, f);
   }
 
-  function renderSwaps(ids, baseNet, baseFit) {
-    const out = [];
+  function renderWhy(ids, cs, f) {
+    const rows = [];
+    for (let k = 0; k < cs.length; k += 2) rows.push([D.labels[D.features[cs[k]]], cs[k + 1]]);
+    rows.sort((a, b) => Math.abs(b[1]) - Math.abs(a[1]));
+    const scale = Math.max(2.5, ...rows.map(r => Math.abs(r[1])));
+    $('whyH').textContent = f >= 50 ? 'Why this works' : 'Why it struggles';
+    $('why').innerHTML = rows.map(([lbl, v]) => `<div class="row why-row"><div class="grow"><span class="title">${esc(lbl)}</span>
+      <span class="cbar" aria-hidden="true"><i class="${v > 0 ? 'p' : 'n'}" style="width:${(Math.abs(v) / scale * 50).toFixed(1)}%"></i></span></div>
+      <span class="delta ${v > 0 ? 'pos' : 'neg'}">${sgn(v, 1)}</span></div>`).join('')
+      || '<div class="empty-row">No single trait moves this five much either way.</div>';
+    const [s, hd, b] = shb(ids);
+    $('whyFoot').textContent = `${plural(s, 'shooter')}, ${plural(hd, 'ball handler')} and ${plural(b, 'big')}. Points per 100 possessions each trait adds or costs.`;
+  }
+
+  function renderSwaps(ids, baseFit) {
+    if (!T.full && loadState === 'loading') { $('swaps').innerHTML = skRows(4); $('swapFoot').textContent = ''; return; }
+    const out = [], m0 = selMask();
     for (const po of ids) for (let pi = 0; pi < T.n; pi++) {
       if (sel.has(pi)) continue;
-      const m = (selMask() & ~(1 << po)) | (1 << pi);
-      const r = lookup.get(m); if (!r) continue;
+      const r = lookup.get((m0 & ~(1 << po)) | (1 << pi)); if (!r) continue;
       out.push({ po, pi, d: fit(r[1]) - baseFit, f: fit(r[1]) });
     }
     out.sort((a, b) => b.d - a.d);
-    const top = out.slice(0, 6);
-    $('swaps').innerHTML = top.map(s => `<button type="button" class="swap" data-po="${s.po}" data-pi="${s.pi}"><span class="who"><b>${esc(last(T.players[s.po].name))}</b><i>→</i><b>${esc(last(T.players[s.pi].name))}</b></span><span class="chip ${s.d >= 0 ? 'pos' : 'neg'}">${sgn(s.d, 1)} fit</span><span class="to">→ ${s.f.toFixed(0)}</span></button>`).join('') || '<div class="muted">no swaps</div>';
-    $('swaps').querySelectorAll('.swap').forEach(b => b.addEventListener('click', () => { sel.delete(+b.dataset.po); sel.add(+b.dataset.pi); syncTiles(); update(); scrollTop(); }));
+    const top = out.slice(0, 5);
+    $('swaps').innerHTML = top.map(s => `<button type="button" class="row swap" data-po="${s.po}" data-pi="${s.pi}">
+      <span class="duo" aria-hidden="true"><span class="av">${initials(T.players[s.pi].name)}</span></span>
+      <span class="grow"><span class="title">Swap ${esc(last(T.players[s.po].name))} for <b>${esc(last(T.players[s.pi].name))}</b></span><span class="sub">Fit becomes ${s.f.toFixed(0)}</span></span>
+      <span class="delta ${s.d >= 0 ? 'pos' : 'neg'}">${sgn(s.d, 1)}</span></button>`).join('') || '<div class="empty-row">No swaps available.</div>';
     const b = top[0];
-    $('swapsRead').innerHTML = !b ? '' : b.d > 0.5
-      ? `<b>Read:</b> Best single move: ${esc(last(T.players[b.po].name))} out, ${esc(last(T.players[b.pi].name))} in (${sgn(b.d, 1)} fit → ${b.f.toFixed(0)}).`
-      : `<b>Read:</b> No single substitution improves this five by more than half a point — it is a local optimum.`;
+    $('swapFoot').textContent = !b ? '' : b.d > 0.5 ? (T.full ? '' : 'Based on the top lineups only.') : 'No single swap improves this five by more than half a point.';
   }
+  $('swaps').addEventListener('click', e => {
+    const b = e.target.closest('.swap'); if (!b) return;
+    const pi = +b.dataset.pi; sel.delete(+b.dataset.po); sel.add(pi); syncRoster(); update();
+    toast(`Swapped in ${last(T.players[pi].name)}`); haptic();
+  });
 
-  function renderCourt(ids) {
-    const W = 600, H = 400;
-    const spots = [[300, 72], [112, 158], [488, 158], [182, 282], [418, 282]];
-    const ps = ids.map(i => T.players[i]).sort((a, b) => a.ht - b.ht);
-    let s = `<svg class="court" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Half court with the selected five placed by size">`;
-    s += `<g fill="none" stroke="var(--line-2)" stroke-width="2" stroke-linecap="round">
-      <line x1="20" y1="372" x2="580" y2="372"/><path d="M50 372V262A260 260 0 0 1 550 262V372"/>
-      <rect x="225" y="182" width="150" height="190"/><circle cx="300" cy="182" r="60"/><path d="M240 20A60 60 0 0 0 360 20"/><line x1="20" y1="20" x2="580" y2="20"/>
-      <line x1="270" y1="344" x2="330" y2="344" stroke="var(--muted)"/><circle cx="300" cy="333" r="9" stroke="var(--muted)"/></g>`;
-    ps.forEach((p, k) => {
-      const [x, y] = spots[k];
-      s += `<circle cx="${x}" cy="${y}" r="23" fill="var(--accent)"/>`;
-      s += `<text x="${x}" y="${y + 5}" text-anchor="middle" font-size="13" font-weight="700" fill="var(--accent-ink)" style="font-family:var(--mono)">${initials(p.name)}</text>`;
-      s += `<text x="${x}" y="${y + 42}" text-anchor="middle" font-size="12" font-weight="600" fill="var(--text)" style="paint-order:stroke;stroke:var(--surface);stroke-width:4px">${esc(p.name)}</text>`;
-      s += `<text x="${x}" y="${y + 57}" text-anchor="middle" font-size="11" fill="var(--muted)" style="paint-order:stroke;stroke:var(--surface);stroke-width:3px;font-family:var(--mono)">${p.pos} · ${ht(p.ht)} · ${pct(p.fg3)}</text>`;
-    });
-    for (let k = ps.length; k < 5; k++) { const [x, y] = spots[k]; s += `<circle cx="${x}" cy="${y}" r="23" fill="none" stroke="var(--faint)" stroke-dasharray="4 4"/><text x="${x}" y="${y + 4}" text-anchor="middle" font-size="12" fill="var(--faint)">?</text>`; }
-    $('court').innerHTML = s + '</svg>';
-  }
-
-  // ---- synergy heatmap
+  // ---- pair synergy: mean fit of fives containing both players minus the team mean
   function synergy() {
     const n = T.n, sum = Array.from({ length: n }, () => new Float64Array(n)), cnt = Array.from({ length: n }, () => new Float64Array(n));
     let tot = 0;
     for (const r of T.combos) { const f = fit(r[1]); tot += f; const ids = []; for (let i = 0; i < n; i++) if (r[0] & (1 << i)) ids.push(i);
       for (let a = 0; a < 5; a++) for (let b = a + 1; b < 5; b++) { sum[ids[a]][ids[b]] += f; cnt[ids[a]][ids[b]]++; } }
     const mean = tot / T.combos.length, pairs = [];
-    const S = Array.from({ length: n }, () => new Float64Array(n)), N = cnt;
+    const S = Array.from({ length: n }, () => new Float64Array(n));
     for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) { const v = cnt[i][j] ? sum[i][j] / cnt[i][j] - mean : 0; S[i][j] = S[j][i] = v; pairs.push({ i, j, v }); }
-    return { S, N, pairs, mean };
+    return { S, N: cnt, pairs, mean };
   }
-  function col(v, vmax) {
-    const t = Math.max(-1, Math.min(1, v / vmax)), c = t >= 0 ? POS : NEG, u = Math.abs(t);
-    return `rgb(${MID.map((m, k) => Math.round(m + (c[k] - m) * u)).join(',')})`;
+  const pairName = (i, j) => `${esc(last(T.players[i].name))} + ${esc(last(T.players[j].name))}`;
+  function pairRow(p) {
+    return `<button type="button" class="row pair" data-i="${p.i}" data-j="${p.j}">
+      <span class="grow title">${pairName(p.i, p.j)}</span><span class="delta ${p.v >= 0 ? 'pos' : 'neg'}">${sgn(p.v, 1)}</span></button>`;
   }
-  function renderHeat() {
+  function renderPairs() {
     if (!T.full) {
-      $('heatmap').innerHTML = `<div class="muted" style="padding:24px 0;font-size:13px">Pairwise synergy needs every five of the roster — loading the full table for ${esc(team)}…</div>`;
-      $('heatTitle').textContent = `${team}`; $('heatVal').innerHTML = ''; $('duosBest').innerHTML = ''; $('duosWorst').innerHTML = ''; $('synRead').innerHTML = '';
+      if (loadState === 'error') {
+        $('pairsBest').innerHTML = `<div class="err"><p>Couldn't load every ${esc(D.nick[team] || team)} lineup. Check your connection and try again.</p><button type="button" class="btn sm" data-retry>Try again</button></div>`;
+        $('pairsWorst').innerHTML = '<div class="empty-row">Needs the full lineup table.</div>';
+        $('heatmap').innerHTML = '<p class="muted small">Needs the full lineup table.</p>';
+      } else {
+        $('pairsBest').innerHTML = skRows(3); $('pairsWorst').innerHTML = skRows(3);
+        $('heatmap').innerHTML = '<div class="skel" style="height:240px"></div>';
+      }
+      $('heatVal').innerHTML = '';
       return;
     }
     const { S, N, pairs, mean } = synergy();
-    const n = T.n, cell = 40, padL = 96, padT = 84, W = padL + n * cell + 56, H = padT + n * cell + 6;
+    const sorted = [...pairs].sort((a, b) => b.v - a.v);
+    $('pairsBest').innerHTML = sorted.slice(0, 3).map(pairRow).join('');
+    $('pairsWorst').innerHTML = sorted.slice(-3).reverse().map(pairRow).join('');
+    // full heatmap (sheet)
+    const n = T.n, cell = 34, padL = 92, padT = 78, W = padL + n * cell + 8, H = padT + n * cell + 4;
     const vmax = Math.max(0.1, ...pairs.map(p => Math.abs(p.v)));
-    let s = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pairwise synergy heatmap">`;
+    let s = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pair scores for every two players">`;
     T.players.forEach((p, i) => {
       s += `<text x="${padL - 8}" y="${padT + i * cell + cell / 2 + 4}" text-anchor="end">${esc(last(p.name))}</text>`;
-      s += `<text transform="translate(${padL + i * cell + cell / 2 + 4},${padT - 8}) rotate(-50)">${esc(last(p.name))}</text>`;
+      s += `<text transform="translate(${padL + i * cell + cell / 2 + 4},${padT - 8}) rotate(-55)">${esc(last(p.name))}</text>`;
     });
     for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) {
       const x = padL + j * cell, y = padT + i * cell;
-      if (i === j) { s += `<rect x="${x + 1}" y="${y + 1}" width="${cell - 2}" height="${cell - 2}" rx="3" fill="var(--bg)"/>`; continue; }
-      s += `<rect class="heat-cell" data-i="${i}" data-j="${j}" x="${x + 1}" y="${y + 1}" width="${cell - 2}" height="${cell - 2}" rx="3" fill="${col(S[i][j], vmax)}"><title>${esc(last(T.players[i].name))} + ${esc(last(T.players[j].name))}: ${sgn(S[i][j], 1)} fit vs team mean</title></rect>`;
+      if (i === j) { s += `<rect x="${x + 1}" y="${y + 1}" width="${cell - 2}" height="${cell - 2}" rx="4" style="fill:var(--fill)"/>`; continue; }
+      const t = Math.max(-1, Math.min(1, S[i][j] / vmax)), u = Math.round(Math.abs(t) * 100);
+      s += `<rect class="heat-cell" data-i="${i}" data-j="${j}" x="${x + 1}" y="${y + 1}" width="${cell - 2}" height="${cell - 2}" rx="4" style="fill:color-mix(in srgb, var(${t >= 0 ? '--pos' : '--neg'}) ${u}%, var(--surface-2))"><title>${last(T.players[i].name)} + ${last(T.players[j].name)}: ${sgn(S[i][j], 1)}</title></rect>`;
     }
     $('heatmap').innerHTML = s + '</svg>';
-    $('heatTitle').textContent = `${team} · team mean fit ${mean.toFixed(1)}`;
-    $('scaleLo').textContent = `−${vmax.toFixed(1)}`; $('scaleHi').textContent = `+${vmax.toFixed(1)}`;
-    const showCell = (i, j) => {
-      heatSel = [i, j];
+    $('heatH').textContent = `All ${D.nick[team] || team} pairs`;
+    $('scaleLo').textContent = `${sgn(-vmax, 1)}`; $('scaleHi').textContent = `${sgn(vmax, 1)}`;
+    $('heatVal').innerHTML = `<span>Team average fit is ${mean.toFixed(0)}. Tap a square.</span>`;
+    $('heatmap').onclick = e => {
+      const c = e.target.closest('.heat-cell'); if (!c) return;
+      const i = +c.dataset.i, j = +c.dataset.j, v = S[i][j];
       $('heatmap').querySelectorAll('.heat-cell').forEach(r => r.classList.toggle('on', (+r.dataset.i === i && +r.dataset.j === j) || (+r.dataset.i === j && +r.dataset.j === i)));
-      $('heatVal').innerHTML = `<span><b>${esc(last(T.players[i].name))} + ${esc(last(T.players[j].name))}</b> · <b class="${S[i][j] >= 0 ? 'pos' : 'neg'}">${sgn(S[i][j], 1)}</b> fit vs team mean over ${N[Math.min(i, j)][Math.max(i, j)]} fives</span><button type="button" class="btn" id="loadDuo">Load duo in builder</button>`;
-      $('loadDuo').addEventListener('click', () => { if (!sel.has(i) && sel.size >= 5) sel.delete([...sel][0]); sel.add(i); if (!sel.has(j) && sel.size >= 5) sel.delete([...sel].find(x => x !== i)); sel.add(j); syncTiles(); update(); scrollTop(); });
+      $('heatVal').innerHTML = `<span><b>${pairName(i, j)}</b>: <b class="${v >= 0 ? 'pos' : 'neg'}">${sgn(v, 1)}</b> across ${N[Math.min(i, j)][Math.max(i, j)].toLocaleString()} lineups</span><button type="button" class="btn sm primary" data-pair="${i},${j}">Try this pair</button>`;
     };
-    $('heatmap').querySelectorAll('.heat-cell').forEach(r => r.addEventListener('click', () => showCell(+r.dataset.i, +r.dataset.j)));
-    $('heatVal').innerHTML = '<span class="muted">Tap a cell for the pair’s value.</span>';
-    const sorted = [...pairs].sort((a, b) => b.v - a.v);
-    const li = p => `<li><span>${esc(last(T.players[p.i].name))} + ${esc(last(T.players[p.j].name))}</span><b class="${p.v >= 0 ? 'pos' : 'neg'}">${sgn(p.v, 1)}</b></li>`;
-    $('duosBest').innerHTML = sorted.slice(0, 5).map(li).join('');
-    $('duosWorst').innerHTML = sorted.slice(-5).reverse().map(li).join('');
-    const b = sorted[0], w = sorted[sorted.length - 1];
-    $('synRead').innerHTML = `<b>Read:</b> ${esc(last(T.players[b.i].name))} + ${esc(last(T.players[b.j].name))} lift the fives they share by ${sgn(b.v, 1)} fit; ${esc(last(T.players[w.i].name))} + ${esc(last(T.players[w.j].name))} drag theirs by ${sgn(w.v, 1)}. Averages over every five containing the pair, not a causal effect.`;
   }
+  function tryPair(i, j) {
+    const want = [i, j].filter(k => !sel.has(k));
+    if (!want.length) { toast('Both are already in your five'); return; }
+    const order = [...sel].filter(k => k !== i && k !== j);
+    while (sel.size + want.length > 5) sel.delete(order.pop());
+    want.forEach(k => sel.add(k));
+    syncRoster(); update(); haptic();
+    toast(`Added ${want.map(k => last(T.players[k].name)).join(' and ')}`);
+  }
+  ['pairsBest', 'pairsWorst'].forEach(id => $(id).addEventListener('click', e => { const b = e.target.closest('.pair'); if (b) tryPair(+b.dataset.i, +b.dataset.j); }));
 
   // ---- rotation
   function renderRotation() {
     const R = T.rotation, el = $('rotation');
-    if (!R || R.error) { el.innerHTML = `<div class="card unit"><div class="label">Rotation</div><div class="muted" style="margin-top:8px">${esc(R ? R.error : 'not computed')}</div></div>`; $('rotRead').innerHTML = ''; return; }
+    if (!R || R.error) { el.innerHTML = `<div class="list"><div class="empty-row">${esc(R ? R.error : 'No rotation for this roster.')}</div></div>`; return; }
     const pl = id => T.players[byId.get(id)];
-    const unit = (title, u, mins) => `<div class="card unit"><div class="label">${title}</div>
-      <div class="top"><b>${u.fit.toFixed(0)}</b><span>fit · net ${sgn(u.net, 1)} · rank ${u.rank}</span></div>
-      <ul>${u.p.map(q => `<li><span>${esc(pl(q[0]).name)} <span class="chip xs">${pl(q[0]).pos}</span></span>${mins ? `<span class="mins">${q[1].toFixed(0)} <span class="faint">/ ${q[2].toFixed(0)}</span></span>` : ''}</li>`).join('')}</ul>
-      <button type="button" class="btn" data-load="${u.p.map(q => q[0]).join(',')}">Load in builder</button></div>`;
-    el.innerHTML = unit(`Starters · ${R.s.min.toFixed(0)} min`, R.s, true) + unit(`Bench · ${R.b.min.toFixed(0)} min${R.overlap ? ` · overlap ${R.overlap}` : ''}`, R.b, true) + unit('Closing five · minutes ignored', R.c, false)
-      + `<div class="rot-note">Minutes shown as assigned / budget. Rotation net ${sgn(R.net, 1)} (minutes-weighted, fit ${R.fit}) · ${R.alloc.toFixed(0)} of 240 min allocated, ${R.left.toFixed(0)} left for the rest of the roster.</div>`;
-    el.querySelectorAll('button[data-load]').forEach(b => b.addEventListener('click', () => { const ids = b.dataset.load.split(',').map(Number); sel = new Set(ids.map(id => byId.get(id)).filter(i => i !== undefined)); syncTiles(); update(); scrollTop(); }));
-    const same = R.s.p.map(q => q[0]).sort().join() === R.c.p.map(q => q[0]).sort().join();
-    $('rotRead').innerHTML = `<b>Read:</b> Starters carry ${R.s.min.toFixed(0)} min at fit ${R.s.fit.toFixed(0)}, the bench ${R.b.min.toFixed(0)} min at fit ${R.b.fit.toFixed(0)}; ${same ? 'the closing five is the starting five' : 'the closing five differs from the starters once minutes are ignored'}.${R.bench_up ? ' The model rates the bench unit higher — the starters are forced by the minutes budget.' : ''}`;
+    const unit = (title, u, mins) => `<div><h3 class="sub-h">${title}<span>Fit ${u.fit.toFixed(0)}</span></h3><div class="list">
+      ${u.p.map(q => { const p = pl(q[0]); return `<div class="row"><span class="av" aria-hidden="true">${initials(p.name)}</span><span class="grow title">${esc(p.name)}</span>${mins ? `<span class="value num">${q[1].toFixed(0)} min</span>` : `<span class="value">${POSN[p.pos] || p.pos}</span>`}</div>`; }).join('')}
+      <button type="button" class="row usefive" data-load="${u.p.map(q => q[0]).join(',')}" data-name="${title}">Use this five</button></div></div>`;
+    el.innerHTML = unit('Starters', R.s, true) + unit('Bench', R.b, true) + unit('Closing five', R.c, false)
+      + `<p class="section-foot rot-foot">Minutes follow each player's share of the season, ${R.alloc.toFixed(0)} of 240 for these ten. The closing five ignores minutes.${R.bench_up ? ' The model actually rates the bench unit higher.' : ''}</p>`;
   }
+  $('rotation').addEventListener('click', e => {
+    const b = e.target.closest('[data-load]'); if (!b) return;
+    sel = new Set(b.dataset.load.split(',').map(Number).map(id => byId.get(id)).filter(i => i !== undefined));
+    syncRoster(); update(); toTop(); toast(`${b.dataset.name} loaded`); haptic();
+  });
+
+  function toTop() { $('hero').scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' }); }
+
+  // ---- sheets (bottom sheet on phones, centred modal on desktop; styles in app.css)
+  let openSheet = null, lastFocus = null;
+  function openS(id) {
+    const s = $(id); if (!s) return;
+    if (openSheet) closeS(true);
+    lastFocus = document.activeElement;
+    s.inert = false; s.scrollTop = 0; s.classList.add('open'); $('scrim').classList.add('open');
+    document.documentElement.style.overflow = 'hidden'; document.documentElement.classList.add('sheet-open'); openSheet = s;
+    setTimeout(() => s.focus({ preventScroll: true }), 60);
+  }
+  function closeS(quiet) {
+    if (!openSheet) return;
+    const s = openSheet; openSheet = null;
+    s.classList.remove('open'); s.style.transform = ''; s.inert = true;
+    $('scrim').classList.remove('open'); document.documentElement.style.overflow = ''; document.documentElement.classList.remove('sheet-open');
+    if (!quiet && lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
+  }
+  $('scrim').addEventListener('click', () => closeS());
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeS(); });
+  // drag the sheet down to dismiss (phones)
+  document.querySelectorAll('.sheet').forEach(s => {
+    let y0 = null, dy = 0;
+    s.addEventListener('touchstart', e => { if (s.scrollTop > 0 || e.target.closest('.heatwrap') || innerWidth >= 900) { y0 = null; return; } y0 = e.touches[0].clientY; dy = 0; }, { passive: true });
+    s.addEventListener('touchmove', e => { if (y0 === null) return; dy = Math.max(0, e.touches[0].clientY - y0); s.style.transition = 'none'; s.style.transform = `translateY(${dy}px)`; }, { passive: true });
+    s.addEventListener('touchend', () => { if (y0 === null) return; s.style.transition = ''; if (dy > 90) closeS(); else s.style.transform = ''; y0 = null; });
+  });
+
+  // delegated actions (the top-bar info button is cloned into the shell's header after this script runs)
+  document.addEventListener('click', e => {
+    const o = e.target.closest('[data-sheet]'); if (o) { e.preventDefault(); openS(o.dataset.sheet); return; }
+    if (e.target.closest('[data-close]')) { closeS(); return; }
+    if (e.target.closest('[data-retry]')) { loadState = 'loading'; renderPairs(); update(); loadFull(team); return; }
+    const pb = e.target.closest('[data-pair]'); if (pb) { const [i, j] = pb.dataset.pair.split(',').map(Number); closeS(true); tryPair(i, j); return; }
+    const lr = e.target.closest('.league-row');
+    if (lr) { closeS(true); if (lr.dataset.team !== team) { setTeam(lr.dataset.team); toast(`Opened the ${D.nick[lr.dataset.team] || lr.dataset.team}`); } toTop(); }
+  });
+
+  // ---- live score bar: visible once the hero has scrolled out of view
+  const bar = $('livebar');
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(es => es.forEach(en => {
+      const show = !en.isIntersecting && en.boundingClientRect.top < 0;
+      bar.classList.toggle('show', show); bar.setAttribute('aria-hidden', String(!show)); $('lbBtn').tabIndex = show ? 0 : -1;
+    }), { threshold: 0, rootMargin: '-90px 0px 0px 0px' }).observe($('hero'));
+  }
+  $('lbBtn').addEventListener('click', toTop);
 
   // ---- wiring
-  // the shared shell hard-codes a "Sample data" chip in the top bar; relabel it with this page's real source
-  const topChip = document.querySelector('.topbar .chip');
-  if (topChip && REAL) { topChip.textContent = D.source.label === 'ESPN' ? 'Live · ESPN' : 'Live · ' + D.source.label; topChip.classList.add('accent'); topChip.title = 'updated ' + D.source.updated; }
   $('teamSel').addEventListener('change', e => setTeam(e.target.value));
   $('oppSel').addEventListener('change', e => { opp = e.target.value; update(); });
-  $('btnBest').addEventListener('click', () => { maskToSel(T.best_mask); syncTiles(); update(); });
-  $('btnMost').addEventListener('click', () => { if (T.most_used === null || T.most_used === undefined) { flash('No history for this roster.'); return; } maskToSel(T.most_used); syncTiles(); update(); });
-  $('btnClear').addEventListener('click', () => { sel = new Set(); syncTiles(); update(); });
-  document.querySelectorAll('.board tbody tr[data-team]').forEach(tr => tr.addEventListener('click', () => { setTeam(tr.dataset.team); scrollTop(); }));
-  if (window.matchMedia && window.matchMedia('(min-width:900px)').matches) $('lab').open = true;
-  window.LineupIQ = { setTeam, toggle, get selection() { return [...sel]; }, get team() { return team; }, get full() { return !!(T && T.full); } };
-  setTeam($('teamSel').value);
+  $('btnBest').addEventListener('click', () => { maskToSel(T.best_mask); syncRoster(); update(); toast('Best five loaded'); });
+  $('btnMost').addEventListener('click', () => {
+    if (T.most_used === null || T.most_used === undefined) { toast('No lineup history for this team yet'); return; }
+    maskToSel(T.most_used); syncRoster(); update(); toast('Most-used five loaded');
+  });
+  $('btnClear').addEventListener('click', () => { sel = new Set(); syncRoster(); update(); });
+
+  window.LineupIQ = { setTeam, toggle, tryPair, get selection() { return [...sel]; }, get team() { return team; }, get full() { return !!(T && T.full); }, get state() { return loadState; } };
+  const fromHash = teams.find(t => '#' + D.teams[t].abbr === location.hash);
+  setTeam(fromHash || $('teamSel').value);
 })();
 """
 

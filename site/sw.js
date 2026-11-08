@@ -5,12 +5,12 @@
  *    long-lived cache that survives app version bumps, filled on first use.
  *  - Range requests (video seeking) bypass the cache entirely.
  */
-var VERSION = 'np-v3';
+var VERSION = 'np-v4';
 var CACHE = VERSION;
 var VENDOR = 'np-vendor-mp-1.2.2';
 var PRECACHE = [
   './', './index.html', './404.html', './manifest.webmanifest',
-  './assets/shell.css', './assets/shell.js',
+  './assets/shell.css', './assets/shell.js', './assets/app.css', './assets/app-shell.js',
   './icons/icon-192.png', './icons/icon-512.png',
   './icons/icon-maskable-192.png', './icons/icon-maskable-512.png', './icons/apple-touch-icon.png',
   './jumpshot/', './jumpshot/index.html', './jumpshot/sample/', './jumpshot/sample/index.html', './lineup/', './lineup/index.html', './predictor/', './predictor/index.html'

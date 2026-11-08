@@ -3,189 +3,219 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0b0d12">
+<meta name="theme-color" content="#f9f9fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#161618" media="(prefers-color-scheme: dark)">
+<meta name="color-scheme" content="light dark">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="NBA Projects">
-<meta name="description" content="Three end-to-end basketball analytics projects — computer vision, lineup modeling, game prediction — built in Python and shipped as installable web apps.">
-<title>NBA Projects — basketball analytics portfolio</title>
 <link rel="manifest" href="./manifest.webmanifest">
 <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
-<link rel="stylesheet" href="./assets/shell.css">
+<meta name="description" content="Basketball tools for fans and players: game picks, lineup fits and jump shot feedback, powered by live NBA data.">
+<title>NBA Projects</title>
+<link rel="stylesheet" href="./assets/app.css">
+<script src="./assets/app-shell.js" defer></script>
 <style>
-/* Hub-only styles. Shared tokens/components live in assets/shell.css. */
-.hero{padding-top:8px}
-.sec-h{flex-wrap:wrap;gap:4px 10px}
-@media(max-width:699px){.sec-h{flex-direction:column;align-items:flex-start}}
-.hero .lede{max-width:58ch}
-.apps{display:grid;gap:12px;margin-top:18px}
-@media(min-width:900px){.apps{grid-template-columns:repeat(3,1fr);gap:14px}}
-.app{display:flex;flex-direction:column;gap:12px;padding:16px;position:relative;isolation:isolate}
-.app::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;border-radius:var(--r) var(--r) 0 0;background:var(--accent);opacity:.9}
-.app .head{display:flex;align-items:center;gap:10px}
-.app .mark{width:34px;height:34px;border-radius:9px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font:800 13px var(--mono);flex:0 0 auto}
-.app .head h2{font-size:18px}
-.app .head small{display:block;color:var(--muted);font:500 12px var(--sans);margin-top:1px}
-.app .desc{margin:0;color:var(--muted);font-size:13.5px;line-height:1.5}
-.app .chips{display:flex;flex-wrap:wrap;gap:6px}
-.app .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border-top:1px solid var(--line);padding-top:12px}
-.app .kpis .kpi{padding:0;background:transparent;border:0;min-width:0}
-.app .kpis .label{margin-bottom:6px;font-size:10px;letter-spacing:.08em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.app .kpis b{font-size:20px}
-.app .kpis b.hero{font-size:24px}
-.app .kpis .sub{font-size:11px;margin-top:4px;line-height:1.3}
-.app .cta{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:4px}
-.app .cta .btn{min-height:44px}
-.app .cta .meta{color:var(--faint);font:500 11px var(--mono);letter-spacing:.04em;white-space:nowrap}
-.stack{min-width:0}
-.stack table{min-width:640px}
-.stack td:first-child{font-weight:600}
-.stack .dot{display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--accent);margin-right:8px;vertical-align:1px}
-.two{display:grid;gap:12px}
-@media(min-width:900px){.two{grid-template-columns:1.4fr 1fr;align-items:start}}
-.note p{margin:0;color:var(--muted);font-size:13px}
-.note p+p{margin-top:8px}
-.note code{white-space:nowrap;font-family:var(--mono);font-size:12px;background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
-.install{display:grid;gap:12px}
-@media(min-width:700px){.install{grid-template-columns:1fr 1fr}}
-.install ol{margin:8px 0 0;padding-left:0;list-style:none;counter-reset:s}
-.install li{position:relative;padding-left:30px;color:var(--muted);font-size:13px;line-height:1.5;min-height:28px;margin-bottom:6px;counter-increment:s}
-.install li::before{content:counter(s);position:absolute;left:0;top:1px;width:20px;height:20px;border-radius:6px;background:var(--surface-2);border:1px solid var(--line-2);color:var(--text);font:700 11px/20px var(--mono);text-align:center}
-.install li b{color:var(--text);font-weight:600}
-.install .os{display:flex;align-items:center;gap:8px;font-weight:700}
-.install .os svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;color:var(--muted)}
-.foot a{color:var(--muted);text-decoration:none}
-.foot a:hover{color:var(--text)}
+/* Hub only. Shared tokens and components live in assets/app.css. */
+.page.hub{max-width:980px}
+.hub .large-title{margin-top:12px}
+@media (min-width:900px){.hub .large-title{margin-top:36px}}
+
+/* App entries: discrete tappable objects, so cards */
+.apps{display:grid;gap:12px;margin-top:24px}
+@media (min-width:900px){.apps{grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}}
+.app{display:flex;flex-direction:column;padding:16px 16px 18px;color:inherit}
+@media (hover:hover){.app:hover{background:var(--surface-2)}}
+.app-head{display:flex;align-items:center;gap:12px}
+.glyph{width:48px;height:48px;border-radius:12px;background:var(--brand-tint);color:var(--brand);display:grid;place-items:center;flex:none}
+.glyph svg{width:30px;height:30px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.glyph svg .f{fill:currentColor;stroke:none}
+.app-name{flex:1;min-width:0;font:600 var(--t-3)/1.2 var(--font-display);letter-spacing:-.01em;margin:0}
+.app .chev{width:8px;height:14px;color:var(--label-3);flex:none}
+.app-desc{margin:12px 0 0;font:400 var(--t-sub)/1.4 var(--font);color:var(--label-2)}
+.app .stat{margin-top:auto;padding-top:18px}
+.app .stat .v{font-size:30px}
+.app .stat .v small.pct{margin-left:1px}
+@media (min-width:900px){.app{padding:20px 20px 22px;min-height:236px}.app .stat{padding-top:24px}.app .stat .v{font-size:34px}}
+
+/* About list */
+.row .icon{width:30px;height:30px;border-radius:8px;background:var(--fill);color:var(--label-2);display:grid;place-items:center;flex:none}
+.row .icon svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.row.inset + .row.inset::before{left:58px}
+.row .value{font-size:var(--t-sub)}
+.row .title{white-space:normal}
+.row.kv .grow{flex:1 0 auto}
+.row.kv .title{white-space:nowrap}
+.row.kv .value{min-width:0;overflow:hidden;text-overflow:ellipsis}
+.narrow-only{display:none}
+@media (max-width:429px){.narrow-only{display:block}.wide-only{display:none}}
+@media (min-width:900px){.about .list{max-width:calc((100% - 32px) / 3 * 2 + 16px)}}
+
+/* Install sheet */
+.sheet-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.sheet-head h3{margin:4px 0 12px}
+.sheet .seg{margin:4px 0 20px}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;display:flex;gap:14px;align-items:flex-start;padding:10px 0;font:400 var(--t-body)/1.4 var(--font)}
+.steps li::before{content:counter(s);flex:none;width:28px;height:28px;border-radius:14px;background:var(--fill);color:var(--label);display:grid;place-items:center;font:600 var(--t-sub)/1 var(--font);font-variant-numeric:tabular-nums;margin-top:-2px}
+.steps b{font-weight:600}
+.sheet .section-foot{margin:12px 0 0}
+
+/* Mobile top bar: logo only, so the large title collapses into the centred title without repeating it */
+@media (max-width:899px){.ap-top .ap-brandname{display:none}}
 </style>
 </head>
-<body data-app="hub" data-depth="" data-title="NBA Projects" data-mark="NP" data-chip="Live data">
-<main class="wrap">
+<body data-app="hub" data-title="NBA Projects" data-depth="">
+<main class="page hub">
 
-  <section class="hero">
-    <p class="eyebrow">Basketball analytics portfolio</p>
-    <h1>NBA Projects</h1>
-    <p class="lede">Three end-to-end projects — computer vision, lineup modeling, game prediction — built in Python and shipped as installable web apps.</p>
-  </section>
+  <h1 class="large-title">NBA Projects</h1>
+  <p class="subtitle">Basketball tools for fans and players, built on live NBA data.</p>
 
   <section class="apps" aria-label="Apps">
 
-    <article class="card app" data-app="jumpshot">
-      <div class="head">
-        <span class="mark">JS</span>
-        <div><h2>Jumpshot Analyzer</h2><small>Film Room · computer vision</small></div>
+    <a class="card app tappable" href="./predictor/index.html">
+      <div class="app-head">
+        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 28 28"><rect x="4.5" y="14" width="5" height="9" rx="1.6" class="f" opacity=".4"/><rect x="11.5" y="9.5" width="5" height="13.5" rx="1.6" class="f" opacity=".65"/><rect x="18.5" y="4.5" width="5" height="18.5" rx="1.6" class="f"/></svg></span>
+        <h2 class="app-name">Games</h2>
+        <svg class="chev" viewBox="0 0 8 14" aria-hidden="true"><path d="M1.5 1.5 6.5 7l-5 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
-      <p class="desc">Pose-tracks a jump shot from video, scores mechanics against a reference library and prescribes drills.</p>
-      <div class="chips">
-        <span class="chip">Pose tracking</span><span class="chip">Mechanics radar</span><span class="chip">Drill plan</span>
+      <p class="app-desc">Win chances for every game on tonight&rsquo;s slate, plus power rankings and playoff odds.</p>
+      <div class="stat">
+        <div class="v" data-unit>{{GP_ACC}}</div>
+        <div class="c">of {{GP_N_TEST}} recent games picked right</div>
       </div>
-      <div class="kpis">
-        <div class="kpi"><div class="label">Form score</div><b class="hero">{{JS_SCORE}}</b><div class="sub">vs {{JS_CLOSEST}}</div></div>
-        <div class="kpi"><div class="label">Release</div><b>{{JS_RELEASE}}</b><div class="sub">load to release</div></div>
-        <div class="kpi"><div class="label">Frames</div><b>{{JS_FRAMES}}</b><div class="sub">{{JS_FPS}} fps tracked</div></div>
-      </div>
-      <div class="cta">
-        <a class="btn primary" href="./jumpshot/index.html">Open →</a>
-        <span class="meta">OpenCV · MediaPipe · PyTorch</span>
-      </div>
-    </article>
+    </a>
 
-    <article class="card app" data-app="lineup">
-      <div class="head">
-        <span class="mark">LI</span>
-        <div><h2>Lineup Intelligence</h2><small>Tactical Board · lineup modeling</small></div>
+    <a class="card app tappable" href="./lineup/index.html">
+      <div class="app-head">
+        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 28 28"><polygon points="14.0,5.1 23.0,11.7 19.6,22.3 8.4,22.3 5.0,11.7" stroke-width="1.6" opacity=".55"/><polygon points="14.0,5.1 19.6,22.3 5.0,11.7 23.0,11.7 8.4,22.3" stroke-width="1.2" opacity=".3"/><circle cx="14.0" cy="5.1" r="3" class="f"/><circle cx="23.0" cy="11.7" r="3" class="f"/><circle cx="19.6" cy="22.3" r="3" class="f"/><circle cx="8.4" cy="22.3" r="3" class="f"/><circle cx="5.0" cy="11.7" r="3" class="f"/></svg></span>
+        <h2 class="app-name">Lineups</h2>
+        <svg class="chev" viewBox="0 0 8 14" aria-hidden="true"><path d="M1.5 1.5 6.5 7l-5 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
-      <p class="desc">Scores every five-man combination on a roster, maps pairwise synergy and builds a starters / bench / closing rotation.</p>
-      <div class="chips">
-        <span class="chip">Every C(n,5)</span><span class="chip">Synergy heatmap</span><span class="chip">What-if swaps</span>
+      <p class="app-desc">Find the five players who fit best together on any team, and see who should close games.</p>
+      <div class="stat">
+        <div class="v">{{LU_TOP_FIT}}<small>/100</small></div>
+        <div class="c">Best lineup: {{LU_TOP_TEAM}}</div>
       </div>
-      <div class="kpis">
-        <div class="kpi"><div class="label">Top fit</div><b class="hero">{{LU_TOP_FIT}}</b><div class="sub">{{LU_TOP_TEAM}}</div></div>
-        <div class="kpi"><div class="label">Lineups</div><b>{{LU_COMBOS}}</b><div class="sub">scored · {{LU_TEAMS}} teams</div></div>
-        <div class="kpi"><div class="label">Rank corr.</div><b>{{LU_SPEARMAN}}</b><div class="sub">Spearman · {{LU_MODEL}}</div></div>
-      </div>
-      <div class="cta">
-        <a class="btn primary" href="./lineup/index.html">Open →</a>
-        <span class="meta">Pandas · scikit-learn · XGBoost</span>
-      </div>
-    </article>
+    </a>
 
-    <article class="card app" data-app="predictor">
-      <div class="head">
-        <span class="mark">GP</span>
-        <div><h2>Game Predictor</h2><small>NBA//DESK · game prediction</small></div>
+    <a class="card app tappable" href="./jumpshot/index.html">
+      <div class="app-head">
+        <span class="glyph" aria-hidden="true"><svg viewBox="0 0 28 28"><path d="M9.6 17.2C11.5 11 15 8.4 19.6 8.6" stroke-dasharray="1.4 2.6"/><circle cx="7" cy="20.5" r="3.4" class="f"/><path d="M24.5 4v9"/><path d="M17.5 11h7"/><path d="M18.6 11l1.2 5.2h2.4l1.2-5.2" stroke-width="1.5"/></svg></span>
+        <h2 class="app-name">Jumpshot</h2>
+        <svg class="chev" viewBox="0 0 8 14" aria-hidden="true"><path d="M1.5 1.5 6.5 7l-5 5.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
-      <p class="desc">Leak-free rolling form and Elo feed a calibrated win-probability model with a slate picker, power rankings and playoff odds.</p>
-      <div class="chips">
-        <span class="chip">Calibrated probs</span><span class="chip">Elo + form</span><span class="chip">Monte Carlo odds</span>
+      <p class="app-desc">Upload a clip of your shot and get a mechanics score with drills to fix it.</p>
+      <div class="stat">
+        <div class="v">{{JS_SCORE}}<small>/100</small></div>
+        <div class="c">Score for the sample clip</div>
       </div>
-      <div class="kpis">
-        <div class="kpi"><div class="label">Accuracy</div><b class="hero">{{GP_ACC}}</b><div class="sub">{{GP_N_TEST}} holdout games</div></div>
-        <div class="kpi"><div class="label">Log loss</div><b>{{GP_LOGLOSS}}</b><div class="sub">baseline {{GP_BASE_LOGLOSS}}</div></div>
-        <div class="kpi"><div class="label">Calibration</div><b>{{GP_ECE}}</b><div class="sub">ECE · {{GP_CAL}}</div></div>
-      </div>
-      <div class="cta">
-        <a class="btn primary" href="./predictor/index.html">Open →</a>
-        <span class="meta">Pandas · scikit-learn · XGBoost</span>
-      </div>
-    </article>
+    </a>
 
   </section>
 
-  <section class="sec">
-    <div class="sec-h"><h2>How it's built</h2><span class="read">Same shape every time: load → features → model → interactive report.</span></div>
-    <div class="two">
-      <div class="tbl stack">
-        <table>
-          <thead><tr><th>Project</th><th>Data</th><th>Model</th><th>Output</th></tr></thead>
-          <tbody>
-            <tr data-app="jumpshot"><td><span class="dot"></span>Jumpshot Analyzer</td><td>Video → MediaPipe pose landmarks, 33 joints / frame</td><td>DTW vs reference shots + small learned encoder</td><td>Form score, radar, frame scrubber, drill plan</td></tr>
-            <tr data-app="lineup"><td><span class="dot"></span>Lineup Intelligence</td><td>Player box-score rates + observed 5-man net ratings</td><td>Ridge / XGBoost / HistGB, grouped CV</td><td>Ranked lineups, synergy heatmap, rotation</td></tr>
-            <tr data-app="predictor"><td><span class="dot"></span>Game Predictor</td><td>Game logs → rolling form + Elo, walk-forward</td><td>XGBoost with sigmoid calibration vs Elo logit</td><td>Win probs, rankings, playoff odds, upsets</td></tr>
-          </tbody>
-        </table>
+  <section class="section about" aria-labelledby="about-h">
+    <div class="section-h"><h2 id="about-h">About this site</h2></div>
+    <div class="list">
+      <div class="row inset kv">
+        <span class="icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M3 15.5V4.5"/><path d="M3 15.5h14"/><path d="M6 12l3-3.5 2.5 2 4-5"/></svg></span>
+        <div class="grow"><div class="title">Live NBA data</div><div class="sub narrow-only">ESPN, refreshed daily</div></div>
+        <span class="value wide-only">ESPN, refreshed daily</span>
       </div>
-      <div class="card note">
-        <div class="sec-h" style="margin-bottom:8px"><h2 style="font-size:15px">Live data</h2><span class="chip accent">ESPN public API</span></div>
-        <p><b style="color:var(--text)">Lineup Intelligence</b> and <b style="color:var(--text)">Game Predictor</b> run on real NBA games, box scores and rosters pulled from ESPN&rsquo;s public API. A scheduled job refetches new games every morning, retrains both models and redeploys this site; the Predictor page also overlays live scores in your browser.</p>
-        <p>The Jumpshot Analyzer runs on synthetic demo clips until you feed it your own footage. Each project keeps a <code>--source sample</code> fallback and an <code>nba_api</code> loader. Fit scores and probabilities are for learning and demonstration only &mdash; not betting advice, nothing is guaranteed.</p>
+      <div class="row inset">
+        <span class="icon" aria-hidden="true"><svg viewBox="0 0 20 20"><rect x="5.5" y="2.5" width="9" height="15" rx="2"/><path d="M8.8 14.8h2.4"/></svg></span>
+        <div class="grow"><div class="title">Runs on your phone</div><div class="sub">Jumpshot analyzes video on your device. Clips are never uploaded.</div></div>
       </div>
+      <button class="row inset kv" type="button" id="install-row" aria-haspopup="dialog" aria-controls="install-sheet">
+        <span class="icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M10 3v9"/><path d="M6.5 8.5 10 12l3.5-3.5"/><path d="M4 13.5v1.5a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-1.5"/></svg></span>
+        <div class="grow"><div class="title">Install as an app</div></div>
+        <svg class="chev" viewBox="0 0 8 13" aria-hidden="true"><path d="M1.5 1.5 6.5 6.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <a class="row inset kv" href="https://github.com/shaincarrasco/coolbasketballstuff" rel="noopener">
+        <span class="icon" aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M7 6 3 10l4 4"/><path d="M13 6l4 4-4 4"/></svg></span>
+        <div class="grow"><div class="title">Source code</div></div>
+        <span class="value">GitHub</span>
+        <svg class="chev" viewBox="0 0 8 13" aria-hidden="true"><path d="M1.5 1.5 6.5 6.5l-5 5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
     </div>
   </section>
 
-  <section class="sec">
-    <div class="sec-h"><h2>Install on your phone</h2><span class="read">Works offline after the first visit.</span></div>
-    <div class="card">
-      <div class="install">
-        <div>
-          <div class="os"><svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg>iPhone / iPad (Safari)</div>
-          <ol>
-            <li>Open this page in <b>Safari</b>.</li>
-            <li>Tap <b>Share</b> (the square with an arrow).</li>
-            <li>Scroll and tap <b>Add to Home Screen</b>, then <b>Add</b>.</li>
-          </ol>
-        </div>
-        <div>
-          <div class="os"><svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><circle cx="12" cy="18" r=".8"/></svg>Android (Chrome)</div>
-          <ol>
-            <li>Open this page in <b>Chrome</b>.</li>
-            <li>Tap the <b>⋮ menu</b> in the top right.</li>
-            <li>Tap <b>Install app</b> (or <b>Add to Home screen</b>).</li>
-          </ol>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer class="foot">
-    <span>NBA Projects</span>
-    <a href="https://github.com/shaincarrasco/coolbasketballstuff">GitHub</a>
-    <span>Built {{BUILT}}</span>
-    <span>Live data: ESPN public API · not betting advice</span>
-  </footer>
+  <p class="footer-note">Updated {{BUILT}}. Picks and scores are for fun and learning, not betting advice.</p>
 
 </main>
-<script src="./assets/shell.js"></script>
+
+<div class="scrim" id="install-scrim" hidden></div>
+<div class="sheet" id="install-sheet" role="dialog" aria-modal="true" aria-labelledby="install-h" hidden>
+  <div class="grabber" aria-hidden="true"></div>
+  <div class="sheet-head">
+    <h3 id="install-h">Install as an app</h3>
+    <button class="btn plain sm" type="button" data-close>Done</button>
+  </div>
+  <div class="seg" role="tablist" aria-label="Phone type">
+    <button type="button" role="tab" class="on" aria-selected="true" aria-controls="steps-ios" id="tab-ios">iPhone</button>
+    <button type="button" role="tab" aria-selected="false" aria-controls="steps-android" id="tab-android">Android</button>
+  </div>
+  <ol class="steps" id="steps-ios" role="tabpanel" aria-labelledby="tab-ios">
+    <li><span>Open this page in <b>Safari</b>.</span></li>
+    <li><span>Tap the <b>Share</b> button at the bottom of the screen.</span></li>
+    <li><span>Scroll down and tap <b>Add to Home Screen</b>, then <b>Add</b>.</span></li>
+  </ol>
+  <ol class="steps" id="steps-android" role="tabpanel" aria-labelledby="tab-android" hidden>
+    <li><span>Open this page in <b>Chrome</b>.</span></li>
+    <li><span>Tap the <b>menu</b> button in the top right corner.</span></li>
+    <li><span>Tap <b>Install app</b> or <b>Add to Home screen</b>.</span></li>
+  </ol>
+  <p class="section-foot">It opens full screen like any other app and keeps working offline after your first visit.</p>
+</div>
+
+<script>
+(function () {
+  // Show units smaller and secondary ("64.7%").
+  document.querySelectorAll('.stat .v[data-unit]').forEach(function (el) {
+    var m = el.textContent.trim().match(/^([\d.,]+)\s*(%|s)$/);
+    if (m) el.innerHTML = m[1] + '<small class="pct">' + m[2] + '</small>';
+  });
+
+  var sheet = document.getElementById('install-sheet');
+  var scrim = document.getElementById('install-scrim');
+  var opener = document.getElementById('install-row');
+  var isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  var isAndroid = /Android/.test(navigator.userAgent);
+
+  function pick(which) {
+    ['ios', 'android'].forEach(function (k) {
+      var on = k === which;
+      var tab = document.getElementById('tab-' + k);
+      tab.classList.toggle('on', on);
+      tab.setAttribute('aria-selected', on ? 'true' : 'false');
+      document.getElementById('steps-' + k).hidden = !on;
+    });
+  }
+  document.getElementById('tab-ios').addEventListener('click', function () { pick('ios'); });
+  document.getElementById('tab-android').addEventListener('click', function () { pick('android'); });
+  if (isAndroid && !isIOS) pick('android');
+
+  function open() {
+    sheet.hidden = false; scrim.hidden = false;
+    requestAnimationFrame(function () { requestAnimationFrame(function () {
+      sheet.classList.add('open'); scrim.classList.add('open');
+      sheet.querySelector('[data-close]').focus({ preventScroll: true });
+    }); });
+    document.addEventListener('keydown', onKey);
+  }
+  function close() {
+    sheet.classList.remove('open'); scrim.classList.remove('open');
+    document.removeEventListener('keydown', onKey);
+    setTimeout(function () { if (!sheet.classList.contains('open')) { sheet.hidden = true; scrim.hidden = true; } }, 340);
+    opener.focus({ preventScroll: true });
+  }
+  function onKey(e) { if (e.key === 'Escape') close(); }
+  opener.addEventListener('click', open);
+  scrim.addEventListener('click', close);
+  sheet.querySelector('[data-close]').addEventListener('click', close);
+})();
+</script>
 </body>
 </html>

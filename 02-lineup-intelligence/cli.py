@@ -257,7 +257,7 @@ def main(argv=None) -> None:
         p.add_argument("--must", action="append", help="player name substring that must be included (repeatable)")
         p.add_argument("--exclude", action="append", help="player name substring to exclude (repeatable)")
         p.add_argument("--json", action="store_true")
-        p.add_argument("--site", metavar="DIR", help="also write DIR/index.html for the static site (uses ../assets/shell.css + shell.js)")
+        p.add_argument("--site", metavar="DIR", help="also write DIR/index.html for the static site (uses ../assets/app.css + app-shell.js)")
 
     add_gen(sub.add_parser("generate", help="create data/players.csv and data/lineups.csv"))
     sub.add_parser("train", help="train Ridge + XGBoost + HistGradientBoosting, write models/")

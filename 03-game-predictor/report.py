@@ -1,40 +1,42 @@
 """
-Render the Game Predictor page — mobile-first, shared-shell design (see ../DESIGN_BRIEF.md).
+Render the Game Predictor page ("Games") on the shared app foundation
+(../site/assets/app.css + app-shell.js, app-polish skill).
 
 Two outputs from the same body:
-  * output/report.html          standalone: shell.css + shell.js inlined, opens from file://
-  * <site>/predictor/index.html references ../assets/shell.css and ../assets/shell.js
-                                (python cli.py demo --site ../site/predictor)
+  * output/report.html          standalone: app.css + app-shell.js inlined, opens from file://
+  * <site>/predictor/index.html references ../assets/app.css and ../assets/app-shell.js
+                                (python cli.py report --site ../site/predictor)
 
-Page order: eyebrow + h1 + lede -> 4 KPI tiles -> Slate (played days + next 7, live strip, prev/next,
-select, arrow keys) -> Power rankings -> Season simulator -> Upsets + confidence
-tiers (details) -> Model lab (details) -> Method & limits -> footer. Team codes
-everywhere open a drawer (bottom sheet on mobile, side panel on desktop).
+Screen (mobile first, Apple Sports as the reference):
+  large title "Games" + one summary line -> date strip (day pills; calendar sheet for far jumps;
+  arrow keys) -> the day's games as row cards (away over home, win chance per team, thin two-tone
+  bar, status: tip time / Live / Final + score + "Picked right"/"Missed") -> Power rankings (top 10,
+  See all sheet) -> Playoff odds (East/West segmented) -> Biggest upsets -> footer note.
+  Sheets: game ("why" in plain English, links to both teams), team (record, splits, rating chart,
+  projected wins, schedule), all rankings, date picker, About this model (accuracy vs baselines,
+  calibration, month by month, confidence tiers, inputs, method, data source).
 
-Data: ESPN's public scoreboard API (real NBA games) or, offline, the synthetic
-sample league; the page says which. A small "Live scores" strip fetches today's
-ESPN scoreboard in the browser and overlays status / score on matching cards.
-Not betting advice. Nothing here is guaranteed.
+Live scores: the page fetches today's ESPN scoreboard in the browser and overlays status and score
+on matching games. Not betting advice. Nothing here is guaranteed.
 """
 from __future__ import annotations
 
 import html
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 OUTPUT = ROOT / "output"
-SITE_ASSETS = ROOT.parent / "site" / "assets"
+SITE = ROOT.parent / "site"
+SITE_ASSETS = SITE / "assets"
 DISCLAIMER = "Not betting advice. Nothing here is guaranteed."
+CHEV = '<svg class="chev" viewBox="0 0 8 13" aria-hidden="true"><path d="M1.5 1.5 6.5 6.5 1.5 11.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 
 
 def esc(s) -> str:
     return html.escape(str(s))
-
-
-def tm(code: str) -> str:
-    return f'<button type="button" class="tm" data-team="{esc(code)}">{esc(code)}</button>'
 
 
 def _round(o, nd: int = 3):
@@ -48,438 +50,499 @@ def _round(o, nd: int = 3):
     return o
 
 
-# ---- SVG charts (colors are CSS variables so they follow the shell theme) -----
-def histogram_svg(hist: list[dict], n_sims: int, focus: str, actual: int | None) -> str:
-    W, H, L, R, T, B = 560, 200, 34, 8, 10, 28
-    pw, ph = W - L - R, H - T - B
-    peak = max(x["n"] for x in hist) or 1
-    bw = pw / len(hist)
-    p = [f'<svg class="chart" viewBox="0 0 {W} {H}" role="img" aria-label="{esc(focus)} win-total distribution">']
-    for v in (0.05, 0.10, 0.15):
-        y = T + ph - v * n_sims / peak * ph
-        if y > T:
-            p.append(f'<line class="grid" x1="{L}" y1="{y:.1f}" x2="{W - R}" y2="{y:.1f}"/><text x="{L - 5}" y="{y + 4:.1f}" text-anchor="end">{v:.0%}</text>')
-    step = max(1, len(hist) // 10)
-    for i, x in enumerate(hist):
-        bh = x["n"] / peak * ph
-        hit = actual is not None and x["wins"] == actual
-        style = "fill:var(--pos)" if hit else "fill:var(--text);fill-opacity:.55"
-        p.append(f'<rect x="{L + i * bw + 1:.1f}" y="{T + ph - bh:.1f}" width="{bw - 2:.1f}" height="{bh:.1f}" rx="1.5" style="{style}"><title>{x["wins"]} wins: {x["n"] / n_sims:.1%}</title></rect>')
-        if i % step == 0:
-            p.append(f'<text x="{L + (i + .5) * bw:.1f}" y="{H - 10}" text-anchor="middle">{x["wins"]}</text>')
-    p.append(f'<line class="axis" x1="{L}" y1="{T + ph}" x2="{W - R}" y2="{T + ph}"/></svg>')
-    return "".join(p)
+def nick(name: str) -> str:
+    """'Golden State Warriors' -> 'Warriors' (team nickname for sentences)."""
+    if name.endswith("Trail Blazers"):
+        return "Trail Blazers"
+    parts = name.split()
+    return parts[-1] if len(parts) > 1 else name
 
 
+def pct(p: float) -> str:
+    if p >= 0.995:
+        return ">99%"
+    if p < 0.005:
+        return "<1%"
+    return f"{p:.0%}"
+
+
+def short_date(d: str) -> str:
+    dt = datetime.strptime(d, "%Y-%m-%d")
+    return f"{dt:%b} {dt.day}"
+
+
+def month_label(m: str) -> str:
+    dt = datetime.strptime(m + "-01", "%Y-%m-%d")
+    return f"{dt:%b}"
+
+
+# ---- plain-English "why" lines from the model's top drivers ------------------
+_NUM = r"([+-]?\.?\d+(?:\.\d+)?)"
+
+
+def why_lines(g: dict, names: dict) -> list[list[str]]:
+    """Turn driver strings like 'Elo +435 ↑' (values are home minus away) into
+    [category, sentence] pairs a fan can read. Unknown drivers are skipped."""
+    H, A = nick(names.get(g["h"], g["h"])), nick(names.get(g["a"], g["a"]))
+    out: list[list[str]] = []
+    seen = set()
+
+    def side(v):  # team the fact favours when v = home - away
+        return H if v >= 0 else A
+
+    for s in g.get("drv", []):
+        s = s.rstrip(" ↑↓").strip()
+        m = re.match(r"Elo p\(home\) (\d+)%", s)
+        if m:
+            p = int(m.group(1)) / 100
+            cat, txt = "Team strength", (f"On ratings alone the {H} win {p:.0%} of the time" if p >= .5 else f"On ratings alone the {A} win {1 - p:.0%} of the time")
+        elif (m := re.match(r"Elo " + _NUM, s)):
+            v = float(m.group(1))
+            cat, txt = "Team strength", f"The {side(v)} are rated {abs(v):.0f} points stronger"
+        elif (m := re.match(r"season win% " + _NUM, s)):
+            v = float(m.group(1))
+            cat, txt = "Season record", f"The {side(v)} have {'a much' if abs(v) >= .25 else 'the'} better record this season"
+        elif (m := re.match(r"L10 margin " + _NUM, s)):
+            v = float(m.group(1))
+            cat, txt = "Recent form", f"The {side(v)} have been {abs(v):.0f} points a game better over the last 10"
+        elif (m := re.match(r"L(5|10|20) form " + _NUM, s)):
+            v = float(m.group(2))
+            cat, txt = "Recent form", f"The {side(v)} have won more of their last {m.group(1)}"
+        elif (m := re.match(r"L10 defence ([+-])(\d+(?:\.\d+)?)", s)):
+            # formatted with the sign flipped: '-' means home allows more (away defends better)
+            better = A if m.group(1) == "-" else H
+            cat, txt = "Recent defence", f"The {better} have allowed {float(m.group(2)):.0f} fewer points a game lately"
+        elif (m := re.match(r"L10 offence " + _NUM, s)):
+            v = float(m.group(1))
+            cat, txt = "Recent offence", f"The {side(v)} have scored {abs(v):.0f} more points a game lately"
+        elif (m := re.match(r"home/away split " + _NUM, s)):
+            v = float(m.group(1))
+            cat, txt = "Home and away", (f"The {H} have been better at home than the {A} on the road" if v >= 0
+                                         else f"The {A} have been better on the road than the {H} at home")
+        elif (m := re.match(r"streak " + _NUM, s)):
+            v = float(m.group(1))
+            cat, txt = "Momentum", f"The {side(v)} are on the better run of results"
+        elif (m := re.match(r"H2H (\d+)%", s)):
+            p = int(m.group(1)) / 100
+            cat, txt = "Head to head", (f"The {H} have won {p:.0%} of recent meetings" if p >= .5 else f"The {A} have won {1 - p:.0%} of recent meetings")
+        else:
+            continue  # rest is always added below from the raw rest days
+        if cat in seen and cat != "Recent form":
+            continue
+        seen.add(cat)
+        out.append([cat, txt])
+    rh, ra = g.get("rh"), g.get("ra")
+    if rh is not None and ra is not None:
+        if rh == 1 and ra == 1:
+            out.append(["Rest", "Both teams played yesterday"])
+        elif rh == 1:
+            out.append(["Rest", f"The {H} played yesterday, the {A} are rested"])
+        elif ra == 1:
+            out.append(["Rest", f"The {A} played yesterday, the {H} are rested"])
+        elif min(rh, ra) < 7:
+            out.append(["Rest", "Both teams are rested" if rh == ra else f"Both teams are rested ({A} {ra} days, {H} {rh} days since last game)"])
+    return out
+
+
+# ---- SVG charts (CSS variables, so they follow light/dark) -------------------
 def walk_svg(walk: list[dict]) -> str:
-    W, H, L, R, T, B = 640, 240, 40, 12, 14, 28
+    W, H, L, R, T, B = 360, 190, 30, 64, 12, 24
     pw, ph = W - L - R, H - T - B
     n = len(walk)
-    lo, hi = 0.45, 0.85
+    lo, hi = 0.45, 0.80
     xs = [L + (i + 0.5) * pw / n for i in range(n)]
     sy = lambda v: T + (1 - (min(max(v, lo), hi) - lo) / (hi - lo)) * ph
-    p = [f'<svg class="chart" viewBox="0 0 {W} {H}" role="img" aria-label="Walk-forward accuracy by month">']
+    p = [f'<svg class="chart" viewBox="0 0 {W} {H}" role="img" aria-label="Share of games picked right, month by month">']
     for v in (0.5, 0.6, 0.7):
-        p.append(f'<line class="grid" x1="{L}" y1="{sy(v):.1f}" x2="{W - R}" y2="{sy(v):.1f}"/><text x="{L - 6}" y="{sy(v) + 4:.1f}" text-anchor="end">{v:.0%}</text>')
-    series = (("home_accuracy", "var(--faint)", 1.25, "2 4"), ("elo_accuracy", "var(--muted)", 1.5, "6 4"),
-              ("hgb_accuracy", "var(--muted)", 1.5, ""), ("xgb_accuracy", "var(--text)", 2.5, ""))
-    for key, color, sw, dash in series:
+        p.append(f'<line class="grid" x1="{L}" y1="{sy(v):.1f}" x2="{W - R + 4}" y2="{sy(v):.1f}"/><text x="{L - 6}" y="{sy(v) + 4:.1f}" text-anchor="end">{v:.0%}</text>')
+    series = (("home_accuracy", "Home team", False), ("elo_accuracy", "Ratings only", False), ("xgb_accuracy", "This model", True))
+    labels = []
+    for key, label, main in series:
         d = " ".join(f"{'M' if i == 0 else 'L'}{xs[i]:.1f},{sy(w[key]):.1f}" for i, w in enumerate(walk))
-        dash_attr = f' stroke-dasharray="{dash}"' if dash else ""
-        p.append(f'<path d="{d}" fill="none" stroke="{color}" stroke-width="{sw}"{dash_attr} stroke-linejoin="round"/>')
-        for i, w in enumerate(walk):
-            p.append(f'<circle cx="{xs[i]:.1f}" cy="{sy(w[key]):.1f}" r="{3 if key == "xgb_accuracy" else 2.2}" fill="{color}"><title>{key.split("_")[0]} {w["month"]}: {w[key]:.1%} (n={w["n"]})</title></circle>')
-            if key == "xgb_accuracy":
-                p.append(f'<text x="{xs[i]:.1f}" y="{sy(w[key]) - 9:.1f}" text-anchor="middle" style="fill:var(--text);font-weight:600">{w[key]:.0%}</text>')
+        p.append(f'<path class="series{"" if main else " muted"}" d="{d}"/>')
+        if main:
+            for i, w in enumerate(walk):
+                p.append(f'<circle cx="{xs[i]:.1f}" cy="{sy(w[key]):.1f}" r="3" style="fill:var(--brand)"><title>{w["month"]}: {w[key]:.0%} of {w["n"]} games</title></circle>')
+        labels.append([sy(walk[-1][key]), label, main])
+    labels.sort()
+    for k in range(1, len(labels)):  # keep direct labels from colliding
+        if labels[k][0] - labels[k - 1][0] < 13:
+            labels[k][0] = labels[k - 1][0] + 13
+    for y, label, main in labels:
+        p.append(f'<text x="{xs[-1] + 8:.1f}" y="{y + 4:.1f}" class="{"lab-main" if main else ""}">{label}</text>')
+    prev = None
     for i, w in enumerate(walk):
-        p.append(f'<text x="{xs[i]:.1f}" y="{H - 9}" text-anchor="middle">{w["month"][2:]}</text>')
+        mo = month_label(w["month"])
+        yr = w["month"][:4]
+        txt = mo if yr == prev else f"{mo} {yr[2:]}"
+        prev = yr
+        if i % 2 == 0 or i == n - 1:
+            p.append(f'<text x="{xs[i]:.1f}" y="{H - 6}" text-anchor="middle">{txt}</text>')
     p.append("</svg>")
     return "".join(p)
 
 
 def calibration_svg(table_xgb: list[dict], table_elo: list[dict]) -> str:
-    W, H, L, B, T, R = 420, 400, 40, 40, 12, 12
+    W, H, L, B, T, R = 360, 330, 36, 36, 10, 12
     pw, ph = W - L - R, H - T - B
     sx = lambda v: L + v * pw
     sy = lambda v: T + (1 - v) * ph
-    p = [f'<svg class="chart" viewBox="0 0 {W} {H}" role="img" aria-label="Reliability diagram">']
-    for v in (0, .2, .4, .6, .8, 1):
+    p = [f'<svg class="chart" viewBox="0 0 {W} {H}" role="img" aria-label="Predicted chance against how often it happened">']
+    for v in (0, .25, .5, .75, 1):
         p.append(f'<line class="grid" x1="{sx(0)}" y1="{sy(v):.1f}" x2="{sx(1)}" y2="{sy(v):.1f}"/>')
-        p.append(f'<text x="{L - 6}" y="{sy(v) + 4:.1f}" text-anchor="end">{v:.1f}</text><text x="{sx(v):.1f}" y="{T + ph + 16}" text-anchor="middle">{v:.1f}</text>')
-    p.append(f'<line x1="{sx(0)}" y1="{sy(0)}" x2="{sx(1)}" y2="{sy(1)}" stroke="var(--faint)" stroke-dasharray="4 4"/>')
+        p.append(f'<text x="{L - 6}" y="{sy(v) + 4:.1f}" text-anchor="end">{v:.0%}</text><text x="{sx(v):.1f}" y="{T + ph + 16}" text-anchor="middle">{v:.0%}</text>')
+    p.append(f'<line x1="{sx(0)}" y1="{sy(0)}" x2="{sx(1)}" y2="{sy(1)}" style="stroke:var(--label-3)" stroke-dasharray="4 4"/>')
+    p.append(f'<text x="{sx(.86):.1f}" y="{sy(.94):.1f}" text-anchor="end">Perfect</text>')
     maxn = max([r["n"] for r in table_xgb] + [1])
-    for table, color, fill in ((table_elo, "var(--muted)", "none"), (table_xgb, "var(--text)", "var(--text)")):
+    for table, main in ((table_elo, False), (table_xgb, True)):
         pts = [(sx(r["pred_mean"]), sy(r["actual_rate"]), r["n"]) for r in table if r["n"]]
         if len(pts) > 1:
-            p.append('<path d="' + " ".join(f"{'M' if i == 0 else 'L'}{x:.1f},{y:.1f}" for i, (x, y, _) in enumerate(pts)) + f'" fill="none" stroke="{color}" stroke-width="1.5"/>')
-        for x, y, n in pts:
-            p.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{2.5 + 6 * (n / maxn) ** 0.5:.1f}" fill="{fill}" stroke="{color}" stroke-width="1.5" fill-opacity=".85"><title>n={n}</title></circle>')
-    p.append(f'<text x="{L + pw / 2}" y="{H - 4}" text-anchor="middle">predicted p(home) vs actual home win rate</text></svg>')
+            p.append('<path class="series' + ("" if main else " muted") + '" d="' + " ".join(f"{'M' if i == 0 else 'L'}{x:.1f},{y:.1f}" for i, (x, y, _) in enumerate(pts)) + '"/>')
+        if main:
+            for x, y, n in pts:
+                p.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{2.5 + 5 * (n / maxn) ** 0.5:.1f}" style="fill:var(--brand);fill-opacity:.85"><title>{n} games</title></circle>')
+    p.append(f'<text x="{L + pw / 2}" y="{H - 4}" text-anchor="middle">Predicted chance for the home team</text></svg>')
     return "".join(p)
 
 
-# ---- HTML fragments ------------------------------------------------------------
+# ---- static sections (server-rendered, taps handled by the page script) ------
 def form_dots(l10: str) -> str:
-    return '<span class="form" aria-label="last 10">' + "".join(f'<i class="{"w" if c == "W" else "l"}"></i>' for c in l10) + "</span>"
+    w = l10.count("W")
+    return (f'<span class="form" role="img" aria-label="Last {len(l10)}: {w} wins, {len(l10) - w} losses">'
+            + "".join(f'<i class="{"w" if c == "W" else "l"}"></i>' for c in l10) + "</span>")
 
 
-def rankings_html(rankings: list[dict]) -> str:
-    rows = []
-    for r in rankings:
-        d = r["d_elo_30"]
-        de = f'<span class="{"pos" if d >= 0 else "neg"}">{d:+.0f}</span>'
-        dr = r["d_rank"]
-        rk = (f'<span class="rank pos">&#9650;{dr}</span>' if dr > 0 else f'<span class="rank neg">&#9660;{-dr}</span>' if dr < 0 else "")
-        net = r["net10"] if r["net10"] is not None else 0.0
-        rows.append(f'<tr><td class="n muted">{r["rank"]}{rk}</td><td>{tm(r["team"])}<span class="tname muted">{esc(r["name"])}</span></td>'
-                    f'<td class="n"><b>{r["elo"]:.0f}</b></td><td class="n">{de}</td><td>{form_dots(r["l10"])}</td>'
-                    f'<td class="n {"pos" if net >= 0 else "neg"}">{net:+.1f}</td><td class="n">{r["w"]}-{r["l"]}</td><td class="muted">{esc(r["conf"][0])}</td>'
-                    f'<td class="n muted">{r["off10"]:.1f}</td><td class="n muted">{r["def10"]:.1f}</td></tr>')
-    return ('<div class="tbl rank"><table><thead><tr><th class="n">#</th><th>Team</th><th class="n">Elo</th><th class="n">&Delta;30d</th>'
-            '<th>L10</th><th class="n">Net10</th><th class="n">W-L</th><th>Conf</th><th class="n">Off10</th><th class="n">Def10</th></tr></thead>'
-            f'<tbody>{"".join(rows)}</tbody></table></div>')
+def spark_svg(pts: list[int], up: bool) -> str:
+    if len(pts) < 2:
+        return '<span class="spark"></span>'
+    W, H = 56, 24
+    lo, hi = min(pts), max(pts)
+    rng = max(hi - lo, 1)
+    xy = [(i / (len(pts) - 1) * (W - 4) + 2, H - 3 - (v - lo) / rng * (H - 6)) for i, v in enumerate(pts)]
+    line = " ".join(f"{x:.1f},{y:.1f}" for x, y in xy)
+    x, y = xy[-1]
+    return (f'<svg class="spark" viewBox="0 0 {W} {H}" aria-hidden="true"><polyline points="{line}"/>'
+            f'<circle cx="{x:.1f}" cy="{y:.1f}" r="2.5" class="{"pos" if up else "neg"}"/></svg>')
 
 
-def sim_html(sim: dict) -> str:
-    def conf_table(c):
-        rows = []
-        for r in [r for r in sim["teams"] if r["conf"] == c]:
-            po = r["playoff"]
-            fin = ""
-            if sim["season_complete"]:
-                fin = (f'<td class="n muted">{r["final_w"]}-{r["final_l"]}</td>'
-                       f'<td class="{"pos" if r["made_playoffs"] else "muted"}">{"In" if r["made_playoffs"] else "out"}</td>')
-            rows.append(f'<tr><td>{tm(r["team"])}</td><td class="n muted">{r["w"]}-{r["l"]}</td><td class="n">{r["exp_w"]:.1f}</td>'
-                        f'<td class="n"><span class="mini"><i style="width:{po * 100:.0f}%"></i></span>{po:.0%}</td>'
-                        f'<td class="n {"muted" if r["top_seed"] < .05 else ""}">{r["top_seed"]:.0%}</td>{fin}</tr>')
-        extra = '<th class="n">Final</th><th>Actual</th>' if sim["season_complete"] else ""
-        return (f'<div class="tbl compact"><table><thead><tr><th>{esc(c)}</th><th class="n">W-L</th><th class="n">Exp W</th>'
-                f'<th class="n">Playoff</th><th class="n">#1 seed</th>{extra}</tr></thead><tbody>{"".join(rows)}</tbody></table></div>')
-
-    focus = next(r for r in sim["teams"] if r["team"] == sim["focus"])
-    spots = sim["playoff_spots"]
-    sure = [r for r in sim["teams"] if r["playoff"] >= .7]
-    sure_made = sum(1 for r in sure if r["made_playoffs"]) if sim["season_complete"] else None
-    sneak = [r for r in sim["teams"] if r["playoff"] < .3 and r["made_playoffs"]] if sim["season_complete"] else []
-    if sim.get("live"):
-        read = (f'<b>Read:</b> From {esc(sim["date"])} the simulator gives {len(sure)} teams a 70%+ chance of a top-6 seed '
-                f'(direct playoff spot; the play-in is not modelled). "Exp W" is the mean of {sim["n_sims"]} simulated finishes. '
-                + esc(sim.get("schedule_note") or ""))
-    else:
-        read = (f'<b>Read:</b> From {esc(sim["date"])} the simulator gave {len(sure)} teams a 70%+ playoff chance'
-                + (f' and {sure_made} of them made it' if sure_made is not None else "")
-                + (f'; {", ".join(esc(r["team"]) for r in sneak)} got in from under 30%. ' if sneak else '. ')
-                + (f'Playoff-odds Brier vs the real finish: {sim["playoff_brier"]:.3f} (0 = perfect, 0.25 = coin flip).' if sim["playoff_brier"] is not None else ""))
-    act = focus["final_w"]
-    return f"""
-    <div class="grid g2">{conf_table("East")}{conf_table("West")}</div>
-    <div class="card" style="margin-top:10px">
-      <div class="sec-h"><h2 style="font-size:14px">{esc(sim["focus"])} win-total distribution</h2><span class="read">{esc(focus["name"])} &middot; {focus["w"]}-{focus["l"]} on {esc(sim["date"])}</span></div>
-      {histogram_svg(sim["focus_hist"], sim["n_sims"], sim["focus"], act)}
-      <div class="legend"><span><i style="background:var(--text);opacity:.55"></i>simulated ({sim["n_sims"]} runs)</span>
-        {f'<span><i style="background:var(--pos)"></i>actual final ({act} wins)</span>' if act is not None else f'<span class="muted">{focus["w"]}-{focus["l"]} so far</span>'}
-        <span class="muted">expected {focus["exp_w"]:.1f} &middot; 5&ndash;95% {focus["w_lo"]}&ndash;{focus["w_hi"]}</span></div>
-    </div>
-    <p class="read-line">{read} Top {spots} per conference qualify; {sim["games_remaining"]} games were simulated from Elo with +80 home court.</p>"""
+def rank_row(r: dict) -> str:
+    dr = r["d_rank"]
+    mv = (f'<span class="mv pos" aria-label="up {dr}">&#9650;{dr}</span>' if dr > 0 else
+          f'<span class="mv neg" aria-label="down {-dr}">&#9660;{-dr}</span>' if dr < 0 else "")
+    return (f'<button type="button" class="row rk" data-team="{esc(r["team"])}">'
+            f'<span class="rk-n num">{r["rank"]}</span>'
+            f'<span class="grow"><span class="title">{esc(r["name"])}</span>'
+            f'<span class="sub"><span class="num">{r["w"]}&ndash;{r["l"]}</span>{mv}{form_dots(r["l10"])}</span></span>'
+            f'{spark_svg(r["spark"][-20:], r["d_elo_30"] >= 0)}{CHEV}</button>')
 
 
-def upsets_html(ups: list[dict], tiers: list[dict], threshold: float) -> str:
-    rows = []
-    for u in ups[:20]:
-        rows.append(f'<tr><td class="muted">{esc(u["d"][5:])}</td><td>{tm(u["winner"])} <span class="muted">{"vs" if u["home_won"] else "@"}</span> {tm(u["loser"])}</td>'
-                    f'<td class="n muted">{esc(u["score"])}</td><td class="n neg">{u["p_winner"]:.0%}</td><td class="n muted">{u["elo_gap"]:+d}</td>'
-                    f'<td class="muted">{esc(", ".join(u["missed"]))}</td></tr>')
-    ups_t = ('<div class="tbl"><table><thead><tr><th>Date</th><th>Winner / loser</th><th class="n">Score</th><th class="n">p(winner)</th><th class="n">Elo gap</th><th>What the model missed</th></tr></thead>'
-             f'<tbody>{"".join(rows)}</tbody></table></div>')
-    trs = []
+def odds_list(sim: dict, conf: str, visible: bool) -> str:
+    rows = sorted([r for r in sim["teams"] if r["conf"] == conf], key=lambda r: (-r["playoff"], -r["exp_w"]))
+    out = []
+    for k, r in enumerate(rows):
+        ew = round(r["exp_w"])
+        if sim["season_complete"]:
+            sub = f'Finished {r["final_w"]}&ndash;{r["final_l"]}, {"made it" if r["made_playoffs"] else "missed out"}'
+        else:
+            sub = f'Projected {ew}&ndash;{82 - ew}'
+        out.append(f'<button type="button" class="row po{" extra" if k >= 8 else ""}" data-team="{esc(r["team"])}">'
+                   f'<span class="grow"><span class="title">{esc(r["name"])}</span><span class="sub num">{sub}</span></span>'
+                   f'<span class="meter" aria-hidden="true"><i style="width:{r["playoff"] * 100:.1f}%"></i></span>'
+                   f'<span class="value num">{pct(r["playoff"])}</span>{CHEV}</button>')
+    more = (f'<button type="button" class="row show-all" data-act="show-all"><span class="grow">Show all {len(rows)}</span></button>'
+            if len(rows) > 8 else "")
+    return f'<div class="list odds" data-conf="{esc(conf)}"{"" if visible else " hidden"}>{"".join(out)}{more}</div>'
+
+
+def upset_rows(ups: list[dict], names: dict) -> str:
+    out = []
+    for u in ups[:5]:
+        hp, ap = (int(x) for x in u["score"].split("-"))  # score is home-away
+        ws, ls = (hp, ap) if u["home_won"] else (ap, hp)
+        out.append(f'<button type="button" class="row" data-game="{esc(u["d"])}|{esc(u["winner"])}|{esc(u["loser"])}">'
+                   f'<span class="grow"><span class="title">{esc(nick(names.get(u["winner"], u["winner"])))} beat {esc(nick(names.get(u["loser"], u["loser"])))}</span>'
+                   f'<span class="sub num">{short_date(u["d"])}, {ws}&ndash;{ls}</span></span>'
+                   f'<span class="value num">{pct(u["p_winner"])}</span>{CHEV}</button>')
+    return "".join(out)
+
+
+FEATURE_NAMES = {
+    "elo_diff": "Team rating gap", "elo_prob": "Odds from ratings", "rest_diff": "Days of rest",
+    "home_rest": "Home team rest", "away_rest": "Away team rest", "b2b_diff": "Back-to-backs",
+    "home_b2b": "Home team back-to-back", "away_b2b": "Away team back-to-back", "wp5_diff": "Last 5 games",
+    "wp10_diff": "Last 10 games", "wp20_diff": "Last 20 games", "pdiff10_diff": "Point margin, last 10",
+    "off10_diff": "Scoring, last 10", "def10_diff": "Defence, last 10", "season_wp_diff": "Season record",
+    "split_wp_diff": "Home and road records", "streak_diff": "Win streaks", "gp_diff": "Games played",
+    "h2h_home_wp": "Head-to-head record", "h2h_n": "Head-to-head meetings",
+}
+
+
+def about_html(met: dict, sim: dict, tiers: list[dict], live: bool, updated: str, n_final: int) -> str:
+    m, cal, walk, d = met["models"], met["calibration"], met["walk_forward"], met["data"]
+    prior, pooled = met.get("prior_holdout"), met.get("pooled")
+    small = d.get("small_sample")
+
+    def acc_rows(models: dict, n: int) -> str:
+        rows = [("This model", models["xgb"]["accuracy"], True),
+                ("Team ratings only", models["elo_logit"]["accuracy"], False),
+                ("Always pick the home team", models["home_baseline"]["accuracy"], False)]
+        return "".join(f'<div class="row"><span class="grow title{" b" if main else ""}">{t}</span>'
+                       f'<span class="value num{" strong" if main else ""}">{a:.1%}</span></div>' for t, a, main in rows)
+
+    this_season = (f'<div class="sub-h">This season so far</div><div class="list">{acc_rows(m, d["n_test"])}</div>'
+                   f'<p class="section-foot">{d["n_test"]} games{". Early in the season a few results swing these numbers by several points" if small else ""}.</p>')
+    last_season = ""
+    if prior:
+        last_season = (f'<div class="sub-h">Last full season ({esc(prior["test_season"])})</div><div class="list">{acc_rows(prior["models"], prior["n_test"])}</div>'
+                       f'<p class="section-foot">{prior["n_test"]:,} games the model never saw while training.</p>')
+    rel_x, rel_e, rel_n = cal["reliability_xgb"], cal["reliability_elo"], d["n_test"]
+    if pooled:
+        rel_x, rel_e, rel_n = pooled["reliability_xgb"], pooled["reliability_elo"], pooled["n"]
+
+    tier_rows = []
     for t in tiers:
         if not t["n"]:
             continue
-        gap = t["actual"] - t["pred"]
-        trs.append(f'<tr><td>{esc(t["tier"].replace("%-", "&ndash;"))}</td><td class="n muted">{t["n"]}</td><td class="n">{t["pred"]:.0%}</td>'
-                   f'<td class="n"><b>{t["actual"]:.0%}</b></td><td class="n {"pos" if gap >= 0 else "neg"}">{gap * 100:+.1f}</td>'
-                   f'<td><span class="pair"><i style="width:{t["pred"] * 100:.0f}%"></i><i class="act" style="width:{t["actual"] * 100:.0f}%"></i></span></td></tr>')
-    tier_t = ('<div class="tbl compact"><table><thead><tr><th>Confidence</th><th class="n">n</th><th class="n">Pred</th><th class="n">Hit</th><th class="n">Gap</th><th>pred / hit</th></tr></thead>'
-              f'<tbody>{"".join(trs)}</tbody></table></div>')
-    n_total = sum(t["n"] for t in tiers)
-    worst = max((t for t in tiers if t["n"]), key=lambda t: abs(t["actual"] - t["pred"]))
-    return f"""
-    <div>
-        <div class="sub-h">Upset detector <span class="muted">{len(ups)} of {n_total} games had p(winner) &lt; {threshold:.0%} &middot; top 20</span></div>
-        {ups_t}
-        <p class="read-line"><b>Read:</b> "What the model missed" is pre-game context on the winner's side (rest, L10 form, streak, head-to-head). When nothing applies the honest label is <b>noise</b>: with a 12-point score SD, a 30% underdog wins 30% of the time.</p>
-    </div>
-    <div class="grid g2" style="align-items:start;margin-top:16px">
-      <div>
-        <div class="sub-h">Confidence tiers <span class="muted">pick confidence vs hit rate</span></div>
-        {tier_t}
-      </div>
-        <p class="read-line" style="margin-top:0"><b>Read:</b> A calibrated model's hit rate matches its confidence in every tier. Largest gap here: the {esc(worst["tier"].replace("%-", "–"))} tier ({worst["actual"] - worst["pred"]:+.0%} on n={worst["n"]}); gaps inside &plusmn;5 pts on ~100-game bins are noise.</p>
-    </div>"""
+        lo_hi = t["tier"].replace("%-", "&ndash;")
+        tier_rows.append(f'<div class="row"><span class="grow"><span class="title">{lo_hi} sure</span><span class="sub">{t["n"]} games</span></span>'
+                         f'<span class="value num">won {t["actual"]:.0%}</span></div>')
 
-
-def lab_html(met: dict) -> str:
-    m, cal, walk = met["models"], met["calibration"], met["walk_forward"]
-
-    def mrow(name, r, best=False):
-        return (f'<tr><td>{"<b>" if best else ""}{esc(name)}{"</b>" if best else ""}</td><td class="n">{r["accuracy"]:.1%}</td><td class="n">{r["log_loss"]:.3f}</td>'
-                f'<td class="n">{r["brier"]:.3f}</td><td class="n">{r["roc_auc"]:.3f}</td></tr>')
-
-    table = "".join([mrow("Home team wins", m["home_baseline"]), mrow("Elo-logit (1 feature)", m["elo_logit"]),
-                     mrow("HistGB (20 features)", m["hgb"]), mrow("XGBoost raw", m["xgb_raw"]),
-                     mrow(f"XGBoost + {cal['chosen']}", m["xgb"], best=True)])
-    prior = met.get("prior_holdout")
-    prior_table = ""
-    if prior:
-        pm = prior["models"]
-        prior_table = ("".join([mrow("Home team wins", pm["home_baseline"]), mrow("Elo-logit (1 feature)", pm["elo_logit"]),
-                                mrow("HistGB (20 features)", pm["hgb"]), mrow(f"XGBoost + {prior['calibrator']}", pm["xgb"], best=True)]))
-    pooled = met.get("pooled")
-    rel_xgb, rel_elo, ece_x, ece_e, rel_n = cal["reliability_xgb"], cal["reliability_elo"], cal["ece_xgb"], cal["ece_elo"], met["data"]["n_test"]
-    if pooled:
-        rel_xgb, rel_elo, ece_x, ece_e, rel_n = pooled["reliability_xgb"], pooled["reliability_elo"], pooled["ece_xgb"], pooled["ece_elo"], pooled["n"]
-    imp = met["feature_importance"][:8]
+    imp = met["feature_importance"][:6]
     mx = imp[0]["gain_share"] if imp else 1
-    imp_rows = "".join(f'<tr><td class="mono muted">{esc(r["feature"])}</td><td style="width:45%"><span class="bar"><i style="width:{r["gain_share"] / mx * 100:.0f}%;background:var(--muted)"></i></span></td><td class="n">{r["gain_share"]:.1%}</td></tr>' for r in imp)
-    walk_rows = "".join(f'<tr><td class="muted">{w["month"]}</td><td class="n muted">{w["n"]}</td><td class="n">{w["home_accuracy"]:.1%}</td>'
-                        f'<td class="n">{w["elo_accuracy"]:.1%}</td><td class="n">{w["hgb_accuracy"]:.1%}</td><td class="n"><b>{w["xgb_accuracy"]:.1%}</b></td><td class="n muted">{w["xgb_log_loss"]:.3f}</td></tr>' for w in walk)
-    d = met["data"]
-    xa, ea, ha = m["xgb"]["accuracy"], m["elo_logit"]["accuracy"], m["home_baseline"]["accuracy"]
-    small = d.get("small_sample")
-    if prior:
-        pxa, pea, pha = prior["models"]["xgb"]["accuracy"], prior["models"]["elo_logit"]["accuracy"], prior["models"]["home_baseline"]["accuracy"]
-        read_models = (f'<b>Read:</b> On the full {esc(prior["test_season"])} holdout (n={prior["n_test"]}) XGBoost beats "home team wins" by {(pxa - pha) * 100:.0f} points and the one-feature Elo regression by {(pxa - pea) * 100:+.1f}. '
-                       + (f'The {esc(d["test_season"])} numbers above are {d["n_test"]} games in, so a ±4-point swing is noise. ' if small else '')
-                       + f'ECE on the pooled {rel_n} out-of-sample games: XGB {ece_x:.3f}, Elo {ece_e:.3f}.')
-        prior_block = f"""
-        <div class="sub-h" style="margin-top:12px">Prior full-season holdout <span class="muted">{esc(prior["test_season"])}, n={prior["n_test"]}, trained on {esc(" + ".join(prior["train_seasons"]))}</span></div>
-        <div class="tbl compact"><table><thead><tr><th>Model</th><th class="n">Acc</th><th class="n">Log loss</th><th class="n">Brier</th><th class="n">AUC</th></tr></thead><tbody>{prior_table}</tbody></table></div>"""
-    else:
-        read_models = f'<b>Read:</b> Every learner beats "home team wins" by about {(xa - ha) * 100:.0f} points and ties a one-feature Elo regression ({xa - ea:+.1%}). Elo carries almost all the predictable signal; the other 19 features add noise-level residual on {d["n_train"]} training games. ECE: XGB {cal["ece_xgb"]:.3f}, Elo {cal["ece_elo"]:.3f}.'
-        prior_block = ""
+    imp_rows = "".join(f'<div class="row"><span class="grow title">{esc(FEATURE_NAMES.get(r["feature"], r["feature"]))}</span>'
+                       f'<span class="meter" aria-hidden="true"><i style="width:{r["gain_share"] / mx * 100:.0f}%"></i></span>'
+                       f'<span class="value num">{r["gain_share"]:.0%}</span></div>' for r in imp)
+
+    def trow(name, r, best=False):
+        return (f'<tr{" class=b" if best else ""}><td>{esc(name)}</td><td class="r">{r["accuracy"]:.1%}</td><td class="r">{r["log_loss"]:.3f}</td>'
+                f'<td class="r">{r["brier"]:.3f}</td><td class="r">{r["roc_auc"]:.3f}</td></tr>')
+    detail = "".join([trow("Always home", m["home_baseline"]), trow("Elo logistic", m["elo_logit"]), trow("Hist. gradient boosting", m["hgb"]),
+                      trow("XGBoost, raw", m["xgb_raw"]), trow(f"XGBoost + {cal['chosen']}", m["xgb"], True)])
+
+    src = (f'Real NBA games from ESPN&rsquo;s public scoreboard (unofficial, can change without notice), {n_final:,} finished games, updated {esc(updated)}.'
+           if live else "A synthetic sample league (30 fictional teams), used when ESPN can&rsquo;t be reached.")
+    sim_note = (f' {esc(sim["schedule_note"])}' if sim.get("schedule_note") else "")
     return f"""
-    <div class="grid g2" style="align-items:start">
-      <div>
-        <div class="sub-h">Scoreboard <span class="muted">test season {esc(d["test_season"])} to date, n={d["n_test"]}{' · small sample' if small else ''}</span></div>
-        <div class="tbl compact"><table><thead><tr><th>Model</th><th class="n">Acc</th><th class="n">Log loss</th><th class="n">Brier</th><th class="n">AUC</th></tr></thead><tbody>{table}</tbody></table></div>
-        {prior_block}
-        <p class="read-line">{read_models}</p>
-      </div>
-      <div>
-        <div class="sub-h">XGBoost gain share <span class="muted">top 8 of {len(met["features"])} features</span></div>
-        <div class="tbl compact"><table><tbody>{imp_rows}</tbody></table></div>
-      </div>
-    </div>
-    <div class="grid g2" style="margin-top:14px;align-items:start">
-      <div>
-        <div class="sub-h">Walk-forward accuracy <span class="muted">refit each month on everything before it{" · " + esc(" + ".join(pooled["seasons"])) if pooled else ""}</span></div>
-        {walk_svg(walk)}
-        <div class="legend"><span><i style="background:var(--text)"></i>XGBoost</span><span><i style="background:var(--muted)"></i>HGB</span><span><i class="dash"></i>Elo-logit</span><span><i class="dot"></i>home team</span></div>
-        <div class="tbl compact" style="margin-top:10px"><table><thead><tr><th>Month</th><th class="n">n</th><th class="n">Home</th><th class="n">Elo</th><th class="n">HGB</th><th class="n">XGB</th><th class="n">LL</th></tr></thead><tbody>{walk_rows}</tbody></table></div>
-      </div>
-      <div>
-        <div class="sub-h">Reliability <span class="muted">10 bins, dot size = n{f" · pooled out-of-sample n={rel_n}" if pooled else ""}</span></div>
-        {calibration_svg(rel_xgb, rel_elo)}
-        <div class="legend"><span><i style="background:var(--text)"></i>XGBoost</span><span><i style="background:var(--muted)"></i>Elo-logit</span><span><i class="dash"></i>perfect</span></div>
-        <p class="read-line"><b>Read:</b> Points on the diagonal mean "when the model says 70%, the home side wins 70% of the time". Calibrator chosen on a validation slice by Brier: <b>{esc(cal["chosen"])}</b>.</p>
-      </div>
-    </div>"""
+  <h3 id="sheet-title">About this model</h3>
+  <p class="lead">It estimates each team&rsquo;s chance to win before tip-off, using team ratings, recent results and rest. It was trained on {esc(" + ".join(d["train_seasons"]))} and is checked on games it has never seen.</p>
+  {this_season}
+  {last_season}
+  <div class="sub-h">Are the percentages honest?</div>
+  <p class="body-s">When the model says 70%, that team should win about 7 times in 10. Orange dots close to the dashed line mean it does; the grey line is team ratings alone. Bigger dots cover more games ({rel_n:,} in total).</p>
+  {calibration_svg(rel_x, rel_e)}
+  <div class="sub-h">Month by month</div>
+  <p class="body-s">Each month the model is retrained on everything before it, then scored on that month.</p>
+  {walk_svg(walk)}
+  <div class="sub-h">How sure vs how often right</div>
+  <div class="list">{"".join(tier_rows)}</div>
+  <div class="sub-h">What it looks at most</div>
+  <div class="list">{imp_rows}</div>
+  <div class="sub-h">Detailed scores</div>
+  <div class="tbl-wrap"><table class="table"><thead><tr><th>Model</th><th class="r">Accuracy</th><th class="r">Log loss</th><th class="r">Brier</th><th class="r">AUC</th></tr></thead><tbody>{detail}</tbody></table></div>
+  <p class="section-foot">This season, {d["n_test"]} games. Lower log loss and Brier are better.</p>
+  <div class="sub-h">How it works</div>
+  <p class="body-s">Features use only games played before each date, so nothing from game day leaks in. The team rating is an Elo rating (K=20, 80 points for home court, 25% pulled back to average each summer). The learner is XGBoost with {esc(cal["chosen"])} calibration; on its own the rating gap explains most of what can be predicted, which is why the two land so close.</p>
+  <p class="body-s">Playoff odds come from {sim["n_sims"]:,} simulated seasons over the published schedule, using ratings with home court; the top 6 in each conference count as making the playoffs (the play-in isn&rsquo;t modelled).{sim_note}</p>
+  <p class="body-s">No player injuries, travel or betting lines are used.</p>
+  <div class="sub-h">Data</div>
+  <p class="body-s">{src}</p>
+  <p class="body-s strong">{esc(DISCLAIMER)}</p>"""
 
 
-# ---- page-specific CSS (small; shell.css carries the system) -------------------
+# ---- page CSS (page-only; app.css carries the system) ------------------------
 CSS = r"""
-.kpi .sub .v{color:var(--text);font-weight:600}
-.grid > *,details.more .body > *{min-width:0}
-.sec-h{flex-wrap:wrap}.sec-h h2{white-space:nowrap}
-.desk-only{display:none}@media(min-width:900px){.desk-only{display:inline}}
-.tbl .bar{display:block;min-width:70px}
-@media(max-width:899px){.mini{display:none}.form{gap:2px}.form i{width:7px;height:7px}.tbl.rank td,.tbl.rank th{padding:9px 8px}}
-.sub-h{font-weight:700;font-size:14px;margin:0 0 8px;display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline}
-.sub-h .muted{font-weight:500;font-size:12px}
-.tm{appearance:none;border:0;background:transparent;color:var(--text);font:700 13px var(--mono);letter-spacing:.02em;padding:10px 8px;margin:-10px -6px;border-radius:6px;cursor:pointer;min-height:40px;text-decoration:underline dotted var(--faint);text-underline-offset:3px}
-.tm:hover{background:var(--surface-2);text-decoration-color:var(--text)}
-.tm:focus:not(:focus-visible),.btn:focus:not(:focus-visible){outline:none}
-.tm:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
-.tname{display:none;margin-left:8px;font-weight:500}
-@media(min-width:900px){.tname{display:inline}}
-.legend{display:flex;flex-wrap:wrap;gap:6px 14px;color:var(--muted);font-size:12px;margin-top:8px}
-.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;vertical-align:-1px;margin-right:5px}
-.legend i.dash{height:0;width:14px;vertical-align:3px;background:none!important;border-top:2px dashed var(--muted)}
-.legend i.dot{height:0;width:14px;vertical-align:3px;background:none!important;border-top:2px dotted var(--faint)}
-.mini{display:inline-block;width:40px;height:5px;border-radius:99px;background:var(--surface-2);vertical-align:2px;margin-right:6px;overflow:hidden}
-.mini i{display:block;height:100%;background:var(--muted)}
-.pair{display:block;width:110px}
-.pair i{display:block;height:4px;border-radius:99px;background:var(--line-2);margin:2px 0}
-.pair i.act{background:var(--text)}
-.tbl.compact table{min-width:0}
-.tbl.compact td,.tbl.compact th{padding:8px 10px}
-.tbl.compact table{font-size:12.5px}
+.summary{font:400 var(--t-sub)/1.4 var(--font);color:var(--label-2);margin:0}
+.summary a{white-space:nowrap}
+.linkbtn{appearance:none;border:0;background:none;padding:0;font:inherit;color:var(--brand-text);cursor:pointer}
+.linkbtn:active{opacity:.6}
+.section-h .linkbtn{min-height:44px;padding:0 8px;margin:-12px -8px}
+html{scroll-padding:calc(var(--topbar-h) + var(--sat) + 8px) 0 calc(var(--tabbar-h) + var(--sab) + 8px)}
+
+/* Date strip */
+.strip{position:relative;margin:16px calc(-1 * var(--margin)) 0}
+.days{display:flex;align-items:center;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;padding:4px var(--margin) 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+.days::-webkit-scrollbar{display:none}
+.day{flex:none;appearance:none;border:0;height:36px;min-width:44px;padding:0 14px;border-radius:var(--r-pill);background:var(--surface);color:var(--label);box-shadow:var(--shadow-1);
+  font:600 var(--t-sub)/1 var(--font);font-variant-numeric:tabular-nums;scroll-snap-align:center;cursor:pointer;user-select:none;transition:background-color 160ms var(--ease),color 160ms var(--ease),transform 100ms var(--ease)}
+.day .wd{font-weight:400;color:var(--label-2);margin-right:4px}
+.day.on{background:var(--brand);color:var(--on-brand)}
+.day.on .wd{color:inherit;opacity:.85}
+.day:active{transform:scale(.96)}
+.mon{flex:none;font:600 var(--t-foot)/1 var(--font);color:var(--label-2);padding:0 2px 0 6px}
+.strip .nav{display:none}
+@media (min-width:900px){
+  .strip{margin:20px 0 0;display:flex;align-items:center;gap:4px}
+  .days{flex:1;padding:4px 2px 6px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 24px,#000 calc(100% - 24px),transparent);mask-image:linear-gradient(90deg,transparent,#000 24px,#000 calc(100% - 24px),transparent);padding-left:24px;padding-right:24px}
+  .strip .nav{display:grid}
+  .strip .nav[disabled]{opacity:.3;pointer-events:none}
+}
+@media (hover:hover){.day:not(.on):hover{background:var(--surface-2)}}
 
 /* Slate */
-.live{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:0 0 10px;padding:7px 10px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--surface)}
-.live[hidden]{display:none}
-.live .dot{width:7px;height:7px;border-radius:50%;background:var(--faint);flex:none}
-.live.on .dot{background:var(--pos);box-shadow:0 0 0 3px color-mix(in srgb,var(--pos) 25%,transparent);animation:pulse 1.6s ease-in-out infinite}
-@keyframes pulse{50%{box-shadow:0 0 0 1px color-mix(in srgb,var(--pos) 25%,transparent)}}
-@media(prefers-reduced-motion:reduce){.live.on .dot{animation:none}}
-.live #live-text{color:var(--text);font-weight:600}
-.live #live-ts{margin-left:auto;font-family:var(--mono);font-variant-numeric:tabular-nums}
-.g-fin.inplay{color:var(--text);font-weight:600}
-.g-fin .q{color:var(--pos);font:600 10px var(--mono);letter-spacing:.06em;margin-left:6px}
-.topbar .chip .chip-sub{display:none;font-weight:500;text-transform:none;letter-spacing:0;color:var(--faint);margin-left:6px}
-@media(min-width:600px){.topbar .chip .chip-sub{display:inline}}
-.slate-stats{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
-.slate-stats .spark{margin-left:auto}
-#slate-date{flex:3 1 170px;font-family:var(--mono);font-weight:600;color:var(--accent);border-color:color-mix(in srgb,var(--accent) 55%,var(--line-2))}
-.controls .btn{flex:1 1 60px;justify-content:center;padding:0 10px}
-.controls .btn:disabled{opacity:.35;cursor:default}
-@media(min-width:900px){.controls .btn{flex:0 0 auto;min-width:96px}#slate-date{flex:0 1 240px}.slate-stats{margin-top:12px}}
-.games{margin-top:12px;border:1px solid var(--line);border-radius:var(--r);background:var(--surface);overflow:hidden}
-.game{display:grid;gap:6px 10px;padding:11px 12px;border-bottom:1px solid var(--line);align-items:center;
-  grid-template-columns:1fr auto;grid-template-areas:"m pick" "bar bar" "p end"}
-.game:last-child{border-bottom:0}
-.game.head{display:none}
-.g-n,.g-elo,.g-drv{display:none}
-.g-m{grid-area:m;font-size:14px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.g-m .at{color:var(--muted);font-size:12px}
-.g-m .b2b{font:600 10px var(--mono);letter-spacing:.06em;color:var(--warn);border:1px solid color-mix(in srgb,var(--warn) 45%,transparent);border-radius:4px;padding:1px 4px}
-.g-pick{grid-area:pick;justify-self:end}
-.g-bar{grid-area:bar}
-.pbar{display:flex;height:6px;border-radius:99px;overflow:hidden;background:var(--surface-2)}
-.pbar i{display:block;height:100%}
-.pbar i.a{background:var(--line-2)}
-.pbar i.h{background:var(--muted)}
-.pbar i.fav{background:var(--text)}
-.g-p{grid-area:p;display:flex;justify-content:space-between;gap:12px;font-size:13px}
-.g-p b{font-weight:500;color:var(--muted)}
-.g-p b.fav{font-weight:700;color:var(--text)}
-.g-end{grid-area:end;display:flex;align-items:center;gap:8px;justify-content:flex-end}
-.g-fin{color:var(--muted);font-size:13px;white-space:nowrap}
-.chip.pick{color:var(--text);border-color:var(--line-2);text-transform:none;letter-spacing:.02em;font-size:12px}
-.chip.res{padding:5px 8px}
-@media(min-width:900px){
-  .game{grid-template-columns:28px minmax(170px,1.1fr) 90px minmax(140px,1.4fr) 52px 52px 120px minmax(150px,1.6fr) 104px 64px;grid-template-areas:none;padding:8px 12px;gap:0 12px}
-  .game > *{grid-area:auto!important}
-  .game.head{display:grid;font:600 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:10px 12px}
-  .g-n{display:block;color:var(--muted);font-size:12px}
-  .g-elo{display:block;color:var(--muted);font-size:12px}
-  .g-drv{display:block;color:var(--muted);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .g-p,.g-end{display:contents}
-  .g-p b{text-align:right;display:block}
-  .g-pick{justify-self:start}
-  .g-fin{text-align:right}
-  .game:hover{background:var(--surface-2)}
-  .game.head:hover{background:transparent}
+.slate-h{margin-top:24px}
+.slate-h .meta{font:400 var(--t-foot)/1.2 var(--font);color:var(--label-2);white-space:nowrap}
+.games{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+.game{display:block;width:100%;appearance:none;border:0;text-align:left;color:inherit;font:inherit;background:var(--surface);border-radius:var(--r-card);box-shadow:var(--shadow-1);
+  padding:12px var(--s4) 14px;cursor:pointer;user-select:none;transition:transform 120ms var(--ease),background-color 120ms var(--ease)}
+.game:active{transform:scale(.985);background:var(--surface-2)}
+@media (hover:hover){.game:hover{background:var(--surface-2)}}
+.g-top{display:flex;align-items:center;gap:8px;min-height:22px;margin-bottom:6px;font:400 var(--t-foot)/1 var(--font);color:var(--label-2)}
+.g-top .clock{font-variant-numeric:tabular-nums;color:var(--label)}
+.g-top .badge:last-child{margin-left:auto}
+.g-team{display:flex;align-items:center;gap:10px;min-height:34px}
+.g-ab{flex:none;width:52px;font:700 var(--t-body)/1 var(--font-display);letter-spacing:-.01em}
+.g-nm{flex:1;min-width:0;font:400 var(--t-sub)/1.2 var(--font);color:var(--label-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.g-pct{flex:none;min-width:44px;text-align:right;font:400 var(--t-sub)/1 var(--font);color:var(--label-2);font-variant-numeric:tabular-nums}
+.g-pct.fav{color:var(--label);font-weight:600}
+.g-pct.big{font-size:var(--t-body)}
+.g-sc{flex:none;min-width:40px;text-align:right;font:600 var(--t-2)/1 var(--font-display);font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.g-sc.lose{color:var(--label-2);font-weight:500}
+.wbar{display:flex;gap:2px;height:4px;margin-top:10px}
+.wbar i{display:block;height:100%;border-radius:2px;background:var(--fill-2);transition:flex-grow var(--dur) var(--ease)}
+.wbar i.fav{background:var(--brand)}
+.empty-day{background:var(--surface);border-radius:var(--r-card);box-shadow:var(--shadow-1)}
+
+/* Lists */
+.list .row .title.b,.value.strong,.strong{font-weight:600;color:var(--label)}
+.rk-n{flex:none;width:22px;text-align:center;font:600 var(--t-sub)/1 var(--font);color:var(--label-2)}
+.row .title{display:block}
+.row .sub{display:flex;align-items:center;gap:8px}
+.mv{font:600 var(--t-cap)/1 var(--font)}
+.form{display:inline-flex;gap:3px}
+.form i{width:6px;height:6px;border-radius:3px;background:var(--fill-2)}
+.form i.w{background:var(--pos)}
+svg.spark{flex:none;width:56px;height:24px;overflow:visible}
+svg.spark polyline{fill:none;stroke:var(--label-3);stroke-width:1.5;stroke-linejoin:round;stroke-linecap:round}
+svg.spark circle.pos{fill:var(--pos)} svg.spark circle.neg{fill:var(--neg)}
+.row .meter{flex:none;width:64px}
+.meter + .value{min-width:40px;text-align:right}
+.odds .row.extra{display:none}
+.odds.all .row.extra{display:flex}
+.odds.all .show-all{display:none}
+.show-all{color:var(--brand-text)}
+.seg{margin-bottom:12px}
+@media (min-width:900px){.side-col .seg{max-width:none}}
+
+/* Desktop layout */
+.main-cols{margin-top:0;grid-template-columns:minmax(0,1fr)}
+.side-col > .section:first-child{margin-top:24px}
+@media (min-width:900px){
+  .main-cols{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:32px;align-items:start}
 }
 
-/* Drawer internals */
-.drawer .d-h{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px}
-.drawer .d-h h2{font-size:20px;letter-spacing:-.02em}
-.drawer .d-h h2 small{display:block;color:var(--muted);font-size:13px;font-weight:500;margin-top:2px}
-.drawer .d-h .btn{margin-left:auto}
-.d-rec{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
-.d-rec div{background:var(--surface-2);border-radius:var(--r-sm);padding:8px 10px}
-.d-rec .l{font:600 10px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
-.d-rec .v{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:16px;font-weight:700}
-.drawer h3{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-family:var(--mono);margin:16px 0 8px;font-weight:600}
-.drawer .tbl{mask-image:none;-webkit-mask-image:none}
-.drawer .note{color:var(--faint);font-size:11px;margin:14px 0 0}
-.kbd{font:600 11px var(--mono);color:var(--muted);border:1px solid var(--line-2);border-radius:4px;padding:1px 5px}
-.hint{color:var(--faint);font-size:12px;margin-top:8px}
-@media(max-width:899px){.hint .desk{display:none}}
+/* Sheet internals */
+.sheet[inert]{visibility:hidden;transition:transform 320ms var(--ease),visibility 0s 320ms}
+@media (min-width:900px){.sheet[inert]{transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease),visibility 0s var(--dur)}}
+.sh-bar{position:sticky;top:-8px;z-index:2;display:flex;align-items:center;min-height:44px;margin:-8px calc(-1 * var(--margin)) 0;padding:8px calc(var(--margin) - 8px) 0;background:var(--surface)}
+.sh-bar .grabber{position:absolute;left:50%;top:6px;translate:-50% 0;margin:0}
+.sh-bar .done{margin-left:auto;font-weight:600}
+.sh-bar [hidden]{display:none}
+.sh-bar .btn.plain{height:44px}
+.sheet .lead{font:400 var(--t-sub)/1.45 var(--font);color:var(--label-2);margin:0 0 8px}
+.sheet .body-s{font:400 var(--t-sub)/1.45 var(--font);color:var(--label-2);margin:0 0 10px}
+.sheet .sub-h{font:600 var(--t-body)/1.3 var(--font);margin:28px 0 8px}
+.sheet .list{background:var(--surface-2);box-shadow:none}
+.sheet .list .row + .row::before{background:var(--separator)}
+.sheet a.row:active,.sheet button.row:active{background:var(--surface-3)}
+.sheet svg.chart{margin:4px 0 0}
+.chart text{font-size:12px}
+.chart .lab-main{fill:var(--brand-text);font-weight:600}
+@media (min-width:900px){.sheet svg.chart{max-width:420px}}
+.tbl-wrap{overflow-x:auto;margin:0 calc(-1 * var(--margin));padding:0 var(--margin)}
+.tbl-wrap .table{min-width:340px;font-size:var(--t-foot)}
+.tbl-wrap .table th,.tbl-wrap .table td{padding:10px 6px}
+.tbl-wrap .table th:first-child,.tbl-wrap .table td:first-child{padding-left:0}
+.tbl-wrap .table tr.b td{font-weight:600}
+.sheet h3 small{display:block;font:400 var(--t-sub)/1.3 var(--font);color:var(--label-2);margin-top:4px}
+.sheet .stats{margin:16px 0 4px}
+.sheet .stats.three{grid-template-columns:repeat(3,1fr)}
+.sheet .stat .v{font-size:var(--t-1)}
+.matchup{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin:16px 0 0}
+.matchup .side{min-width:0}
+.matchup .side.r{text-align:right}
+.matchup .v{font:600 var(--t-large)/1 var(--font-display);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.matchup .side:not(.fav) .v{color:var(--label-2);font-weight:500}
+.matchup .c{font:400 var(--t-foot)/1.3 var(--font);color:var(--label-2);margin-top:6px}
+.sheet .wbar{height:6px;margin:12px 0 4px}
+.why .row{align-items:flex-start}
+.why .title{white-space:normal}
+.rng{margin-top:4px}
+.date-sheet .field{margin:4px 0 16px}
 """
 
 
 JS = r"""
 (function(){
   const D = JSON.parse(document.getElementById('gp-data').textContent);
-  const SP = D.sp, TP = D.teams, RK = {}; D.rankings.forEach(r => RK[r.team] = r);
+  const SP = D.sp, TP = D.teams, RK = {}, SIM = {};
+  D.rankings.forEach(r => RK[r.team] = r);
+  D.sim.teams.forEach(r => SIM[r.team] = r);
   const $ = s => document.querySelector(s);
-  const pct = p => Math.round(p * 100) + '%';
-  const tm = c => `<button type="button" class="tm" data-team="${c}">${c}</button>`;
+  const pct = p => p >= .995 ? '>99%' : p < .005 ? '<1%' : Math.round(p * 100) + '%';
+  const nm = c => (TP[c] && TP[c].name) || c;
+  const nick = c => { const n = nm(c); if (/Trail Blazers$/.test(n)) return 'Trail Blazers'; const p = n.split(' '); return p.length > 1 ? p[p.length - 1] : n; };
+  const CHEV = '<svg class="chev" viewBox="0 0 8 13" aria-hidden="true"><path d="M1.5 1.5 6.5 6.5 1.5 11.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  const dt = d => new Date(d + 'T12:00:00Z');
+  const fmt = (d, o) => new Intl.DateTimeFormat('en-US', Object.assign({ timeZone: 'UTC' }, o)).format(dt(d));
+  const dash = '–';
   let i = SP.dates.indexOf(D.default_date); if (i < 0) i = SP.dates.length - 1;
 
-  // shell chip: the shared top bar says "Sample data" by default; say what this page actually runs on
-  const chip = document.querySelector('.topbar .chip');
-  if (chip && D.live) {
-    chip.innerHTML = `Live data · ESPN<span class="chip-sub">· ${D.updated} · ${D.n_final} games</span>`;
-    chip.title = `ESPN public API · data updated ${D.updated} · ${D.n_final} final games`;
-  }
-
-  function sparkRunning(upto){
-    const W = 120, H = 28, pts = [];
-    const dates = SP.dates.slice(0, upto + 1), n = dates.length;
-    dates.forEach((d, k) => { const r = SP.running[d]; if (r.std_n >= 20) pts.push([k, r.std_hits / r.std_n]); });
-    if (pts.length < 2) return '';
-    const lo = .5, hi = .75;
-    const y = v => (H - 2 - (Math.min(hi, Math.max(lo, v)) - lo) / (hi - lo) * (H - 4)).toFixed(1);
-    const line = pts.map(p => `${(p[0] / Math.max(1, n - 1) * W).toFixed(1)},${y(p[1])}`).join(' ');
-    const yb = y(D.baseline);
-    return `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" aria-label="season-to-date accuracy"><line x1="0" y1="${yb}" x2="${W}" y2="${yb}" stroke="var(--line-2)" stroke-dasharray="3 3"/><polyline points="${line}" fill="none" stroke="var(--text)" stroke-width="1.5"/></svg>`;
-  }
-
-  function renderSlate(){
-    const d = SP.dates[i], rows = SP.slates[d], r = SP.running[d];
-    $('#slate-date').value = d;
-    $('#slate-count').textContent = rows.length + (rows.length === 1 ? ' game' : ' games');
-    const dayAcc = r.n ? r.hits / r.n : null;
-    $('#st-day').className = 'chip ' + (dayAcc == null ? '' : dayAcc >= D.baseline ? 'pos' : 'neg');
-    $('#st-day').textContent = r.n ? `Day ${r.hits}/${r.n} · ${pct(dayAcc)}` : (d === D.today ? 'Today' : d > (D.today || '') ? 'Upcoming' : 'Day —');
-    $('#st-std').textContent = r.std_n ? `Season ${r.std_hits}/${r.std_n} · ${pct(r.std_hits / r.std_n)}` : 'Season —';
-    $('#st-spark').innerHTML = sparkRunning(i);
-    $('#prev').disabled = i === 0; $('#next').disabled = i === SP.dates.length - 1;
-    let h = '';
-    rows.forEach((g, k) => {
-      const homeFav = g.ph >= .5, conf = Math.max(g.ph, 1 - g.ph);
-      const flags = (g.ra === 1 ? `<span class="b2b" title="away team on a back-to-back">${g.a} B2B</span>` : '') + (g.rh === 1 ? `<span class="b2b" title="home team on a back-to-back">${g.h} B2B</span>` : '');
-      const end = ('ok' in g)
-        ? `<span class="g-fin num">${g.ap}–${g.hp}</span><span class="g-res"><span class="chip res ${g.ok ? 'pos' : 'neg'}">${g.ok ? 'Hit' : 'Miss'}</span></span>`
-        : `<span class="g-fin muted">${g.t ? g.t + ' ET' : '—'}</span><span class="g-res"></span>`;
-      h += `<div class="game" role="row"${g.eid ? ` data-espn-id="${g.eid}"` : ''}>
-        <span class="g-n num">${k + 1}</span>
-        <span class="g-m">${tm(g.a)}<span class="at">@</span>${tm(g.h)}${flags}</span>
-        <span class="g-elo num">${g.ea} · ${g.eh}</span>
-        <span class="g-bar"><span class="pbar" title="p(home) = ${pct(g.ph)}"><i class="a${homeFav ? '' : ' fav'}" style="width:${((1 - g.ph) * 100).toFixed(1)}%"></i><i class="h${homeFav ? ' fav' : ''}" style="flex:1"></i></span></span>
-        <span class="g-p num"><b class="${homeFav ? '' : 'fav'}">${pct(1 - g.ph)}</b><b class="${homeFav ? 'fav' : ''}">${pct(g.ph)}</b></span>
-        <span class="g-pick"><span class="chip pick">${g.pick} <span class="num">${pct(conf)}</span></span></span>
-        <span class="g-drv" title="${g.drv.join(' · ')}">${g.drv.join(' · ') || '—'}</span>
-        <span class="g-end">${end}</span>
-      </div>`;
+  // ---------------- date strip ----------------
+  const days = $('#days');
+  function buildStrip(){
+    let h = '', prevMon = null;
+    SP.dates.forEach((d, k) => {
+      const mon = fmt(d, { month: 'short' });
+      if (mon !== prevMon && k > 0) h += `<span class="mon" aria-hidden="true">${mon}</span>`;
+      if (k === 0) h += `<span class="mon" aria-hidden="true">${mon}</span>`;
+      prevMon = mon;
+      const label = d === D.today ? 'Today' : `<span class="wd">${fmt(d, { weekday: 'short' })}</span>${fmt(d, { day: 'numeric' })}`;
+      const aria = fmt(d, { weekday: 'long', month: 'long', day: 'numeric' }) + (d === D.today ? ', today' : '');
+      h += `<button type="button" class="day" role="tab" data-i="${k}" aria-label="${aria}">${label}</button>`;
     });
-    $('#slate-body').innerHTML = h;
-    if (LIVE.events) overlayLive();
+    days.innerHTML = h;
+  }
+  function syncStrip(smooth){
+    days.querySelectorAll('.day').forEach(b => { const on = +b.dataset.i === i; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1; });
+    const el = days.querySelector('.day.on');
+    if (el) {
+      const left = el.offsetLeft - (days.clientWidth - el.offsetWidth) / 2;
+      days.scrollTo({ left, behavior: smooth && !matchMedia('(prefers-reduced-motion: reduce)').matches ? 'smooth' : 'auto' });
+    }
+    const pv = $('#day-prev'), nx = $('#day-next');
+    if (pv) pv.disabled = i === 0; if (nx) nx.disabled = i === SP.dates.length - 1;
+  }
+  function setIndex(k, smooth){
+    if (k < 0 || k >= SP.dates.length || k === i) return;
+    i = k; renderSlate(); syncStrip(smooth !== false);
   }
 
-  // ---- live scores: today's ESPN scoreboard, fetched in the browser (CORS *), refreshed every 60 s while visible ----
-  const LIVE = { events: null, at: null, timer: null };
+  // ---------------- live scores (ESPN, browser fetch) ----------------
+  const LIVE = { map: {}, at: null, failed: false };
   const etDate = () => new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
-  function overlayLive(){
-    const ev = LIVE.events || [];
-    let inplay = 0, fin = 0, up = 0;
-    ev.forEach(e => {
-      const st = (e.status && e.status.type) || {}; const name = st.name || '';
-      if (name === 'STATUS_IN_PROGRESS' || name === 'STATUS_HALFTIME' || name === 'STATUS_END_PERIOD') inplay++; else if (name.indexOf('STATUS_FINAL') === 0) fin++; else up++;
-      const row = document.querySelector(`.game[data-espn-id="${e.id}"]`); if (!row) return;
+  const IN_PLAY = ['STATUS_IN_PROGRESS', 'STATUS_HALFTIME', 'STATUS_END_PERIOD'];
+  function clockText(s){
+    const t = (s && s.type) || {}, p = +s.period || 0;
+    const per = p <= 4 ? 'Q' + p : (p === 5 ? 'OT' : (p - 4) + 'OT');
+    if (t.name === 'STATUS_HALFTIME') return 'Halftime';
+    if (t.name === 'STATUS_END_PERIOD') return 'End of ' + per;
+    return p ? `${per} ${s.displayClock || ''}`.trim() : (t.shortDetail || '');
+  }
+  function ingest(events){
+    const map = {};
+    (events || []).forEach(e => {
+      const s = e.status || {}, name = (s.type && s.type.name) || '';
       const comp = (e.competitions || [])[0]; if (!comp) return;
       const home = comp.competitors.find(c => c.homeAway === 'home'), away = comp.competitors.find(c => c.homeAway === 'away');
       if (!home || !away) return;
-      const finEl = row.querySelector('.g-fin'), resEl = row.querySelector('.g-res');
-      const score = `${away.score ?? ''}–${home.score ?? ''}`;
-      if (name.indexOf('STATUS_FINAL') === 0) {
-        finEl.className = 'g-fin num'; finEl.innerHTML = `${score}<span class="q" style="color:var(--muted)">FINAL</span>`;
-        const winner = (+home.score > +away.score) ? home.team.abbreviation : away.team.abbreviation;
-        const pick = row.querySelector('.chip.pick'); const pk = pick ? pick.textContent.trim().split(/\s/)[0] : null;
-        if (pk && !resEl.querySelector('.chip')) resEl.innerHTML = `<span class="chip res ${pk === winner ? 'pos' : 'neg'}">${pk === winner ? 'Hit' : 'Miss'}</span>`;
-      } else if (name === 'STATUS_IN_PROGRESS' || name === 'STATUS_HALFTIME' || name === 'STATUS_END_PERIOD') {
-        finEl.className = 'g-fin num inplay'; finEl.innerHTML = `${score}<span class="q">${st.shortDetail || 'LIVE'}</span>`;
-      } else if (name === 'STATUS_POSTPONED' || name === 'STATUS_CANCELED') {
-        finEl.className = 'g-fin muted'; finEl.textContent = st.shortDetail || 'Postponed';
-      }
+      const r = { hp: home.score, ap: away.score };
+      if (IN_PLAY.indexOf(name) >= 0) { r.kind = 'live'; r.clock = clockText(s); }
+      else if (name.indexOf('STATUS_FINAL') === 0) r.kind = 'final';
+      else if (name === 'STATUS_POSTPONED' || name === 'STATUS_CANCELED') { r.kind = 'off'; r.label = name === 'STATUS_POSTPONED' ? 'Postponed' : 'Canceled'; }
+      else return;
+      map[e.id] = r;
     });
-    const strip = $('#live'); if (!strip) return;
-    strip.hidden = false; strip.classList.toggle('on', inplay > 0);
-    $('#live-text').textContent = ev.length ? (inplay ? `${inplay} live` : 'No games live') + ` · ${fin} final · ${up} upcoming today` : 'No NBA games today';
-    $('#live-ts').textContent = LIVE.at ? 'ESPN ' + LIVE.at : '';
+    LIVE.map = map;
   }
   async function fetchLive(){
     if (document.visibilityState !== 'visible') return;
@@ -487,232 +550,386 @@ JS = r"""
       const r = await fetch(`https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=${etDate().replace(/-/g, '')}&limit=50`, { cache: 'no-store' });
       if (!r.ok) throw new Error(r.status);
       const j = await r.json();
-      LIVE.events = j.events || []; LIVE.at = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-      overlayLive();
-    } catch (e) { /* offline or endpoint changed: degrade silently, the page is complete without it */ }
+      ingest(j.events); LIVE.at = new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }); LIVE.failed = false;
+    } catch (e) { LIVE.failed = true; }
+    if (SP.dates[i] === D.today) renderSlate();
   }
-  if (D.live && typeof fetch === 'function') {
-    fetchLive();
-    LIVE.timer = setInterval(fetchLive, 60000);
-    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') fetchLive(); });
+
+  // ---------------- slate ----------------
+  function gameState(g){
+    const lv = g.eid && LIVE.map[g.eid];
+    if ('hp' in g) return { kind: 'final', hp: g.hp, ap: g.ap, ok: g.ok };
+    if (lv && lv.kind === 'final') { const hp = +lv.hp, ap = +lv.ap; return { kind: 'final', hp, ap, ok: (hp > ap ? g.h : g.a) === g.pick }; }
+    if (lv && lv.kind === 'live') return { kind: 'live', hp: lv.hp, ap: lv.ap, clock: lv.clock };
+    if (lv && lv.kind === 'off') return { kind: 'off', label: lv.label };
+    if (SP.dates[i] < (D.today || '')) return { kind: 'off', label: 'No result' };
+    return { kind: 'pre' };
   }
-  $('#prev').onclick = () => { if (i > 0) { i--; renderSlate(); } };
-  $('#next').onclick = () => { if (i < SP.dates.length - 1) { i++; renderSlate(); } };
-  $('#slate-date').onchange = e => { i = SP.dates.indexOf(e.target.value); renderSlate(); };
+  function teamLine(code, p, fav, st, score, other){
+    const hasScore = st.kind === 'final' || st.kind === 'live';
+    const sc = hasScore ? `<span class="g-sc${(+score < +other) ? ' lose' : ''}">${score}</span>` : '';
+    return `<div class="g-team"><span class="g-ab">${code}</span><span class="g-nm">${nm(code)}</span>` +
+      `<span class="g-pct num${fav ? ' fav' : ''}${hasScore ? '' : ' big'}" aria-label="${pct(p)} chance to win">${pct(p)}</span>${sc}</div>`;
+  }
+  function gameCard(g, k){
+    const st = gameState(g), homeFav = g.ph >= .5;
+    let top;
+    if (st.kind === 'final') top = `<span>Final</span><span class="badge ${st.ok ? 'pos' : ''}">${st.ok ? 'Picked right' : 'Missed'}</span>`;
+    else if (st.kind === 'live') top = `<span class="badge neg"><span class="dot"></span>Live</span><span class="clock">${st.clock}</span>`;
+    else if (st.kind === 'off') top = `<span>${st.label}</span>`;
+    else top = `<span class="clock">${g.t ? g.t + ' ET' : 'Time to be announced'}</span>`;
+    return `<button type="button" class="game" data-k="${k}" aria-label="${nm(g.a)} at ${nm(g.h)}, open details">
+      <div class="g-top">${top}</div>
+      ${teamLine(g.a, 1 - g.ph, !homeFav, st, st.ap, st.hp)}
+      ${teamLine(g.h, g.ph, homeFav, st, st.hp, st.ap)}
+      <div class="wbar" aria-hidden="true"><i class="${homeFav ? '' : 'fav'}" style="flex:${(1 - g.ph).toFixed(3)} 1 0"></i><i class="${homeFav ? 'fav' : ''}" style="flex:${g.ph.toFixed(3)} 1 0"></i></div>
+    </button>`;
+  }
+  function renderSlate(){
+    const d = SP.dates[i], rows = SP.slates[d] || [], r = SP.running[d] || {};
+    $('#slate-title').textContent = d === D.today ? 'Today' : fmt(d, { weekday: 'long', month: 'long', day: 'numeric' });
+    let meta = rows.length + (rows.length === 1 ? ' game' : ' games');
+    if (r.n) meta = `${r.hits} of ${r.n} picked right`;
+    else if (d === D.today && LIVE.at) meta = 'Updated ' + LIVE.at;
+    $('#slate-meta').textContent = meta;
+    $('#slate').innerHTML = rows.length ? rows.map(gameCard).join('') :
+      `<div class="empty empty-day"><h3>No games this day</h3><p>Pick another date to see its games.</p><button type="button" class="btn sm" data-act="dates">Choose a date</button></div>`;
+  }
+
+  // ---------------- sheet ----------------
+  const sheet = $('#sheet'), scrim = $('#scrim'), body = $('#sheet-body'), back = $('#sheet-back');
+  const stack = []; let lastFocus = null;
+  function show(html){
+    body.innerHTML = html;
+    back.hidden = stack.length < 2;
+    sheet.scrollTop = 0;
+    const t = body.querySelector('h3'); if (t) { t.id = 'sheet-title'; }
+  }
+  function openSheet(render, push){
+    if (!sheet.classList.contains('open')) { lastFocus = document.activeElement; stack.length = 0; }
+    else if (!push) stack.length = 0;
+    stack.push(render);
+    show(render());
+    sheet.removeAttribute('inert'); sheet.setAttribute('aria-hidden', 'false');
+    sheet.classList.add('open'); scrim.classList.add('open');
+    document.documentElement.style.overflow = 'hidden';
+    setTimeout(() => $('#sheet-done').focus({ preventScroll: true }), 30);
+  }
+  function goBack(){ if (stack.length > 1) { stack.pop(); show(stack[stack.length - 1]()); } }
+  function closeSheet(){
+    if (!sheet.classList.contains('open')) return;
+    sheet.classList.remove('open'); scrim.classList.remove('open');
+    sheet.setAttribute('inert', ''); sheet.setAttribute('aria-hidden', 'true');
+    sheet.style.transform = '';
+    document.documentElement.style.overflow = '';
+    stack.length = 0;
+    if (lastFocus && lastFocus.isConnected) lastFocus.focus({ preventScroll: true });
+  }
+  // drag the bar down to dismiss (touch)
+  (function(){
+    let y0 = null, dy = 0;
+    const bar = $('.sh-bar');
+    bar.addEventListener('touchstart', e => { if (sheet.scrollTop <= 0 && innerWidth < 900) { y0 = e.touches[0].clientY; dy = 0; sheet.style.transition = 'none'; } }, { passive: true });
+    bar.addEventListener('touchmove', e => { if (y0 == null) return; dy = Math.max(0, e.touches[0].clientY - y0); sheet.style.transform = `translateY(${dy}px)`; }, { passive: true });
+    bar.addEventListener('touchend', () => { if (y0 == null) return; sheet.style.transition = ''; y0 = null; if (dy > 90) closeSheet(); else sheet.style.transform = ''; });
+  })();
+
+  // ---------------- game sheet ----------------
+  function gameSheet(d, g){
+    const st = gameState(g), homeFav = g.ph >= .5, fav = homeFav ? g.h : g.a;
+    const when = st.kind === 'final' ? `Final, ${fmt(d, { weekday: 'long', month: 'short', day: 'numeric' })}` :
+      st.kind === 'live' ? `Live now, ${st.clock}` :
+      `${fmt(d, { weekday: 'long', month: 'short', day: 'numeric' })}${g.t ? ', ' + g.t + ' ET' : ''}`;
+    const side = (c, p, f, r) => `<div class="side${f ? ' fav' : ''}${r ? ' r' : ''}"><div class="v num">${pct(p)}</div><div class="c">${nick(c)} win</div></div>`;
+    let result = '';
+    if (st.kind === 'final' || st.kind === 'live') {
+      const lead = +st.hp >= +st.ap ? [g.h, st.hp, g.a, st.ap] : [g.a, st.ap, g.h, st.hp];
+      result = `<div class="sub-h">${st.kind === 'final' ? 'Result' : 'Score'}</div><div class="list"><div class="row"><span class="grow title num">${nick(lead[0])} ${lead[1]}, ${nick(lead[2])} ${lead[3]}</span>` +
+        (st.kind === 'final' ? `<span class="badge ${st.ok ? 'pos' : ''}">${st.ok ? 'Picked right' : 'Missed'}</span>` : `<span class="badge neg"><span class="dot"></span>Live</span>`) + `</div></div>`;
+    }
+    const why = (g.why || []).map(w => `<div class="row"><span class="grow"><span class="title">${w[1]}</span><span class="sub">${w[0]}</span></span></div>`).join('');
+    const tl = c => `<button type="button" class="row" data-team="${c}" data-push="1"><span class="grow"><span class="title">${nm(c)}</span><span class="sub num">${TP[c] ? TP[c].w + dash + TP[c].l : ''}${RK[c] ? ', No. ' + RK[c].rank + ' in power rankings' : ''}</span></span>${CHEV}</button>`;
+    return `<h3>${nick(g.a)} at ${nick(g.h)}<small>${when}</small></h3>
+      <div class="matchup">${side(g.a, 1 - g.ph, !homeFav, false)}${side(g.h, g.ph, homeFav, true)}</div>
+      <div class="wbar" aria-hidden="true"><i class="${homeFav ? '' : 'fav'}" style="flex:${(1 - g.ph).toFixed(3)} 1 0"></i><i class="${homeFav ? 'fav' : ''}" style="flex:${g.ph.toFixed(3)} 1 0"></i></div>
+      ${result}
+      <div class="sub-h">Why the model leans ${nick(fav)}</div>
+      <div class="list why">${why || '<div class="row"><span class="grow title">No single factor stands out</span></div>'}</div>
+      <div class="sub-h">Teams</div>
+      <div class="list">${tl(g.a)}${tl(g.h)}</div>
+      <p class="section-foot">${D.disclaimer}</p>`;
+  }
+
+  // ---------------- team sheet ----------------
+  function ratingChart(all){
+    const pts = all.filter(p => !D.today || p[0] <= D.today); if (pts.length < 2) return '';
+    const W = 360, H = 150, L = 34, R = 8, T = 10, B = 22, pw = W - L - R, ph = H - T - B;
+    const v = pts.map(p => p[1]); let lo = Math.min(...v, 1500) - 15, hi = Math.max(...v, 1500) + 15;
+    const sx = k => L + k / Math.max(1, pts.length - 1) * pw, sy = e => T + (1 - (e - lo) / (hi - lo)) * ph;
+    const line = pts.map((p, k) => `${k ? 'L' : 'M'}${sx(k).toFixed(1)},${sy(p[1]).toFixed(1)}`).join(' ');
+    const y5 = sy(1500).toFixed(1);
+    const last = pts[pts.length - 1];
+    return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Team rating over the season, now ${Math.round(last[1])}">
+      <line class="grid" x1="${L}" y1="${y5}" x2="${W - R}" y2="${y5}" stroke-dasharray="3 3"/><text x="${W - R}" y="${(+y5 - 5).toFixed(1)}" text-anchor="end">League average</text>
+      ${Math.abs(T + 4 - y5) > 14 ? `<text x="${L - 6}" y="${(T + 4).toFixed(1)}" text-anchor="end">${Math.round(hi)}</text>` : ''}${Math.abs(T + ph - y5) > 14 ? `<text x="${L - 6}" y="${(T + ph).toFixed(1)}" text-anchor="end">${Math.round(lo)}</text>` : ''}
+      <path class="series" d="${line}"/><circle cx="${sx(pts.length - 1).toFixed(1)}" cy="${sy(last[1]).toFixed(1)}" r="3.5" style="fill:var(--brand)"/>
+      <text x="${L}" y="${H - 4}">${fmt(pts[0][0], { month: 'short', day: 'numeric' })}</text><text x="${W - R}" y="${H - 4}" text-anchor="end">${fmt(last[0], { month: 'short', day: 'numeric' })}</text></svg>`;
+  }
+  function winsChart(code, s){
+    const W = 360, L = 8, R = 8, pw = W - L - R;
+    if (D.sim.focus === code && D.sim.focus_hist && D.sim.focus_hist.length) {
+      const hist = D.sim.focus_hist, H = 120, T = 6, B = 22, ph = H - T - B, peak = Math.max(...hist.map(h => h.n)) || 1, bw = pw / hist.length;
+      const ew = Math.round(s.exp_w), step = Math.max(1, Math.round(hist.length / 6));
+      let g = '';
+      hist.forEach((h, k) => {
+        const bh = h.n / peak * ph;
+        g += `<rect x="${(L + k * bw + .5).toFixed(1)}" y="${(T + ph - bh).toFixed(1)}" width="${Math.max(1, bw - 1).toFixed(1)}" height="${bh.toFixed(1)}" rx="1" style="fill:${h.wins === ew ? 'var(--brand)' : 'var(--label-3)'}"><title>${h.wins} wins: ${(h.n / D.sim.n_sims * 100).toFixed(1)}%</title></rect>`;
+        if (k % step === 0) g += `<text x="${(L + (k + .5) * bw).toFixed(1)}" y="${H - 6}" text-anchor="middle">${h.wins}</text>`;
+      });
+      return `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="How many wins in ${D.sim.n_sims} simulated seasons">${g}</svg>`;
+    }
+    const H = 54, sx = w => L + Math.min(82, Math.max(0, w)) / 82 * pw, y = 22;
+    return `<svg class="chart rng" viewBox="0 0 ${W} ${H}" role="img" aria-label="Likely between ${s.w_lo} and ${s.w_hi} wins">
+      <rect x="${L}" y="${y - 3}" width="${pw}" height="6" rx="3" style="fill:var(--fill)"/>
+      <rect x="${sx(s.w_lo).toFixed(1)}" y="${y - 3}" width="${(sx(s.w_hi) - sx(s.w_lo)).toFixed(1)}" height="6" rx="3" style="fill:var(--brand);opacity:.35"/>
+      <circle cx="${sx(s.exp_w).toFixed(1)}" cy="${y}" r="6" style="fill:var(--brand);stroke:var(--surface);stroke-width:2"/>
+      <text x="${sx(s.w_lo).toFixed(1)}" y="${y + 24}" text-anchor="middle">${s.w_lo}</text><text x="${sx(s.w_hi).toFixed(1)}" y="${y + 24}" text-anchor="middle">${s.w_hi}</text>
+      <text x="${L}" y="${y - 10}">0</text><text x="${W - R}" y="${y - 10}" text-anchor="end">82 wins</text></svg>`;
+  }
+  function teamSheet(code){
+    const t = TP[code], rk = RK[code], s = SIM[code]; if (!t) return '<h3>Team not found</h3>';
+    const rec = t.rec, wl = a => `${a[0]}${dash}${a[1]}`;
+    const l10w = rk ? rk.l10.split('').filter(c => c === 'W').length : null;
+    const row = (k, v) => `<div class="row"><span class="grow title">${k}</span><span class="value num">${v}</span></div>`;
+    const upW = {}, upL = {};
+    t.upset_wins.forEach(u => upW[u.d] = 1); t.upset_losses.forEach(u => upL[u.d] = 1);
+    const played = t.sched.filter(g => 'w' in g).slice().reverse(), next = t.sched.filter(g => !('w' in g));
+    const opp = g => `${g.home ? 'vs' : 'at'} ${nick(g.opp)}`;
+    const nextRows = next.slice(0, 5).map(g => `<div class="row"><span class="grow"><span class="title">${opp(g)}</span><span class="sub">${fmt(g.d, { weekday: 'short', month: 'short', day: 'numeric' })}${g.rest === 1 ? ', second night of a back-to-back' : ''}</span></span><span class="value num">${pct(g.p)} to win</span></div>`).join('');
+    const pastRows = played.map(g => {
+      const ok = (g.p >= .5) === g.w, tag = upW[g.d] ? '<span class="badge pos">Upset win</span>' : upL[g.d] ? '<span class="badge">Upset loss</span>' : '';
+      return `<div class="row"><span class="grow"><span class="title">${opp(g)}</span><span class="sub">${fmt(g.d, { month: 'short', day: 'numeric' })}, given ${pct(g.p)}${ok ? '' : ', model missed'}</span></span>${tag}<span class="value num"><span class="${g.w ? 'pos' : 'neg'}">${g.w ? 'W' : 'L'}</span> ${g.pf}${dash}${g.pa}</span></div>`;
+    }).join('');
+    const proj = s ? `<div class="sub-h">Projected wins</div>
+      <p class="body-s">Most likely ${Math.round(s.exp_w)} wins; 9 in 10 simulated seasons land between ${s.w_lo} and ${s.w_hi}.${s.top_seed >= .01 ? ` Chance of the No. 1 seed: ${pct(s.top_seed)}.` : ''}</p>${winsChart(code, s)}` : '';
+    return `<h3>${t.name}<small>${t.conf}${rk ? `, No. ${rk.rank} in power rankings` : ''}</small></h3>
+      <div class="stats three">
+        <div class="stat"><div class="v num">${t.w}${dash}${t.l}</div><div class="c">Record</div></div>
+        <div class="stat"><div class="v num">${s ? Math.round(s.exp_w) : '–'}</div><div class="c">Projected wins</div></div>
+        <div class="stat"><div class="v num">${s ? pct(s.playoff) : '–'}</div><div class="c">Playoff odds</div></div>
+      </div>
+      <div class="sub-h">Splits</div>
+      <div class="list">${rk && t.w + t.l > 10 ? row('Last 10', l10w + dash + (10 - l10w)) : ''}${row('Home', wl(rec.home))}${row('Away', wl(rec.away))}${row('Second night of a back-to-back', wl(rec.b2b))}${row('With a day or more of rest', wl(rec.rested))}${row('As the favourite', wl(rec.fav))}${row('As the underdog', wl(rec.dog))}${rk ? row('Point margin, last 10', `<span class="${rk.net10 >= 0 ? 'pos' : 'neg'}">${rk.net10 >= 0 ? '+' : '−'}${Math.abs(rk.net10).toFixed(1)}</span>`) : ''}${t.model_acc != null ? row('Model picked their games right', pct(t.model_acc)) : ''}</div>
+      <div class="sub-h">Team rating</div>${ratingChart(t.elo)}
+      ${proj}
+      ${nextRows ? `<div class="sub-h">Coming up</div><div class="list">${nextRows}</div>` : ''}
+      <div class="sub-h">Results</div><div class="list">${pastRows || '<div class="row"><span class="grow title muted">No games yet</span></div>'}</div>
+      <p class="section-foot">${D.disclaimer}</p>`;
+  }
+
+  // ---------------- other sheets ----------------
+  function dateSheet(){
+    const opts = SP.dates.map((d, k) => `<option value="${k}"${k === i ? ' selected' : ''}>${fmt(d, { weekday: 'short', month: 'short', day: 'numeric' })}${d === D.today ? ' (today)' : ''}, ${SP.slates[d].length} games</option>`).join('');
+    const t = SP.dates.indexOf(D.today);
+    return `<div class="date-sheet"><h3>Choose a date</h3><select class="field" id="date-select" aria-label="Game date">${opts}</select>
+      ${t >= 0 ? `<button type="button" class="btn primary block" data-act="today">Go to today</button>` : ''}</div>`;
+  }
+  const tpl = id => () => document.getElementById(id).innerHTML;
+
+  // ---------------- events ----------------
+  document.addEventListener('click', e => {
+    const el = e.target.closest('[data-act],[data-team],[data-game],.game,.day');
+    if (!el) return;
+    if (el.classList.contains('day')) return setIndex(+el.dataset.i);
+    if (el.classList.contains('game') && el.dataset.k != null) {
+      const d = SP.dates[i], g = SP.slates[d][+el.dataset.k];
+      return openSheet(() => gameSheet(d, g));
+    }
+    if (el.dataset.team) return openSheet(() => teamSheet(el.dataset.team), !!el.dataset.push);
+    if (el.dataset.game) {
+      const [d, w, l] = el.dataset.game.split('|');
+      const g = (SP.slates[d] || []).find(x => (x.h === w && x.a === l) || (x.h === l && x.a === w));
+      if (g) return openSheet(() => gameSheet(d, g));
+      return openSheet(() => teamSheet(w));
+    }
+    const a = el.dataset.act;
+    if (a === 'about') openSheet(tpl('about-tpl'));
+    else if (a === 'rankings') openSheet(tpl('rankings-tpl'));
+    else if (a === 'dates') openSheet(dateSheet);
+    else if (a === 'close') closeSheet();
+    else if (a === 'back') goBack();
+    else if (a === 'today') { setIndex(SP.dates.indexOf(D.today), false); closeSheet(); }
+    else if (a === 'prev') setIndex(i - 1);
+    else if (a === 'next') setIndex(i + 1);
+    else if (a === 'show-all') el.closest('.odds').classList.add('all');
+    else if (a === 'conf') {
+      document.querySelectorAll('[data-act="conf"]').forEach(b => { const on = b === el; b.classList.toggle('on', on); b.setAttribute('aria-selected', on); });
+      document.querySelectorAll('.odds').forEach(l => l.hidden = l.dataset.conf !== el.dataset.conf);
+    }
+  });
+  document.addEventListener('change', e => { if (e.target.id === 'date-select') { setIndex(+e.target.value, false); closeSheet(); } });
+  scrim.addEventListener('click', closeSheet);
   document.addEventListener('keydown', e => {
-    const tag = e.target.tagName; if (tag === 'SELECT' || tag === 'INPUT') return;
-    if (e.key === 'ArrowLeft') $('#prev').click(); else if (e.key === 'ArrowRight') $('#next').click(); else if (e.key === 'Escape') closeTeam();
+    if (e.key === 'Escape') return closeSheet();
+    if (sheet.classList.contains('open')) return;
+    const tag = e.target.tagName; if (tag === 'SELECT' || tag === 'INPUT' || tag === 'TEXTAREA') return;
+    if (e.key === 'ArrowLeft') { e.preventDefault(); setIndex(i - 1); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); setIndex(i + 1); }
   });
 
-  // ---- team drawer ----
-  function eloCurve(pts){
-    const W = 400, H = 110, L = 36, R = 6, T = 8, B = 18, pw = W - L - R, ph = H - T - B;
-    const v = pts.map(p => p[1]); const lo = Math.min(...v) - 10, hi = Math.max(...v) + 10;
-    const sx = k => L + k / Math.max(1, pts.length - 1) * pw, sy = e => T + (1 - (e - lo) / (hi - lo)) * ph;
-    const line = pts.map((p, k) => `${sx(k).toFixed(1)},${sy(p[1]).toFixed(1)}`).join(' ');
-    const y1500 = sy(1500);
-    let g = '';
-    if (1500 > lo && 1500 < hi) g = `<line x1="${L}" y1="${y1500.toFixed(1)}" x2="${W - R}" y2="${y1500.toFixed(1)}" stroke="var(--line-2)" stroke-dasharray="3 3"/><text x="${L - 4}" y="${(y1500 + 3).toFixed(1)}" text-anchor="end">1500</text>`;
-    const col = v[v.length - 1] >= v[0] ? 'var(--pos)' : 'var(--neg)';
-    const lab = (y, t) => (g && Math.abs(y - y1500) < 12) ? '' : `<text x="${L - 4}" y="${y.toFixed(1)}" text-anchor="end">${t}</text>`;
-    return `<svg class="chart" viewBox="0 0 ${W} ${H}" aria-label="Elo over the season">${g}<polyline points="${line}" fill="none" stroke="${col}" stroke-width="1.75" stroke-linejoin="round"/>
-      ${lab(T + 4, Math.round(hi))}${lab(T + ph, Math.round(lo))}
-      <text x="${L}" y="${H - 4}">${pts[0][0].slice(5)}</text><text x="${W - R}" y="${H - 4}" text-anchor="end">${pts[pts.length - 1][0].slice(5)}</text></svg>`;
+  buildStrip(); renderSlate();
+  requestAnimationFrame(() => syncStrip(false));
+  addEventListener('resize', () => syncStrip(false));
+  if (D.live && typeof fetch === 'function') {
+    fetchLive();
+    setInterval(fetchLive, 60000);
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') fetchLive(); });
   }
-  let lastFocus = null;
-  function openTeam(code, src){
-    const t = TP[code], rk = RK[code]; if (!t) return;
-    lastFocus = src || null;
-    const rec = t.rec, wl = a => `${a[0]}-${a[1]}`;
-    const ups = (list, won) => list.length ? list.map(u => `<tr><td class="muted">${u.d.slice(5)}</td><td>${u.home ? 'vs' : '@'} ${tm(u.opp)}</td><td class="n">${u.pf}-${u.pa}</td><td class="n ${won ? 'pos' : 'neg'}">${pct(u.p)}</td></tr>`).join('') : '<tr><td class="muted" colspan="4">none</td></tr>';
-    const sched = t.sched.slice().reverse().map(g => `<tr><td class="muted">${g.d.slice(5)}</td><td>${g.home ? 'vs' : '@'} ${tm(g.opp)}</td><td class="n">${pct(g.p)}</td><td class="n muted">${g.rest === 1 ? '<span class="warn">B2B</span>' : g.rest + 'd'}</td>
-      ${'w' in g ? `<td class="${g.w ? 'pos' : 'neg'}">${g.w ? 'W' : 'L'} <span class="muted num">${g.pf}-${g.pa}</span></td><td><span class="chip res ${(g.p >= .5) === g.w ? 'pos' : 'neg'}">${(g.p >= .5) === g.w ? 'Hit' : 'Miss'}</span></td>` : '<td colspan="2" class="muted">—</td>'}</tr>`).join('');
-    const l10w = rk ? rk.l10.split('').filter(c => c === 'W').length : null;
-    $('#drawer').innerHTML = `
-      <div class="grab"></div>
-      <div class="d-h"><h2>${code}<small>${t.name} · ${t.conf}${rk ? ` · #${rk.rank} Elo ${Math.round(rk.elo)}` : ''}</small></h2><button type="button" class="btn" id="d-close" aria-label="Close team panel">Close</button></div>
-      <div class="d-rec">
-        <div><div class="l">Record</div><div class="v">${t.w}-${t.l}</div></div>
-        <div><div class="l">Home</div><div class="v">${wl(rec.home)}</div></div>
-        <div><div class="l">Away</div><div class="v">${wl(rec.away)}</div></div>
-        <div><div class="l">B2B</div><div class="v ${rec.b2b[0] >= rec.b2b[1] ? 'pos' : 'neg'}">${wl(rec.b2b)}</div></div>
-        <div><div class="l">Rested</div><div class="v">${wl(rec.rested)}</div></div>
-        <div><div class="l">Model acc</div><div class="v">${t.model_acc == null ? '—' : pct(t.model_acc)}</div></div>
-        <div><div class="l">As fav</div><div class="v">${wl(rec.fav)}</div></div>
-        <div><div class="l">As dog</div><div class="v">${wl(rec.dog)}</div></div>
-        <div><div class="l">L10 · Net</div><div class="v">${rk ? `${l10w}-${10 - l10w} <span class="${rk.net10 >= 0 ? 'pos' : 'neg'}" style="font-size:13px">${(rk.net10 >= 0 ? '+' : '') + rk.net10.toFixed(1)}</span>` : '—'}</div></div>
-      </div>
-      <h3>Elo · season</h3>${eloCurve(t.elo)}
-      <div class="grid g2"><div><h3>Biggest upset wins</h3><div class="tbl compact"><table><tbody>${ups(t.upset_wins, true)}</tbody></table></div></div>
-      <div><h3>Biggest upset losses</h3><div class="tbl compact"><table><tbody>${ups(t.upset_losses, false)}</tbody></table></div></div></div>
-      <h3>Schedule · newest first · p = model win prob for ${code}</h3>
-      <div class="tbl compact"><table><thead><tr><th>Date</th><th>Opp</th><th class="n">p(win)</th><th class="n">Rest</th><th>Result</th><th>Model</th></tr></thead><tbody>${sched}</tbody></table></div>
-      <p class="note">${D.live ? 'Data: ESPN public API · updated ' + D.updated : 'Sample data'} · ${D.disclaimer}</p>`;
-    $('#drawer').classList.add('open'); $('#scrim').classList.add('open');
-    $('#drawer').scrollTop = 0;
-    $('#d-close').onclick = closeTeam;
-    $('#d-close').focus();
-  }
-  function closeTeam(){ $('#drawer').classList.remove('open'); $('#scrim').classList.remove('open'); if (lastFocus && lastFocus.isConnected) lastFocus.focus(); }
-  $('#scrim').onclick = closeTeam;
-  document.addEventListener('click', e => { const t = e.target.closest('.tm'); if (t) openTeam(t.dataset.team, t); });
-  window.GP = { openTeam, closeTeam, renderSlate, setDate: d => { i = SP.dates.indexOf(d); renderSlate(); } };
-  renderSlate();
+  window.GP = { openTeam: c => openSheet(() => teamSheet(c)), closeSheet, renderSlate, ingestLive: ev => { ingest(ev); renderSlate(); },
+                setDate: d => { const k = SP.dates.indexOf(d); if (k >= 0) { i = -1; setIndex(k, false); } } };
 })();
 """
 
 
-def _trim_bundle(sp: dict, team_pages: dict, rankings: list[dict]) -> dict:
-    """Only the fields the JS reads, floats to 3 dp."""
-    slates = {d: [{k: g[k] for k in ("h", "a", "ph", "eh", "ea", "pick", "drv", "rh", "ra", "hp", "ap", "ok", "eid", "t") if k in g} for g in rows]
-              for d, rows in sp["slates"].items()}
+def _trim_bundle(sp: dict, team_pages: dict, rankings: list[dict], sim: dict) -> dict:
+    """Only the fields the JS reads, floats to 3 dp; adds plain-English 'why' lines per game."""
+    names = {c: t["name"] for c, t in team_pages.items()}
+    slates = {}
+    for d, rows in sp["slates"].items():
+        out = []
+        for g in rows:
+            r = {k: g[k] for k in ("h", "a", "ph", "pick", "rh", "ra", "hp", "ap", "ok", "eid", "t") if k in g}
+            r["why"] = why_lines(g, names)
+            out.append(r)
+        slates[d] = out
     teams = {}
     for code, t in team_pages.items():
         teams[code] = {"name": t["name"], "conf": t["conf"], "w": t["w"], "l": t["l"], "rec": t["rec"], "model_acc": t["model_acc"],
-                       "elo": t["elo"], "upset_wins": t["upset_wins"], "upset_losses": t["upset_losses"],
+                       "elo": t["elo"], "upset_wins": [{"d": u["d"]} for u in t["upset_wins"]],
+                       "upset_losses": [{"d": u["d"]} for u in t["upset_losses"]],
                        "sched": [{k: g[k] for k in ("d", "opp", "home", "p", "rest", "pf", "pa", "w") if k in g} for g in t["sched"]]}
-    rk = [{k: r[k] for k in ("team", "rank", "elo", "l10", "net10")} for r in rankings]
-    return _round({"sp": {"dates": sp["dates"], "slates": slates, "running": sp["running"]}, "teams": teams, "rankings": rk})
+    rk = [{k: r[k] for k in ("team", "rank", "l10", "net10")} for r in rankings]
+    sim_t = [{k: r[k] for k in ("team", "exp_w", "w_lo", "w_hi", "playoff", "top_seed")} for r in sim["teams"]]
+    return _round({"sp": {"dates": sp["dates"], "slates": slates, "running": sp["running"]}, "teams": teams, "rankings": rk,
+                   "sim": {"teams": sim_t, "focus": sim["focus"], "focus_hist": sim["focus_hist"], "n_sims": sim["n_sims"]}})
 
 
 def _body(bundle: dict, sim: dict, met: dict, pred: dict) -> tuple[str, str]:
     """Returns (body_html, data_blob_json)."""
-    m, d, cal, walk = met["models"], met["data"], met["calibration"], met["walk_forward"]
-    xgbm, elom, homem = m["xgb"], m["elo_logit"], m["home_baseline"]
+    d = met["data"]
     sp, rk, ups, tiers = bundle["season_predictions"], bundle["rankings"], bundle["upsets"], bundle["tiers"]
-    from analytics import UPSET_THRESHOLD
     meta = bundle.get("meta") or {}
     live = meta.get("source") == "espn"
-    updated = (meta.get("updated_at") or "")[:16].replace("T", " ") + (" UTC" if meta.get("updated_at") else "")
+    upd_raw = meta.get("updated_at")
+    if upd_raw:
+        u = datetime.fromisoformat(upd_raw)
+        updated = f"{u:%b} {u.day}, {u:%H:%M} UTC"
+    else:
+        updated = ""
     n_final = meta.get("n_final") or d["games_total"]
-    prior = met.get("prior_holdout")
-    small = d.get("small_sample")
     last_played = sp.get("last_played_date") or sp["dates"][-1]
     season_hits = sp["running"][last_played]
-    top = rk[0]
-    mover = max(rk, key=lambda r: r["d_elo_30"])
-    faller = min(rk, key=lambda r: r["d_elo_30"])
-    ts = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    # default slate: today (ET) if it has games, else the next game day, else the last played day
     default_date = pred["date"] if pred.get("date") in sp["slates"] else last_played
     today = sp.get("today")
+    names = {c: t["name"] for c, t in bundle["team_pages"].items()}
 
-    blob = _trim_bundle(sp, bundle["team_pages"], rk)
-    blob.update({"default_date": default_date, "baseline": round(homem["accuracy"], 3), "disclaimer": DISCLAIMER,
-                 "live": live, "today": today, "updated": updated, "n_final": n_final,
-                 "last_played": last_played, "season": d["test_season"]})
+    blob = _trim_bundle(sp, bundle["team_pages"], rk, sim)
+    blob.update({"default_date": default_date, "disclaimer": DISCLAIMER, "live": live, "today": today,
+                 "updated": updated, "season": d["test_season"]})
     data_blob = json.dumps(blob, separators=(",", ":")).replace("</", "<\\/")
-    def opt(dd):
-        n = len(sp["slates"][dd])
-        if dd == today:
-            return f'<option value="{dd}">{dd} &middot; today</option>'
-        tag = " &#9656;" if today and dd > today else ""   # small right-pointing triangle marks upcoming dates
-        return f'<option value="{dd}">{dd} &middot; {n} g{tag}</option>'
-    date_opts = "".join(opt(dd) for dd in sp["dates"])
-    best_month = max(walk, key=lambda w: w["xgb_accuracy"])
 
-    if live:
-        lede = ("Pre-game win probabilities from Elo, rest and rolling form, trained on three real NBA seasons and scored "
-                f"forward in time on every {esc(d['test_season'])} game. Real games from ESPN's public API, refreshed on each run; "
-                "the point is the leak-free pipeline and honest calibration, not the picks.")
-        src_line = f"Data: ESPN public API &middot; updated {esc(updated)}"
-        method_data = (f"Real NBA games ({', '.join(esc(x) for x in d['seasons'])}) from ESPN's unofficial, undocumented public scoreboard API, "
-                       f"regular season only (playoffs and NBA Cup final are flagged; the Cup final is kept for Elo but excluded from standings). "
-                       f"Game dates are US/Eastern. The {esc(d['test_season'])} test set is {d['n_test']} games so far"
-                       + (" &mdash; a small sample, so the hero number will move; the full prior-season holdout is the stable read." if small else ".")
-                       + " ESPN can change or withdraw the endpoint without notice.")
-        hind_label = f"{esc(d['test_season'])} hindcast"
-    else:
-        lede = ("Pre-game win probabilities from Elo, rest and rolling form, scored forward in time on every game of the test season. "
-                "Sample league, synthetic data &mdash; the point is the leak-free pipeline and honest calibration, not the picks.")
-        src_line = "Sample league &middot; synthetic data"
-        method_data = ("30 fictional teams, 3 seasons &times; 1230 games simulated with drifting strength, +2.5 home court, rest effects and injuries, "
-                       "tuned so a perfect oracle wins ~68% (real NBA models land at 65&ndash;68%).")
-        hind_label = "Season hindcast"
-
-    kpi_sub = (f'full {esc(prior["test_season"])} holdout <span class="v">{prior["models"]["xgb"]["accuracy"]:.1%}</span> (n={prior["n_test"]})'
-               if prior else f'vs <span class="v">{homem["accuracy"]:.1%}</span> home baseline &middot; n={d["n_test"]}')
-    kpi_label = f'{esc(d["test_season"])} accuracy' + (' <span class="muted" style="text-transform:none;letter-spacing:0">(n=%d)</span>' % d["n_test"] if small else '')
+    hits, n = season_hits["std_hits"], season_hits["std_n"]
+    summary = (f'The model picked {hits} of {n} games right this season ({hits / n:.0%}). '
+               if n else "The season hasn&rsquo;t started yet. ")
+    src = (f'Data from ESPN, updated {esc(updated)}.' if live else "Sample league with made-up teams, used when live data can&rsquo;t be reached.")
+    all_rank = "".join(rank_row(r) for r in rk)
+    top10 = "".join(rank_row(r) for r in rk[:10])
+    confs = sorted({r["conf"] for r in sim["teams"]})
+    seg = "".join(f'<button type="button" role="tab" data-act="conf" data-conf="{esc(c)}" class="{"on" if c == confs[0] else ""}" aria-selected="{"true" if c == confs[0] else "false"}">{esc(c)}</button>' for c in confs)
+    odds = "".join(odds_list(sim, c, k == 0) for k, c in enumerate(confs))
+    spots = sim["playoff_spots"]
 
     body = f"""
-<main class="wrap">
-  <div class="eyebrow">Project 03 &middot; win probability &middot; season {esc(d["test_season"])}</div>
-  <h1>Game Predictor</h1>
-  <p class="lede">{lede}</p>
+<template id="top-actions"><button type="button" class="icon-btn" data-act="dates" aria-label="Choose a date"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></button></template>
+<main class="page wide">
+  <h1 class="large-title">Games</h1>
+  <p class="summary">{summary}<button type="button" class="linkbtn" data-act="about">See how</button></p>
 
-  <section class="grid g4" aria-label="Key numbers">
-    <div class="card kpi"><div class="label">{kpi_label}</div><b class="hero">{xgbm["accuracy"]:.1%}</b><div class="sub">{kpi_sub}</div></div>
-    <div class="card kpi"><div class="label">Log loss</div><b>{xgbm["log_loss"]:.3f}</b><div class="sub">Elo-logit {elom["log_loss"]:.3f} &middot; home {homem["log_loss"]:.3f}</div></div>
-    <div class="card kpi"><div class="label">{hind_label}</div><b>{season_hits["std_hits"]}<span class="muted" style="font-size:18px">/{season_hits["std_n"]}</span></b><div class="sub">{len([x for x in sp["dates"] if x <= last_played])} game days &middot; frozen model{' &middot; small sample' if small else ''}</div></div>
-    <div class="card kpi"><div class="label">#1 Elo team</div><b>{esc(top["team"])}</b><div class="sub">{top["elo"]:.0f} &middot; {top["w"]}-{top["l"]} &middot; {esc(top["name"])}</div></div>
-  </section>
+  <div class="strip">
+    <button type="button" class="icon-btn nav" id="day-prev" data-act="prev" aria-label="Previous day"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <div class="days" id="days" role="tablist" aria-label="Game days"></div>
+    <button type="button" class="icon-btn nav" id="day-next" data-act="next" aria-label="Next day"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
 
-  <section class="sec" id="slate" aria-label="Slate">
-    <div class="sec-h"><h2>Slate</h2><span class="read" id="slate-count"></span></div>
-    <div class="live" id="live" hidden><span class="dot" aria-hidden="true"></span><span id="live-text">Live scores</span><span class="muted" id="live-ts"></span></div>
-    <div class="controls">
-      <button type="button" class="btn" id="prev" aria-label="Previous game day">&larr; Prev</button>
-      <select id="slate-date" aria-label="Game date">{date_opts}</select>
-      <button type="button" class="btn" id="next" aria-label="Next game day">Next &rarr;</button>
+  <div class="cols main-cols">
+    <section aria-labelledby="slate-title">
+      <div class="section-h slate-h"><h2 id="slate-title">Today</h2><span class="meta" id="slate-meta" aria-live="polite"></span></div>
+      <div class="games" id="slate"></div>
+    </section>
+
+    <div class="side-col">
+      <section class="section" aria-labelledby="rk-h">
+        <div class="section-h"><h2 id="rk-h">Power rankings</h2><button type="button" class="linkbtn more" data-act="rankings">See all</button></div>
+        <div class="list">{top10}</div>
+      </section>
+
+      <section class="section" aria-labelledby="po-h">
+        <div class="section-h"><h2 id="po-h">Playoff odds</h2></div>
+        <div class="seg" role="tablist" aria-label="Conference">{seg}</div>
+        {odds}
+        <p class="section-foot">Chance of finishing in the top {spots} of the conference, from {sim["n_sims"]:,} simulated seasons.</p>
+      </section>
+
+      <section class="section" aria-labelledby="up-h">
+        <div class="section-h"><h2 id="up-h">Biggest upsets</h2></div>
+        <div class="list">{upset_rows(ups, names)}</div>
+        <p class="section-foot">The chance the model gave the winner before tip-off.</p>
+      </section>
     </div>
-    <div class="slate-stats"><span class="chip" id="st-day"></span><span class="chip" id="st-std"></span><span class="spark" id="st-spark" title="season-to-date accuracy through this date; dashed = home baseline"></span></div>
-    <div class="games" role="table" aria-label="Games on the selected date">
-      <div class="game head" role="row"><span class="g-n">#</span><span class="g-m">Away @ Home</span><span class="g-elo">Elo A &middot; H</span><span class="g-bar">p(away) &rarr; p(home)</span><span class="g-p"><b>Away</b><b>Home</b></span><span class="g-pick">Pick</span><span class="g-drv">Drivers</span><span class="g-end"><span class="g-fin">Final</span><span class="g-res">Result</span></span></div>
-      <div id="slate-body"></div>
-    </div>
-    <p class="hint">Tap a team code for its page. <span class="desk"><span class="kbd">&larr;</span> <span class="kbd">&rarr;</span> change the day, <span class="kbd">esc</span> closes the panel.</span></p>
-    <p class="read-line"><b>Read:</b> {"Today's and upcoming games show the model's pre-game probability; played games are a hindcast" if live else "Every slate is a hindcast"}: the model was trained on seasons {esc(" + ".join(d["train_seasons"]))} only, features use games strictly before each date, and the final score is shown as a check, never as an input. Games are sorted by confidence; "Hit" means the pick won.</p>
-  </section>
+  </div>
 
-  <section class="sec" id="rankings" aria-label="Power rankings">
-    <div class="sec-h"><h2>Power rankings</h2><span class="read">Elo as of {esc(last_played)}</span></div>
-    {rankings_html(rk)}
-    <p class="read-line"><b>Read:</b> {esc(top["team"])} leads at {top["elo"]:.0f}. Biggest 30-day mover is <b>{esc(mover["team"])}</b> ({mover["d_elo_30"]:+.0f}); biggest faller <b>{esc(faller["team"])}</b> ({faller["d_elo_30"]:+.0f}). Net10 is point differential per game over the last 10 (a rating proxy; no possession data here).</p>
-  </section>
-
-  <section class="sec" id="sim" aria-label="Season simulator">
-    <div class="sec-h"><h2>Season simulator</h2><span class="read">Monte Carlo from {esc(sim["date"])} &middot; {sim["n_sims"]} runs{" &middot; published schedule" if sim.get("live") else ""}</span></div>
-    {sim_html(sim)}
-  </section>
-
-  <section class="sec">
-    <details class="more" id="upsets"><summary>Upsets &amp; confidence tiers</summary><div class="body">{upsets_html(ups, tiers, UPSET_THRESHOLD)}</div></details>
-  </section>
-  <section class="sec" style="margin-top:10px">
-    <details class="more" id="lab"><summary>Model lab <span class="muted desk-only" style="font-weight:500;font-size:12px;margin-left:8px">XGBoost vs Elo-logit vs HGB &middot; best month {best_month["month"]} at {best_month["xgb_accuracy"]:.0%}</span></summary><div class="body">{lab_html(met)}</div></details>
-  </section>
-
-  <section class="method" id="method">
-    <b>Method &amp; limits.</b> {method_data}
-    Features are built by streaming one day at a time so nothing from a game day leaks into that day's rows; a re-derivation assertion runs on every train. Train on seasons {esc(" + ".join(d["train_seasons"]))}, test on {esc(d["test_season"])}, calibrator and hyper-parameters chosen on the last 60 days of training. Elo: K=20, +80 home, margin multiplier, 25% carry-over regression.
-    The simulator uses Elo probabilities (not XGBoost) with in-path updates and random tiebreaks{", top-6 = direct playoff spot (no play-in)" if sim.get("live") else ""}; off/def are points per game, not per possession; no players, injuries, travel or market lines. Three learners roughly tie a one-feature Elo regression &mdash; that is the honest result, not a bug.
-    <b>{esc(DISCLAIMER)}</b>
-  </section>
-  <div class="foot"><span>{src_line}</span><span>Python</span><span>Pandas</span><span>scikit-learn</span><span>XGBoost</span><span>built {ts}</span></div>
+  <p class="footer-note">{src} <button type="button" class="linkbtn" data-act="about">About this model</button><br>{esc(DISCLAIMER)}</p>
 </main>
+
+<template id="rankings-tpl"><h3>Power rankings<small>All 30 teams by current team rating</small></h3><div class="list">{all_rank}</div>
+  <p class="section-foot">Arrows show movement over the last 30 days. Dots are the last 10 games, green for a win.</p></template>
+<template id="about-tpl">{about_html(met, sim, tiers, live, updated, n_final)}</template>
+
 <div class="scrim" id="scrim"></div>
-<aside class="drawer" id="drawer" aria-label="Team panel"></aside>
+<section class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" aria-hidden="true" inert>
+  <div class="sh-bar"><div class="grabber"></div><button type="button" class="btn plain" id="sheet-back" data-act="back" hidden>Back</button><button type="button" class="btn plain done" id="sheet-done" data-act="close">Done</button></div>
+  <div id="sheet-body"></div>
+</section>
 """
     return body, data_blob
 
 
+def _head_snippet(depth: str) -> str:
+    p = SITE / "_head_snippet.html"
+    s = p.read_text() if p.exists() else '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">'
+    s = "\n".join(l for l in s.splitlines() if not l.strip().startswith("<!--"))
+    return s.replace('href="../', f'href="{depth}')
+
+
 def _page(body: str, data_blob: str, *, standalone: bool, depth: str) -> str:
-    head_css = (f"<style>{(SITE_ASSETS / 'shell.css').read_text()}</style>" if standalone
-                else '<link rel="stylesheet" href="../assets/shell.css">')
-    shell_js = (f"<script>{(SITE_ASSETS / 'shell.js').read_text()}</script>" if standalone
-                else '<script src="../assets/shell.js"></script>')
+    if standalone:
+        head_assets = f"<style>{(SITE_ASSETS / 'app.css').read_text()}</style>"
+        tail_shell = f"<script>{(SITE_ASSETS / 'app-shell.js').read_text()}</script>"
+    else:
+        head_assets = '<link rel="stylesheet" href="../assets/app.css">\n<script src="../assets/app-shell.js" defer></script>'
+        tail_shell = ""
     return f"""<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0b0d12"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Game Predictor · NBA Projects</title>
-{head_css}
+{_head_snippet(depth)}
+<title>Games — NBA Projects</title>
+<meta name="description" content="Win chances for every NBA game, power rankings and playoff odds.">
+{head_assets}
 <style>{CSS}</style>
 </head>
-<body data-app="predictor" data-title="Game Predictor" data-mark="GP" data-depth="{depth}">
+<body data-app="predictor" data-title="Games" data-depth="{depth}">
 {body}
 <script id="gp-data" type="application/json">{data_blob}</script>
-{shell_js}
+{tail_shell}
 <script>{JS}</script>
 </body></html>
 """
