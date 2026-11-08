@@ -4,8 +4,9 @@ numpy>=1.26
 scipy>=1.11
 scikit-learn>=1.4
 xgboost>=2.0
+requests>=2.31          # ESPN public API loader
 
-# Optional: real data from stats.nba.com (not reachable from the build machine)
+# Optional: true 5-man stints from stats.nba.com (tried first; blocked from most cloud IPs)
 nba_api>=1.4
 
 # Optional: richer SHAP plots. Not required -- explanations use XGBoost's

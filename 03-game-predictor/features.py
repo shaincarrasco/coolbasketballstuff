@@ -110,9 +110,21 @@ EXTRA_FEATURES = ["elo_prob", "h2h_home_wp", "h2h_n", "home_rest", "away_rest", 
 FEATURE_COLUMNS = DIFF_FEATURES + EXTRA_FEATURES
 
 
+def load_games(path, include_playoffs: bool = False) -> pd.DataFrame:
+    """Read games.csv. Real data carries `season_type` (2 = regular season, 3 = playoffs);
+    playoffs are excluded from Elo / training by default. Sample data has no such column."""
+    df = pd.read_csv(path)
+    if "season_type" in df.columns and not include_playoffs:
+        df = df[df["season_type"] == 2].copy()
+    return df.reset_index(drop=True)
+
+
 def build_features(games: pd.DataFrame) -> pd.DataFrame:
     """Return games + one feature row per game (strictly pre-game information).
-    Games may have NaN scores (unplayed); they get features but never update state."""
+    Games may have NaN scores (unplayed / scheduled); they get features but never
+    update results or Elo. They DO advance each team's `last_date`, because the
+    schedule itself is known before tip-off, so rest / back-to-back flags for a
+    game two days out account for the game in between."""
     df = games.copy()
     df["date"] = pd.to_datetime(df["date"])
     df = df.sort_values(["date", "game_id"]).reset_index(drop=True)
@@ -155,9 +167,10 @@ def build_features(games: pd.DataFrame) -> pd.DataFrame:
 
         # --- 2) fold today's results into state (after all features) -------
         for _, g in day_games.iterrows():
-            if pd.isna(g["home_pts"]) or pd.isna(g["away_pts"]):
-                continue
             h, a = g["home_team"], g["away_team"]
+            if pd.isna(g["home_pts"]) or pd.isna(g["away_pts"]):
+                state[h].last_date = state[a].last_date = day   # scheduled: rest only
+                continue
             hp, ap = int(g["home_pts"]), int(g["away_pts"])
             margin = hp - ap
             sh, sa = state[h], state[a]
@@ -198,16 +211,16 @@ def final_elos(games: pd.DataFrame) -> dict[str, float]:
 def _naive_team_stats(games: pd.DataFrame, team: str, before: pd.Timestamp, season: str):
     """Recompute L10 win%, L10 point diff and rest days with an explicit
     date < game_date filter, independent from the streaming implementation."""
-    past = games[(games["date"] < before) & (games["home_pts"].notna())
-                 & ((games["home_team"] == team) | (games["away_team"] == team))].sort_values("date")
+    sched = games[(games["date"] < before) & ((games["home_team"] == team) | (games["away_team"] == team))].sort_values("date")
+    past = sched[sched["home_pts"].notna()]
+    season_sched = sched[sched["season"] == season]   # rest counts scheduled (unplayed) games too
+    rest = REST_CAP if season_sched.empty else min((before - season_sched["date"].iloc[-1]).days, REST_CAP)
     if past.empty:
-        return np.nan, np.nan, REST_CAP
+        return np.nan, np.nan, rest
     is_home = past["home_team"] == team
     pf = np.where(is_home, past["home_pts"], past["away_pts"])
     pa = np.where(is_home, past["away_pts"], past["home_pts"])
     wins = (pf > pa).astype(float)
-    season_past = past[past["season"] == season]
-    rest = REST_CAP if season_past.empty else min((before - season_past["date"].iloc[-1]).days, REST_CAP)
     return wins[-10:].mean(), (pf - pa)[-10:].mean(), rest
 
 
@@ -240,7 +253,7 @@ if __name__ == "__main__":
     import sys
     from pathlib import Path
     p = Path(sys.argv[1]) if len(sys.argv) > 1 else Path(__file__).parent / "data" / "games.csv"
-    games = pd.read_csv(p)
+    games = load_games(p)
     feats = build_features(games)
     assert_no_leakage(games, feats)
     print(feats[["game_id", "date", "home_team", "away_team", "elo_diff", "elo_prob", "wp10_diff", "home_rest", "home_win"]].tail(8).to_string())

@@ -24,13 +24,14 @@ import numpy as np
 import pandas as pd
 import xgboost as xgb
 
-from features import build_features
+from features import build_features, load_games
 from model import load_model
-from predict import _fmt_driver
+from predict import _fmt_driver, read_meta, tip_et, today_et
 
 ROOT = Path(__file__).resolve().parent
 OUTPUT = ROOT / "output"
 UPSET_THRESHOLD = 0.35
+SLATE_HORIZON_DAYS = 7   # unplayed games shown in the slate picker: today .. today + 7
 TIER_EDGES = [0.0, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80, 1.0001]
 
 
@@ -47,7 +48,7 @@ def scored_features(games_path: Path | None = None) -> tuple[pd.DataFrame, str, 
     """Feature frame for every game with model probability `p_home` (frozen model)
     and SHAP-style contributions for the test season. Returns (feats, test_season, cols)."""
     games_path = Path(games_path) if games_path else ROOT / "data" / "games.csv"
-    games = pd.read_csv(games_path)
+    games = load_games(games_path)
     feats = build_features(games)
     booster, calibrator, _, cols = load_model()
     dm = xgb.DMatrix(feats[cols], feature_names=cols)
@@ -65,8 +66,17 @@ def scored_features(games_path: Path | None = None) -> tuple[pd.DataFrame, str, 
 
 
 # ---- 1) slates for the whole test season ---------------------------------
+def slate_horizon(feats: pd.DataFrame) -> pd.Timestamp:
+    """Last date shown in the slate picker: today + 7 for live data, end of data otherwise."""
+    if feats["home_pts"].isna().any():
+        return today_et() + pd.Timedelta(days=SLATE_HORIZON_DAYS)
+    return feats["date"].max()
+
+
 def season_predictions(feats: pd.DataFrame, test_season: str) -> dict:
-    te = feats[(feats["season"] == test_season)].sort_values(["date", "game_id"])
+    horizon = slate_horizon(feats)
+    te = feats[(feats["season"] == test_season) & (feats["date"] <= horizon)]
+    te = te.sort_values(["date", "tip_utc" if "tip_utc" in te.columns else "game_id", "game_id"])
     slates: dict[str, list[dict]] = {}
     running: dict[str, dict] = {}
     hits = n = 0
@@ -81,6 +91,11 @@ def season_predictions(feats: pd.DataFrame, test_season: str) -> dict:
                    "ep": round(float(g["elo_prob"]), 3), "pick": pick,
                    "drv": g["drivers"] if isinstance(g["drivers"], list) else [],
                    "rh": int(g["home_rest"]), "ra": int(g["away_rest"])}
+            if "espn_id" in g and not pd.isna(g["espn_id"]):
+                row["eid"] = str(int(g["espn_id"]))
+                t = tip_et(g.get("tip_utc"))
+                if t:
+                    row["t"] = t
             if not pd.isna(g["home_pts"]):
                 row["hp"], row["ap"] = int(g["home_pts"]), int(g["away_pts"])
                 row["w"] = g["home_team"] if g["home_pts"] > g["away_pts"] else g["away_team"]
@@ -92,7 +107,10 @@ def season_predictions(feats: pd.DataFrame, test_season: str) -> dict:
         day_hits = sum(1 for r in rows if r.get("ok"))
         day_n = sum(1 for r in rows if "ok" in r)
         running[key] = {"n": day_n, "hits": day_hits, "std_n": n, "std_hits": hits}
-    return {"season": test_season, "dates": list(slates.keys()), "slates": slates, "running": running}
+    played_dates = [d for d, rows in slates.items() if any("ok" in r for r in rows)]
+    return {"season": test_season, "dates": list(slates.keys()), "slates": slates, "running": running,
+            "last_played_date": played_dates[-1] if played_dates else None,
+            "today": str(today_et().date()) if feats["home_pts"].isna().any() else None}
 
 
 # ---- 2) Elo history + rankings --------------------------------------------
@@ -175,7 +193,7 @@ def power_rankings(feats: pd.DataFrame, teams: pd.DataFrame, as_of: pd.Timestamp
 
 # ---- 3) team pages ---------------------------------------------------------
 def team_pages(feats: pd.DataFrame, teams: pd.DataFrame, season: str) -> dict[str, dict]:
-    f = feats[feats["season"] == season].sort_values(["date", "game_id"])
+    f = feats[(feats["season"] == season) & (feats["date"] <= slate_horizon(feats))].sort_values(["date", "game_id"])
     names = dict(teams[["code", "name"]].values)
     conf = dict(teams[["code", "conference"]].values)
     pages = {}
@@ -284,12 +302,12 @@ def build_all(games_path: Path | None = None, as_of: str | None = None) -> dict:
     pd.DataFrame([{**{k: v for k, v in r.items() if k not in ("missed", "drv")}, "missed": " | ".join(r["missed"])}
                   for r in up]).to_csv(OUTPUT / "upsets.csv", index=False)
     pd.DataFrame(tr).to_csv(OUTPUT / "confidence_tiers.csv", index=False)
-    return {"season": test_season, "feats": feats, "teams": teams, "season_predictions": sp,
+    return {"season": test_season, "feats": feats, "teams": teams, "season_predictions": sp, "meta": read_meta(),
             "rankings": rk, "team_pages": tp, "upsets": up, "tiers": tr}
 
 
 def print_rankings(rows: list[dict], as_of: str | None = None) -> None:
-    print(f"\nPOWER RANKINGS (Elo){'  as of ' + as_of if as_of else ''}   [SAMPLE DATA]")
+    print(f"\nPOWER RANKINGS (Elo){'  as of ' + as_of if as_of else ''}   [{'SAMPLE DATA' if read_meta().get('source', 'sample') != 'espn' else 'ESPN DATA'}]")
     print(f"{'#':>3} {'team':<5}{'conf':<6}{'elo':>7}{'30d':>7}{'rk30':>5}  {'W-L':<7}{'L10':<11}{'off':>6}{'def':>6}{'net':>6}")
     for r in rows:
         arrow = f"{r['d_rank']:+d}" if r["d_rank"] else "="
@@ -299,7 +317,8 @@ def print_rankings(rows: list[dict], as_of: str | None = None) -> None:
 
 def print_team(code: str, page: dict, rank_row: dict | None) -> None:
     print(f"\n{code} · {page['name']}  ({page['conf']})  {page['w']}-{page['l']}"
-          + (f"  Elo {rank_row['elo']:.0f} (#{rank_row['rank']})" if rank_row else "") + "   [SAMPLE DATA]")
+          + (f"  Elo {rank_row['elo']:.0f} (#{rank_row['rank']})" if rank_row else "")
+          + f"   [{'SAMPLE DATA' if read_meta().get('source', 'sample') != 'espn' else 'ESPN DATA'}]")
     r = page["rec"]
     print(f"home {r['home'][0]}-{r['home'][1]}  away {r['away'][0]}-{r['away'][1]}  "
           f"B2B {r['b2b'][0]}-{r['b2b'][1]}  rested {r['rested'][0]}-{r['rested'][1]}  "

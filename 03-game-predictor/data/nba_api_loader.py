@@ -1,5 +1,9 @@
 """
-Optional real-data path via `nba_api` (stats.nba.com).
+LEGACY real-data path via `nba_api` (stats.nba.com). Superseded by
+data/espn_loader.py (the default); kept for reference and for anyone who can
+reach stats.nba.com. Note: nba_api uses different team codes for a few
+franchises (GSW/NYK/NOP/SAS/UTA/WAS) than ESPN (GS/NY/NO/SA/UTAH/WSH), so do not
+mix caches from the two sources.
 
 Builds the exact same games.csv schema as sample_generator.py:
     game_id, date, season, home_team, away_team, home_pts, away_pts
@@ -11,7 +15,7 @@ message, so the pipeline always degrades gracefully.
 
 Usage:
     python data/nba_api_loader.py --seasons 2022-23 2023-24 2024-25
-    python cli.py generate --real --seasons 2022-23 2023-24 2024-25
+    python cli.py generate --real --real-seasons 2022-23 2023-24 2024-25
 """
 from __future__ import annotations
 

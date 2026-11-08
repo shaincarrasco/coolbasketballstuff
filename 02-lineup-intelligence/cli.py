@@ -1,7 +1,8 @@
 """
 Five IQ — Lineup Intelligence CLI.
 
-    python cli.py generate [--seed 5150] [--per-team 70] [--real --season 2024-25]
+    python cli.py generate [--source auto|nba|espn|sample] [--prev-games 40] [--no-refresh]
+                           [--seed 5150 --per-team 70]      # sample-league knobs
     python cli.py train
     python cli.py recommend --team "Harbor City" [--top 10] [--min-bigs 1] [--max-zero-minute 0]
                             [--must "Okonkwo"] [--exclude "Thorne"]
@@ -34,24 +35,76 @@ def _load_data() -> tuple[pd.DataFrame, pd.DataFrame]:
     return pd.read_csv(pp), pd.read_csv(lp)
 
 
-def cmd_generate(args) -> None:
-    if getattr(args, "real", False):
+SOURCE_PATH = os.path.join(DATA_DIR, "source.json")
+
+
+def _write_source(info: dict) -> dict:
+    with open(SOURCE_PATH, "w") as fh:
+        json.dump(info, fh, indent=2)
+    return info
+
+
+def load_source() -> dict:
+    """Provenance of data/players.csv + lineups.csv (written by `generate`)."""
+    if os.path.exists(SOURCE_PATH):
+        with open(SOURCE_PATH) as fh:
+            return json.load(fh)
+    return {"source": "sample", "label": "Sample league", "chip": "Sample data · synthetic", "fetched_at": None}
+
+
+def cmd_generate(args) -> dict:
+    """Pick the data source automatically: nba_api (true 5-man stints) -> ESPN box scores -> synthetic sample."""
+    source = getattr(args, "source", "auto")
+    if getattr(args, "real", False) and source == "auto":
+        source = "nba"
+    if source in ("auto", "nba"):
         from data.nba_api_loader import load_real_data
-        players, lineups = load_real_data(season=args.season)
+        players, lineups = load_real_data(season=args.season, timeout=15)
         if players is not None:
-            print(f"Real data: {len(players)} players, {len(lineups)} lineups -> data/")
-            return
-        print("Falling back to the synthetic sample generator.")
+            print(f"Real data (stats.nba.com): {len(players)} players, {len(lineups)} 5-man stint lineups -> data/")
+            return _write_source({"source": "nba_api", "label": "NBA Stats", "chip": "Live data · NBA Stats",
+                                  "fetched_at": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime()), "seasons": [args.season],
+                                  "players": int(len(players)), "lineups": int(len(lineups)), "teams": int(players.team.nunique()),
+                                  "lineup_definition": "stats.nba.com leaguedashlineups 5-man stints (Advanced)"})
+        if source == "nba":
+            print("stats.nba.com failed and --source nba was requested; falling back to ESPN anyway.")
+    if source in ("auto", "nba", "espn"):
+        from data.espn_loader import load_espn_data
+        try:
+            players, lineups, info = load_espn_data(prev_games_per_team=args.prev_games or None, refresh=not args.no_refresh)
+            return info
+        except Exception as exc:  # network down, cache empty ...
+            print(f"[espn] failed: {type(exc).__name__}: {str(exc)[:160]}")
+            print("Falling back to the synthetic sample generator.")
     from data.sample_generator import generate
     players, lineups = generate(seed=args.seed, per_team=args.per_team)
     print(f"Sample data: {len(players)} players across {players.team.nunique()} fictional teams, "
           f"{len(lineups)} five-man lineups -> data/players.csv, data/lineups.csv")
+    return _write_source({"source": "sample", "label": "Sample league", "chip": "Sample data · synthetic",
+                          "fetched_at": time.strftime("%Y-%m-%d %H:%M UTC", time.gmtime()), "seasons": [], "players": int(len(players)),
+                          "lineups": int(len(lineups)), "teams": int(players.team.nunique()),
+                          "lineup_definition": "seeded synthetic league with a hidden synergy function"})
+
+
+def _data_note(src: dict) -> str:
+    if src.get("source") == "espn":
+        return ("Real NBA data (ESPN public box scores). Lineups are starting / closing-five approximations, not stint data; "
+                "fit scores are model point predictions.")
+    if src.get("source") == "nba_api":
+        return "Real NBA data (stats.nba.com 5-man stint lineups). Fit scores are model point predictions."
+    return "Sample data. Fictional teams and players. Fit scores are for demonstration only."
 
 
 def cmd_train(args) -> dict:
-    from model import train
+    from model import train, MODEL_DIR
     players, lineups = _load_data()
-    return train(players, lineups)
+    meta = train(players, lineups)
+    src = load_source()
+    meta["data_source"] = src
+    meta["data_note"] = _data_note(src)
+    with open(os.path.join(MODEL_DIR, "meta.json"), "w") as fh:
+        json.dump(meta, fh, indent=2)
+    return meta
 
 
 def _constraints(args):
@@ -109,7 +162,7 @@ def _print_recs(out: dict) -> None:
 
 def _build_pages(meta: dict, all_recs: dict, tables: dict, players: pd.DataFrame, site: str | None) -> list[str]:
     from report import build_report
-    return build_report(meta, all_recs, tables, players, site_dir=site)
+    return build_report(meta, all_recs, tables, players, site_dir=site, source=load_source())
 
 
 def cmd_recommend(args) -> dict:
@@ -123,12 +176,12 @@ def cmd_recommend(args) -> dict:
         _print_recs(out)
     if args.site:
         # the page covers every team, so rebuild all recommendations + tables (a few seconds)
-        from optimize import recommend_all, score_team
+        from optimize import recommend_all, score_team, team_list
         with open(os.path.join(ROOT, "models", "meta.json")) as fh:
             meta = json.load(fh)
         cons = _constraints(args)
         all_recs = recommend_all(players, lineups, cons, top_n=args.top)
-        tables = {t: score_team(t, players, lineups, cons) for t in players.team.unique()}
+        tables = {t: score_team(t, players, lineups, cons) for t in team_list(players)}
         for p in _build_pages(meta, all_recs, tables, players, args.site):
             print(f"wrote {p}")
     return out
@@ -141,15 +194,18 @@ def cmd_demo(args) -> None:
     print("\n== 2/5 train ==")
     meta = cmd_train(args)
     print("\n== 3/5 recommend + rotations (all teams) ==")
-    from optimize import recommend_all, score_team, export_team
+    from optimize import recommend_all, score_team, export_team, team_list
     players, lineups = _load_data()
     cons = _constraints(args)
     all_recs = recommend_all(players, lineups, cons, top_n=args.top)
     os.makedirs(OUT_DIR, exist_ok=True)
+    src = load_source()
     payload = {
-        "note": "Sample data. Fictional teams and players. Fit scores are for demonstration only.",
+        "note": _data_note(src),
+        "data_source": src,
         "fit_score_transform": f"100 * sigmoid((net_pred - {meta['fit_center']:.3f}) / {meta['fit_scale']:.3f})",
         "metrics": meta["evaluation"]["metrics"],
+        "evaluation": {k: meta["evaluation"][k] for k in ("n_rows", "n_teams", "n_features", "folds")},
         "teams": all_recs,
     }
     rec_path = os.path.join(OUT_DIR, "recommendations.json")
@@ -164,7 +220,7 @@ def cmd_demo(args) -> None:
 
     print("\n== 4/5 exports (every five + pairwise synergy per team) ==")
     tables = {}
-    for t in players.team.unique():
+    for t in team_list(players):
         tt = score_team(t, players, lineups, cons)
         tables[t] = tt
         p1, p2 = export_team(tt, OUT_DIR)
@@ -180,10 +236,14 @@ def main(argv=None) -> None:
     sub = ap.add_subparsers(dest="cmd", required=True)
 
     def add_gen(p):
-        p.add_argument("--seed", type=int, default=5150)
-        p.add_argument("--per-team", type=int, default=70, help="historical lineups per team (sample data)")
-        p.add_argument("--real", action="store_true", help="try nba_api (stats.nba.com) before falling back to sample data")
-        p.add_argument("--season", default="2024-25")
+        p.add_argument("--source", choices=("auto", "nba", "espn", "sample"), default="auto",
+                       help="auto: try stats.nba.com (15 s), then ESPN's public API, then the synthetic sample league")
+        p.add_argument("--prev-games", type=int, default=40, help="ESPN: cap on each team's previous-season games (0 = whole season)")
+        p.add_argument("--no-refresh", action="store_true", help="ESPN: rebuild from data/cache without network calls")
+        p.add_argument("--seed", type=int, default=5150, help="sample league seed")
+        p.add_argument("--per-team", type=int, default=70, help="sample league: historical lineups per team")
+        p.add_argument("--real", action="store_true", help=argparse.SUPPRESS)       # legacy alias for --source nba
+        p.add_argument("--season", default="2025-26", help="nba_api season string")
 
     def add_rec(p, need_team: bool):
         if need_team:

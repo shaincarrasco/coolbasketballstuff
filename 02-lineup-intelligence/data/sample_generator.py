@@ -1,8 +1,8 @@
 """
 Synthetic, offline dataset for Lineup Intelligence (Five IQ).
 
-stats.nba.com is not reachable from the build machine, so this module invents a
-small fictional league:
+Offline fallback / benchmark (`cli.py generate --source sample`). The default build
+uses real ESPN data (data/espn_loader.py); this module invents a small fictional league:
 
 * 8 fictional teams (no real NBA franchises)
 * 13 fictional players per team with season-level stats

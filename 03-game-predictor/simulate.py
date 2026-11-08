@@ -25,7 +25,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from features import ELO_HOME_ADV, ELO_K, build_features
+from features import ELO_HOME_ADV, ELO_K, build_features, load_games
 
 ROOT = Path(__file__).resolve().parent
 OUTPUT = ROOT / "output"
@@ -33,15 +33,20 @@ PLAYOFF_SPOTS = 6
 
 
 def default_sim_date(feats: pd.DataFrame, season: str) -> pd.Timestamp:
-    """A date ~55% of the way through the season's game days (roughly the All-Star break)."""
-    days = sorted(feats.loc[feats["season"] == season, "date"].unique())
+    """Live data (unplayed games present): today. Complete season (hindcast): a date
+    ~55% of the way through the season's game days (roughly the All-Star break)."""
+    f = feats[feats["season"] == season]
+    if f["home_pts"].isna().any():
+        from predict import today_et
+        return max(today_et(), f["date"].min())
+    days = sorted(f["date"].unique())
     return pd.Timestamp(days[int(len(days) * 0.55)])
 
 
 def simulate(date: str | None = None, n_sims: int = 2000, seed: int = 42, feats: pd.DataFrame | None = None,
              teams: pd.DataFrame | None = None, focus: str | None = None, games_path: Path | None = None) -> dict:
     if feats is None:
-        games = pd.read_csv(Path(games_path) if games_path else ROOT / "data" / "games.csv")
+        games = load_games(Path(games_path) if games_path else ROOT / "data" / "games.csv")
         feats = build_features(games)
     if teams is None:
         from analytics import load_teams
@@ -51,6 +56,8 @@ def simulate(date: str | None = None, n_sims: int = 2000, seed: int = 42, feats:
     d0 = pd.to_datetime(date) if date else default_sim_date(feats, season)
     if not (f["date"].min() <= d0 <= f["date"].max()):
         raise SystemExit(f"--date must be inside season {season} ({f['date'].min().date()} .. {f['date'].max().date()})")
+    live = bool(f["home_pts"].isna().any())   # in-progress season: simulate the published remaining schedule
+    cup = f["cup_final"].fillna(False).astype(bool) if "cup_final" in f.columns else pd.Series(False, index=f.index)
 
     codes = list(teams["code"])
     idx = {t: i for i, t in enumerate(codes)}
@@ -58,13 +65,17 @@ def simulate(date: str | None = None, n_sims: int = 2000, seed: int = 42, feats:
     T = len(codes)
 
     # --- standings & Elo as of d0 --------------------------------------------
-    before = f[(f["date"] < d0)].dropna(subset=["home_pts"])
+    if live:
+        before = f[f["home_pts"].notna()]                       # everything final so far (incl. today's early tips)
+        remaining = f[f["home_pts"].isna() & (f["date"] >= d0)]  # published schedule, not yet played
+    else:
+        before = f[(f["date"] < d0)].dropna(subset=["home_pts"])
+        remaining = f[f["date"] >= d0]
     wins = np.zeros(T); losses = np.zeros(T)
-    for _, g in before.iterrows():
+    for _, g in before[~cup.loc[before.index]].iterrows():       # NBA Cup final does not count in the standings
         hw = g["home_pts"] > g["away_pts"]
         wins[idx[g["home_team"]]] += hw; losses[idx[g["home_team"]]] += not hw
         wins[idx[g["away_team"]]] += not hw; losses[idx[g["away_team"]]] += hw
-    remaining = f[f["date"] >= d0]
     elo0 = np.full(T, 1500.0)
     seen = set()
     for _, g in remaining.iterrows():  # pre-game Elo of each team's first remaining game == Elo as of d0
@@ -108,7 +119,15 @@ def simulate(date: str | None = None, n_sims: int = 2000, seed: int = 42, feats:
         hw = g["home_pts"] > g["away_pts"]
         final_w[idx[g["home_team"]]] += hw; final_l[idx[g["home_team"]]] += not hw
         final_w[idx[g["away_team"]]] += not hw; final_l[idx[g["away_team"]]] += hw
-    season_complete = bool(remaining["home_pts"].notna().all()) and len(remaining) > 0
+    season_complete = (not live) and bool(remaining["home_pts"].notna().all()) and len(remaining) > 0
+    games_per_team = pd.concat([f["home_team"], f["away_team"]]).value_counts()
+    schedule_note = None
+    if live:
+        missing = int(82 * T // 2 - len(f[~cup]))
+        schedule_note = (f"Published schedule as of {d0.date()}: {len(remaining)} unplayed games. "
+                         + (f"{missing} games are not on the schedule yet (NBA Cup knockout rounds and the extra "
+                            "regular-season games for non-finalists are fixed in December); expected wins are "
+                            "pro-rated to 82 games below." if missing > 0 else ""))
     actual_playoff = np.zeros(T, dtype=bool)
     if season_complete:
         for c in np.unique(conf):
@@ -119,25 +138,32 @@ def simulate(date: str | None = None, n_sims: int = 2000, seed: int = 42, feats:
     names = dict(teams[["code", "name"]].values)
     rows = []
     gp = wins + losses
+    # live: a team whose schedule still misses games (Cup-dependent) gets its simulated total pro-rated to 82
+    sched_g = np.array([int(games_per_team.get(t, 0)) for t in codes], dtype=float)
+    if live:
+        sched_g -= np.array([int(cup[(f["home_team"] == t) | (f["away_team"] == t)].sum()) for t in codes])
+    scale = np.where(live & (sched_g > 0), 82.0 / np.maximum(sched_g, 1), 1.0)
+    W_adj = W * scale[None, :]
     for i, t in enumerate(codes):
         rows.append({
             "team": t, "name": names[t], "conf": conf[i], "elo": round(float(elo0[i]), 1),
-            "w": int(wins[i]), "l": int(losses[i]), "gp": int(gp[i]),
-            "exp_w": round(float(W[:, i].mean()), 1), "sd_w": round(float(W[:, i].std()), 1),
-            "w_lo": int(np.percentile(W[:, i], 5)), "w_hi": int(np.percentile(W[:, i], 95)),
+            "w": int(wins[i]), "l": int(losses[i]), "gp": int(gp[i]), "sched_g": int(sched_g[i]),
+            "exp_w": round(float(W_adj[:, i].mean()), 1), "sd_w": round(float(W_adj[:, i].std()), 1),
+            "w_lo": int(np.percentile(W_adj[:, i], 5)), "w_hi": int(np.percentile(W_adj[:, i], 95)),
             "playoff": round(float(playoff[i]), 4), "top_seed": round(float(seed1[i]), 4), "seed_mean": round(float(seed_mean[i]), 2),
             "final_w": int(final_w[i]) if season_complete else None, "final_l": int(final_l[i]) if season_complete else None,
             "made_playoffs": bool(actual_playoff[i]) if season_complete else None,
         })
     rows.sort(key=lambda r: (r["conf"], -r["exp_w"]))
     focus = focus or max(rows, key=lambda r: r["sd_w"] * (0.5 - abs(0.5 - r["playoff"])) + r["exp_w"] * 1e-3)["team"]
-    fw = W[:, idx[focus]].astype(int)
+    fw = np.rint(W_adj[:, idx[focus]]).astype(int)
     lo, hi = int(fw.min()), int(fw.max())
     hist = [{"wins": w, "n": int((fw == w).sum())} for w in range(lo, hi + 1)]
     brier = (float(np.mean((playoff - actual_playoff) ** 2)) if season_complete else None)
 
     out = {
-        "season": season, "date": str(d0.date()), "n_sims": n_sims, "seed": seed, "sample_data": True,
+        "season": season, "date": str(d0.date()), "n_sims": n_sims, "seed": seed, "sample_data": "cup_final" not in f.columns,
+        "live": live, "schedule_note": schedule_note,
         "games_played": int(len(before)), "games_remaining": int(len(remaining)), "playoff_spots": PLAYOFF_SPOTS,
         "method": "Elo win probabilities with in-path Elo updates (K=20, +80 home), random tiebreaks",
         "season_complete": season_complete, "playoff_brier": brier,
@@ -152,7 +178,9 @@ def simulate(date: str | None = None, n_sims: int = 2000, seed: int = 42, feats:
 
 def print_sim(out: dict) -> None:
     print(f"\nSEASON SIMULATOR  from {out['date']}  ({out['games_played']} played, {out['games_remaining']} remaining, "
-          f"N={out['n_sims']})   [SAMPLE DATA]")
+          f"N={out['n_sims']})   [{'SAMPLE DATA' if out.get('sample_data') else 'ESPN DATA'}]")
+    if out.get("schedule_note"):
+        print(out["schedule_note"])
     for c in ("East", "West"):
         print(f"\n-- {c} --   top-{out['playoff_spots']} make the playoffs")
         print(f"{'team':<5}{'W-L':<8}{'elo':>6}{'expW':>7}{'5-95%':>9}{'playoff':>9}{'#1 seed':>9}" + ("   final" if out["season_complete"] else ""))

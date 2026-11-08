@@ -1,0 +1,71 @@
+# Daily refresh: pull new NBA games/box scores from ESPN, retrain, rebuild the site,
+# commit the updated cache + site, and deploy to GitHub Pages.
+# (A push made with GITHUB_TOKEN does not trigger pages.yml, so this workflow deploys itself.)
+name: Refresh NBA data and redeploy
+
+on:
+  schedule:
+    - cron: "17 11 * * *"   # 11:17 UTC daily ≈ 6:17 am ET, after West Coast games finish
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies (CPU torch)
+        run: |
+          python -m pip install --upgrade pip
+          pip install --index-url https://download.pytorch.org/whl/cpu torch
+          pip install -r requirements.txt
+
+      - name: Fetch latest data, retrain, rebuild site
+        env:
+          NO_OPEN: "1"
+          PYTHONUNBUFFERED: "1"
+        run: python build_site.py
+
+      - name: Commit refreshed cache and site
+        id: commit
+        run: |
+          git config user.name "nba-projects-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A site */data/cache */output/*.json */output/*.csv */models 2>/dev/null || true
+          git add -A site
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"; echo "No changes."
+          else
+            git commit -m "data: daily refresh $(date -u +%Y-%m-%d)"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/configure-pages@v5
+      - name: Upload site/ as the Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,11 +1,12 @@
 """
 Optional real-data path via `nba_api` (stats.nba.com).
 
-NOT used by the default demo. stats.nba.com was unreachable from the build
-machine, so everything in this repo was developed against data/sample_generator.py.
-This module is the adapter you would switch to with network access:
+Tried FIRST by `cli.py generate` (--source auto) with a 15 s timeout because it gives
+true 5-man stint lineups; stats.nba.com is blocked from the build machine, so the
+shipped build falls through to data/espn_loader.py (box-score approximations).
+From a network that can reach it (e.g. GitHub Actions):
 
-    python cli.py generate --real --season 2024-25
+    python cli.py generate --source nba --season 2025-26
     # or from Python:
     from data.nba_api_loader import load_real_data
     players, lineups = load_real_data("2024-25")   # returns None, None on failure
@@ -48,25 +49,26 @@ import pandas as pd
 DATA_DIR = os.path.dirname(os.path.abspath(__file__))
 TIMEOUT = 20          # seconds per request
 PAUSE = 0.8           # seconds between requests (rate-limit courtesy)
-UNREACHABLE_MSG = "stats.nba.com unreachable — using sample data (run `python cli.py generate`)."
+UNREACHABLE_MSG = "stats.nba.com unreachable — falling back to ESPN's public API."
 
 
 def _fail(reason: str) -> tuple[None, None]:
-    print(f"[nba_api_loader] {reason}")
-    print(f"[nba_api_loader] {UNREACHABLE_MSG}")
+    print(f"[nba_api_loader] {reason} {UNREACHABLE_MSG}")
     return None, None
 
 
 def load_real_data(season: str = "2024-25", min_lineup_minutes: float = 10.0,
-                   out_dir: str = DATA_DIR, save: bool = True) -> tuple[Optional[pd.DataFrame], Optional[pd.DataFrame]]:
+                   out_dir: str = DATA_DIR, save: bool = True, timeout: int = TIMEOUT) -> tuple[Optional[pd.DataFrame], Optional[pd.DataFrame]]:
     """Pull 5-man lineups and player stats. Returns (players, lineups) or (None, None)."""
+    global TIMEOUT
+    TIMEOUT = timeout
     try:
         from nba_api.stats.endpoints import leaguedashlineups, leaguedashplayerstats, leaguedashplayerbiostats
     except ImportError:
         return _fail("nba_api is not installed (pip install nba_api).")
 
     try:
-        print(f"[nba_api_loader] requesting 5-man lineups for {season} (timeout {TIMEOUT}s)...")
+        print(f"[nba_api_loader] trying stats.nba.com 5-man lineups for {season} (timeout {TIMEOUT}s)...")
         lu = leaguedashlineups.LeagueDashLineups(
             season=season, group_quantity=5, measure_type_detailed_defense="Advanced",
             per_mode_detailed="Totals", timeout=TIMEOUT,
@@ -134,6 +136,9 @@ def _build_players(adv: pd.DataFrame, base: pd.DataFrame, bio: pd.DataFrame) -> 
     df["dbpm"] = ((lg_def - a["DEF_RATING"]) * 0.4).round(2)
     df["def_rating_proxy"] = a["DEF_RATING"].astype(float)
     df = df[df.minutes > 0].reset_index(drop=True)
+    df["injury_status"] = ""
+    df["on_roster"] = 1
+    df["active"] = 1            # every player who logged minutes for the team this season
     return df
 
 

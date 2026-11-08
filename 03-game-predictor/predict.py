@@ -14,29 +14,60 @@ from __future__ import annotations
 import json
 from datetime import datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import numpy as np
 import pandas as pd
 import xgboost as xgb
 
-from features import build_features
+from features import build_features, load_games
 from model import load_model
 
 ROOT = Path(__file__).resolve().parent
 MIN_SLATE = 6
+ET = ZoneInfo("America/New_York")
+
+
+def today_et() -> pd.Timestamp:
+    return pd.Timestamp(datetime.now(timezone.utc).astimezone(ET).date())
+
+
+def read_meta() -> dict:
+    p = ROOT / "data" / "meta.json"
+    return json.loads(p.read_text()) if p.exists() else {"source": "sample"}
 
 
 def default_date(games: pd.DataFrame) -> pd.Timestamp:
-    """First unplayed day if the dataset has any; otherwise the last day of
-    the final season that has a full slate (>= MIN_SLATE games)."""
+    """Real data: today's slate (US/Eastern), else the next day with games (from
+    data/cache/espn_scheduled.csv when present), else the last played date.
+    Sample data: the last day of the final season with a full slate (>= MIN_SLATE games)."""
     d = pd.to_datetime(games["date"])
     unplayed = games["home_pts"].isna() | games["away_pts"].isna()
     if unplayed.any():
-        return d[unplayed].min()
+        today = today_et()
+        sched_path = ROOT / "data" / "cache" / "espn_scheduled.csv"
+        upcoming = pd.to_datetime(pd.read_csv(sched_path)["date"]) if sched_path.exists() else d[unplayed]
+        upcoming = upcoming[upcoming >= today]
+        if (d == today).any():
+            return today
+        if len(upcoming):
+            return upcoming.min()
+        return d[unplayed].min() if (d[unplayed] >= today).any() else d[~unplayed].max()
     last_season = games.loc[d == d.max(), "season"].iloc[0]
     counts = games[games["season"] == last_season].groupby("date").size()
     full = counts[counts >= MIN_SLATE]
     return pd.to_datetime(full.index.max() if len(full) else counts.index.max())
+
+
+def tip_et(tip_utc) -> str | None:
+    """'2025-11-08T00:00Z' -> '7:00 PM' (US/Eastern)."""
+    if not isinstance(tip_utc, str):
+        return None
+    try:
+        t = datetime.strptime(tip_utc, "%Y-%m-%dT%H:%MZ").replace(tzinfo=timezone.utc).astimezone(ET)
+    except ValueError:
+        return None
+    return t.strftime("%-I:%M %p")
 
 
 # ---- driver formatting -------------------------------------------------
@@ -72,9 +103,10 @@ def _fmt_driver(feature: str, value: float, contrib: float) -> str:
 
 def predict_date(date: str | None = None, games_path: Path | None = None, top_drivers: int = 3) -> dict:
     games_path = Path(games_path) if games_path else ROOT / "data" / "games.csv"
-    games = pd.read_csv(games_path)
+    games = load_games(games_path)
     teams_path = games_path.parent / "teams.csv"
     names = dict(pd.read_csv(teams_path)[["code", "name"]].values) if teams_path.exists() else {}
+    meta = read_meta()
 
     target = pd.to_datetime(date) if date else default_date(games)
     feats = build_features(games)
@@ -87,6 +119,12 @@ def predict_date(date: str | None = None, games_path: Path | None = None, top_dr
     raw = booster.predict(dm)
     p_home = calibrator.predict(raw)
     contribs = booster.predict(dm, pred_contribs=True)  # (n, n_features + 1) with bias last
+
+    # season hindcast: every played game of the current season scored by the same frozen model
+    season = sorted(feats["season"].unique())[-1]
+    cur = feats[(feats["season"] == season) & feats["home_win"].notna()]
+    p_cur = calibrator.predict(booster.predict(xgb.DMatrix(cur[cols], feature_names=cols)))
+    hind_hits = int(((p_cur >= 0.5) == (cur["home_win"] == 1)).sum())
 
     rows = []
     for i, (_, g) in enumerate(slate.iterrows()):
@@ -112,6 +150,10 @@ def predict_date(date: str | None = None, games_path: Path | None = None, top_dr
             "drivers": drivers,
             "contributions": {cols[j]: round(float(c[j]), 4) for j in range(len(cols))},
         }
+        if "espn_id" in g and not pd.isna(g["espn_id"]):
+            row["espn_id"] = str(int(g["espn_id"]))
+            row["tip_et"] = tip_et(g.get("tip_utc"))
+            row["status"] = g.get("status")
         if not pd.isna(g["home_pts"]):
             row["actual"] = {"home_pts": int(g["home_pts"]), "away_pts": int(g["away_pts"]),
                              "winner": g["home_team"] if g["home_pts"] > g["away_pts"] else g["away_team"]}
@@ -122,11 +164,16 @@ def predict_date(date: str | None = None, games_path: Path | None = None, top_dr
     out = {
         "date": str(target.date()),
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "sample_data": True,
+        "source": meta.get("source", "sample"),
+        "data_updated_at": meta.get("updated_at"),
+        "sample_data": meta.get("source", "sample") != "espn",
         "disclaimer": "Not betting advice. Nothing here is guaranteed.",
         "model": {"type": "xgboost", "calibrator": cal_name, "n_features": len(cols)},
         "n_games": len(rows),
         "slate_accuracy": (float(np.mean([r["correct"] for r in rows])) if all("correct" in r for r in rows) else None),
+        "season_hindcast": {"season": season, "n": int(len(cur)), "hits": hind_hits,
+                            "accuracy": round(hind_hits / len(cur), 4) if len(cur) else None,
+                            "small_sample": bool(len(cur) < 200)},
         "games": rows,
     }
     (ROOT / "output").mkdir(exist_ok=True)
@@ -135,16 +182,20 @@ def predict_date(date: str | None = None, games_path: Path | None = None, top_dr
 
 
 def print_slate(out: dict) -> None:
-    print(f"\nSLATE {out['date']}  ({out['n_games']} games)  [SAMPLE DATA]  model=xgb+{out['model']['calibrator']}")
+    tag = "SAMPLE DATA" if out.get("sample_data", True) else f"ESPN data, updated {out.get('data_updated_at', '')[:16]}Z"
+    print(f"\nSLATE {out['date']}  ({out['n_games']} games)  [{tag}]  model=xgb+{out['model']['calibrator']}")
     print(f"{'pick':<5}{'home':<6}{'away':<6}{'p(home)':>9}{'conf':>7}  drivers")
     for r in out["games"]:
-        res = ""
+        res = f"   tip {r['tip_et']} ET" if r.get("tip_et") and "actual" not in r else ""
         if "actual" in r:
             res = f"   actual {r['actual']['home_pts']}-{r['actual']['away_pts']} {'OK' if r['correct'] else 'X'}"
         print(f"{r['pick']:<5}{r['home_team']:<6}{r['away_team']:<6}{r['p_home']:>9.1%}{r['confidence']:>7.0%}  "
               + ", ".join(r["drivers"]) + res)
     if out["slate_accuracy"] is not None:
         print(f"hindcast accuracy on this slate: {out['slate_accuracy']:.0%}")
+    h = out.get("season_hindcast")
+    if h and h["n"]:
+        print(f"season {h['season']} hindcast: {h['hits']}/{h['n']} = {h['accuracy']:.1%}" + ("  (small sample)" if h["small_sample"] else ""))
     print(out["disclaimer"])
 
 

@@ -60,7 +60,7 @@
 .foot a:hover{color:var(--text)}
 </style>
 </head>
-<body data-app="hub" data-depth="" data-title="NBA Projects" data-mark="NP">
+<body data-app="hub" data-depth="" data-title="NBA Projects" data-mark="NP" data-chip="Live data">
 <main class="wrap">
 
   <section class="hero">
@@ -147,9 +147,9 @@
         </table>
       </div>
       <div class="card note">
-        <div class="sec-h" style="margin-bottom:8px"><h2 style="font-size:15px">Real data</h2><span class="chip">Sample league</span></div>
-        <p>Everything on this site runs on a <b style="color:var(--text)">seeded synthetic league</b> with fictional teams and players, so the demos are reproducible and ship with no licensing baggage.</p>
-        <p>Each project includes an <code>nba_api</code> loader (<code>--real</code>) that pulls from stats.nba.com when run locally and falls back to the sample data if the endpoint is unreachable. Scores and probabilities are for learning and demonstration only.</p>
+        <div class="sec-h" style="margin-bottom:8px"><h2 style="font-size:15px">Live data</h2><span class="chip accent">ESPN public API</span></div>
+        <p><b style="color:var(--text)">Lineup Intelligence</b> and <b style="color:var(--text)">Game Predictor</b> run on real NBA games, box scores and rosters pulled from ESPN&rsquo;s public API. A scheduled job refetches new games every morning, retrains both models and redeploys this site; the Predictor page also overlays live scores in your browser.</p>
+        <p>The Jumpshot Analyzer runs on synthetic demo clips until you feed it your own footage. Each project keeps a <code>--source sample</code> fallback and an <code>nba_api</code> loader. Fit scores and probabilities are for learning and demonstration only &mdash; not betting advice, nothing is guaranteed.</p>
       </div>
     </div>
   </section>
@@ -182,7 +182,7 @@
     <span>NBA Projects</span>
     <a href="https://github.com/shaincarrasco/nba-projects">GitHub</a>
     <span>Built {{BUILT}}</span>
-    <span>Sample data · not betting advice</span>
+    <span>Live data: ESPN public API · not betting advice</span>
   </footer>
 
 </main>

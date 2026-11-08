@@ -1,0 +1,137 @@
+player_a,player_b,n_lineups,mean_fit,synergy,team_mean_fit
+Robert Williams III,Ja Morant,455,62.218,10.935,51.28
+Donovan Clingan,Robert Williams III,455,61.003,9.719,51.28
+Damian Lillard,Robert Williams III,455,60.888,9.604,51.28
+Jrue Holiday,Robert Williams III,455,60.809,9.526,51.28
+Robert Williams III,Jayson Kent,455,60.15,8.867,51.28
+Toumani Camara,Robert Williams III,455,59.094,7.811,51.28
+Robert Williams III,Branden Carlson,455,58.592,7.309,51.28
+Deni Avdija,Robert Williams III,455,58.475,7.192,51.28
+Robert Williams III,John Tonje,455,58.309,7.026,51.28
+Scoot Henderson,Robert Williams III,455,58.264,6.981,51.28
+Sidy Cissoko,Robert Williams III,455,57.944,6.661,51.28
+Robert Williams III,Shaedon Sharpe,455,57.941,6.657,51.28
+Donovan Clingan,Jayson Kent,455,57.701,6.418,51.28
+Robert Williams III,Vit Krejci,455,57.623,6.34,51.28
+Donovan Clingan,Ja Morant,455,57.293,6.009,51.28
+Robert Williams III,Micah Potter,455,56.825,5.542,51.28
+Damian Lillard,Donovan Clingan,455,56.652,5.368,51.28
+Jrue Holiday,Donovan Clingan,455,56.064,4.781,51.28
+Ja Morant,Jayson Kent,455,56.025,4.742,51.28
+Damian Lillard,Jayson Kent,455,55.95,4.667,51.28
+Damian Lillard,Ja Morant,455,55.819,4.536,51.28
+Robert Williams III,Chris Youngblood,455,55.719,4.435,51.28
+Jrue Holiday,Jayson Kent,455,55.265,3.981,51.28
+Toumani Camara,Donovan Clingan,455,54.747,3.464,51.28
+Deni Avdija,Jayson Kent,455,54.715,3.432,51.28
+Jrue Holiday,Ja Morant,455,54.591,3.307,51.28
+Deni Avdija,Donovan Clingan,455,54.555,3.271,51.28
+Deni Avdija,Ja Morant,455,54.539,3.255,51.28
+Toumani Camara,Ja Morant,455,54.323,3.039,51.28
+Deni Avdija,Damian Lillard,455,54.253,2.97,51.28
+Damian Lillard,Jrue Holiday,455,54.251,2.967,51.28
+Donovan Clingan,Branden Carlson,455,54.147,2.864,51.28
+Donovan Clingan,Shaedon Sharpe,455,53.953,2.669,51.28
+Robert Williams III,Yang Hansen,455,53.905,2.622,51.28
+Ja Morant,Shaedon Sharpe,455,53.836,2.553,51.28
+Donovan Clingan,Scoot Henderson,455,53.491,2.208,51.28
+Donovan Clingan,Sidy Cissoko,455,53.418,2.135,51.28
+Damian Lillard,Toumani Camara,455,53.364,2.08,51.28
+Deni Avdija,Jrue Holiday,455,53.338,2.054,51.28
+Donovan Clingan,John Tonje,455,53.23,1.946,51.28
+Sidy Cissoko,Ja Morant,455,53.212,1.929,51.28
+Ja Morant,John Tonje,455,52.969,1.686,51.28
+Toumani Camara,Jayson Kent,455,52.963,1.68,51.28
+Toumani Camara,Jrue Holiday,455,52.938,1.655,51.28
+Donovan Clingan,Vit Krejci,455,52.874,1.59,51.28
+Ja Morant,Vit Krejci,455,52.743,1.46,51.28
+Damian Lillard,Shaedon Sharpe,455,52.65,1.367,51.28
+Damian Lillard,John Tonje,455,52.579,1.296,51.28
+Ja Morant,Branden Carlson,455,52.568,1.285,51.28
+Scoot Henderson,Ja Morant,455,52.445,1.162,51.28
+Damian Lillard,Branden Carlson,455,52.296,1.013,51.28
+Jrue Holiday,Shaedon Sharpe,455,52.287,1.003,51.28
+Branden Carlson,Jayson Kent,455,52.204,0.92,51.28
+Scoot Henderson,Jayson Kent,455,52.135,0.852,51.28
+Jayson Kent,Shaedon Sharpe,455,52.084,0.801,51.28
+Jrue Holiday,Branden Carlson,455,51.805,0.521,51.28
+Deni Avdija,Toumani Camara,455,51.753,0.469,51.28
+Jrue Holiday,John Tonje,455,51.745,0.461,51.28
+Damian Lillard,Scoot Henderson,455,51.658,0.375,51.28
+Deni Avdija,Branden Carlson,455,51.616,0.333,51.28
+Deni Avdija,Shaedon Sharpe,455,51.596,0.313,51.28
+Damian Lillard,Vit Krejci,455,51.487,0.203,51.28
+Donovan Clingan,Micah Potter,455,51.452,0.169,51.28
+Damian Lillard,Sidy Cissoko,455,51.415,0.132,51.28
+Damian Lillard,Micah Potter,455,51.378,0.095,51.28
+Jrue Holiday,Sidy Cissoko,455,51.332,0.049,51.28
+Sidy Cissoko,Jayson Kent,455,51.301,0.017,51.28
+Vit Krejci,Jayson Kent,455,51.244,-0.039,51.28
+Jayson Kent,John Tonje,455,51.234,-0.049,51.28
+Jrue Holiday,Vit Krejci,455,51.202,-0.081,51.28
+Deni Avdija,John Tonje,455,51.194,-0.089,51.28
+Ja Morant,Micah Potter,455,51.158,-0.125,51.28
+Ja Morant,Chris Youngblood,455,50.631,-0.652,51.28
+Jrue Holiday,Scoot Henderson,455,50.612,-0.672,51.28
+Jrue Holiday,Micah Potter,455,50.506,-0.777,51.28
+Deni Avdija,Scoot Henderson,455,50.39,-0.893,51.28
+Donovan Clingan,Chris Youngblood,455,50.37,-0.913,51.28
+Toumani Camara,Branden Carlson,455,50.286,-0.997,51.28
+Micah Potter,Jayson Kent,455,50.246,-1.037,51.28
+Damian Lillard,Chris Youngblood,455,50.206,-1.077,51.28
+Deni Avdija,Micah Potter,455,50.147,-1.136,51.28
+Deni Avdija,Sidy Cissoko,455,50.132,-1.151,51.28
+Deni Avdija,Vit Krejci,455,49.942,-1.342,51.28
+Branden Carlson,Shaedon Sharpe,455,49.937,-1.347,51.28
+Toumani Camara,Scoot Henderson,455,49.747,-1.536,51.28
+Toumani Camara,John Tonje,455,49.653,-1.63,51.28
+Toumani Camara,Shaedon Sharpe,455,49.637,-1.646,51.28
+Jrue Holiday,Chris Youngblood,455,49.562,-1.722,51.28
+Scoot Henderson,Branden Carlson,455,49.128,-2.156,51.28
+John Tonje,Shaedon Sharpe,455,49.112,-2.171,51.28
+Scoot Henderson,Shaedon Sharpe,455,48.972,-2.311,51.28
+Chris Youngblood,Jayson Kent,455,48.959,-2.324,51.28
+Toumani Camara,Sidy Cissoko,455,48.946,-2.338,51.28
+Scoot Henderson,John Tonje,455,48.926,-2.357,51.28
+Deni Avdija,Chris Youngblood,455,48.771,-2.513,51.28
+Sidy Cissoko,Branden Carlson,455,48.736,-2.547,51.28
+Vit Krejci,Branden Carlson,455,48.698,-2.585,51.28
+Branden Carlson,John Tonje,455,48.649,-2.634,51.28
+Sidy Cissoko,John Tonje,455,48.538,-2.745,51.28
+Toumani Camara,Vit Krejci,455,48.453,-2.83,51.28
+Donovan Clingan,Yang Hansen,455,48.381,-2.902,51.28
+Micah Potter,Shaedon Sharpe,455,48.29,-2.994,51.28
+Vit Krejci,John Tonje,455,48.161,-3.123,51.28
+Ja Morant,Yang Hansen,455,48.131,-3.152,51.28
+Vit Krejci,Shaedon Sharpe,455,48.016,-3.267,51.28
+Damian Lillard,Yang Hansen,455,48.012,-3.272,51.28
+Scoot Henderson,Micah Potter,455,48.004,-3.279,51.28
+Scoot Henderson,Vit Krejci,455,47.729,-3.554,51.28
+Toumani Camara,Micah Potter,455,47.709,-3.574,51.28
+Scoot Henderson,Sidy Cissoko,455,47.656,-3.628,51.28
+Yang Hansen,Jayson Kent,455,47.571,-3.713,51.28
+Micah Potter,Branden Carlson,455,47.53,-3.754,51.28
+Sidy Cissoko,Micah Potter,455,47.468,-3.815,51.28
+Jrue Holiday,Yang Hansen,455,47.436,-3.847,51.28
+Deni Avdija,Yang Hansen,455,47.431,-3.853,51.28
+Sidy Cissoko,Vit Krejci,455,47.413,-3.87,51.28
+Sidy Cissoko,Shaedon Sharpe,455,47.346,-3.938,51.28
+Toumani Camara,Chris Youngblood,455,47.057,-4.226,51.28
+Chris Youngblood,Shaedon Sharpe,455,46.943,-4.341,51.28
+Scoot Henderson,Chris Youngblood,455,46.708,-4.575,51.28
+Micah Potter,John Tonje,455,46.646,-4.637,51.28
+Vit Krejci,Micah Potter,455,46.626,-4.657,51.28
+Sidy Cissoko,Chris Youngblood,455,46.246,-5.037,51.28
+Chris Youngblood,Branden Carlson,455,46.125,-5.158,51.28
+Chris Youngblood,John Tonje,455,45.927,-5.356,51.28
+Vit Krejci,Chris Youngblood,455,45.448,-5.836,51.28
+Yang Hansen,Shaedon Sharpe,455,45.069,-6.215,51.28
+Toumani Camara,Yang Hansen,455,45.021,-6.262,51.28
+Chris Youngblood,Micah Potter,455,44.714,-6.57,51.28
+Scoot Henderson,Yang Hansen,455,44.547,-6.736,51.28
+Yang Hansen,Branden Carlson,455,44.369,-6.914,51.28
+Sidy Cissoko,Yang Hansen,455,44.124,-7.159,51.28
+Yang Hansen,John Tonje,455,44.115,-7.169,51.28
+Vit Krejci,Yang Hansen,455,43.503,-7.781,51.28
+Yang Hansen,Micah Potter,455,42.537,-8.746,51.28
+Chris Youngblood,Yang Hansen,455,41.835,-9.449,51.28

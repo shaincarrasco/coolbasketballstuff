@@ -3,16 +3,22 @@ Headless Playwright check of the Lineup Intelligence page at 375x812 and 1280x90
 
 Asserts: zero console errors, the shared top bar renders, tapping tiles changes the fit,
 swaps / heatmap / rotation populate, the opponent heuristic is labelled, no horizontal
-overflow at 375, and every control / tile / swap row is >= 40 px tall.
-Writes <site>/_preview_mobile.png and _preview_desktop.png.
+overflow at 375, every control / tile / swap row is >= 40 px tall, and switching teams
+fetches that team's data/<ABBR>.json and rebuilds the builder + heatmap from the full table.
+The page is served over a local http.server (the per-team JSON is fetched lazily, which
+file:// blocks in Chrome). Writes <site>/_preview_mobile.png and _preview_desktop.png.
 
     python verify_report.py [page.html] [screenshot_dir]
     (defaults: ../site/lineup/index.html, screenshots next to it)
 """
 from __future__ import annotations
 
+import functools
+import http.server
 import os
+import socketserver
 import sys
+import threading
 
 from playwright.sync_api import sync_playwright
 
@@ -49,9 +55,18 @@ def check(page, width: int, errors: list[str]) -> dict:
     assert "fit vs team mean" in page.text_content("#heatVal")
     assert page.locator("#duosBest li").count() == 5 and page.locator("#duosWorst li").count() == 5
     assert page.locator("#rotation .unit").count() == 3
+    before = page.text_content("#roTitle")
     page.select_option("#teamSel", index=3)
     page.wait_for_timeout(80)
     assert page.locator("#tiles .tile.on").count() == 5
+    assert page.text_content("#roTitle") != before, "team switch should change the current five"
+    page.wait_for_function("document.getElementById('status').textContent === ''", timeout=15000)   # per-team JSON fetched
+    assert page.evaluate("window.LineupIQ.full"), "full table should be loaded after the team switch"
+    assert page.locator("#heatmap rect.heat-cell").count() >= 100, "heatmap should rebuild from the fetched table"
+    assert page.inner_text("#roFit").strip().isdigit()
+    page.locator("#tiles .tile.on").first.click(); page.locator("#tiles .tile:not(.on)").first.click()
+    assert "rank" in page.text_content("#roRank"), "builder should score fives from the fetched table"
+    assert page.locator("#swaps .swap").count() >= 5
     sw = page.evaluate("Math.max(document.documentElement.scrollWidth, document.body.scrollWidth)")
     assert sw <= width, f"horizontal overflow: scrollWidth {sw} > {width}"
     small = page.evaluate(f"""[...document.querySelectorAll("{TARGETS}")].filter(e => !e.closest('.topbar')).map(e => {{ const r = e.getBoundingClientRect(); return [e.className || e.tagName, r.height]; }}).filter(x => x[1] > 0 && x[1] < 40)""")
@@ -62,10 +77,27 @@ def check(page, width: int, errors: list[str]) -> dict:
     return {"fit0": fit0, "fit1": fit1, "scrollWidth": sw}
 
 
+class _Quiet(http.server.SimpleHTTPRequestHandler):
+    def log_message(self, *a):
+        pass
+
+
+def serve(root: str) -> tuple[socketserver.TCPServer, int]:
+    handler = functools.partial(_Quiet, directory=root)
+    srv = socketserver.TCPServer(("127.0.0.1", 0), handler)
+    threading.Thread(target=srv.serve_forever, daemon=True).start()
+    return srv, srv.server_address[1]
+
+
 def main() -> int:
-    target = sys.argv[1] if len(sys.argv) > 1 else os.path.join(SITE, "index.html")
+    target = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else os.path.join(SITE, "index.html"))
     shots = sys.argv[2] if len(sys.argv) > 2 else os.path.dirname(target)
-    url = "file://" + os.path.abspath(target)
+    # serve from the repo root (the folder that contains site/assets/shell.css) so ../ links and the service worker resolve
+    root = os.path.dirname(target)
+    while not os.path.exists(os.path.join(root, "site", "assets", "shell.css")) and os.path.dirname(root) != root:
+        root = os.path.dirname(root)
+    srv, port = serve(root)
+    url = f"http://127.0.0.1:{port}/" + os.path.relpath(target, root).replace(os.sep, "/")
     errors: list[str] = []
     with sync_playwright() as p:
         kw = {"args": ["--no-sandbox"]}
@@ -77,7 +109,7 @@ def main() -> int:
                                       is_mobile=mobile, has_touch=mobile)
             page = ctx.new_page()
             page.on("pageerror", lambda e: errors.append(f"pageerror: {e}"))
-            page.on("console", lambda m: errors.append(f"console: {m.text}") if m.type == "error" else None)
+            page.on("console", lambda m: errors.append(f"console: {m.text}") if m.type == "error" and "favicon" not in str(m.location) else None)
             page.goto(url)
             res = check(page, vp[0], errors)
             page.evaluate("window.scrollTo(0,0)")
@@ -87,6 +119,7 @@ def main() -> int:
             print(f"{name} {vp[0]}x{vp[1]}: fit {res['fit0']} -> {res['fit1']} after tap, scrollWidth {res['scrollWidth']}")
             ctx.close()
         browser.close()
+    srv.shutdown()
     if errors:
         print("JS errors:\n  " + "\n  ".join(errors))
         return 1

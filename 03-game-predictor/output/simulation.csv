@@ -1,31 +1,31 @@
-team,name,conf,elo,w,l,gp,exp_w,sd_w,w_lo,w_hi,playoff,top_seed,seed_mean,final_w,final_l,made_playoffs
-KES,Kestrel Point Kites,East,1690.7,34,14,48,57.7,3.5,52,63,1.0,0.7825,1.31,53,29,True
-CAS,Cascadia Rooks,East,1621.1,28,18,46,51.5,3.8,45,58,0.9675,0.0875,3.05,49,33,True
-JUN,Juniper City Jays,East,1536.7,29,15,44,50.8,4.2,44,58,0.954,0.0935,3.36,53,29,True
-IRN,Ironvale Hammers,East,1585.2,26,18,44,48.2,4.1,41,55,0.8385,0.0235,4.52,55,27,True
-GLD,Glasswater Herons,East,1541.5,26,19,45,47.7,4.1,41,54,0.8135,0.0125,4.79,45,37,True
-DUN,Dunmore Foundry,East,1567.9,23,24,47,43.7,3.9,37,50,0.473,0.0005,6.75,42,40,False
-BRK,Brackenridge Wolves,East,1518.7,25,23,48,41.8,3.9,35,48,0.2775,0.0,7.75,45,37,True
-MRW,Marrowfield Bison,East,1525.2,24,24,48,41.8,3.9,35,48,0.2865,0.0,7.72,45,37,False
-HLW,Hollowbrook Stags,East,1520.7,23,25,48,40.6,3.7,35,47,0.1735,0.0,8.38,38,44,False
-OBS,Obsidian Falls Ravens,East,1474.7,24,22,46,40.6,4.0,34,47,0.18,0.0,8.36,43,39,False
-NOR,Northgate Sentinels,East,1497.3,20,27,47,36.2,4.2,29,43,0.036,0.0,10.08,34,48,False
-LUM,Lumen Harbor Lights,East,1336.2,14,32,46,25.7,3.6,20,32,0.0,0.0,12.55,24,58,False
-EMB,Ember Bay Phoenix,East,1342.0,13,35,48,23.3,3.4,18,29,0.0,0.0,13.07,23,59,False
-AUR,Aurora Comets,East,1340.4,10,36,46,22.1,3.6,16,28,0.0,0.0,13.37,25,57,False
-FAL,Falcon Ridge Talons,East,1173.0,9,38,47,14.1,2.5,10,19,0.0,0.0,14.94,22,60,False
-QRY,Quarry Hill Miners,West,1699.5,35,11,46,61.9,3.3,56,67,1.0,0.706,1.4,63,19,True
-HAV,Havenport Anchors,West,1701.9,35,16,51,57.8,3.1,52,62,0.9985,0.1465,2.42,52,30,True
-WYR,Wyreford Dragons,West,1651.9,34,14,48,57.2,3.6,51,63,0.994,0.1425,2.61,48,34,True
-XEN,Xenia Springs Owls,West,1604.8,28,18,46,50.9,3.7,44,57,0.8675,0.002,4.79,52,30,True
-COP,Copperline Express,West,1563.9,27,17,44,48.8,4.3,41,56,0.7,0.0025,5.72,52,30,True
-MST,Mistwood Shadows,West,1587.9,26,23,49,46.4,3.7,40,52,0.506,0.0,6.8,44,38,False
-TMB,Timberline Elk,West,1518.1,26,18,44,44.4,4.2,37,51,0.285,0.0005,7.83,42,40,False
-ZEP,Zephyr Coast Breakers,West,1555.2,22,22,44,44.2,4.1,37,51,0.282,0.0,7.87,36,46,False
-VLE,Vale Harbor Mariners,West,1467.6,25,21,46,42.0,4.0,36,49,0.125,0.0,8.95,44,38,False
-YEL,Yellowstone Pass Grizzlies,West,1533.5,23,24,47,42.0,4.0,35,49,0.1295,0.0,8.93,42,40,False
-SLT,Saltmarsh Gulls,West,1441.8,26,18,44,41.4,4.3,35,48,0.108,0.0,9.25,44,38,True
-SKY,Skyreach Condors,West,1435.7,19,25,44,34.8,4.3,28,42,0.0045,0.0,11.55,31,51,False
-RVN,Riverton Otters,West,1327.5,15,31,46,25.4,3.5,20,31,0.0,0.0,13.66,35,47,False
-PNE,Pinecrest Lumberjacks,West,1352.9,12,35,47,24.5,3.8,18,31,0.0,0.0,13.87,18,64,False
-UMB,Umberfield Suns,West,1286.6,13,31,44,22.5,3.5,17,29,0.0,0.0,14.36,31,51,False
+team,name,conf,elo,w,l,gp,sched_g,exp_w,sd_w,w_lo,w_hi,playoff,top_seed,seed_mean,final_w,final_l,made_playoffs
+DET,Detroit Pistons,East,1702.4,6,2,8,80,61.1,6.0,50,69,0.9925,0.412,2.14,,,
+BOS,Boston Celtics,East,1702.2,7,2,9,80,60.6,6.3,49,70,0.9855,0.376,2.27,,,
+PHI,Philadelphia 76ers,East,1615.4,8,2,10,80,54.6,6.9,43,65,0.929,0.1105,3.71,,,
+NY,New York Knicks,East,1619.7,5,4,9,80,51.7,6.9,39,62,0.8505,0.052,4.47,,,
+ATL,Atlanta Hawks,East,1572.8,7,4,11,80,49.2,6.9,37,60,0.7495,0.0265,5.16,,,
+CLE,Cleveland Cavaliers,East,1565.1,5,5,10,80,47.6,7.0,35,58,0.669,0.015,5.62,,,
+TOR,Toronto Raptors,East,1539.9,5,4,9,80,45.0,7.3,32,57,0.5015,0.008,6.33,,,
+MIA,Miami Heat,East,1465.4,3,6,9,80,37.6,7.2,25,49,0.1585,0.0,8.39,,,
+ORL,Orlando Magic,East,1444.4,2,7,9,80,35.4,7.4,23,47,0.101,0.0,8.98,,,
+CHA,Charlotte Hornets,East,1436.6,3,7,10,80,33.1,7.1,21,45,0.0545,0.0,9.61,,,
+WSH,Washington Wizards,East,1328.5,4,6,10,80,26.1,6.4,16,36,0.006,0.0,11.63,,,
+IND,Indiana Pacers,East,1300.5,3,7,10,80,22.8,5.9,13,32,0.001,0.0,12.59,,,
+BKN,Brooklyn Nets,East,1296.3,2,7,9,80,22.0,6.1,13,32,0.0005,0.0,12.79,,,
+CHI,Chicago Bulls,East,1298.4,1,7,8,80,21.8,6.2,12,32,0.001,0.0,12.84,,,
+MIL,Milwaukee Bucks,East,1271.5,1,8,9,80,19.3,5.9,10,29,0.0,0.0,13.49,,,
+SA,San Antonio Spurs,West,1734.9,8,2,10,80,62.2,5.9,52,70,0.9725,0.399,2.41,,,
+OKC,Oklahoma City Thunder,West,1701.2,8,2,10,80,60.5,6.1,49,69,0.9475,0.286,2.82,,,
+HOU,Houston Rockets,West,1647.2,7,3,10,80,55.3,6.5,44,65,0.8195,0.0835,4.42,,,
+MIN,Minnesota Timberwolves,West,1648.2,7,3,10,80,55.0,6.5,44,64,0.8055,0.0835,4.51,,,
+LAL,Los Angeles Lakers,West,1644.8,8,2,10,80,54.7,6.8,43,65,0.78,0.08,4.61,,,
+DEN,Denver Nuggets,West,1629.6,5,3,8,80,52.5,6.9,41,63,0.673,0.05,5.34,,,
+POR,Portland Trail Blazers,West,1577.2,6,3,9,80,48.4,7.1,36,60,0.447,0.0105,6.64,,,
+GS,Golden State Warriors,West,1548.8,7,3,10,80,46.9,7.2,34,58,0.3685,0.007,7.14,,,
+PHX,Phoenix Suns,West,1502.5,3,5,8,80,40.5,7.4,28,53,0.12,0.0005,9.07,,,
+DAL,Dallas Mavericks,West,1444.3,5,4,9,80,35.8,7.2,24,48,0.036,0.0,10.36,,,
+NO,New Orleans Pelicans,West,1427.6,4,5,9,80,32.7,7.1,21,45,0.0145,0.0,11.18,,,
+LAC,LA Clippers,West,1426.4,1,7,8,80,31.7,7.1,20,43,0.009,0.0,11.38,,,
+MEM,Memphis Grizzlies,West,1383.7,6,3,9,80,30.4,6.7,19,42,0.007,0.0,11.71,,,
+SAC,Sacramento Kings,West,1311.4,1,8,9,80,21.0,6.2,11,31,0.0,0.0,13.7,,,
+UTAH,Utah Jazz,West,1213.2,1,8,9,80,14.4,5.0,7,23,0.0,0.0,14.7,,,

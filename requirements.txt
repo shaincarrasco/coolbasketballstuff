@@ -6,3 +6,4 @@ opencv-python-headless
 mediapipe
 torch
 nba_api
+requests

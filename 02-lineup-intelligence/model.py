@@ -56,13 +56,13 @@ FIT_CENTER = 0.0
 FIT_SCALE = 10.0
 
 XGB_PARAMS = dict(
-    n_estimators=1500,
-    learning_rate=0.01,
-    max_depth=2,               # shallow trees: pairwise interactions, little capacity to memorise 500 rows
-    min_child_weight=3.0,      # in units of normalised sample weight (mean weight = 1 lineup)
+    n_estimators=600,
+    learning_rate=0.02,
+    max_depth=2,               # shallow trees: pairwise interactions, little capacity to memorise ~1,300 noisy rows
+    min_child_weight=10.0,     # in units of normalised sample weight (mean weight = 1 lineup); real lineups are noisy
     subsample=0.7,
     colsample_bytree=0.5,
-    reg_lambda=2.0,
+    reg_lambda=5.0,
     reg_alpha=0.5,
     gamma=0.0,
     objective="reg:squarederror",
@@ -74,11 +74,11 @@ HGB_PARAMS = dict(
     learning_rate=0.04,
     max_depth=3,
     max_leaf_nodes=6,
-    min_samples_leaf=10,
-    l2_regularization=1.0,
+    min_samples_leaf=20,
+    l2_regularization=2.0,
     random_state=7,
 )
-RIDGE_ALPHA = 30.0
+RIDGE_ALPHA = 100.0
 MODEL_NAMES = ("ridge", "xgboost", "hgb")
 MODEL_LABELS = {"ridge": "Ridge", "xgboost": "XGBoost", "hgb": "HistGradientBoosting", "mean_baseline": "Predict the mean"}
 LEARNING_FRACTIONS = (0.25, 0.5, 0.75, 1.0)
@@ -149,14 +149,20 @@ class Evaluation:
     weighted_minutes_total: float = 0.0
 
 
-def cross_validate(X: pd.DataFrame, y: np.ndarray, w: np.ndarray, groups: np.ndarray, n_splits: int | None = None) -> Evaluation:
+MAX_FOLDS = 10
+
+
+def cross_validate(X: pd.DataFrame, y: np.ndarray, w: np.ndarray, groups: np.ndarray, n_splits: int | None = None,
+                   short: dict | None = None) -> Evaluation:
     n_groups = len(np.unique(groups))
-    n_splits = n_splits or n_groups
+    n_splits = n_splits or min(n_groups, MAX_FOLDS)       # leave-one-team-out up to 10 folds (3 held-out teams each for 30)
     gkf = GroupKFold(n_splits=n_splits)
     oof = {name: np.zeros(len(y)) for name in MODEL_NAMES}
     per_fold = []
+    short = short or {}
     for tr, te in gkf.split(X, y, groups):
-        row = {"held_out_teams": sorted(set(groups[te])), "n": int(len(te))}
+        held = sorted(set(groups[te]))
+        row = {"held_out_teams": held, "label": " ".join(short.get(t, t.split()[0]) for t in held), "n": int(len(te))}
         for name in MODEL_NAMES:
             mdl = _fit(name, X.iloc[tr], y[tr], w[tr])
             oof[name][te] = mdl.predict(X.iloc[te])
@@ -222,8 +228,9 @@ def train(players: pd.DataFrame, lineups: pd.DataFrame, model_dir: str = MODEL_D
     w = lineups["minutes"].to_numpy(dtype=float)
     w = w / w.mean()                                   # normalise so min_child_weight is in "lineups"
     groups = lineups["team"].to_numpy()
+    short = (players.drop_duplicates("team").set_index("team")["team_abbr"].to_dict() if "team_abbr" in players.columns else {})
 
-    ev = cross_validate(X, y, w, groups)
+    ev = cross_validate(X, y, w, groups, short=short)
     if with_learning_curve:
         ev.learning_curve = learning_curve(X, y, w, groups)
     calibrate_fit(y, w)
@@ -233,7 +240,7 @@ def train(players: pd.DataFrame, lineups: pd.DataFrame, model_dir: str = MODEL_D
     booster = _fit("xgboost", X, y, w)
     hgb = _fit("hgb", X, y, w)
     with threadpool_limits(limits=1):
-        booster_off = make_xgb(n_estimators=800).fit(X, y_off, sample_weight=w)
+        booster_off = make_xgb(n_estimators=500).fit(X, y_off, sample_weight=w)
 
     # Feature importance (gain), normalised
     gain = booster.get_booster().get_score(importance_type="gain")
@@ -254,7 +261,7 @@ def train(players: pd.DataFrame, lineups: pd.DataFrame, model_dir: str = MODEL_D
         "xgb_params": {k: (v if isinstance(v, (int, float, str)) else str(v)) for k, v in XGB_PARAMS.items()},
         "hgb_params": HGB_PARAMS,
         "ridge_alpha": RIDGE_ALPHA,
-        "off_rating_model": "xgboost, same params, 800 rounds; def = off - net",
+        "off_rating_model": "xgboost, same params, 500 rounds; def = off - net",
         "evaluation": {
             "n_rows": ev.n_rows, "n_teams": ev.n_teams, "n_features": ev.n_features, "folds": ev.folds,
             "metrics": ev.metrics, "per_fold": ev.per_fold, "learning_curve": ev.learning_curve,

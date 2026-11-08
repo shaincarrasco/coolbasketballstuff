@@ -1,139 +1,19 @@
 d,winner,loser,score,home_won,p_winner,elo_gap,missed
-2025-12-19,AUR,HLW,108-115,False,0.158,250,margin 7 | no pre-game signal: noise
-2026-02-28,OBS,COP,103-106,False,0.165,240,margin 3 | no pre-game signal: noise
-2025-12-01,PNE,IRN,120-123,False,0.166,425,margin 3 | no pre-game signal: noise
-2026-01-26,FAL,JUN,100-109,False,0.166,393,margin 9 | no pre-game signal: noise
-2026-01-27,PNE,ZEP,109-110,False,0.166,254,margin 1 | no pre-game signal: noise
-2026-02-03,FAL,WYR,120-124,False,0.166,426,margin 4 | no pre-game signal: noise
-2026-02-12,EMB,JUN,96-103,False,0.166,340,margin 7 | no pre-game signal: noise
-2026-01-20,LUM,HLW,110-128,False,0.175,265,margin 18 | both on B2B | H2H favoured winner 75%
-2026-01-27,FAL,MRW,104-112,False,0.175,309,margin 8 | both on B2B | H2H favoured winner 75%
-2025-12-12,RVN,COP,120-121,False,0.176,268,margin 1 | both on B2B
-2025-10-27,EMB,NOR,117-123,False,0.18,326,margin 6 | no pre-game signal: noise
-2025-11-02,DUN,HAV,100-102,False,0.18,247,margin 2 | no pre-game signal: noise
-2026-02-14,EMB,CAS,109-114,False,0.18,367,margin 5 | no pre-game signal: noise
-2025-10-27,PNE,BRK,110-111,False,0.183,278,margin 1 | no pre-game signal: noise
-2026-01-01,AUR,OBS,118-124,False,0.184,323,margin 6 | both on B2B | H2H favoured winner 75%
-2026-04-06,ZEP,COP,112-113,False,0.189,302,margin 1 | favourite on B2B
-2026-02-07,UMB,GLD,111-116,False,0.19,213,margin 5 | no pre-game signal: noise
-2026-03-03,MST,KES,105-122,False,0.191,239,margin 17 | no pre-game signal: noise
-2025-11-15,FAL,MRW,111-115,False,0.192,251,margin 4 | no pre-game signal: noise
-2025-12-08,TMB,JUN,95-104,False,0.192,301,margin 9 | no pre-game signal: noise
-2025-12-10,YEL,JUN,103-111,False,0.192,232,margin 8 | winner streak edge +3
-2025-12-26,PNE,ZEP,96-110,False,0.193,270,margin 14 | no pre-game signal: noise
-2026-02-20,SKY,JUN,107-108,False,0.193,211,margin 1 | no pre-game signal: noise
-2026-03-22,FAL,RVN,116-117,False,0.194,230,margin 1 | no pre-game signal: noise
-2026-02-21,UMB,MRW,115-116,False,0.197,209,margin 1 | H2H favoured winner 75%
-2025-11-22,EMB,BRK,114-124,False,0.198,266,margin 10 | no pre-game signal: noise
-2026-03-22,LUM,YEL,107-117,False,0.198,201,margin 10 | no pre-game signal: noise
-2026-02-05,SLT,QRY,96-103,False,0.2,310,margin 7 | no pre-game signal: noise
-2026-02-14,TMB,BRK,118-124,False,0.204,251,margin 6 | no pre-game signal: noise
-2026-04-07,SLT,XEN,111-125,False,0.204,251,margin 14 | no pre-game signal: noise
-2026-03-17,UMB,MST,109-128,False,0.208,102,margin 19 | no pre-game signal: noise
-2026-02-11,NOR,WYR,111-113,False,0.209,168,margin 2 | no pre-game signal: noise
-2026-03-06,DUN,SLT,107-109,False,0.209,198,margin 2 | no pre-game signal: noise
-2025-10-29,SKY,HAV,97-99,False,0.217,144,margin 2 | no pre-game signal: noise
-2025-11-14,SKY,XEN,111-112,False,0.217,203,margin 1 | both on B2B | H2H favoured winner 75%
-2026-03-31,WYR,IRN,111-120,False,0.217,266,margin 9 | no pre-game signal: noise
-2026-01-23,VLE,QRY,104-105,False,0.219,261,margin 1 | both on B2B
-2026-03-21,SLT,HAV,115-117,False,0.219,164,margin 2 | no pre-game signal: noise
-2026-04-02,FAL,VLE,105-115,False,0.219,191,margin 10 | H2H favoured winner 75%
-2026-02-28,HLW,CAS,111-122,False,0.222,189,margin 11 | no pre-game signal: noise
-2025-11-21,HLW,COP,105-111,False,0.225,195,margin 6 | H2H favoured winner 75%
-2026-03-07,YEL,IRN,113-118,False,0.225,204,margin 5 | no pre-game signal: noise
-2026-03-17,DUN,QRY,123-125,False,0.227,162,margin 2 | winner streak edge +4
-2025-10-31,HLW,RVN,108-130,False,0.23,137,margin 22 | no pre-game signal: noise
-2026-03-06,UMB,ZEP,105-117,False,0.232,143,margin 12 | no pre-game signal: noise
-2025-11-16,EMB,DUN,119-122,False,0.234,155,margin 3 | no pre-game signal: noise
-2026-02-17,EMB,MST,108-111,False,0.235,159,margin 3 | winner streak edge +3
-2026-03-10,DUN,XEN,105-120,False,0.235,182,margin 15 | no pre-game signal: noise
-2026-02-19,OBS,XEN,111-121,False,0.237,185,margin 10 | no pre-game signal: noise
-2026-03-21,NOR,BRK,109-117,False,0.237,106,margin 8 | no pre-game signal: noise
-2025-12-01,DUN,TMB,108-121,False,0.238,150,margin 13 | H2H favoured winner 75%
-2026-03-26,HLW,DUN,120-123,False,0.24,121,margin 3 | no pre-game signal: noise
-2025-12-15,MRW,GLD,101-118,False,0.243,140,margin 17 | both on B2B
-2025-11-13,YEL,WYR,106-123,False,0.248,101,margin 17 | no pre-game signal: noise
-2025-12-25,MST,QRY,106-114,False,0.249,149,margin 8 | H2H favoured winner 75%
-2025-12-28,VLE,OBS,111-114,False,0.252,240,margin 3 | no pre-game signal: noise
-2025-11-24,RVN,KES,114-116,False,0.253,96,margin 2 | no pre-game signal: noise
-2025-12-27,PNE,MRW,111-112,False,0.253,166,margin 1 | both on B2B
-2026-01-01,PNE,UMB,94-109,False,0.253,144,margin 15 | no pre-game signal: noise
-2026-01-26,MST,HAV,103-105,False,0.253,149,margin 2 | no pre-game signal: noise
-2026-01-13,RVN,SLT,113-118,False,0.254,162,margin 5 | no pre-game signal: noise
-2025-11-19,HLW,MST,119-123,False,0.256,165,margin 4 | no pre-game signal: noise
-2026-03-11,AUR,ZEP,102-121,False,0.256,126,margin 19 | favourite on B2B
-2025-11-19,FAL,NOR,114-117,False,0.257,156,margin 3 | no pre-game signal: noise
-2025-11-05,CAS,KES,107-113,False,0.258,83,margin 6 | H2H favoured winner 75%
-2025-12-09,PNE,RVN,110-120,False,0.258,150,margin 10 | no pre-game signal: noise
-2025-10-24,MRW,GLD,90-111,False,0.259,117,margin 21 | no pre-game signal: noise
-2025-10-30,GLD,IRN,107-119,False,0.264,126,margin 12 | no pre-game signal: noise
-2026-01-20,NOR,QRY,118-122,False,0.267,236,margin 4 | H2H favoured winner 75%
-2026-01-13,HLW,YEL,111-116,False,0.268,112,margin 5 | both on B2B
-2025-12-27,MST,QRY,114-116,False,0.271,72,margin 2 | winner streak edge +4 | H2H favoured winner 75%
-2025-12-16,XEN,BRK,123-129,False,0.272,110,margin 6 | no pre-game signal: noise
-2025-12-17,EMB,MST,122-119,True,0.274,274,margin 3 | no pre-game signal: noise
-2026-02-22,TMB,DUN,105-136,False,0.275,188,margin 31 | no pre-game signal: noise
-2026-03-02,WYR,SLT,122-127,False,0.275,101,margin 5 | no pre-game signal: noise
-2025-12-31,COP,IRN,110-111,False,0.276,109,margin 1 | no pre-game signal: noise
-2026-03-25,ZEP,SKY,108-109,False,0.281,142,margin 1 | both on B2B
-2026-02-06,RVN,HAV,109-113,False,0.282,258,margin 4 | winner streak edge +4
-2026-03-28,PNE,HLW,132-120,True,0.283,326,margin 12 | both on B2B
-2026-02-28,GLD,VLE,112-116,False,0.288,134,margin 4 | H2H favoured winner 75%
-2026-04-05,TMB,QRY,121-119,True,0.288,320,margin 2 | no pre-game signal: noise
-2025-12-17,XEN,COP,101-114,False,0.29,129,margin 13 | both on B2B | H2H favoured winner 75%
-2026-03-15,SKY,QRY,112-107,True,0.294,320,margin 5 | winner streak edge +4
-2025-11-11,FAL,MST,106-109,False,0.295,184,margin 3 | no pre-game signal: noise
-2026-02-28,FAL,LUM,101-108,False,0.295,86,margin 7 | H2H favoured winner 75%
-2026-03-20,FAL,CAS,116-109,True,0.295,356,margin 7 | no pre-game signal: noise
-2025-12-20,UMB,CAS,120-109,True,0.301,301,margin 11 | no pre-game signal: noise
-2025-10-24,OBS,MST,119-132,False,0.304,110,margin 13 | H2H favoured winner 100%
-2025-10-29,EMB,KES,126-121,True,0.306,321,margin 5 | no pre-game signal: noise
-2025-11-25,LUM,HAV,109-104,True,0.307,256,margin 5 | both on B2B
-2026-02-18,GLD,ZEP,107-111,False,0.307,155,margin 4 | both on B2B | H2H favoured winner 75%
-2025-11-23,YEL,VLE,103-113,False,0.308,45,margin 10 | no pre-game signal: noise
-2026-02-20,SLT,KES,101-108,False,0.308,190,margin 7 | no pre-game signal: noise
-2025-12-17,DUN,HAV,130-107,True,0.31,249,margin 23 | no pre-game signal: noise
-2026-03-02,UMB,COP,101-100,True,0.311,286,margin 1 | no pre-game signal: noise
-2026-03-30,PNE,SLT,120-99,True,0.311,270,margin 21 | no pre-game signal: noise
-2025-12-15,NOR,QRY,119-102,True,0.312,269,margin 17 | both on B2B
-2026-01-10,EMB,JUN,113-99,True,0.312,340,margin 14 | no pre-game signal: noise
-2025-10-23,DUN,AUR,110-117,False,0.313,179,margin 7 | H2H favoured winner 75%
-2026-02-09,VLE,MST,115-124,False,0.313,127,margin 9 | no pre-game signal: noise
-2025-12-09,ZEP,SLT,128-110,True,0.314,294,margin 18 | no pre-game signal: noise
-2026-01-04,PNE,GLD,117-100,True,0.314,242,margin 17 | no pre-game signal: noise
-2025-10-28,VLE,DUN,94-114,False,0.315,64,margin 20 | no pre-game signal: noise
-2025-11-06,COP,OBS,118-124,False,0.315,61,margin 6 | no pre-game signal: noise
-2025-11-29,KES,QRY,112-97,True,0.316,202,margin 15 | both on B2B | winner streak edge +3
-2025-12-23,LUM,IRN,105-99,True,0.316,288,margin 6 | no pre-game signal: noise
-2026-01-05,DUN,JUN,101-106,False,0.32,183,margin 5 | both on B2B
-2026-03-28,SKY,JUN,118-114,True,0.321,238,margin 4 | no pre-game signal: noise
-2026-03-12,FAL,SLT,105-95,True,0.322,339,margin 10 | no pre-game signal: noise
-2025-12-12,IRN,SLT,107-121,False,0.323,61,margin 14 | both on B2B
-2025-11-20,BRK,OBS,114-117,False,0.324,59,margin 3 | no pre-game signal: noise
-2026-02-19,MRW,BRK,112-120,False,0.326,68,margin 8 | no pre-game signal: noise
-2025-12-26,UMB,VLE,95-113,False,0.327,42,margin 18 | H2H favoured winner 75%
-2026-02-16,FAL,TMB,111-116,False,0.327,127,margin 5 | winner hotter L10 (+0.3)
-2026-01-06,AUR,OBS,128-103,True,0.328,254,margin 25 | H2H favoured winner 100%
-2026-02-01,BRK,HAV,102-124,False,0.328,188,margin 22 | no pre-game signal: noise
-2025-11-03,ZEP,OBS,113-107,True,0.332,239,margin 6 | both on B2B
-2025-11-04,HLW,UMB,102-105,False,0.332,155,margin 3 | no pre-game signal: noise
-2025-11-24,MRW,XEN,116-122,False,0.333,78,margin 6 | no pre-game signal: noise
-2025-11-03,FAL,WYR,119-112,True,0.334,239,margin 7 | no pre-game signal: noise
-2025-12-02,HLW,XEN,103-118,False,0.334,70,margin 15 | winner streak edge +3
-2026-01-12,DUN,KES,117-104,True,0.334,198,margin 13 | no pre-game signal: noise
-2026-01-26,AUR,KES,127-118,True,0.337,339,margin 9 | no pre-game signal: noise
-2026-02-05,FAL,VLE,119-115,True,0.338,216,margin 4 | no pre-game signal: noise
-2026-01-17,ZEP,COP,113-127,False,0.339,99,margin 14 | both on B2B
-2026-02-18,LUM,WYR,113-105,True,0.339,272,margin 8 | both on B2B | winner streak edge +5 | H2H favoured winner 75%
-2026-02-18,PNE,DUN,107-99,True,0.342,348,margin 8 | no pre-game signal: noise
-2026-04-09,XEN,MST,110-126,False,0.342,84,margin 16 | no pre-game signal: noise
-2025-12-15,RVN,HAV,116-111,True,0.343,355,margin 5 | both on B2B
-2026-02-28,TMB,ZEP,95-108,False,0.345,81,margin 13 | no pre-game signal: noise
-2025-12-23,PNE,DUN,125-114,True,0.346,224,margin 11 | both on B2B
-2025-11-23,AUR,UMB,114-107,True,0.347,198,margin 7 | no pre-game signal: noise
-2026-01-06,EMB,TMB,106-98,True,0.347,275,margin 8 | both on B2B
-2026-01-02,TMB,IRN,105-100,True,0.348,233,margin 5 | no pre-game signal: noise
-2026-01-08,HLW,GLD,111-114,False,0.348,83,margin 3 | no pre-game signal: noise
-2025-11-03,AUR,VLE,111-118,False,0.349,-14,margin 7 | H2H favoured winner 100%
-2026-01-24,VLE,MST,114-118,False,0.349,120,margin 4 | both on B2B
-2026-04-03,IRN,JUN,112-123,False,0.349,-15,margin 11 | both on B2B
+2026-10-26,GS,DEN,114-134,False,0.136,320,margin 20 | no pre-game signal: noise
+2026-10-28,GS,MIN,114-119,False,0.136,207,margin 5 | no pre-game signal: noise
+2026-11-02,SAC,DAL,100-115,False,0.136,218,margin 15 | H2H favoured winner 75%
+2026-10-28,DAL,OKC,120-96,True,0.152,326,margin 24 | no pre-game signal: noise
+2026-10-28,MIA,ATL,117-129,False,0.19,188,margin 12 | H2H favoured winner 75%
+2026-10-29,MEM,POR,103-124,False,0.19,258,margin 21 | no pre-game signal: noise
+2026-10-30,WSH,CHA,95-79,True,0.198,327,margin 16 | no pre-game signal: noise
+2026-10-30,DAL,HOU,116-111,True,0.25,217,margin 5 | no pre-game signal: noise
+2026-10-30,GS,LAL,112-95,True,0.269,182,margin 17 | no pre-game signal: noise
+2026-11-07,PHX,HOU,102-99,True,0.269,182,margin 3 | no pre-game signal: noise
+2026-10-23,DAL,IND,105-121,False,0.324,10,margin 16 | no pre-game signal: noise
+2026-10-30,ORL,TOR,114-121,False,0.324,52,margin 7 | no pre-game signal: noise
+2026-11-02,WSH,ORL,94-103,False,0.324,209,margin 9 | favourite on B2B
+2026-11-04,IND,MEM,103-107,False,0.324,145,margin 4 | no pre-game signal: noise
+2026-11-04,MIN,HOU,107-117,False,0.324,109,margin 10 | no pre-game signal: noise
+2026-10-27,NY,DET,111-97,True,0.33,193,margin 14 | no pre-game signal: noise
+2026-10-31,NO,ATL,121-99,True,0.33,202,margin 22 | no pre-game signal: noise
+2026-11-04,BKN,CHA,114-104,True,0.33,231,margin 10 | winner streak edge +3

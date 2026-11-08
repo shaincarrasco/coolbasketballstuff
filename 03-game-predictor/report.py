@@ -6,12 +6,15 @@ Two outputs from the same body:
   * <site>/predictor/index.html references ../assets/shell.css and ../assets/shell.js
                                 (python cli.py demo --site ../site/predictor)
 
-Page order: eyebrow + h1 + lede -> 4 KPI tiles -> Slate (172 game days, prev/next,
+Page order: eyebrow + h1 + lede -> 4 KPI tiles -> Slate (played days + next 7, live strip, prev/next,
 select, arrow keys) -> Power rankings -> Season simulator -> Upsets + confidence
 tiers (details) -> Model lab (details) -> Method & limits -> footer. Team codes
 everywhere open a drawer (bottom sheet on mobile, side panel on desktop).
 
-Everything is SAMPLE DATA. Not betting advice. Nothing here is guaranteed.
+Data: ESPN's public scoreboard API (real NBA games) or, offline, the synthetic
+sample league; the page says which. A small "Live scores" strip fetches today's
+ESPN scoreboard in the browser and overlays status / score on matching cards.
+Not betting advice. Nothing here is guaranteed.
 """
 from __future__ import annotations
 
@@ -72,7 +75,7 @@ def walk_svg(walk: list[dict]) -> str:
     W, H, L, R, T, B = 640, 240, 40, 12, 14, 28
     pw, ph = W - L - R, H - T - B
     n = len(walk)
-    lo, hi = 0.45, 0.80
+    lo, hi = 0.45, 0.85
     xs = [L + (i + 0.5) * pw / n for i in range(n)]
     sy = lambda v: T + (1 - (min(max(v, lo), hi) - lo) / (hi - lo)) * ph
     p = [f'<svg class="chart" viewBox="0 0 {W} {H}" role="img" aria-label="Walk-forward accuracy by month">']
@@ -158,10 +161,15 @@ def sim_html(sim: dict) -> str:
     sure = [r for r in sim["teams"] if r["playoff"] >= .7]
     sure_made = sum(1 for r in sure if r["made_playoffs"]) if sim["season_complete"] else None
     sneak = [r for r in sim["teams"] if r["playoff"] < .3 and r["made_playoffs"]] if sim["season_complete"] else []
-    read = (f'<b>Read:</b> From {esc(sim["date"])} the simulator gave {len(sure)} teams a 70%+ playoff chance'
-            + (f' and {sure_made} of them made it' if sure_made is not None else "")
-            + (f'; {", ".join(esc(r["team"]) for r in sneak)} got in from under 30%. ' if sneak else '. ')
-            + (f'Playoff-odds Brier vs the real finish: {sim["playoff_brier"]:.3f} (0 = perfect, 0.25 = coin flip).' if sim["playoff_brier"] is not None else ""))
+    if sim.get("live"):
+        read = (f'<b>Read:</b> From {esc(sim["date"])} the simulator gives {len(sure)} teams a 70%+ chance of a top-6 seed '
+                f'(direct playoff spot; the play-in is not modelled). "Exp W" is the mean of {sim["n_sims"]} simulated finishes. '
+                + esc(sim.get("schedule_note") or ""))
+    else:
+        read = (f'<b>Read:</b> From {esc(sim["date"])} the simulator gave {len(sure)} teams a 70%+ playoff chance'
+                + (f' and {sure_made} of them made it' if sure_made is not None else "")
+                + (f'; {", ".join(esc(r["team"]) for r in sneak)} got in from under 30%. ' if sneak else '. ')
+                + (f'Playoff-odds Brier vs the real finish: {sim["playoff_brier"]:.3f} (0 = perfect, 0.25 = coin flip).' if sim["playoff_brier"] is not None else ""))
     act = focus["final_w"]
     return f"""
     <div class="grid g2">{conf_table("East")}{conf_table("West")}</div>
@@ -169,7 +177,7 @@ def sim_html(sim: dict) -> str:
       <div class="sec-h"><h2 style="font-size:14px">{esc(sim["focus"])} win-total distribution</h2><span class="read">{esc(focus["name"])} &middot; {focus["w"]}-{focus["l"]} on {esc(sim["date"])}</span></div>
       {histogram_svg(sim["focus_hist"], sim["n_sims"], sim["focus"], act)}
       <div class="legend"><span><i style="background:var(--text);opacity:.55"></i>simulated ({sim["n_sims"]} runs)</span>
-        <span><i style="background:var(--pos)"></i>actual final{f" ({act} wins)" if act is not None else ""}</span>
+        {f'<span><i style="background:var(--pos)"></i>actual final ({act} wins)</span>' if act is not None else f'<span class="muted">{focus["w"]}-{focus["l"]} so far</span>'}
         <span class="muted">expected {focus["exp_w"]:.1f} &middot; 5&ndash;95% {focus["w_lo"]}&ndash;{focus["w_hi"]}</span></div>
     </div>
     <p class="read-line">{read} Top {spots} per conference qualify; {sim["games_remaining"]} games were simulated from Elo with +80 home court.</p>"""
@@ -220,6 +228,16 @@ def lab_html(met: dict) -> str:
     table = "".join([mrow("Home team wins", m["home_baseline"]), mrow("Elo-logit (1 feature)", m["elo_logit"]),
                      mrow("HistGB (20 features)", m["hgb"]), mrow("XGBoost raw", m["xgb_raw"]),
                      mrow(f"XGBoost + {cal['chosen']}", m["xgb"], best=True)])
+    prior = met.get("prior_holdout")
+    prior_table = ""
+    if prior:
+        pm = prior["models"]
+        prior_table = ("".join([mrow("Home team wins", pm["home_baseline"]), mrow("Elo-logit (1 feature)", pm["elo_logit"]),
+                                mrow("HistGB (20 features)", pm["hgb"]), mrow(f"XGBoost + {prior['calibrator']}", pm["xgb"], best=True)]))
+    pooled = met.get("pooled")
+    rel_xgb, rel_elo, ece_x, ece_e, rel_n = cal["reliability_xgb"], cal["reliability_elo"], cal["ece_xgb"], cal["ece_elo"], met["data"]["n_test"]
+    if pooled:
+        rel_xgb, rel_elo, ece_x, ece_e, rel_n = pooled["reliability_xgb"], pooled["reliability_elo"], pooled["ece_xgb"], pooled["ece_elo"], pooled["n"]
     imp = met["feature_importance"][:8]
     mx = imp[0]["gain_share"] if imp else 1
     imp_rows = "".join(f'<tr><td class="mono muted">{esc(r["feature"])}</td><td style="width:45%"><span class="bar"><i style="width:{r["gain_share"] / mx * 100:.0f}%;background:var(--muted)"></i></span></td><td class="n">{r["gain_share"]:.1%}</td></tr>' for r in imp)
@@ -227,12 +245,25 @@ def lab_html(met: dict) -> str:
                         f'<td class="n">{w["elo_accuracy"]:.1%}</td><td class="n">{w["hgb_accuracy"]:.1%}</td><td class="n"><b>{w["xgb_accuracy"]:.1%}</b></td><td class="n muted">{w["xgb_log_loss"]:.3f}</td></tr>' for w in walk)
     d = met["data"]
     xa, ea, ha = m["xgb"]["accuracy"], m["elo_logit"]["accuracy"], m["home_baseline"]["accuracy"]
+    small = d.get("small_sample")
+    if prior:
+        pxa, pea, pha = prior["models"]["xgb"]["accuracy"], prior["models"]["elo_logit"]["accuracy"], prior["models"]["home_baseline"]["accuracy"]
+        read_models = (f'<b>Read:</b> On the full {esc(prior["test_season"])} holdout (n={prior["n_test"]}) XGBoost beats "home team wins" by {(pxa - pha) * 100:.0f} points and the one-feature Elo regression by {(pxa - pea) * 100:+.1f}. '
+                       + (f'The {esc(d["test_season"])} numbers above are {d["n_test"]} games in, so a ±4-point swing is noise. ' if small else '')
+                       + f'ECE on the pooled {rel_n} out-of-sample games: XGB {ece_x:.3f}, Elo {ece_e:.3f}.')
+        prior_block = f"""
+        <div class="sub-h" style="margin-top:12px">Prior full-season holdout <span class="muted">{esc(prior["test_season"])}, n={prior["n_test"]}, trained on {esc(" + ".join(prior["train_seasons"]))}</span></div>
+        <div class="tbl compact"><table><thead><tr><th>Model</th><th class="n">Acc</th><th class="n">Log loss</th><th class="n">Brier</th><th class="n">AUC</th></tr></thead><tbody>{prior_table}</tbody></table></div>"""
+    else:
+        read_models = f'<b>Read:</b> Every learner beats "home team wins" by about {(xa - ha) * 100:.0f} points and ties a one-feature Elo regression ({xa - ea:+.1%}). Elo carries almost all the predictable signal; the other 19 features add noise-level residual on {d["n_train"]} training games. ECE: XGB {cal["ece_xgb"]:.3f}, Elo {cal["ece_elo"]:.3f}.'
+        prior_block = ""
     return f"""
     <div class="grid g2" style="align-items:start">
       <div>
-        <div class="sub-h">Scoreboard <span class="muted">test season {esc(d["test_season"])}, n={d["n_test"]}</span></div>
+        <div class="sub-h">Scoreboard <span class="muted">test season {esc(d["test_season"])} to date, n={d["n_test"]}{' · small sample' if small else ''}</span></div>
         <div class="tbl compact"><table><thead><tr><th>Model</th><th class="n">Acc</th><th class="n">Log loss</th><th class="n">Brier</th><th class="n">AUC</th></tr></thead><tbody>{table}</tbody></table></div>
-        <p class="read-line"><b>Read:</b> Every learner beats "home team wins" by about {(xa - ha) * 100:.0f} points and ties a one-feature Elo regression ({xa - ea:+.1%}). Elo carries almost all the predictable signal; the other 19 features add noise-level residual on {d["n_train"]} training games. ECE: XGB {cal["ece_xgb"]:.3f}, Elo {cal["ece_elo"]:.3f}.</p>
+        {prior_block}
+        <p class="read-line">{read_models}</p>
       </div>
       <div>
         <div class="sub-h">XGBoost gain share <span class="muted">top 8 of {len(met["features"])} features</span></div>
@@ -241,14 +272,14 @@ def lab_html(met: dict) -> str:
     </div>
     <div class="grid g2" style="margin-top:14px;align-items:start">
       <div>
-        <div class="sub-h">Walk-forward accuracy <span class="muted">refit each month on everything before it</span></div>
+        <div class="sub-h">Walk-forward accuracy <span class="muted">refit each month on everything before it{" · " + esc(" + ".join(pooled["seasons"])) if pooled else ""}</span></div>
         {walk_svg(walk)}
         <div class="legend"><span><i style="background:var(--text)"></i>XGBoost</span><span><i style="background:var(--muted)"></i>HGB</span><span><i class="dash"></i>Elo-logit</span><span><i class="dot"></i>home team</span></div>
         <div class="tbl compact" style="margin-top:10px"><table><thead><tr><th>Month</th><th class="n">n</th><th class="n">Home</th><th class="n">Elo</th><th class="n">HGB</th><th class="n">XGB</th><th class="n">LL</th></tr></thead><tbody>{walk_rows}</tbody></table></div>
       </div>
       <div>
-        <div class="sub-h">Reliability <span class="muted">10 bins, dot size = n</span></div>
-        {calibration_svg(cal["reliability_xgb"], cal["reliability_elo"])}
+        <div class="sub-h">Reliability <span class="muted">10 bins, dot size = n{f" · pooled out-of-sample n={rel_n}" if pooled else ""}</span></div>
+        {calibration_svg(rel_xgb, rel_elo)}
         <div class="legend"><span><i style="background:var(--text)"></i>XGBoost</span><span><i style="background:var(--muted)"></i>Elo-logit</span><span><i class="dash"></i>perfect</span></div>
         <p class="read-line"><b>Read:</b> Points on the diagonal mean "when the model says 70%, the home side wins 70% of the time". Calibrator chosen on a validation slice by Brier: <b>{esc(cal["chosen"])}</b>.</p>
       </div>
@@ -285,6 +316,18 @@ CSS = r"""
 .tbl.compact table{font-size:12.5px}
 
 /* Slate */
+.live{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:0 0 10px;padding:7px 10px;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--surface)}
+.live[hidden]{display:none}
+.live .dot{width:7px;height:7px;border-radius:50%;background:var(--faint);flex:none}
+.live.on .dot{background:var(--pos);box-shadow:0 0 0 3px color-mix(in srgb,var(--pos) 25%,transparent);animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 1px color-mix(in srgb,var(--pos) 25%,transparent)}}
+@media(prefers-reduced-motion:reduce){.live.on .dot{animation:none}}
+.live #live-text{color:var(--text);font-weight:600}
+.live #live-ts{margin-left:auto;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.g-fin.inplay{color:var(--text);font-weight:600}
+.g-fin .q{color:var(--pos);font:600 10px var(--mono);letter-spacing:.06em;margin-left:6px}
+.topbar .chip .chip-sub{display:none;font-weight:500;text-transform:none;letter-spacing:0;color:var(--faint);margin-left:6px}
+@media(min-width:600px){.topbar .chip .chip-sub{display:inline}}
 .slate-stats{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
 .slate-stats .spark{margin-left:auto}
 #slate-date{flex:3 1 170px;font-family:var(--mono);font-weight:600;color:var(--accent);border-color:color-mix(in srgb,var(--accent) 55%,var(--line-2))}
@@ -311,11 +354,11 @@ CSS = r"""
 .g-p b{font-weight:500;color:var(--muted)}
 .g-p b.fav{font-weight:700;color:var(--text)}
 .g-end{grid-area:end;display:flex;align-items:center;gap:8px;justify-content:flex-end}
-.g-fin{color:var(--muted);font-size:13px}
+.g-fin{color:var(--muted);font-size:13px;white-space:nowrap}
 .chip.pick{color:var(--text);border-color:var(--line-2);text-transform:none;letter-spacing:.02em;font-size:12px}
 .chip.res{padding:5px 8px}
 @media(min-width:900px){
-  .game{grid-template-columns:28px minmax(170px,1.1fr) 90px minmax(140px,1.4fr) 52px 52px 120px minmax(160px,1.6fr) 70px 64px;grid-template-areas:none;padding:8px 12px;gap:0 12px}
+  .game{grid-template-columns:28px minmax(170px,1.1fr) 90px minmax(140px,1.4fr) 52px 52px 120px minmax(150px,1.6fr) 104px 64px;grid-template-areas:none;padding:8px 12px;gap:0 12px}
   .game > *{grid-area:auto!important}
   .game.head{display:grid;font:600 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:10px 12px}
   .g-n{display:block;color:var(--muted);font-size:12px}
@@ -356,6 +399,13 @@ JS = r"""
   const tm = c => `<button type="button" class="tm" data-team="${c}">${c}</button>`;
   let i = SP.dates.indexOf(D.default_date); if (i < 0) i = SP.dates.length - 1;
 
+  // shell chip: the shared top bar says "Sample data" by default; say what this page actually runs on
+  const chip = document.querySelector('.topbar .chip');
+  if (chip && D.live) {
+    chip.innerHTML = `Live data · ESPN<span class="chip-sub">· ${D.updated} · ${D.n_final} games</span>`;
+    chip.title = `ESPN public API · data updated ${D.updated} · ${D.n_final} final games`;
+  }
+
   function sparkRunning(upto){
     const W = 120, H = 28, pts = [];
     const dates = SP.dates.slice(0, upto + 1), n = dates.length;
@@ -374,7 +424,7 @@ JS = r"""
     $('#slate-count').textContent = rows.length + (rows.length === 1 ? ' game' : ' games');
     const dayAcc = r.n ? r.hits / r.n : null;
     $('#st-day').className = 'chip ' + (dayAcc == null ? '' : dayAcc >= D.baseline ? 'pos' : 'neg');
-    $('#st-day').textContent = r.n ? `Day ${r.hits}/${r.n} · ${pct(dayAcc)}` : 'Day —';
+    $('#st-day').textContent = r.n ? `Day ${r.hits}/${r.n} · ${pct(dayAcc)}` : (d === D.today ? 'Today' : d > (D.today || '') ? 'Upcoming' : 'Day —');
     $('#st-std').textContent = r.std_n ? `Season ${r.std_hits}/${r.std_n} · ${pct(r.std_hits / r.std_n)}` : 'Season —';
     $('#st-spark').innerHTML = sparkRunning(i);
     $('#prev').disabled = i === 0; $('#next').disabled = i === SP.dates.length - 1;
@@ -384,8 +434,8 @@ JS = r"""
       const flags = (g.ra === 1 ? `<span class="b2b" title="away team on a back-to-back">${g.a} B2B</span>` : '') + (g.rh === 1 ? `<span class="b2b" title="home team on a back-to-back">${g.h} B2B</span>` : '');
       const end = ('ok' in g)
         ? `<span class="g-fin num">${g.ap}–${g.hp}</span><span class="g-res"><span class="chip res ${g.ok ? 'pos' : 'neg'}">${g.ok ? 'Hit' : 'Miss'}</span></span>`
-        : `<span class="g-fin muted">—</span><span class="g-res"><span class="chip res">TBD</span></span>`;
-      h += `<div class="game" role="row">
+        : `<span class="g-fin muted">${g.t ? g.t + ' ET' : '—'}</span><span class="g-res"></span>`;
+      h += `<div class="game" role="row"${g.eid ? ` data-espn-id="${g.eid}"` : ''}>
         <span class="g-n num">${k + 1}</span>
         <span class="g-m">${tm(g.a)}<span class="at">@</span>${tm(g.h)}${flags}</span>
         <span class="g-elo num">${g.ea} · ${g.eh}</span>
@@ -397,6 +447,54 @@ JS = r"""
       </div>`;
     });
     $('#slate-body').innerHTML = h;
+    if (LIVE.events) overlayLive();
+  }
+
+  // ---- live scores: today's ESPN scoreboard, fetched in the browser (CORS *), refreshed every 60 s while visible ----
+  const LIVE = { events: null, at: null, timer: null };
+  const etDate = () => new Intl.DateTimeFormat('en-CA', { timeZone: 'America/New_York', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+  function overlayLive(){
+    const ev = LIVE.events || [];
+    let inplay = 0, fin = 0, up = 0;
+    ev.forEach(e => {
+      const st = (e.status && e.status.type) || {}; const name = st.name || '';
+      if (name === 'STATUS_IN_PROGRESS' || name === 'STATUS_HALFTIME' || name === 'STATUS_END_PERIOD') inplay++; else if (name.indexOf('STATUS_FINAL') === 0) fin++; else up++;
+      const row = document.querySelector(`.game[data-espn-id="${e.id}"]`); if (!row) return;
+      const comp = (e.competitions || [])[0]; if (!comp) return;
+      const home = comp.competitors.find(c => c.homeAway === 'home'), away = comp.competitors.find(c => c.homeAway === 'away');
+      if (!home || !away) return;
+      const finEl = row.querySelector('.g-fin'), resEl = row.querySelector('.g-res');
+      const score = `${away.score ?? ''}–${home.score ?? ''}`;
+      if (name.indexOf('STATUS_FINAL') === 0) {
+        finEl.className = 'g-fin num'; finEl.innerHTML = `${score}<span class="q" style="color:var(--muted)">FINAL</span>`;
+        const winner = (+home.score > +away.score) ? home.team.abbreviation : away.team.abbreviation;
+        const pick = row.querySelector('.chip.pick'); const pk = pick ? pick.textContent.trim().split(/\s/)[0] : null;
+        if (pk && !resEl.querySelector('.chip')) resEl.innerHTML = `<span class="chip res ${pk === winner ? 'pos' : 'neg'}">${pk === winner ? 'Hit' : 'Miss'}</span>`;
+      } else if (name === 'STATUS_IN_PROGRESS' || name === 'STATUS_HALFTIME' || name === 'STATUS_END_PERIOD') {
+        finEl.className = 'g-fin num inplay'; finEl.innerHTML = `${score}<span class="q">${st.shortDetail || 'LIVE'}</span>`;
+      } else if (name === 'STATUS_POSTPONED' || name === 'STATUS_CANCELED') {
+        finEl.className = 'g-fin muted'; finEl.textContent = st.shortDetail || 'Postponed';
+      }
+    });
+    const strip = $('#live'); if (!strip) return;
+    strip.hidden = false; strip.classList.toggle('on', inplay > 0);
+    $('#live-text').textContent = ev.length ? (inplay ? `${inplay} live` : 'No games live') + ` · ${fin} final · ${up} upcoming today` : 'No NBA games today';
+    $('#live-ts').textContent = LIVE.at ? 'ESPN ' + LIVE.at : '';
+  }
+  async function fetchLive(){
+    if (document.visibilityState !== 'visible') return;
+    try {
+      const r = await fetch(`https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=${etDate().replace(/-/g, '')}&limit=50`, { cache: 'no-store' });
+      if (!r.ok) throw new Error(r.status);
+      const j = await r.json();
+      LIVE.events = j.events || []; LIVE.at = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      overlayLive();
+    } catch (e) { /* offline or endpoint changed: degrade silently, the page is complete without it */ }
+  }
+  if (D.live && typeof fetch === 'function') {
+    fetchLive();
+    LIVE.timer = setInterval(fetchLive, 60000);
+    document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') fetchLive(); });
   }
   $('#prev').onclick = () => { if (i > 0) { i--; renderSlate(); } };
   $('#next').onclick = () => { if (i < SP.dates.length - 1) { i++; renderSlate(); } };
@@ -449,7 +547,7 @@ JS = r"""
       <div><h3>Biggest upset losses</h3><div class="tbl compact"><table><tbody>${ups(t.upset_losses, false)}</tbody></table></div></div></div>
       <h3>Schedule · newest first · p = model win prob for ${code}</h3>
       <div class="tbl compact"><table><thead><tr><th>Date</th><th>Opp</th><th class="n">p(win)</th><th class="n">Rest</th><th>Result</th><th>Model</th></tr></thead><tbody>${sched}</tbody></table></div>
-      <p class="note">Sample data · ${D.disclaimer}</p>`;
+      <p class="note">${D.live ? 'Data: ESPN public API · updated ' + D.updated : 'Sample data'} · ${D.disclaimer}</p>`;
     $('#drawer').classList.add('open'); $('#scrim').classList.add('open');
     $('#drawer').scrollTop = 0;
     $('#d-close').onclick = closeTeam;
@@ -466,7 +564,7 @@ JS = r"""
 
 def _trim_bundle(sp: dict, team_pages: dict, rankings: list[dict]) -> dict:
     """Only the fields the JS reads, floats to 3 dp."""
-    slates = {d: [{k: g[k] for k in ("h", "a", "ph", "eh", "ea", "pick", "drv", "rh", "ra", "hp", "ap", "ok") if k in g} for g in rows]
+    slates = {d: [{k: g[k] for k in ("h", "a", "ph", "eh", "ea", "pick", "drv", "rh", "ra", "hp", "ap", "ok", "eid", "t") if k in g} for g in rows]
               for d, rows in sp["slates"].items()}
     teams = {}
     for code, t in team_pages.items():
@@ -483,33 +581,75 @@ def _body(bundle: dict, sim: dict, met: dict, pred: dict) -> tuple[str, str]:
     xgbm, elom, homem = m["xgb"], m["elo_logit"], m["home_baseline"]
     sp, rk, ups, tiers = bundle["season_predictions"], bundle["rankings"], bundle["upsets"], bundle["tiers"]
     from analytics import UPSET_THRESHOLD
-    season_hits = sp["running"][sp["dates"][-1]]
+    meta = bundle.get("meta") or {}
+    live = meta.get("source") == "espn"
+    updated = (meta.get("updated_at") or "")[:16].replace("T", " ") + (" UTC" if meta.get("updated_at") else "")
+    n_final = meta.get("n_final") or d["games_total"]
+    prior = met.get("prior_holdout")
+    small = d.get("small_sample")
+    last_played = sp.get("last_played_date") or sp["dates"][-1]
+    season_hits = sp["running"][last_played]
     top = rk[0]
     mover = max(rk, key=lambda r: r["d_elo_30"])
     faller = min(rk, key=lambda r: r["d_elo_30"])
     ts = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    # default slate: today (ET) if it has games, else the next game day, else the last played day
+    default_date = pred["date"] if pred.get("date") in sp["slates"] else last_played
+    today = sp.get("today")
 
     blob = _trim_bundle(sp, bundle["team_pages"], rk)
-    blob.update({"default_date": pred["date"], "baseline": round(homem["accuracy"], 3), "disclaimer": DISCLAIMER})
+    blob.update({"default_date": default_date, "baseline": round(homem["accuracy"], 3), "disclaimer": DISCLAIMER,
+                 "live": live, "today": today, "updated": updated, "n_final": n_final,
+                 "last_played": last_played, "season": d["test_season"]})
     data_blob = json.dumps(blob, separators=(",", ":")).replace("</", "<\\/")
-    date_opts = "".join(f'<option value="{dd}">{dd} &middot; {len(sp["slates"][dd])} g</option>' for dd in sp["dates"])
+    def opt(dd):
+        n = len(sp["slates"][dd])
+        if dd == today:
+            return f'<option value="{dd}">{dd} &middot; today</option>'
+        tag = " &#9656;" if today and dd > today else ""   # small right-pointing triangle marks upcoming dates
+        return f'<option value="{dd}">{dd} &middot; {n} g{tag}</option>'
+    date_opts = "".join(opt(dd) for dd in sp["dates"])
     best_month = max(walk, key=lambda w: w["xgb_accuracy"])
+
+    if live:
+        lede = ("Pre-game win probabilities from Elo, rest and rolling form, trained on three real NBA seasons and scored "
+                f"forward in time on every {esc(d['test_season'])} game. Real games from ESPN's public API, refreshed on each run; "
+                "the point is the leak-free pipeline and honest calibration, not the picks.")
+        src_line = f"Data: ESPN public API &middot; updated {esc(updated)}"
+        method_data = (f"Real NBA games ({', '.join(esc(x) for x in d['seasons'])}) from ESPN's unofficial, undocumented public scoreboard API, "
+                       f"regular season only (playoffs and NBA Cup final are flagged; the Cup final is kept for Elo but excluded from standings). "
+                       f"Game dates are US/Eastern. The {esc(d['test_season'])} test set is {d['n_test']} games so far"
+                       + (" &mdash; a small sample, so the hero number will move; the full prior-season holdout is the stable read." if small else ".")
+                       + " ESPN can change or withdraw the endpoint without notice.")
+        hind_label = f"{esc(d['test_season'])} hindcast"
+    else:
+        lede = ("Pre-game win probabilities from Elo, rest and rolling form, scored forward in time on every game of the test season. "
+                "Sample league, synthetic data &mdash; the point is the leak-free pipeline and honest calibration, not the picks.")
+        src_line = "Sample league &middot; synthetic data"
+        method_data = ("30 fictional teams, 3 seasons &times; 1230 games simulated with drifting strength, +2.5 home court, rest effects and injuries, "
+                       "tuned so a perfect oracle wins ~68% (real NBA models land at 65&ndash;68%).")
+        hind_label = "Season hindcast"
+
+    kpi_sub = (f'full {esc(prior["test_season"])} holdout <span class="v">{prior["models"]["xgb"]["accuracy"]:.1%}</span> (n={prior["n_test"]})'
+               if prior else f'vs <span class="v">{homem["accuracy"]:.1%}</span> home baseline &middot; n={d["n_test"]}')
+    kpi_label = f'{esc(d["test_season"])} accuracy' + (' <span class="muted" style="text-transform:none;letter-spacing:0">(n=%d)</span>' % d["n_test"] if small else '')
 
     body = f"""
 <main class="wrap">
   <div class="eyebrow">Project 03 &middot; win probability &middot; season {esc(d["test_season"])}</div>
   <h1>Game Predictor</h1>
-  <p class="lede">Pre-game win probabilities from Elo, rest and rolling form, scored forward in time on every game of the test season. Sample league, synthetic data &mdash; the point is the leak-free pipeline and honest calibration, not the picks.</p>
+  <p class="lede">{lede}</p>
 
   <section class="grid g4" aria-label="Key numbers">
-    <div class="card kpi"><div class="label">Test accuracy</div><b class="hero">{xgbm["accuracy"]:.1%}</b><div class="sub">vs <span class="v">{homem["accuracy"]:.1%}</span> home baseline &middot; n={d["n_test"]}</div></div>
+    <div class="card kpi"><div class="label">{kpi_label}</div><b class="hero">{xgbm["accuracy"]:.1%}</b><div class="sub">{kpi_sub}</div></div>
     <div class="card kpi"><div class="label">Log loss</div><b>{xgbm["log_loss"]:.3f}</b><div class="sub">Elo-logit {elom["log_loss"]:.3f} &middot; home {homem["log_loss"]:.3f}</div></div>
-    <div class="card kpi"><div class="label">Season hindcast</div><b>{season_hits["std_hits"]}<span class="muted" style="font-size:18px">/{season_hits["std_n"]}</span></b><div class="sub">{len(sp["dates"])} game days &middot; frozen model</div></div>
+    <div class="card kpi"><div class="label">{hind_label}</div><b>{season_hits["std_hits"]}<span class="muted" style="font-size:18px">/{season_hits["std_n"]}</span></b><div class="sub">{len([x for x in sp["dates"] if x <= last_played])} game days &middot; frozen model{' &middot; small sample' if small else ''}</div></div>
     <div class="card kpi"><div class="label">#1 Elo team</div><b>{esc(top["team"])}</b><div class="sub">{top["elo"]:.0f} &middot; {top["w"]}-{top["l"]} &middot; {esc(top["name"])}</div></div>
   </section>
 
   <section class="sec" id="slate" aria-label="Slate">
     <div class="sec-h"><h2>Slate</h2><span class="read" id="slate-count"></span></div>
+    <div class="live" id="live" hidden><span class="dot" aria-hidden="true"></span><span id="live-text">Live scores</span><span class="muted" id="live-ts"></span></div>
     <div class="controls">
       <button type="button" class="btn" id="prev" aria-label="Previous game day">&larr; Prev</button>
       <select id="slate-date" aria-label="Game date">{date_opts}</select>
@@ -521,17 +661,17 @@ def _body(bundle: dict, sim: dict, met: dict, pred: dict) -> tuple[str, str]:
       <div id="slate-body"></div>
     </div>
     <p class="hint">Tap a team code for its page. <span class="desk"><span class="kbd">&larr;</span> <span class="kbd">&rarr;</span> change the day, <span class="kbd">esc</span> closes the panel.</span></p>
-    <p class="read-line"><b>Read:</b> Every slate is a hindcast: the model was trained on seasons {esc(" + ".join(d["train_seasons"]))} only, features use games strictly before each date, and the final score is shown as a check, never as an input. Games are sorted by confidence; "Hit" means the pick won.</p>
+    <p class="read-line"><b>Read:</b> {"Today's and upcoming games show the model's pre-game probability; played games are a hindcast" if live else "Every slate is a hindcast"}: the model was trained on seasons {esc(" + ".join(d["train_seasons"]))} only, features use games strictly before each date, and the final score is shown as a check, never as an input. Games are sorted by confidence; "Hit" means the pick won.</p>
   </section>
 
   <section class="sec" id="rankings" aria-label="Power rankings">
-    <div class="sec-h"><h2>Power rankings</h2><span class="read">Elo as of {esc(sp["dates"][-1])}</span></div>
+    <div class="sec-h"><h2>Power rankings</h2><span class="read">Elo as of {esc(last_played)}</span></div>
     {rankings_html(rk)}
-    <p class="read-line"><b>Read:</b> {esc(top["team"])} leads at {top["elo"]:.0f}. Biggest 30-day mover is <b>{esc(mover["team"])}</b> ({mover["d_elo_30"]:+.0f}); biggest faller <b>{esc(faller["team"])}</b> ({faller["d_elo_30"]:+.0f}). Net10 is point differential per game over the last 10 (a rating proxy; no possession data in the sample).</p>
+    <p class="read-line"><b>Read:</b> {esc(top["team"])} leads at {top["elo"]:.0f}. Biggest 30-day mover is <b>{esc(mover["team"])}</b> ({mover["d_elo_30"]:+.0f}); biggest faller <b>{esc(faller["team"])}</b> ({faller["d_elo_30"]:+.0f}). Net10 is point differential per game over the last 10 (a rating proxy; no possession data here).</p>
   </section>
 
   <section class="sec" id="sim" aria-label="Season simulator">
-    <div class="sec-h"><h2>Season simulator</h2><span class="read">Monte Carlo from {esc(sim["date"])} &middot; {sim["n_sims"]} runs</span></div>
+    <div class="sec-h"><h2>Season simulator</h2><span class="read">Monte Carlo from {esc(sim["date"])} &middot; {sim["n_sims"]} runs{" &middot; published schedule" if sim.get("live") else ""}</span></div>
     {sim_html(sim)}
   </section>
 
@@ -543,12 +683,12 @@ def _body(bundle: dict, sim: dict, met: dict, pred: dict) -> tuple[str, str]:
   </section>
 
   <section class="method" id="method">
-    <b>Method &amp; limits.</b> 30 fictional teams, 3 seasons &times; 1230 games simulated with drifting strength, +2.5 home court, rest effects and injuries, tuned so a perfect oracle wins ~68% (real NBA models land at 65&ndash;68%).
+    <b>Method &amp; limits.</b> {method_data}
     Features are built by streaming one day at a time so nothing from a game day leaks into that day's rows; a re-derivation assertion runs on every train. Train on seasons {esc(" + ".join(d["train_seasons"]))}, test on {esc(d["test_season"])}, calibrator and hyper-parameters chosen on the last 60 days of training. Elo: K=20, +80 home, margin multiplier, 25% carry-over regression.
-    The simulator uses Elo probabilities (not XGBoost) with in-path updates and random tiebreaks; off/def are points per game, not per possession; no players, injuries, travel or market lines. Three learners tie a one-feature Elo regression &mdash; that is the honest result, not a bug.
+    The simulator uses Elo probabilities (not XGBoost) with in-path updates and random tiebreaks{", top-6 = direct playoff spot (no play-in)" if sim.get("live") else ""}; off/def are points per game, not per possession; no players, injuries, travel or market lines. Three learners roughly tie a one-feature Elo regression &mdash; that is the honest result, not a bug.
     <b>{esc(DISCLAIMER)}</b>
   </section>
-  <div class="foot"><span>Sample league</span><span>synthetic data</span><span>Python</span><span>Pandas</span><span>scikit-learn</span><span>XGBoost</span><span>built {ts}</span></div>
+  <div class="foot"><span>{src_line}</span><span>Python</span><span>Pandas</span><span>scikit-learn</span><span>XGBoost</span><span>built {ts}</span></div>
 </main>
 <div class="scrim" id="scrim"></div>
 <aside class="drawer" id="drawer" aria-label="Team panel"></aside>
@@ -565,7 +705,7 @@ def _page(body: str, data_blob: str, *, standalone: bool, depth: str) -> str:
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0b0d12"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Game Predictor · NBA Projects (sample data)</title>
+<title>Game Predictor · NBA Projects</title>
 {head_css}
 <style>{CSS}</style>
 </head>

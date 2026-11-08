@@ -1,0 +1,106 @@
+player_a,player_b,n_lineups,mean_fit,synergy,team_mean_fit
+Donovan Mitchell,Jarrett Allen,286,60.189,7.001,53.19
+Jarrett Allen,Craig Porter Jr.,286,59.902,6.715,53.19
+Sam Merrill,Jarrett Allen,286,57.616,4.428,53.19
+Donovan Mitchell,Tyrese Proctor,286,57.514,4.326,53.19
+Tyrese Proctor,Craig Porter Jr.,286,57.385,4.197,53.19
+James Harden,Jarrett Allen,286,57.052,3.864,53.19
+Donovan Mitchell,Evan Mobley,286,56.964,3.776,53.19
+Donovan Mitchell,Norchad Omier,286,56.795,3.607,53.19
+Donovan Mitchell,Peyton Watson,286,56.749,3.562,53.19
+Donovan Mitchell,Thomas Bryant,286,56.697,3.509,53.19
+Donovan Mitchell,Craig Porter Jr.,286,56.696,3.509,53.19
+Donovan Mitchell,James Harden,286,56.654,3.467,53.19
+Donovan Mitchell,Riley Minix,286,56.609,3.422,53.19
+Donovan Mitchell,Sam Merrill,286,56.607,3.419,53.19
+Jarrett Allen,Tyrese Proctor,286,56.572,3.385,53.19
+Donovan Mitchell,Mario Hezonja,286,56.519,3.332,53.19
+Craig Porter Jr.,Norchad Omier,286,56.288,3.1,53.19
+Mario Hezonja,Craig Porter Jr.,286,56.204,3.016,53.19
+Donovan Mitchell,Ernest Udeh Jr.,286,56.102,2.914,53.19
+Evan Mobley,Jarrett Allen,286,56.069,2.882,53.19
+Evan Mobley,Craig Porter Jr.,286,56.0,2.813,53.19
+Donovan Mitchell,Meleek Thomas,286,55.565,2.378,53.19
+Peyton Watson,Jarrett Allen,286,55.56,2.372,53.19
+Mario Hezonja,Jarrett Allen,286,55.475,2.288,53.19
+Peyton Watson,Craig Porter Jr.,286,55.41,2.222,53.19
+Jarrett Allen,Riley Minix,286,55.396,2.208,53.19
+Craig Porter Jr.,Riley Minix,286,55.389,2.201,53.19
+Jarrett Allen,Norchad Omier,286,55.368,2.181,53.19
+Craig Porter Jr.,Thomas Bryant,286,55.268,2.081,53.19
+Sam Merrill,Craig Porter Jr.,286,55.176,1.989,53.19
+Craig Porter Jr.,Ernest Udeh Jr.,286,55.104,1.917,53.19
+Jarrett Allen,Thomas Bryant,286,55.04,1.853,53.19
+Donovan Mitchell,Jaylon Tyson,286,54.824,1.637,53.19
+Jarrett Allen,Ernest Udeh Jr.,286,54.636,1.449,53.19
+James Harden,Craig Porter Jr.,286,54.575,1.387,53.19
+Evan Mobley,Sam Merrill,286,54.494,1.306,53.19
+James Harden,Tyrese Proctor,286,54.26,1.072,53.19
+James Harden,Evan Mobley,286,54.12,0.932,53.19
+Sam Merrill,Tyrese Proctor,286,53.848,0.66,53.19
+Evan Mobley,Tyrese Proctor,286,53.741,0.554,53.19
+Jaylon Tyson,Craig Porter Jr.,286,53.668,0.481,53.19
+James Harden,Peyton Watson,286,53.656,0.469,53.19
+Evan Mobley,Peyton Watson,286,53.626,0.439,53.19
+Jarrett Allen,Jaylon Tyson,286,53.61,0.423,53.19
+James Harden,Mario Hezonja,286,53.604,0.417,53.19
+Jarrett Allen,Meleek Thomas,286,53.569,0.382,53.19
+Peyton Watson,Sam Merrill,286,53.538,0.351,53.19
+Sam Merrill,Norchad Omier,286,53.386,0.199,53.19
+James Harden,Norchad Omier,286,53.323,0.135,53.19
+James Harden,Sam Merrill,286,53.315,0.127,53.19
+James Harden,Riley Minix,286,53.315,0.127,53.19
+Peyton Watson,Tyrese Proctor,286,53.145,-0.043,53.19
+Meleek Thomas,Craig Porter Jr.,286,53.053,-0.134,53.19
+Evan Mobley,Mario Hezonja,286,53.002,-0.186,53.19
+Mario Hezonja,Tyrese Proctor,286,52.992,-0.196,53.19
+Evan Mobley,Thomas Bryant,286,52.923,-0.265,53.19
+James Harden,Ernest Udeh Jr.,286,52.867,-0.321,53.19
+Evan Mobley,Riley Minix,286,52.845,-0.342,53.19
+James Harden,Thomas Bryant,286,52.821,-0.366,53.19
+Evan Mobley,Norchad Omier,286,52.747,-0.441,53.19
+Tyrese Proctor,Norchad Omier,286,52.703,-0.485,53.19
+Sam Merrill,Mario Hezonja,286,52.542,-0.645,53.19
+Sam Merrill,Thomas Bryant,286,52.521,-0.666,53.19
+Tyrese Proctor,Riley Minix,286,52.474,-0.714,53.19
+Sam Merrill,Riley Minix,286,52.441,-0.746,53.19
+Tyrese Proctor,Thomas Bryant,286,52.395,-0.792,53.19
+Peyton Watson,Norchad Omier,286,52.199,-0.989,53.19
+Tyrese Proctor,Ernest Udeh Jr.,286,52.192,-0.996,53.19
+Evan Mobley,Ernest Udeh Jr.,286,51.921,-1.267,53.19
+Mario Hezonja,Norchad Omier,286,51.909,-1.278,53.19
+Peyton Watson,Thomas Bryant,286,51.777,-1.411,53.19
+Sam Merrill,Ernest Udeh Jr.,286,51.762,-1.425,53.19
+Riley Minix,Norchad Omier,286,51.722,-1.465,53.19
+Peyton Watson,Mario Hezonja,286,51.586,-1.602,53.19
+Peyton Watson,Riley Minix,286,51.554,-1.634,53.19
+James Harden,Jaylon Tyson,286,51.431,-1.756,53.19
+Thomas Bryant,Norchad Omier,286,51.332,-1.855,53.19
+Peyton Watson,Ernest Udeh Jr.,286,51.01,-2.178,53.19
+Evan Mobley,Meleek Thomas,286,50.995,-2.192,53.19
+James Harden,Meleek Thomas,286,50.986,-2.202,53.19
+Tyrese Proctor,Jaylon Tyson,286,50.972,-2.216,53.19
+Norchad Omier,Ernest Udeh Jr.,286,50.945,-2.242,53.19
+Evan Mobley,Jaylon Tyson,286,50.857,-2.331,53.19
+Mario Hezonja,Riley Minix,286,50.764,-2.423,53.19
+Mario Hezonja,Thomas Bryant,286,50.743,-2.445,53.19
+Thomas Bryant,Riley Minix,286,50.701,-2.487,53.19
+Mario Hezonja,Ernest Udeh Jr.,286,50.592,-2.596,53.19
+Meleek Thomas,Tyrese Proctor,286,50.476,-2.712,53.19
+Sam Merrill,Meleek Thomas,286,50.341,-2.847,53.19
+Meleek Thomas,Norchad Omier,286,50.314,-2.873,53.19
+Riley Minix,Ernest Udeh Jr.,286,50.238,-2.95,53.19
+Sam Merrill,Jaylon Tyson,286,50.171,-3.016,53.19
+Thomas Bryant,Ernest Udeh Jr.,286,50.076,-3.112,53.19
+Jaylon Tyson,Norchad Omier,286,49.824,-3.363,53.19
+Peyton Watson,Meleek Thomas,286,49.654,-3.533,53.19
+Peyton Watson,Jaylon Tyson,286,49.394,-3.794,53.19
+Mario Hezonja,Meleek Thomas,286,49.247,-3.94,53.19
+Mario Hezonja,Jaylon Tyson,286,49.026,-4.161,53.19
+Meleek Thomas,Riley Minix,286,48.89,-4.297,53.19
+Jaylon Tyson,Thomas Bryant,286,48.675,-4.513,53.19
+Jaylon Tyson,Riley Minix,286,48.504,-4.683,53.19
+Meleek Thomas,Thomas Bryant,286,48.504,-4.684,53.19
+Jaylon Tyson,Ernest Udeh Jr.,286,48.499,-4.688,53.19
+Meleek Thomas,Ernest Udeh Jr.,286,47.987,-5.2,53.19
+Meleek Thomas,Jaylon Tyson,286,46.398,-6.789,53.19

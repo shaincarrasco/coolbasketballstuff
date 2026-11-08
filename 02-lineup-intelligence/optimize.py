@@ -144,6 +144,7 @@ class TeamTable:
             "stl_pct": float(p.stl_pct), "tov_pct": float(p.tov_pct), "reb_pct": float(p.reb_pct),
             "obpm": float(p.obpm), "dbpm": float(p.dbpm),
             "is_shooter": int(p.is_shooter), "is_handler": int(p.is_handler), "is_big": int(p.is_big),
+            "injury_status": (str(p.injury_status) if "injury_status" in p and isinstance(p.injury_status, str) else ""),
         }
 
 
@@ -152,8 +153,18 @@ def slug(team: str) -> str:
     return re.sub(r"[^a-z0-9]+", "_", team.lower()).strip("_")
 
 
+def active_players(players: pd.DataFrame) -> pd.DataFrame:
+    """Players eligible for the builder: on the current roster (`active == 1`). Real-data tables also carry
+    former players (needed to featurise historical lineups); sample data has no `active` column."""
+    return players[players.active == 1] if "active" in players.columns else players
+
+
+def team_list(players: pd.DataFrame) -> list[str]:
+    return active_players(players).team.unique().tolist()
+
+
 def resolve_team(team: str, players: pd.DataFrame) -> str:
-    teams = players.team.unique().tolist()
+    teams = team_list(players)
     match = [t for t in teams if team.lower() in t.lower()]
     if len(match) != 1:
         exact = [t for t in teams if t.lower() == team.lower()]
@@ -164,7 +175,8 @@ def resolve_team(team: str, players: pd.DataFrame) -> str:
 
 
 def find_player(players: pd.DataFrame, pattern: str, exclude_team: str | None = None) -> pd.Series:
-    pool = players if exclude_team is None else players[players.team != exclude_team]
+    pool = active_players(players)
+    pool = pool if exclude_team is None else pool[pool.team != exclude_team]
     hit = pool[pool.player_name.str.contains(pattern, case=False, regex=False)]
     if len(hit) != 1:
         opts = ", ".join(f"{r.player_name} ({r.team})" for _, r in hit.head(8).iterrows()) or "none"
@@ -224,7 +236,8 @@ def score_team(team: str, players: pd.DataFrame, lineups: pd.DataFrame | None = 
     booster, _ridge, _meta = load(model_dir)
     off_model = load_off(model_dir)
     team_name = resolve_team(team, players)
-    roster = players[players.team == team_name].copy()
+    roster = active_players(players)
+    roster = roster[roster.team == team_name].copy()
     added = []
     for pat in add_players:
         row = find_player(players, pat, exclude_team=team_name).copy()
@@ -262,14 +275,18 @@ def score_team(team: str, players: pd.DataFrame, lineups: pd.DataFrame | None = 
     rank_all = np.empty(len(pred_net), dtype=int)
     rank_all[order] = np.arange(1, len(pred_net) + 1)
 
-    hist = {}
+    hist, hist_meta = {}, {}
     if lineups is not None:
         for _, r in lineups[lineups.team == team_name].iterrows():
-            hist[tuple(sorted((int(r.p1), int(r.p2), int(r.p3), int(r.p4), int(r.p5))))] = (float(r.minutes), float(r.net_rating))
+            key = tuple(sorted((int(r.p1), int(r.p2), int(r.p3), int(r.p4), int(r.p5))))
+            hist[key] = (float(r.minutes), float(r.net_rating))
+            hist_meta[key] = {"games": int(r["games"]) if "games" in r else 0, "kind": str(r["kind"]) if "kind" in r else ""}
 
-    return TeamTable(team=team_name, roster=roster, combos=combos, X=X, pred_net=pred_net, pred_off=pred_off,
-                     pred_def=pred_def, contribs=contribs, feasible=feasible, rank_all=rank_all, hist=hist,
-                     search=search, added_players=added)
+    tt = TeamTable(team=team_name, roster=roster, combos=combos, X=X, pred_net=pred_net, pred_off=pred_off,
+                   pred_def=pred_def, contribs=contribs, feasible=feasible, rank_all=rank_all, hist=hist,
+                   search=search, added_players=added)
+    tt.hist_meta = hist_meta
+    return tt
 
 
 def _explain_row(tt: TeamTable, i: int, k: int = 4) -> tuple[list[dict], list[dict]]:
@@ -335,7 +352,7 @@ def best_feasible_index(tt: TeamTable) -> int:
 def league_profile(players: pd.DataFrame, constraints: Constraints | None = None, model_dir: str = MODEL_DIR) -> dict:
     """Average matchup profile of every team's best feasible five (the heuristic's baseline)."""
     profs = []
-    for t in players.team.unique():
+    for t in team_list(players):
         tt = score_team(t, players, None, constraints, with_contribs=False, model_dir=model_dir)
         profs.append(lineup_profile(tt, best_feasible_index(tt)))
     return {k: float(np.mean([p[k] for p in profs])) for k in profs[0]}
@@ -523,9 +540,11 @@ def recommend(team: str, players: pd.DataFrame, lineups: pd.DataFrame | None = N
     # Compare with the lineup the coach actually used most (if history available)
     most_used = None
     if tt.hist:
-        key, (mins, onet) = max(tt.hist.items(), key=lambda kv: kv[1][0])
         pos = {int(pid): i for i, pid in enumerate(tt.roster.player_id)}
-        if all(k in pos for k in key):
+        # the most-used five whose players are all still on the roster (real data: trades / departures)
+        cands = [(k, v) for k, v in tt.hist.items() if all(p in pos for p in k)]
+        if cands:
+            key, (mins, onet) = max(cands, key=lambda kv: kv[1][0])
             j = tt.index_of([pos[k] for k in key])
             pn = float(tt.pred_net[j]) if j is not None else float(_b.predict(pd.DataFrame([lineup_features(tt.roster.loc[[pos[k] for k in key]])])[feature_names()])[0])
             most_used = {"players": [tt.roster.loc[pos[k], "player_name"] for k in key], "minutes": mins, "observed_net": onet,
@@ -544,7 +563,7 @@ def recommend(team: str, players: pd.DataFrame, lineups: pd.DataFrame | None = N
         "most_used_lineup": most_used,
         "matchup": matchup,
         "recommendations": [asdict(r) for r in recs],
-        "note": "Sample data. Fit scores are for demonstration only.",
+        "note": meta.get("data_note", "Fit scores are model point predictions, not probabilities."),
     }
     if with_swaps and len(order):
         out["swaps_for_top"] = best_swaps(tt, tt.combos[int(order[0])])
@@ -554,7 +573,7 @@ def recommend(team: str, players: pd.DataFrame, lineups: pd.DataFrame | None = N
 
 
 def recommend_all(players: pd.DataFrame, lineups: pd.DataFrame, constraints: Constraints | None = None, top_n: int = 10) -> dict:
-    return {t: recommend(t, players, lineups, constraints, top_n, with_rotation=True) for t in players.team.unique()}
+    return {t: recommend(t, players, lineups, constraints, top_n, with_rotation=True) for t in team_list(players)}
 
 
 # -------------------------------------------------------------- exports ---

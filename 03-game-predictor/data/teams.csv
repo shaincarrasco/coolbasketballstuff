@@ -1,31 +1,31 @@
-code,name,conference
-AUR,Aurora Comets,East
-BRK,Brackenridge Wolves,East
-CAS,Cascadia Rooks,East
-DUN,Dunmore Foundry,East
-EMB,Ember Bay Phoenix,East
-FAL,Falcon Ridge Talons,East
-GLD,Glasswater Herons,East
-HLW,Hollowbrook Stags,East
-IRN,Ironvale Hammers,East
-JUN,Juniper City Jays,East
-KES,Kestrel Point Kites,East
-LUM,Lumen Harbor Lights,East
-MRW,Marrowfield Bison,East
-NOR,Northgate Sentinels,East
-OBS,Obsidian Falls Ravens,East
-PNE,Pinecrest Lumberjacks,West
-QRY,Quarry Hill Miners,West
-RVN,Riverton Otters,West
-SLT,Saltmarsh Gulls,West
-TMB,Timberline Elk,West
-UMB,Umberfield Suns,West
-VLE,Vale Harbor Mariners,West
-WYR,Wyreford Dragons,West
-XEN,Xenia Springs Owls,West
-YEL,Yellowstone Pass Grizzlies,West
-ZEP,Zephyr Coast Breakers,West
-COP,Copperline Express,West
-HAV,Havenport Anchors,West
-MST,Mistwood Shadows,West
-SKY,Skyreach Condors,West
+code,name,conference,espn_id
+ATL,Atlanta Hawks,East,1
+BKN,Brooklyn Nets,East,17
+BOS,Boston Celtics,East,2
+CHA,Charlotte Hornets,East,30
+CHI,Chicago Bulls,East,4
+CLE,Cleveland Cavaliers,East,5
+DAL,Dallas Mavericks,West,6
+DEN,Denver Nuggets,West,7
+DET,Detroit Pistons,East,8
+GS,Golden State Warriors,West,9
+HOU,Houston Rockets,West,10
+IND,Indiana Pacers,East,11
+LAC,LA Clippers,West,12
+LAL,Los Angeles Lakers,West,13
+MEM,Memphis Grizzlies,West,29
+MIA,Miami Heat,East,14
+MIL,Milwaukee Bucks,East,15
+MIN,Minnesota Timberwolves,West,16
+NO,New Orleans Pelicans,West,3
+NY,New York Knicks,East,18
+OKC,Oklahoma City Thunder,West,25
+ORL,Orlando Magic,East,19
+PHI,Philadelphia 76ers,East,20
+PHX,Phoenix Suns,West,21
+POR,Portland Trail Blazers,West,22
+SA,San Antonio Spurs,West,24
+SAC,Sacramento Kings,West,23
+TOR,Toronto Raptors,East,28
+UTAH,Utah Jazz,West,26
+WSH,Washington Wizards,East,27

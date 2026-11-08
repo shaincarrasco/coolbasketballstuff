@@ -1,8 +1,9 @@
 """
 Offline sample-data generator for the NBA Game Predictor.
 
-stats.nba.com is not reachable from the build machine, so the demo runs on a
-simulated league instead. The simulation is deliberately "honest": there is
+The default pipeline now runs on real NBA games from ESPN's public API
+(data/espn_loader.py); this simulated league is the offline fallback
+(`python cli.py generate --source sample`). The simulation is deliberately "honest": there is
 hidden team strength that drifts over the season (random walk), home-court
 advantage, rest / back-to-back effects, temporary injury dips, and a large
 game-level noise term, so that even a perfect-knowledge predictor only gets

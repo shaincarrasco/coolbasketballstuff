@@ -4,14 +4,16 @@
 
 A model that learns which five-man lineups play well *together* — not just which
 five players are individually best — then scores **every** possible five on every
-roster and hands you an interactive page: an interactive lineup builder, pairwise
-synergy heatmaps, what-if swaps, a minutes-budgeted rotation, an opponent-aware
-(heuristic) mode and trade scenarios. Everything runs offline from one HTML file.
+NBA roster and hands you an interactive page: a lineup builder, pairwise synergy
+heatmaps, what-if swaps, a minutes-budgeted rotation, an opponent-aware (heuristic)
+mode and trade scenarios. Everything runs in the browser from static files.
 
-> **Sample data.** stats.nba.com was not reachable from the build machine, so the
-> shipped dataset is a seeded, fictional 8-team league (invented cities, nicknames
-> and player names). **Fit scores are for demonstration only.** A real-data path
-> via `nba_api` is included and documented below.
+> **Real data · ESPN.** The default build pulls real box scores for all 30 teams from
+> ESPN's free public API (no key), with `stats.nba.com` (true 5-man stints via
+> `nba_api`) tried first when reachable and the seeded synthetic league kept as
+> `--source sample`. The page is labelled with the source and timestamp.
+> **ESPN lineups are starting-five / closing-five approximations built from box
+> scores, not stint-level data** — see [Data](#data-sources) for exactly how.
 
 ![mobile](../site/lineup/_preview_mobile.png)
 ![desktop](../site/lineup/_preview_desktop.png)
@@ -25,22 +27,22 @@ know this intuitively — this project makes it a measurable, searchable quantit
 
 Pipeline: **INPUT → LEARN → COMPARE → SELECT → BUILD**
 
-1. **Input** — player season stats + historical 5-man lineup results (minutes, OffRtg, DefRtg, NetRtg).
+1. **Input** — per-player season stats + historical five-man lineup results (minutes, OffRtg, DefRtg, NetRtg). Source picked automatically: `nba_api` → ESPN → sample.
 2. **Learn** — 39 order-invariant lineup features → XGBoost predicts lineup net rating, weighted by minutes (a second XGBoost predicts OffRtg so net can be split into off / def).
-3. **Compare** — GroupKFold by *team* (held-out rosters): XGBoost vs HistGradientBoosting vs Ridge vs predict-the-mean, plus a learning curve.
-4. **Select** — enumerate all C(13,5) = 1287 fives per roster, apply constraints, rank by predicted net → Fit score, explain with per-feature contributions.
-5. **Build** — every scored five (10,296 rows) is embedded in the report; the browser does the rest.
+3. **Compare** — GroupKFold by *team* (held-out rosters): XGBoost vs HistGradientBoosting vs Ridge vs predict-the-mean, plus a learning curve. On real data Ridge is not beaten — the report says so.
+4. **Select** — enumerate all C(n,5) fives per roster (n ≤ 17 → up to 6 188), apply constraints, rank by predicted net → Fit score, explain with per-feature contributions.
+5. **Build** — every scored five (≈179 k rows across 30 teams) is written as one compact JSON per team (`data/<ABBR>.json`, ≤ 160 KB); the page embeds every team's top-50 and lazily fetches the full table when you pick a team.
 
 ## Features
 
 | # | feature | where |
 |---|---|---|
-| 1 | **Interactive lineup builder** — pick a team, tap five roster tiles; fit, predicted net / off / def, rank among all C(n,5) fives, top SHAP-style contributions, court diagram and history all update instantly (bitmask lookup into the embedded table) | builder |
+| 1 | **Interactive lineup builder** — pick a team, tap five roster tiles; fit, predicted net / off / def, rank among all C(n,5) fives, top SHAP-style contributions, court diagram and history all update instantly (bitmask lookup; the team's full table is fetched on select) | builder |
 | 2 | **Pairwise synergy heatmap** — for every pair, mean fit of lineups containing both minus the team mean; hover for the value, tap to load the duo; top-5 best / worst duos | synergy, `optimize.pair_synergy`, `output/synergy_<team>.csv` |
 | 3 | **What-if swaps** — the 5 best single substitutions for the current five ("swap X for Y: +4.2 fit"); tap to apply | swaps, `optimize.best_swaps`, CLI `recommend` |
 | 4 | **Rotation mode** — starters + bench five with minimal overlap under a minutes budget, plus a closing five that ignores minutes | rotation, `optimize.build_rotation`, `recommend --rotation` |
 | 5 | **Opponent-aware mode** — `--vs <team>` re-ranks with a documented matchup **heuristic** (hand-set coefficients, not learned); also an opponent dropdown in the builder | builder + method footer, `optimize.matchup_adjust` |
-| 6 | **Injury / trade scenario** — `--exclude` removes a player, `--add-player` pulls one in from another team and recomputes all C(14,5) = 2002 fives | CLI `recommend` |
+| 6 | **Injury / trade scenario** — `--exclude` removes a player, `--add-player` pulls one in from another team and recomputes every five; roster tiles carry ESPN injury chips (OUT / DTD) | CLI `recommend`, builder |
 | 7 | **Model lab** — third model (HistGradientBoosting), per-fold grouped bars, learning curve (training rows vs held-out Spearman, ±1 sd) | model lab, `model.learning_curve` |
 | 8 | **Exports** — `output/all_lineups_<team>.csv` (every five with rank, feasibility, net / off / def, fit, S/H/B) and `output/synergy_<team>.csv` | `optimize.export_team` |
 
@@ -54,42 +56,42 @@ hand-written HTML/CSS/SVG + vanilla JS report (no CDN, no build step) · Playwri
 
 ```bash
 cd 02-lineup-intelligence
-pip install -r requirements.txt          # pandas/numpy/sklearn/xgboost (+ nba_api, playwright optional)
+pip install -r requirements.txt          # pandas/numpy/sklearn/xgboost/requests (+ nba_api, playwright optional)
 
-python cli.py demo --site ../site/lineup  # generate -> train -> recommend + rotations -> exports -> report + site page (~60 s)
+python cli.py demo --site ../site/lineup  # generate (auto source) -> train -> recommend + rotations -> exports -> report + site page
 python verify_report.py                   # headless Playwright check at 375×812 and 1280×900 + _preview_*.png
 
+# data
+python cli.py generate                    # auto: stats.nba.com (15 s timeout) -> ESPN -> sample
+python cli.py generate --source espn      # ESPN only; incremental: fetches only games missing from data/cache/
+python cli.py generate --source espn --prev-games 0   # whole previous season instead of each team's last 40 games
+python cli.py generate --no-refresh       # rebuild players.csv / lineups.csv from the cache, no network
+python cli.py generate --source sample [--seed 5150 --per-team 70]   # the fictional league
+python -m data.espn_loader --prev-games 40                            # same refresh, standalone
+
 # step by step
-python cli.py generate [--seed 5150 --per-team 70]
 python cli.py train
-python cli.py recommend --team "Harbor City" --top 10
-python cli.py recommend --team "Northgate" --min-bigs 2 --must Xiong --exclude Pembrook --json
-
-# new modes
-python cli.py recommend --team Northgate --rotation                   # starters / bench / closing five + minutes
-python cli.py recommend --team Northgate --vs Ironvale                # opponent-aware re-rank (heuristic, labelled)
-python cli.py recommend --team Northgate --add-player Kettering --exclude Pembrook   # trade scenario, 14-man roster
+python cli.py recommend --team "Celtics" --top 10
+python cli.py recommend --team "Knicks" --min-bigs 2 --must Towns --exclude Hart --json
+python cli.py recommend --team Thunder --rotation                   # starters / bench / closing five + minutes
+python cli.py recommend --team Thunder --vs Nuggets                 # opponent-aware re-rank (heuristic, labelled)
+python cli.py recommend --team Thunder --add-player "Antetokounmpo" --exclude Hartenstein   # trade scenario
 ```
 
-Example trade scenario output:
-
-```
-Northgate Voltage — 540 feasible of 2002 fives (exhaustive), constraints {... 'exclude': ('Pembrook',)}
-Trade scenario: added Emeka Kettering (from Ironvale Foundry) -> 14-man roster
-#    Fit    Net    Off    Def  S/H/B     Ht  rank  Lineup
-1     82  +15.1  119.7  104.6  2/1/2   79.0     4  Marchetti, Iverness, Kettering, Zabala, Xiong
-```
+First run on an empty cache: ~5 min (≈800 game summaries at 3 req/s) + ~1.5 min modelling.
+Daily runs: only new games are fetched (seconds), then ~1.5 min.
 
 Outputs
 
 | path | what |
 |---|---|
-| `data/players.csv`, `data/lineups.csv` | 104 players, 560 historical five-man lineups (sample) |
-| `models/model.json`, `models/model_off.json`, `models/ridge.pkl`, `models/hgb.pkl`, `models/meta.json` | XGBoost net + off boosters, Ridge, HistGB, feature list / metrics / learning curve / fit-score calibration |
-| `output/recommendations.json` | top-10 fives, swaps and rotation for every team |
+| `data/cache/espn_games.csv`, `espn_boxscores.csv.gz`, `espn_team_totals.csv.gz`, `espn_rosters.json`, `espn_skip.csv` | **committed incremental cache** keyed by ESPN game id (box-score lines, team totals, current rosters, exhibition ids to skip) |
+| `data/players.csv`, `data/lineups.csv`, `data/source.json` | derived tables (641 players, 1 351 lineups this run) + provenance (source, timestamp, seasons, counts) |
+| `models/model.json`, `models/model_off.json`, `models/ridge.pkl`, `models/hgb.pkl`, `models/meta.json` | XGBoost net + off boosters, Ridge, HistGB, feature list / metrics / learning curve / fit calibration / data source |
+| `output/recommendations.json` | top-10 fives, swaps and rotation for every team + `data_source`, `metrics` (read by `../build_site.py`) |
 | `output/all_lineups_<team>.csv` · `output/synergy_<team>.csv` | every scored five · every pair's synergy, per team |
-| `output/report.html` | standalone page (shared shell inlined, ~810 KB with the embedded table) |
-| `../site/lineup/index.html` | static-site page written by `--site` (references `../assets/shell.*`) |
+| `output/report.html` + `output/data/<ABBR>.json` | standalone page (shell inlined, first team embedded) + per-team tables; serve the folder over http for the lazy loads (`python -m http.server`) |
+| `../site/lineup/index.html` + `../site/lineup/data/<ABBR>.json` | static-site page written by `--site` (references `../assets/shell.*`) + per-team tables |
 | `../site/lineup/_preview_mobile.png`, `_preview_desktop.png` | 375×812 and 1280×900 screenshots written by `verify_report.py` |
 
 ## Design notes — shared "NBA Projects" shell (wave 3)
@@ -116,9 +118,15 @@ service-worker registration). Nothing is loaded from a CDN.
 * **Touch.** Tiles, swaps, buttons, selects, summary and board rows are ≥ 40 px;
   wide tables and the 13×13 heatmap scroll horizontally with a fade hint; charts are
   SVG sized by `viewBox`.
-* **Payload.** The embedded table is ~780 KB: per combo `[bitmask, net (2 dp),
-  off (1 dp), feasible, rank, [feature_idx, contribution (1 dp), …]]`; players carry
-  only the fields the page uses.
+* **Payload.** The main page is ~190 KB: every team's roster, rotation, matchup profile
+  and top-50 fives, plus the default team's full table. Each `data/<ABBR>.json`
+  (≤ 160 KB, C(17,5) = 6 188 rows) is columnar — delta-encoded bitmasks, net × 100,
+  off × 10, a feasibility bit-string and contributions packed two characters per
+  (feature, value) pair (quantised to 0.2) — and is fetched when the team is selected;
+  rank is recomputed in the browser. No gzip is needed on Pages.
+* **Provenance.** Header chip "Live data · ESPN" (or "· NBA Stats") with the fetch
+  timestamp, footer "Data: ESPN public API · updated <ts>"; the shared top-bar chip is
+  relabelled from the page script (the shell hard-codes "Sample data").
 
 ### Static site output (`--site`)
 
@@ -129,38 +137,97 @@ python verify_report.py                                  # Playwright: 375×812 
 ```
 
 `output/report.html` is standalone (shell CSS + JS inlined, `data-depth` points the
-top-bar links at `../../site/`). `<site>/index.html` references `../assets/shell.css`
+top-bar links at `../../site/`); it embeds the first team and loads the others from
+`output/data/`, so open it over http (Chrome blocks `fetch` on `file://`; the page then
+says so and keeps working with the embedded top fives). `<site>/index.html` references `../assets/shell.css`
 and `../assets/shell.js`, declares `<body data-app="lineup" data-title="Lineup
 Intelligence" data-mark="LI">` and carries the PWA meta tags; the manifest, service
 worker and icons live at the site root and are owned by the hub.
 
-## Switching to real data (nba_api)
+## Data sources
+
+`cli.py generate` (default `--source auto`) tries, in order:
+
+1. **`stats.nba.com` via `nba_api`** (`data/nba_api_loader.py`) — true 5-man stint
+   lineups (`leaguedashlineups`, GroupQuantity 5, Advanced) + player Advanced / Base /
+   bio tables. 15 s timeout; on any failure it prints one line and moves on. It is
+   blocked from the build machine but may work from GitHub Actions; when it does, the
+   page is labelled "Live data · NBA Stats".
+2. **ESPN public API** (`data/espn_loader.py`) — always reachable, no key, CORS `*`.
+   **This is what the shipped build uses.**
+3. **Synthetic sample league** (`data/sample_generator.py`) — offline fallback and
+   `--source sample`.
+
+### ESPN endpoints
+
+| call | purpose |
+|---|---|
+| `site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard?dates=YYYYMM&limit=1000` | one call per month: final games with id, date, `season.year/type`, competitors (the `YYYYMMDD-YYYYMMDD` range form returns 400) |
+| `…/nba/summary?event=<id>` | box score: `boxscore.players[team].statistics[0]` (`labels` MIN PTS FG 3PT FT REB AST TO STL BLK OREB DREB PF +/-, `athletes[]` with id / name / position / `starter` / `didNotPlay`), `boxscore.teams[].statistics` (team FGA, FTA, TOV, OREB …), `injuries` |
+| `…/nba/teams?limit=50` | the 30 franchises (ESPN ids 1–30; All-Star sides use other ids and are dropped) |
+| `…/nba/teams/<id>/roster` | current roster: `height` (inches), `weight`, `age`, `position.abbreviation`, `injuries[0].status`, `status.type` |
+
+Politeness: a token bucket at ≤ 3 requests/s, 4 retries with exponential backoff, a
+descriptive User-Agent. Summaries that 404 (exhibitions) go to `espn_skip.csv` and are
+never retried.
+
+### Cache and refresh
+
+`data/cache/` is committed. `espn_games.csv` is the index; a run lists the season's
+final games from the monthly scoreboards and fetches only ids not in the index
+(checkpointing every 200 games). Rosters are refetched every run (30 calls). Default
+scope: the **current season in full plus each team's last 40 games of the previous
+season** (`--prev-games 40`; `0` = whole previous season, ~1 230 more summaries ≈ 7 min
+once). Seasons are detected from the scoreboard (`leagues[0].season.year`), so the
+same command keeps working next October.
 
 ```bash
-python cli.py generate --real --season 2024-25     # tries stats.nba.com, falls back to sample data
-python cli.py train && python cli.py recommend --team BOS
+python cli.py generate --source espn        # daily: new games only
+python -m data.espn_loader --prev-games 0   # one-off: backfill the full previous season
 ```
 
-`data/nba_api_loader.py` pulls `leaguedashlineups` (GroupQuantity=5, Advanced:
-MIN / OFF_RATING / DEF_RATING / NET_RATING) and `leaguedashplayerstats`
-(Advanced + Base) plus `leaguedashplayerbiostats` for height/position, joins on
-player IDs parsed from `GROUP_ID`, and writes the same two CSVs the sample
-generator does. Every request has a timeout and the whole thing is wrapped in
-`try/except`; on any failure it prints
-`stats.nba.com unreachable — using sample data` and returns `(None, None)`.
+### Player table (ESPN → `features.py` columns)
 
-Caveats with the live site: hard rate limiting / cloud-IP blocking (keep the
-browser-like headers, pass `timeout`, sleep ~1 s between calls, cache to disk);
-far more and noisier rows (the loader filters `MIN >= 10`, the model weights by
-minutes, expect lower R²); no BPM on stats.nba.com (`obpm`/`dbpm` are proxied
-from on-court OFF/DEF rating deltas ×0.4); positions come as `G`/`F`/`C`/`G-F`
-(the "big" flag also uses height ≥ 81 in). Rosters above 17 players switch the
-optimizer to a beam search for the top fives; the full-table features (builder,
-heatmap) need the exhaustive path, so trim rosters to the rotation first.
+Per-player sums pool the current and previous season (two seasons for stability early
+in the year); rates with < 150 minutes are shrunk toward the league mean.
+
+| column | derivation |
+|---|---|
+| `minutes` | minutes **this season only** → rotation budget and the DNP flag (0 = has not played this season) |
+| `usage_pct` | 100 · Σ[(FGA + .44 FTA + TOV) · TmMIN/5] / Σ[MIN · (TmFGA + .44 TmFTA + TmTOV)] |
+| `fg3_pct`, `fg3a_rate` | 3PM / 3PA, 3PA / FGA |
+| `ast_pct` | 100 · Σ AST / Σ[(MIN / (TmMIN/5)) · TmFGM − FGM] |
+| `reb_pct` | 100 · Σ[REB · TmMIN/5] / Σ[MIN · (TmREB + OppREB)] |
+| `stl_pct`, `blk_pct` | 100 · Σ[STL · TmMIN/5] / Σ[MIN · OppPoss], 100 · Σ[BLK · TmMIN/5] / Σ[MIN · (OppFGA − Opp3PA)], OppPoss = .96 (FGA + .44 FTA + TOV − OREB) |
+| `tov_pct` | 100 · TOV / (FGA + .44 FTA + TOV) |
+| `obpm`, `dbpm` | **proxies, not BPM**: offensive / defensive halves of Hollinger's Game Score per 36 (off: PTS + .4 FGM − .7 FGA − .4 (FTA − FTM) + .7 OREB + .7 AST − TOV; def: .3 DREB + STL + .7 BLK − .4 PF), centred on the minutes-weighted league mean and scaled to sd 2.5, averaged 50/50 with half the player's shrunk +/− per 36 (pm36 · MIN / (MIN + 300)) |
+| `def_rating_proxy` | minutes-weighted mean of the team's game defensive rating over the games the player appeared in (team context, not on/off) |
+| `height_in`, `position` | roster endpoint (fallback: box-score position, median height by position) |
+| `injury_status` | roster `injuries[0].status` ("Out", "Day-To-Day", …) at build time → tile chip |
+| `active` | 1 = on the current ESPN roster, capped at 17 per team by minutes (so C(n,5) ≤ 6 188 and the builder stays exhaustive); former players stay in the table with `active = 0` only to featurise historical lineups |
+
+### Lineup table (ESPN) — a documented approximation
+
+Box scores do not say who was on the floor together, so each team-game contributes
+two observations:
+
+* `kind = starting` — the five flagged `starter`;
+* `kind = closing` — the five with the most minutes (skipped when identical to the starters).
+
+For each: `minutes` = mean of the five players' minutes; `net_rating` =
+(Σ of the five players' +/−) / 5, scaled to per-100 possessions with
+`lineup_poss = game_poss · minutes / game_minutes` and `game_poss` = mean over both teams
+of .96 (FGA + .44 FTA + TOV − OREB) from the team totals (fallback 100 poss / 48 min);
+`off_rating` = team game ORtg + (lineup net − team game net) / 2 and `def = off − net`
+(the off/def split is an even-split assumption and is rougher than net). Identical fives
+are aggregated across games (minutes-weighted mean net, total minutes, games); rows with
+< 20 total minutes are dropped. The report, the JSON and the CLI all label these as
+starting/closing-five approximations. The `nba_api` path replaces all of this with real
+stint data and the same CSV schema (`games`/`kind` columns absent).
 
 ## Methodology
 
-### Synthetic data (`data/sample_generator.py`)
+### Synthetic data (`data/sample_generator.py`, `--source sample`)
 * 8 fictional teams × 13 players drawn from 9 archetypes (lead guard, combo
   guard, sniper wing, 3&D, slasher, stretch big, rim protector, post big,
   energy big) with per-player minutes, usage, 3P%, 3PA rate, AST%, REB%, STL%,
@@ -191,18 +258,21 @@ hand-coded step flags like "exactly three non-shooters"; discovering the steps
 is the tree model's job.
 
 ### Models (`model.py`)
-* **XGBoost** (production): depth-2 trees, 1500 rounds at η = 0.01, 70% row /
-  50% column subsampling, L2 = 2, `min_child_weight = 3` in lineup units.
-  A second booster with the same settings (800 rounds) predicts OffRtg;
+* **XGBoost** (production): depth-2 trees, 600 rounds at η = 0.02, 70% row /
+  50% column subsampling, L2 = 5, `min_child_weight = 10` in lineup units (retuned
+  lightly for ~1 300 noisy real lineups; a 6-config sweep moved held-out Spearman by
+  < 0.01, so the choice is "fewer rounds, more regularisation", not a win).
+  A second booster with the same settings (500 rounds) predicts OffRtg;
   DefRtg = Off − Net so the three always agree.
 * **HistGradientBoosting** (sanity check): 300 iterations, η = 0.04, depth 3,
-  6 leaves, `min_samples_leaf = 10`, L2 = 1.
-* **Ridge** baseline (α = 30) on standardised features.
+  6 leaves, `min_samples_leaf = 20`, L2 = 2.
+* **Ridge** baseline (α = 100) on standardised features.
 * All **sample-weighted by minutes** (normalised to mean 1), fits pinned to one
   thread (`threadpoolctl`) — on a 2-core box OpenMP oversubscription between
   XGBoost and HistGB made fits 20× slower.
-* **GroupKFold by team** (8 folds): every score below is on rosters the model
-  never saw, which is the regime the optimizer runs in.
+* **GroupKFold by team** (leave-one-team-out up to 10 folds; 3 held-out teams per
+  fold with 30): every score below is on rosters the model never saw, which is the
+  regime the optimizer runs in.
 * **Learning curve**: 4 team-folds × {25, 50, 75, 100}% of the training rows.
 * **Fit score** = `100 · sigmoid((net_pred − μ) / σ)` with μ, σ the
   minutes-weighted mean / std of historical net rating (50 = average, 73 = +1σ,
@@ -248,62 +318,64 @@ and wires the tiles, swaps, duos and rotation buttons. `verify_report.py` drives
 it headlessly with Playwright and asserts that selecting a different five changes
 the fit, that swaps / heatmap / rotation populate and that no JS errors fire.
 
-## Results (this run: seed 5150, 560 lineups, 8 held-out folds)
+## Results (this run: ESPN, 2025-26 last-40 + 2026-27 to date, 791 games, 1 351 lineups, 30 teams, 10 team-folds)
 
 | model | RMSE (min-weighted) | R² (min-weighted) | Spearman (pooled OOF) | Spearman (mean per fold) | folds won |
 |---|---:|---:|---:|---:|---:|
-| Predict the mean | 10.02 | 0.000 | 0.000 | 0.000 | 0 |
-| Ridge (standardised) | 5.75 | 0.671 | 0.773 | 0.716 | 2 |
-| **XGBoost** | **5.39** | **0.711** | **0.789** | **0.742** | **5** |
-| HistGradientBoosting | 5.60 | 0.688 | 0.776 | 0.734 | 1 |
+| Predict the mean | 15.90 | 0.000 | 0.000 | 0.000 | 0 |
+| **Ridge (standardised)** | **13.33** | **0.297** | **0.509** | **0.446** | **6** |
+| XGBoost · production | 13.39 | 0.290 | 0.499 | 0.442 | 3 |
+| HistGradientBoosting | 13.75 | 0.253 | 0.473 | 0.401 | 1 |
 
-Per held-out team (Spearman, Ridge → XGBoost → HistGB): Sable Ridge 0.611 → 0.773 → 0.763 ·
-Redmesa 0.577 → 0.620 → 0.610 · Port Lumen 0.814 → 0.777 → 0.746 · Northgate 0.664 → 0.649 → 0.647 ·
-Ironvale 0.724 → 0.726 → 0.722 · Harbor City 0.758 → 0.771 → 0.768 · Glasswater 0.816 → 0.843 → 0.824 ·
-Copperfield 0.764 → 0.779 → 0.788.
+Per held-out fold (Spearman, Ridge → XGBoost → HistGB): MEM/MIN/NY .47 → .50 → .45 ·
+CHA/NO/WSH .52 → .51 → .51 · HOU/IND/PHX .42 → .41 → .31 · ATL/CLE/UTAH .50 → .56 → .56 ·
+DEN/GS/LAL .45 → .39 → .34 · BKN/PHI/POR .43 → .39 → .35 · DAL/DET/LAC .53 → .51 → .48 ·
+MIA/MIL/TOR .42 → .42 → .40 · CHI/SAC/SA .52 → .48 → .41 · BOS/OKC/ORL .22 → .25 → .19.
 
 Learning curve (held-out Spearman, mean of 4 team-folds):
 
-| training rows | 105 | 210 | 315 | 420 |
+| training rows | 253 | 506 | 759 | 1013 |
 |---|---:|---:|---:|---:|
-| Ridge | 0.726 | 0.728 | 0.734 | 0.730 |
-| XGBoost | 0.719 | 0.720 | 0.746 | 0.754 |
-| HistGB | 0.687 | 0.692 | 0.714 | 0.734 |
+| Ridge | 0.503 | 0.480 | 0.511 | 0.506 |
+| XGBoost | 0.453 | 0.468 | 0.477 | 0.481 |
+| HistGB | 0.420 | 0.441 | 0.444 | 0.463 |
 
-The linear model is flat from 100 rows on; both tree models are still climbing at
-420 — the expected picture for a target with interaction structure and ~500 rows.
+Top features by gain share: total BPM 15%, defensive BPM sum 13%, offensive BPM sum 9%,
+avg def rating 8%, weakest offensive player 4%; all interaction features together ≈ 8%.
 
-Top features by gain share: shooters × bigs 17%, spacing × rim protection 13%,
-shooters 9%, non-shooters 7%, bigs 6%, shooters × best passer 5%.
-
-**Honesty note.** The XGBoost-over-Ridge gap is real but modest (+0.016 pooled,
-+0.026 per-fold Spearman) and seed-sensitive: across six generator seeds at 70
-lineups/team XGBoost won 6/6 with mean lift ≈ +0.02; at 60 lineups/team it won
-5/6. HistGB lands between the two (+0.003 pooled over Ridge). With ~500 noisy
-rows a well-featured linear model is a strong baseline, and that is the expected
-finding, not a failure. The target itself is noisy (σ ∝ 1/√minutes), so R² = 1 is
-unreachable even for the true function.
+**Honest read.** On real box-score lineups **XGBoost does not beat Ridge** (−0.011 pooled
+Spearman, Ridge wins 6 of 10 folds) and the trees are still below the linear model at
+every point of the learning curve. The signal is mostly additive talent (the BPM-proxy
+sums dominate the gain); the fit / interaction effects the synthetic league was built
+around are second-order here, and with σ(net) ≈ 16 points per lineup-observation the
+noise floor is high. XGBoost stays the production model because the builder's per-feature
+attributions come from `pred_contribs`; the lab table and its Read line say Ridge is the
+benchmark. Sample-league numbers (XGBoost +0.02 over Ridge) are in the git history and
+reproducible with `--source sample`. Fit = 100 · sigmoid((net − 0.35) / 15.9) this run.
 
 ## Limitations
 
-* **Synthetic data.** The league, players and synergy function are invented.
-  Nothing here says anything about real NBA lineups.
-* **Small sample.** 560 lineups / 8 teams. Real seasons have far more rows but
-  far more noise per row.
-* **Illustrative model.** Hyper-parameters were chosen with a handful of seeds,
-  not a rigorous search; no uncertainty on predictions; no pace, garbage-time or
-  schedule adjustments.
-* **The opponent mode is a heuristic.** Three hand-set terms, clipped to ±4
-  points. It is labelled as such in the CLI, the JSON and the report and should
-  be read as "a direction to think in", not a prediction.
-* **The rotation is a heuristic too.** Minutes budgets are season-minute shares,
-  not real availability; the sample league's players under-play, so most teams
-  allocate ~200 of 240 minutes and the remainder is simply "rest of roster".
+* **Not stint data.** ESPN lineups are starting / closing fives inferred from box scores;
+  a starter's +/− includes minutes with bench players, so lineup net ratings are blurred
+  team-context signals. `nba_api` (when reachable) replaces them with real stints.
+* **Target leakage, mildly.** The BPM proxies include each player's +/− per 36 from the
+  same games that produce the lineup targets, so held-out-team metrics are optimistic.
+* **Early-season scope.** 139 games of the current season plus each team's last 40 of
+  the previous one; rotations and rosters have changed in between (former players are
+  kept only to featurise history). `--prev-games 0` backfills the full previous season.
+* **Proxies.** No BPM, no on/off, no tracking; the off / def split of a lineup is an
+  even-split assumption; positions are ESPN's coarse G / F / C.
+* **Rosters.** ESPN's current roster capped at 17 by minutes (two-way players with
+  no minutes drop first); DNP = no minutes this season; injury chips are the status at
+  build time and are shown, not used by the optimizer (`--exclude` does that).
+* **Modest model.** Pooled Spearman ≈ 0.5 on held-out teams, ≈ 0.45 within a team;
+  no uncertainty on predictions; no pace, garbage-time or schedule adjustments.
+* **The opponent mode is a heuristic.** Three hand-set terms, clipped to ±4 points,
+  labelled as such in the CLI, the JSON and the report.
+* **The rotation is a heuristic too.** Minutes budgets are current-season minute
+  shares, not availability.
 * **Synergy is marginal, not causal.** A pair's synergy is the average over all
   lineups that contain it, so a bad pair on a deep roster can still look fine.
-* **Fit scores are for demonstration only.** The 0–100 scale is a calibrated
-  sigmoid of a point prediction, not a probability. Off / def predictions come
-  from a separate booster and are rougher than net.
 * Recommendations ignore foul trouble, fatigue, contracts and every other reason
   a coach actually picks a five.
 
@@ -314,13 +386,18 @@ unreachable even for the true function.
   interaction terms), minutes-weighted XGBoost regression against Ridge and
   HistGradientBoosting baselines, team-grouped cross-validation with RMSE / R² /
   Spearman and a learning-curve study.
-* Scored every C(13,5) lineup of an 8-team league and shipped it as a
-  self-contained interactive report (vanilla JS, no CDN): a lineup builder with
-  SHAP-style attributions, pairwise synergy heatmaps, what-if substitutions, a
-  minutes-budgeted rotation optimiser and a clearly-labelled opponent heuristic.
-* Designed a seeded synthetic data generator with a hidden non-additive synergy
-  function and 1/√minutes noise to benchmark non-linear vs linear models in a
-  no-network environment; documented the regime where trees beat linear models.
-* Shipped a CLI with injury / trade scenarios, an optional `nba_api` adapter
-  with graceful offline fallback, CSV exports and a Playwright-verified report
-  on a shared mobile-first design system.
+* Built a polite, incremental ESPN ingestion layer (≤ 3 req/s, backoff, committed
+  gzip cache keyed by game id) covering all 30 teams, with a documented mapping from
+  box scores to usage / assist / rebound / steal / block rates and lineup net ratings,
+  and automatic source selection (`nba_api` → ESPN → synthetic) labelled in the output.
+* Scored every C(n,5) lineup of all 30 rosters (~179 k fives) and shipped it as a
+  static interactive page (vanilla JS, no CDN) with per-team lazy-loaded columnar
+  tables ≤ 160 KB: a lineup builder with SHAP-style attributions, pairwise synergy
+  heatmaps, what-if substitutions, a minutes-budgeted rotation optimiser, injury chips
+  and a clearly-labelled opponent heuristic.
+* Reported honestly that on real box-score lineups a regularised linear model matches
+  gradient boosting (held-out-team Spearman 0.51 vs 0.50) and explained why; kept a
+  seeded synthetic league with a hidden non-additive synergy function as the regime
+  where trees win.
+* Shipped a CLI with injury / trade scenarios, CSV exports and a Playwright-verified
+  report (375 / 1280 px, lazy team loads) on a shared mobile-first design system.

@@ -60,7 +60,7 @@
 .foot a:hover{color:var(--text)}
 </style>
 </head>
-<body data-app="hub" data-depth="" data-title="NBA Projects" data-mark="NP">
+<body data-app="hub" data-depth="" data-title="NBA Projects" data-mark="NP" data-chip="Live data">
 <main class="wrap">
 
   <section class="hero">
@@ -101,9 +101,9 @@
         <span class="chip">Every C(n,5)</span><span class="chip">Synergy heatmap</span><span class="chip">What-if swaps</span>
       </div>
       <div class="kpis">
-        <div class="kpi"><div class="label">Top fit</div><b class="hero">88.5</b><div class="sub">Copperfield Kestrels</div></div>
-        <div class="kpi"><div class="label">Lineups</div><b>4,894</b><div class="sub">scored · 8 teams</div></div>
-        <div class="kpi"><div class="label">Rank corr.</div><b>0.79</b><div class="sub">Spearman · XGBoost</div></div>
+        <div class="kpi"><div class="label">Top fit</div><b class="hero">79.4</b><div class="sub">San Antonio Spurs</div></div>
+        <div class="kpi"><div class="label">Lineups</div><b>89,316</b><div class="sub">scored · 30 teams</div></div>
+        <div class="kpi"><div class="label">Rank corr.</div><b>0.51</b><div class="sub">Spearman · Ridge</div></div>
       </div>
       <div class="cta">
         <a class="btn primary" href="./lineup/index.html">Open →</a>
@@ -121,9 +121,9 @@
         <span class="chip">Calibrated probs</span><span class="chip">Elo + form</span><span class="chip">Monte Carlo odds</span>
       </div>
       <div class="kpis">
-        <div class="kpi"><div class="label">Accuracy</div><b class="hero">64.5%</b><div class="sub">1,230 holdout games</div></div>
-        <div class="kpi"><div class="label">Log loss</div><b>0.638</b><div class="sub">baseline 0.682</div></div>
-        <div class="kpi"><div class="label">Calibration</div><b>0.033</b><div class="sub">ECE · sigmoid</div></div>
+        <div class="kpi"><div class="label">Accuracy</div><b class="hero">64.7%</b><div class="sub">139 holdout games</div></div>
+        <div class="kpi"><div class="label">Log loss</div><b>0.609</b><div class="sub">baseline 0.694</div></div>
+        <div class="kpi"><div class="label">Calibration</div><b>0.055</b><div class="sub">ECE · isotonic</div></div>
       </div>
       <div class="cta">
         <a class="btn primary" href="./predictor/index.html">Open →</a>
@@ -147,9 +147,9 @@
         </table>
       </div>
       <div class="card note">
-        <div class="sec-h" style="margin-bottom:8px"><h2 style="font-size:15px">Real data</h2><span class="chip">Sample league</span></div>
-        <p>Everything on this site runs on a <b style="color:var(--text)">seeded synthetic league</b> with fictional teams and players, so the demos are reproducible and ship with no licensing baggage.</p>
-        <p>Each project includes an <code>nba_api</code> loader (<code>--real</code>) that pulls from stats.nba.com when run locally and falls back to the sample data if the endpoint is unreachable. Scores and probabilities are for learning and demonstration only.</p>
+        <div class="sec-h" style="margin-bottom:8px"><h2 style="font-size:15px">Live data</h2><span class="chip accent">ESPN public API</span></div>
+        <p><b style="color:var(--text)">Lineup Intelligence</b> and <b style="color:var(--text)">Game Predictor</b> run on real NBA games, box scores and rosters pulled from ESPN&rsquo;s public API. A scheduled job refetches new games every morning, retrains both models and redeploys this site; the Predictor page also overlays live scores in your browser.</p>
+        <p>The Jumpshot Analyzer runs on synthetic demo clips until you feed it your own footage. Each project keeps a <code>--source sample</code> fallback and an <code>nba_api</code> loader. Fit scores and probabilities are for learning and demonstration only &mdash; not betting advice, nothing is guaranteed.</p>
       </div>
     </div>
   </section>
@@ -181,8 +181,8 @@
   <footer class="foot">
     <span>NBA Projects</span>
     <a href="https://github.com/shaincarrasco/nba-projects">GitHub</a>
-    <span>Built 2026-11-07</span>
-    <span>Sample data · not betting advice</span>
+    <span>Built 2026-11-08</span>
+    <span>Live data: ESPN public API · not betting advice</span>
   </footer>
 
 </main>

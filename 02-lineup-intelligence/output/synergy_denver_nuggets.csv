@@ -1,0 +1,137 @@
+player_a,player_b,n_lineups,mean_fit,synergy,team_mean_fit
+Nikola Jokic,Trevon Brazile,455,53.747,8.426,45.32
+Nikola Jokic,Cameron Johnson,455,53.463,8.142,45.32
+Jamal Murray,Nikola Jokic,455,53.452,8.13,45.32
+Nikola Jokic,Christian Braun,455,53.314,7.993,45.32
+Nikola Jokic,DaRon Holmes II,455,53.026,7.705,45.32
+Nikola Jokic,Aaron Gordon,455,52.836,7.514,45.32
+Nikola Jokic,Spencer Jones,455,52.802,7.481,45.32
+Nikola Jokic,Julian Strawther,455,51.939,6.617,45.32
+Nikola Jokic,Ryan Nembhard,455,50.846,5.525,45.32
+Nikola Jokic,Cam Whitmore,455,50.19,4.868,45.32
+Nikola Jokic,Zeke Nnaji,455,49.85,4.529,45.32
+Nikola Jokic,Tyus Jones,455,49.848,4.527,45.32
+Jamal Murray,Aaron Gordon,455,49.558,4.237,45.32
+Jamal Murray,Trevon Brazile,455,49.476,4.154,45.32
+Christian Braun,Trevon Brazile,455,49.343,4.022,45.32
+Christian Braun,Aaron Gordon,455,49.299,3.977,45.32
+Christian Braun,DaRon Holmes II,455,49.273,3.952,45.32
+Jamal Murray,Christian Braun,455,49.264,3.942,45.32
+Christian Braun,Cameron Johnson,455,48.974,3.653,45.32
+Christian Braun,Spencer Jones,455,48.88,3.559,45.32
+Jamal Murray,DaRon Holmes II,455,48.757,3.435,45.32
+Jamal Murray,Cameron Johnson,455,48.75,3.428,45.32
+Aaron Gordon,Trevon Brazile,455,48.522,3.201,45.32
+Aaron Gordon,Cameron Johnson,455,48.494,3.173,45.32
+Aaron Gordon,Spencer Jones,455,48.44,3.119,45.32
+Trevon Brazile,Cameron Johnson,455,48.335,3.013,45.32
+Cameron Johnson,Spencer Jones,455,48.261,2.939,45.32
+Trevon Brazile,Spencer Jones,455,48.124,2.802,45.32
+Spencer Jones,Ryan Nembhard,455,48.024,2.703,45.32
+Jamal Murray,Julian Strawther,455,48.009,2.688,45.32
+Aaron Gordon,DaRon Holmes II,455,48.0,2.679,45.32
+Trevon Brazile,DaRon Holmes II,455,47.945,2.623,45.32
+Christian Braun,Ryan Nembhard,455,47.924,2.602,45.32
+Nikola Jokic,Bryce Hopkins,455,47.863,2.541,45.32
+Nikola Jokic,Marvin Bagley III,455,47.842,2.52,45.32
+Christian Braun,Julian Strawther,455,47.788,2.467,45.32
+Cameron Johnson,DaRon Holmes II,455,47.697,2.375,45.32
+Jamal Murray,Spencer Jones,455,47.584,2.263,45.32
+Trevon Brazile,Ryan Nembhard,455,47.575,2.254,45.32
+DaRon Holmes II,Ryan Nembhard,455,47.349,2.027,45.32
+Christian Braun,Tyus Jones,455,47.2,1.879,45.32
+Nikola Jokic,DeMar DeRozan,455,47.025,1.704,45.32
+Cameron Johnson,Ryan Nembhard,455,47.014,1.693,45.32
+Trevon Brazile,Julian Strawther,455,46.997,1.675,45.32
+Spencer Jones,Julian Strawther,455,46.942,1.621,45.32
+Tyus Jones,DaRon Holmes II,455,46.907,1.586,45.32
+Tyus Jones,Spencer Jones,455,46.808,1.486,45.32
+Trevon Brazile,Tyus Jones,455,46.771,1.449,45.32
+Jamal Murray,Ryan Nembhard,455,46.681,1.359,45.32
+Aaron Gordon,Julian Strawther,455,46.675,1.354,45.32
+Cameron Johnson,Julian Strawther,455,46.669,1.347,45.32
+Spencer Jones,DaRon Holmes II,455,46.612,1.29,45.32
+Aaron Gordon,Ryan Nembhard,455,46.603,1.281,45.32
+Aaron Gordon,Tyus Jones,455,46.563,1.242,45.32
+Cameron Johnson,Tyus Jones,455,46.162,0.841,45.32
+Nikola Jokic,Alpha Diallo,455,46.041,0.719,45.32
+DaRon Holmes II,Julian Strawther,455,45.973,0.651,45.32
+Christian Braun,Cam Whitmore,455,45.95,0.628,45.32
+Jamal Murray,Cam Whitmore,455,45.893,0.572,45.32
+Ryan Nembhard,Julian Strawther,455,45.778,0.456,45.32
+Jamal Murray,Marvin Bagley III,455,45.413,0.092,45.32
+Tyus Jones,Julian Strawther,455,45.361,0.039,45.32
+Christian Braun,Zeke Nnaji,455,45.311,-0.01,45.32
+Jamal Murray,Zeke Nnaji,455,45.182,-0.139,45.32
+Cam Whitmore,DaRon Holmes II,455,45.129,-0.193,45.32
+Cameron Johnson,Cam Whitmore,455,45.075,-0.246,45.32
+Christian Braun,Marvin Bagley III,455,45.068,-0.254,45.32
+Trevon Brazile,Cam Whitmore,455,45.042,-0.28,45.32
+Jamal Murray,Tyus Jones,455,45.039,-0.282,45.32
+DeMar DeRozan,Trevon Brazile,455,44.983,-0.338,45.32
+Spencer Jones,Zeke Nnaji,455,44.814,-0.508,45.32
+Christian Braun,DeMar DeRozan,455,44.763,-0.559,45.32
+Aaron Gordon,Zeke Nnaji,455,44.731,-0.59,45.32
+Aaron Gordon,DeMar DeRozan,455,44.703,-0.618,45.32
+Aaron Gordon,Cam Whitmore,455,44.671,-0.651,45.32
+Tyus Jones,Ryan Nembhard,455,44.531,-0.791,45.32
+Spencer Jones,Cam Whitmore,455,44.527,-0.794,45.32
+Jamal Murray,Bryce Hopkins,455,44.499,-0.822,45.32
+Cameron Johnson,Marvin Bagley III,455,44.462,-0.86,45.32
+DeMar DeRozan,Cameron Johnson,455,44.446,-0.876,45.32
+Marvin Bagley III,Spencer Jones,455,44.368,-0.954,45.32
+Cameron Johnson,Zeke Nnaji,455,44.327,-0.994,45.32
+Cam Whitmore,Ryan Nembhard,455,44.253,-1.068,45.32
+Christian Braun,Bryce Hopkins,455,44.243,-1.079,45.32
+DaRon Holmes II,Zeke Nnaji,455,44.114,-1.207,45.32
+Ryan Nembhard,Zeke Nnaji,455,44.103,-1.219,45.32
+DeMar DeRozan,DaRon Holmes II,455,44.049,-1.272,45.32
+Trevon Brazile,Zeke Nnaji,455,44.03,-1.291,45.32
+Bryce Hopkins,Spencer Jones,455,44.023,-1.298,45.32
+Aaron Gordon,Marvin Bagley III,455,44.016,-1.306,45.32
+Tyus Jones,Cam Whitmore,455,43.85,-1.472,45.32
+Tyus Jones,Zeke Nnaji,455,43.792,-1.53,45.32
+Trevon Brazile,Marvin Bagley III,455,43.574,-1.747,45.32
+Cam Whitmore,Julian Strawther,455,43.512,-1.81,45.32
+Aaron Gordon,Bryce Hopkins,455,43.344,-1.977,45.32
+Jamal Murray,DeMar DeRozan,455,43.32,-2.001,45.32
+Cameron Johnson,Bryce Hopkins,455,43.189,-2.133,45.32
+Zeke Nnaji,Julian Strawther,455,43.1,-2.222,45.32
+Trevon Brazile,Bryce Hopkins,455,43.082,-2.24,45.32
+Bryce Hopkins,DaRon Holmes II,455,43.078,-2.243,45.32
+DeMar DeRozan,Julian Strawther,455,42.968,-2.354,45.32
+DeMar DeRozan,Spencer Jones,455,42.941,-2.38,45.32
+Bryce Hopkins,Tyus Jones,455,42.904,-2.417,45.32
+Marvin Bagley III,DaRon Holmes II,455,42.851,-2.471,45.32
+Marvin Bagley III,Tyus Jones,455,42.743,-2.579,45.32
+Jamal Murray,Alpha Diallo,455,42.671,-2.65,45.32
+Bryce Hopkins,Ryan Nembhard,455,42.588,-2.734,45.32
+Marvin Bagley III,Julian Strawther,455,42.532,-2.79,45.32
+Marvin Bagley III,Ryan Nembhard,455,42.315,-3.007,45.32
+Christian Braun,Alpha Diallo,455,42.285,-3.036,45.32
+Bryce Hopkins,Julian Strawther,455,41.924,-3.398,45.32
+DeMar DeRozan,Zeke Nnaji,455,41.673,-3.648,45.32
+Cam Whitmore,Zeke Nnaji,455,41.64,-3.681,45.32
+Alpha Diallo,Spencer Jones,455,41.501,-3.82,45.32
+DeMar DeRozan,Ryan Nembhard,455,41.45,-3.872,45.32
+Alpha Diallo,Ryan Nembhard,455,41.335,-3.987,45.32
+DeMar DeRozan,Cam Whitmore,455,41.284,-4.037,45.32
+Alpha Diallo,DaRon Holmes II,455,41.247,-4.075,45.32
+DeMar DeRozan,Tyus Jones,455,41.141,-4.18,45.32
+Aaron Gordon,Alpha Diallo,455,41.127,-4.194,45.32
+Cameron Johnson,Alpha Diallo,455,41.091,-4.231,45.32
+Tyus Jones,Alpha Diallo,455,41.039,-4.283,45.32
+DeMar DeRozan,Marvin Bagley III,455,41.025,-4.297,45.32
+DeMar DeRozan,Bryce Hopkins,455,40.892,-4.429,45.32
+Trevon Brazile,Alpha Diallo,455,40.866,-4.455,45.32
+Bryce Hopkins,Cam Whitmore,455,40.616,-4.705,45.32
+Marvin Bagley III,Zeke Nnaji,455,40.371,-4.95,45.32
+Marvin Bagley III,Cam Whitmore,455,40.308,-5.013,45.32
+Bryce Hopkins,Zeke Nnaji,455,40.175,-5.147,45.32
+Alpha Diallo,Julian Strawther,455,39.971,-5.35,45.32
+DeMar DeRozan,Alpha Diallo,455,39.503,-5.818,45.32
+Marvin Bagley III,Bryce Hopkins,455,38.993,-6.329,45.32
+Alpha Diallo,Cam Whitmore,455,38.858,-6.463,45.32
+Alpha Diallo,Zeke Nnaji,455,38.444,-6.878,45.32
+Bryce Hopkins,Alpha Diallo,455,38.084,-7.237,45.32
+Marvin Bagley III,Alpha Diallo,455,37.324,-7.998,45.32

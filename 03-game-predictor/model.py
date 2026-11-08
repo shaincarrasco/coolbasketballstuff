@@ -11,11 +11,19 @@ Models
                     not a dependency, HGB is its stdlib-ish cousin)
 
 Protocol
-  * time-based split: train on seasons 1-2, test on season 3
-  * calibration choice: train on seasons 1-2 minus the final ~2 months of
-    season 2 (validation slice), fit isotonic / sigmoid calibrators on
-    out-of-fold predictions, pick whichever minimises Brier on the slice
-  * walk-forward by month inside season 3 (refit each month on all prior data)
+  * time-based split: train on every season before the latest one, test on the
+    latest season (the in-progress one with real data; flagged `small_sample`
+    when it has < 200 games)
+  * prior-season holdout: the same recipe one season earlier (train on all
+    seasons before the last COMPLETE season, test on that full season) so there
+    is always a robust ~1230-game out-of-sample number next to the live one
+  * calibration choice: training seasons minus the final ~60 days (validation
+    slice), fit isotonic / sigmoid calibrators on out-of-fold predictions, pick
+    whichever minimises Brier on the slice
+  * walk-forward by month from the start of the last complete season through
+    the current month (refit each month on all prior data)
+  * pooled out-of-sample set = prior holdout + test season predictions, for
+    reliability / ECE on a sample large enough to mean something
 
 Artifacts: models/model.json, models/calibrator.pkl, models/metrics.json,
            models/feature_columns.json, output/metrics.json
@@ -36,7 +44,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, brier_score_loss, log_loss, roc_auc_score
 from sklearn.model_selection import StratifiedKFold
 
-from features import FEATURE_COLUMNS, assert_no_leakage, build_features
+from features import FEATURE_COLUMNS, assert_no_leakage, build_features, load_games
 
 ROOT = Path(__file__).resolve().parent
 MODELS = ROOT / "models"
@@ -186,61 +194,80 @@ def choose_calibrator(X_tr, y_tr, X_val, y_val) -> tuple[str, dict]:
     return best, scores
 
 
-# ---- main training routine --------------------------------------------
-def train(games_path: Path | None = None, verbose: bool = True) -> dict:
-    games_path = Path(games_path) if games_path else ROOT / "data" / "games.csv"
-    games = pd.read_csv(games_path)
-    feats = build_features(games)
-    assert_no_leakage(games, feats)
-    played = feats.dropna(subset=["home_win"]).copy()
-    played["home_win"] = played["home_win"].astype(int)
-
-    seasons = sorted(played["season"].unique())
-    if len(seasons) < 3:
-        raise SystemExit("need at least 3 seasons for the train(1-2)/test(3) protocol")
-    train_seasons, test_season = seasons[:-1], seasons[-1]
+# ---- one time-based split ----------------------------------------------
+def fit_split(played: pd.DataFrame, train_seasons: list[str], test_season: str, log=print) -> dict:
+    """Train every model on `train_seasons`, score on `test_season`. Calibrator chosen on the
+    last 60 days of the final training season. Returns models, probabilities and metrics."""
     tr = played[played["season"].isin(train_seasons)].copy()
     te = played[played["season"] == test_season].copy()
-
     X_tr, y_tr = tr[FEATURE_COLUMNS], tr["home_win"]
     X_te, y_te = te[FEATURE_COLUMNS], te["home_win"]
-    log = print if verbose else (lambda *a, **k: None)
     log(f"train: seasons {train_seasons} ({len(tr)} games) | test: season {test_season} ({len(te)} games)")
 
-    # ---- baseline 1: home team always wins ----------------------------
     p_home = float(y_tr.mean())
-    res_home = metrics(y_te, np.full(len(y_te), p_home))
-
-    # ---- baseline 2: logistic regression on Elo diff only -------------
     elo_lr = LogisticRegression(C=1.0).fit(tr[["elo_diff"]], y_tr)
     p_elo = elo_lr.predict_proba(te[["elo_diff"]])[:, 1]
-    res_elo = metrics(y_te, p_elo)
 
-    # ---- calibration choice on a validation slice ---------------------
-    last_train_season = tr[tr["season"] == train_seasons[-1]]
-    val_cut = last_train_season["date"].max() - pd.Timedelta(days=60)
+    last = tr[tr["season"] == train_seasons[-1]]
+    val_cut = last["date"].max() - pd.Timedelta(days=60)
     val_mask = (tr["season"] == train_seasons[-1]) & (tr["date"] > val_cut)
     cal_name, cal_scores = choose_calibrator(X_tr[~val_mask], y_tr[~val_mask], X_tr[val_mask], y_tr[val_mask])
     log(f"calibration on validation slice ({int(val_mask.sum())} games): "
         + ", ".join(f"{k} brier={v['brier']:.4f}" for k, v in cal_scores.items()) + f" -> {cal_name}")
 
-    # ---- final XGBoost on all training data ---------------------------
     model = fit_xgb(X_tr, y_tr)
     calibrator = CALIBRATORS[cal_name]().fit(oof_predictions(X_tr, y_tr), y_tr)
     raw_te = model.predict_proba(X_te)[:, 1]
     p_xgb = calibrator.predict(raw_te)
-    res_xgb = metrics(y_te, p_xgb)
-    res_xgb_raw = metrics(y_te, raw_te)
-
-    # ---- third model: sklearn HistGradientBoosting, same split --------
     hgb = fit_hgb(X_tr, y_tr)
     p_hgb = hgb.predict_proba(X_te)[:, 1]
-    res_hgb = metrics(y_te, p_hgb)
+    return {
+        "tr": tr, "te": te, "y_te": y_te, "p_home_rate": p_home, "p_elo": p_elo, "p_xgb": p_xgb, "raw_te": raw_te,
+        "p_hgb": p_hgb, "model": model, "calibrator": calibrator, "cal_name": cal_name, "cal_scores": cal_scores,
+        "elo_lr": elo_lr, "hgb": hgb, "n_val": int(val_mask.sum()),
+        "models": {"home_baseline": metrics(y_te, np.full(len(y_te), p_home)), "elo_logit": metrics(y_te, p_elo),
+                   "xgb_raw": metrics(y_te, raw_te), "xgb": metrics(y_te, p_xgb), "hgb": metrics(y_te, p_hgb)},
+    }
 
-    # ---- walk-forward by month inside the test season -----------------
-    te["month"] = te["date"].dt.to_period("M").astype(str)
+
+# ---- main training routine --------------------------------------------
+SMALL_SAMPLE = 200
+
+
+def train(games_path: Path | None = None, verbose: bool = True) -> dict:
+    games_path = Path(games_path) if games_path else ROOT / "data" / "games.csv"
+    games = load_games(games_path)
+    feats = build_features(games)
+    assert_no_leakage(games, feats)
+    played = feats.dropna(subset=["home_win"]).copy()
+    played["home_win"] = played["home_win"].astype(int)
+    log = print if verbose else (lambda *a, **k: None)
+
+    seasons = sorted(played["season"].unique())
+    if len(seasons) < 3:
+        raise SystemExit("need at least 3 seasons (train on all but the last, prior-season holdout)")
+    train_seasons, test_season = seasons[:-1], seasons[-1]
+    main = fit_split(played, train_seasons, test_season, log)
+    tr, te, y_te = main["tr"], main["te"], main["y_te"]
+    X_te = te[FEATURE_COLUMNS]
+    model, calibrator, cal_name, cal_scores = main["model"], main["calibrator"], main["cal_name"], main["cal_scores"]
+    elo_lr, hgb, p_xgb, p_elo = main["elo_lr"], main["hgb"], main["p_xgb"], main["p_elo"]
+    small_sample = len(te) < SMALL_SAMPLE
+    if small_sample:
+        log(f"NOTE: test season {test_season} has only {len(te)} games so far -> small-sample flag set")
+
+    # ---- prior-season holdout: same recipe, one season earlier ----------
+    prior = fit_split(played, seasons[:-2], seasons[-2], log)
+    # pooled out-of-sample predictions (prior holdout + current test season), both forward in time
+    pooled_y = np.concatenate([prior["y_te"].to_numpy(), y_te.to_numpy()])
+    pooled_xgb = np.concatenate([prior["p_xgb"], p_xgb])
+    pooled_elo = np.concatenate([prior["p_elo"], p_elo])
+
+    # ---- walk-forward by month: last complete season + current season ----
+    wf = played[played["season"].isin(seasons[-2:])].copy()
+    wf["month"] = wf["date"].dt.to_period("M").astype(str)
     walk = []
-    for month, grp in te.groupby("month", sort=True):
+    for month, grp in wf.groupby("month", sort=True):
         hist = played[played["date"] < grp["date"].min()]
         m = fit_xgb(hist[FEATURE_COLUMNS], hist["home_win"])
         cal = CALIBRATORS[cal_name]().fit(oof_predictions(hist[FEATURE_COLUMNS], hist["home_win"], n_splits=4), hist["home_win"]) \
@@ -265,29 +292,46 @@ def train(games_path: Path | None = None, verbose: bool = True) -> dict:
     total = sum(gain.values()) or 1.0
     importance = sorted(({"feature": k, "gain_share": v / total} for k, v in gain.items()),
                         key=lambda r: -r["gain_share"])
-    # permutation importance (log-loss drop) for HGB on the test season; 5 repeats
-    perm = permutation_importance(hgb, X_te, y_te, scoring="neg_log_loss", n_repeats=5, random_state=3, n_jobs=1)
+    # permutation importance (log-loss drop) for HGB on the prior full-season holdout (the current
+    # season is too small for a stable estimate); 5 repeats
+    perm = permutation_importance(prior["hgb"], prior["te"][FEATURE_COLUMNS], prior["y_te"], scoring="neg_log_loss",
+                                  n_repeats=5, random_state=3, n_jobs=1)
     hgb_importance = sorted(({"feature": FEATURE_COLUMNS[i], "logloss_increase": float(perm.importances_mean[i])}
                              for i in range(len(FEATURE_COLUMNS))), key=lambda r: -r["logloss_increase"])
     # Elo-logit "importance" is trivially one coefficient; report it for completeness
     elo_coef = float(elo_lr.coef_[0][0])
 
+    meta_path = games_path.parent / "meta.json"
+    source = json.loads(meta_path.read_text()) if meta_path.exists() else {"source": "sample"}
     out = {
         "data": {
+            "source": source.get("source", "sample"),
+            "updated_at": source.get("updated_at"),
             "games_total": int(len(played)),
+            "seasons": seasons,
             "train_seasons": train_seasons,
             "test_season": test_season,
             "n_train": int(len(tr)),
             "n_test": int(len(te)),
-            "home_win_rate_train": p_home,
+            "n_val": main["n_val"],
+            "small_sample": bool(small_sample),
+            "test_first_date": str(te["date"].min().date()),
+            "test_last_date": str(te["date"].max().date()),
+            "home_win_rate_train": main["p_home_rate"],
             "home_win_rate_test": float(y_te.mean()),
         },
-        "models": {
-            "home_baseline": res_home,
-            "elo_logit": res_elo,
-            "xgb_raw": res_xgb_raw,
-            "xgb": res_xgb,
-            "hgb": res_hgb,
+        "models": main["models"],
+        "prior_holdout": {
+            "train_seasons": seasons[:-2], "test_season": seasons[-2], "n_train": int(len(prior["tr"])),
+            "n_test": int(len(prior["te"])), "calibrator": prior["cal_name"], "models": prior["models"],
+        },
+        "pooled": {
+            "n": int(len(pooled_y)), "seasons": seasons[-2:],
+            "xgb": metrics(pooled_y, pooled_xgb), "elo_logit": metrics(pooled_y, pooled_elo),
+            "reliability_xgb": reliability_table(pooled_y, pooled_xgb),
+            "reliability_elo": reliability_table(pooled_y, pooled_elo),
+            "ece_xgb": expected_calibration_error(reliability_table(pooled_y, pooled_xgb)),
+            "ece_elo": expected_calibration_error(reliability_table(pooled_y, pooled_elo)),
         },
         "calibration": {
             "chosen": cal_name,
@@ -319,10 +363,14 @@ def train(games_path: Path | None = None, verbose: bool = True) -> dict:
     for p in (MODELS / "metrics.json", OUTPUT / "metrics.json"):
         p.write_text(json.dumps(out, indent=2))
 
-    log("\nTEST SEASON RESULTS  (season %s)" % test_season)
-    log(f"{'model':<14}{'acc':>8}{'logloss':>10}{'brier':>8}{'auc':>8}")
-    for name, r in out["models"].items():
-        log(f"{name:<14}{r['accuracy']:>8.3f}{r['log_loss']:>10.4f}{r['brier']:>8.4f}{r['roc_auc']:>8.3f}")
+    for title, block in ((f"TEST SEASON RESULTS  (season {test_season}, n={len(te)}{', SMALL SAMPLE' if small_sample else ''})", out["models"]),
+                         (f"PRIOR-SEASON HOLDOUT  (season {seasons[-2]}, n={len(prior['te'])}, trained on {seasons[:-2]})", prior["models"])):
+        log("\n" + title)
+        log(f"{'model':<14}{'acc':>8}{'logloss':>10}{'brier':>8}{'auc':>8}")
+        for name, r in block.items():
+            log(f"{name:<14}{r['accuracy']:>8.3f}{r['log_loss']:>10.4f}{r['brier']:>8.4f}{r['roc_auc']:>8.3f}")
+    log(f"pooled out-of-sample n={out['pooled']['n']}: xgb acc {out['pooled']['xgb']['accuracy']:.3f} "
+        f"ll {out['pooled']['xgb']['log_loss']:.4f} ECE {out['pooled']['ece_xgb']:.3f}")
     return out
 
 

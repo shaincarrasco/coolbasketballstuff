@@ -1,1231 +1,198 @@
-date,id,h,a,ph,eh,ea,ep,pick,rh,ra,hp,ap,w,ok,drivers
-2025-10-22,S3G02464,GLD,LUM,0.746,1603,1475,0.767,GLD,7,7,133,98,GLD,True,Elo +127 ↑ | season win% +.00 ↑ | L10 margin +3.5 ↑
-2025-10-22,S3G02461,BRK,YEL,0.621,1563,1515,0.676,BRK,7,7,109,94,BRK,True,home/away split +.00 ↑ | season win% +.00 ↑ | L10 margin -0.9 ↓
-2025-10-22,S3G02468,NOR,JUN,0.613,1572,1603,0.569,NOR,7,7,113,119,JUN,False,home/away split +.00 ↑ | season win% +.00 ↑ | L10 margin -7.5 ↓
-2025-10-22,S3G02465,HAV,KES,0.606,1589,1599,0.599,HAV,7,7,114,108,HAV,True,home/away split +.00 ↑ | season win% +.00 ↑ | L10 margin +0.1 ↓
-2025-10-22,S3G02469,RVN,WYR,0.603,1511,1539,0.574,RVN,7,7,119,121,WYR,False,home/away split +.00 ↑ | season win% +.00 ↑ | L10 margin -3.9 ↓
-2025-10-22,S3G02462,EMB,CAS,0.421,1261,1590,0.192,CAS,7,7,105,136,CAS,True,Elo -329 ↓ | L10 margin -16.0 ↓ | home/away split +.00 ↑
-2025-10-22,S3G02466,HLW,SLT,0.578,1400,1517,0.447,HLW,7,7,104,107,SLT,False,Elo -117 ↓ | home/away split +.00 ↑ | season win% +.00 ↑
-2025-10-22,S3G02463,FAL,OBS,0.573,1394,1479,0.493,FAL,7,7,118,124,OBS,False,Elo -85 ↓ | home/away split +.00 ↑ | season win% +.00 ↑
-2025-10-22,S3G02467,MRW,MST,0.516,1475,1635,0.388,MRW,7,7,107,100,MRW,True,Elo -159 ↓ | home/away split +.00 ↑ | season win% +.00 ↑
-2025-10-23,S3G02471,IRN,UMB,0.769,1692,1559,0.773,IRN,7,7,117,110,IRN,True,Elo +133 ↑ | L10 margin +11.3 ↑ | season win% +.00 ↑
-2025-10-23,S3G02470,AUR,DUN,0.687,1573,1394,0.816,AUR,7,7,110,117,DUN,False,Elo +179 ↑ | L10 margin -2.1 ↓ | season win% +.00 ↑
-2025-10-23,S3G02474,TMB,XEN,0.648,1390,1464,0.51,TMB,7,7,113,124,XEN,False,Elo -73 ↓ | L10 margin +7.2 ↑ | season win% +.00 ↑
-2025-10-23,S3G02472,PNE,VLE,0.63,1356,1351,0.62,PNE,7,7,117,120,VLE,False,home/away split +.00 ↑ | season win% +.00 ↑ | L10 margin -3.0 ↓
-2025-10-23,S3G02473,QRY,COP,0.608,1535,1520,0.633,QRY,7,7,108,98,QRY,True,home/away split +.00 ↑ | season win% +.00 ↑ | L10 margin -2.6 ↓
-2025-10-23,S3G02475,ZEP,SKY,0.491,1336,1507,0.373,SKY,7,7,124,122,ZEP,False,Elo -170 ↓ | L10 margin -14.4 ↓ | home/away split +.00 ↑
-2025-10-24,S3G02482,WYR,EMB,0.829,1552,1249,0.901,WYR,2,2,105,101,WYR,True,Elo +303 ↑ | L10 margin +24.0 ↑ | season win% +1.00 ↑
-2025-10-24,S3G02476,GLD,MRW,0.741,1618,1502,0.756,GLD,2,2,90,111,MRW,False,Elo +117 ↑ | L10 margin +21.2 ↑ | home/away split +.00 ↑
-2025-10-24,S3G02481,SLT,FAL,0.7,1529,1375,0.794,SLT,2,2,110,107,SLT,True,Elo +154 ↑ | season win% +1.00 ↑ | L10 margin +0.4 ↓
-2025-10-24,S3G02479,MST,OBS,0.696,1608,1498,0.749,MST,2,2,119,132,OBS,False,Elo +110 ↑ | season win% -1.00 ↓ | L10 margin +7.9 ↑
-2025-10-24,S3G02478,KES,CAS,0.612,1584,1602,0.588,KES,2,2,118,117,KES,True,season win% -1.00 ↓ | home/away split +.00 ↑ | L10 margin +4.3 ↑
-2025-10-24,S3G02483,YEL,LUM,0.6,1498,1460,0.663,YEL,2,2,110,94,YEL,True,home/away split +.00 ↑ | L10 margin -2.3 ↓ | Elo +38 ↑
-2025-10-24,S3G02480,NOR,JUN,0.438,1549,1626,0.505,JUN,2,2,133,124,NOR,False,season win% -1.00 ↓ | Elo -77 ↓ | L10 margin -10.1 ↓
-2025-10-24,S3G02477,HLW,HAV,0.439,1388,1604,0.314,HAV,2,2,114,119,HAV,True,Elo -216 ↓ | season win% -1.00 ↓ | home/away split +.00 ↑
-2025-10-25,S3G02485,SKY,PNE,0.741,1492,1338,0.794,SKY,2,2,121,108,SKY,True,Elo +154 ↑ | L10 margin +11.9 ↑ | home/away split +.00 ↑
-2025-10-25,S3G02486,TMB,AUR,0.484,1365,1535,0.374,AUR,2,2,125,117,TMB,False,Elo -170 ↓ | home/away split +.00 ↑ | L10 margin +0.9 ↓
-2025-10-25,S3G02484,RVN,BRK,0.51,1498,1580,0.498,RVN,3,3,102,115,BRK,False,season win% -1.00 ↓ | Elo -81 ↓ | home/away split +.00 ↑
-2025-10-26,S3G02491,QRY,VLE,0.675,1552,1369,0.819,QRY,3,3,119,101,QRY,True,Elo +182 ↑ | L10 margin +8.5 ↑ | home/away split +.00 ↓
-2025-10-26,S3G02487,JUN,CAS,0.665,1603,1597,0.622,JUN,2,2,124,111,JUN,True,L10 margin +9.2 ↑ | home/away split +.00 ↑ | L10 offence +6.3 pts ↑
-2025-10-26,S3G02488,LUM,HLW,0.635,1442,1378,0.697,LUM,2,2,108,96,LUM,True,L10 margin +9.0 ↑ | home/away split +.00 ↑ | season win% +.00 ↓
-2025-10-26,S3G02490,OBS,YEL,0.626,1541,1516,0.647,OBS,2,2,120,95,OBS,True,season win% +.50 ↑ | home/away split +.00 ↑ | L10 margin -3.7 ↓
-2025-10-26,S3G02494,XEN,DUN,0.613,1489,1433,0.687,XEN,3,3,109,105,XEN,True,home/away split +.00 ↑ | L10 margin -6.0 ↓ | Elo +56 ↑
-2025-10-26,S3G02493,WYR,GLD,0.599,1555,1567,0.597,WYR,2,2,112,124,GLD,False,season win% +.50 ↑ | home/away split +.00 ↑ | L10 margin -2.5 ↓
-2025-10-26,S3G02489,MST,MRW,0.59,1565,1553,0.629,MST,2,2,117,124,MRW,False,season win% -1.00 ↓ | L10 margin +7.9 ↑ | L10 offence +7.9 pts ↑
-2025-10-26,S3G02492,UMB,IRN,0.478,1551,1701,0.401,IRN,3,3,122,121,UMB,False,Elo -150 ↓ | season win% -1.00 ↓ | home/away split +.00 ↑
-2025-10-26,S3G02495,ZEP,COP,0.495,1351,1503,0.397,COP,3,3,110,120,COP,True,Elo -153 ↓ | season win% +1.00 ↑ | L10 margin -10.7 ↓
-2025-10-27,S3G02497,HAV,FAL,0.837,1614,1370,0.866,HAV,3,3,127,96,HAV,True,Elo +244 ↑ | L10 margin +9.9 ↑ | season win% +1.00 ↑
-2025-10-27,S3G02498,NOR,EMB,0.82,1572,1246,0.912,NOR,3,3,117,123,EMB,False,Elo +326 ↑ | L10 margin +14.2 ↑ | season win% +.50 ↑
-2025-10-27,S3G02496,BRK,PNE,0.817,1606,1328,0.887,BRK,2,2,110,111,PNE,False,Elo +278 ↑ | L10 margin +13.3 ↑ | season win% +1.00 ↑
-2025-10-27,S3G02500,SLT,KES,0.544,1535,1589,0.536,SLT,3,3,107,113,KES,False,Elo -55 ↓ | season win% +.50 ↑ | L10 margin -9.4 ↓
-2025-10-27,S3G02499,RVN,SKY,0.511,1472,1502,0.571,RVN,2,2,125,109,RVN,True,season win% -.50 ↓ | home/away split +.00 ↓ | L10 margin -1.4 ↓
-2025-10-28,S3G02510,UMB,HLW,0.813,1559,1363,0.831,UMB,2,2,121,104,UMB,True,Elo +196 ↑ | L10 margin +11.0 ↑ | season win% +.50 ↑
-2025-10-28,S3G02504,IRN,ZEP,0.778,1692,1332,0.926,IRN,2,2,119,107,IRN,True,Elo +360 ↑ | L10 margin +21.8 ↑ | home/away split +.00 ↑
-2025-10-28,S3G02502,DUN,VLE,0.685,1423,1360,0.696,DUN,2,2,94,114,VLE,False,L10 margin +9.8 ↑ | home/away split +.00 ↑ | L10 offence +8.2 pts ↑
-2025-10-28,S3G02503,FAL,BRK,0.344,1362,1591,0.297,BRK,1,1,110,115,BRK,True,Elo -229 ↓ | season win% -.67 ↓ | L10 margin -11.8 ↓
-2025-10-28,S3G02501,AUR,TMB,0.619,1506,1394,0.751,AUR,3,3,104,124,TMB,False,Elo +112 ↑ | season win% -.50 ↓ | home/away split +.00 ↑
-2025-10-28,S3G02508,PNE,SLT,0.39,1343,1514,0.373,SLT,1,1,103,131,SLT,True,Elo -170 ↓ | season win% -.33 ↓ | L10 margin -9.7 ↓
-2025-10-28,S3G02511,XEN,CAS,0.586,1498,1578,0.501,XEN,2,2,121,108,XEN,True,Elo -79 ↓ | season win% +.67 ↑ | L10 margin -3.7 ↓
-2025-10-28,S3G02509,QRY,GLD,0.568,1561,1598,0.561,QRY,2,2,131,101,QRY,True,season win% +.33 ↑ | L10 margin -7.0 ↓ | home/away split +.00 ↓
-2025-10-28,S3G02505,LUM,JUN,0.455,1457,1623,0.379,JUN,2,2,104,105,JUN,True,Elo -166 ↓ | season win% -.33 ↓ | L10 margin -11.9 ↓
-2025-10-28,S3G02507,OBS,MRW,0.542,1563,1580,0.59,OBS,2,2,106,114,MRW,False,home/away split +.00 ↓ | streak +0 ↓ | H2H 25% ↓
-2025-10-28,S3G02512,YEL,WYR,0.463,1494,1523,0.573,WYR,2,2,112,121,WYR,True,season win% -.33 ↓ | home/away split +.00 ↓ | L10 margin -7.5 ↓
-2025-10-28,S3G02506,MST,COP,0.508,1538,1522,0.634,MST,2,2,141,129,MST,True,season win% -.50 ↓ | L10 defence -6.7 pts ↓ | L10 margin -4.2 ↓
-2025-10-29,S3G02514,HAV,SKY,0.783,1623,1478,0.784,HAV,2,2,97,99,SKY,False,Elo +144 ↑ | season win% +.67 ↑ | L10 margin +8.6 ↑
-2025-10-29,S3G02513,EMB,KES,0.306,1290,1611,0.2,KES,2,2,126,121,EMB,False,Elo -321 ↓ | season win% -.33 ↓ | L10 margin -20.7 ↓
-2025-10-29,S3G02517,QRY,MST,0.684,1591,1556,0.66,QRY,1,1,119,115,QRY,True,season win% +.75 ↑ | L10 margin +6.3 ↑ | home/away split +1.00 ↑
-2025-10-29,S3G02518,RVN,NOR,0.613,1496,1529,0.568,RVN,2,2,117,112,RVN,True,home/away split +.00 ↑ | L10 defence +0.9 pts ↑ | season win% +.00 ↓
-2025-10-29,S3G02516,MRW,XEN,0.582,1607,1525,0.718,MRW,1,1,108,109,XEN,False,Elo +82 ↑ | home/away split +.00 ↓ | season win% +.00 ↓
-2025-10-29,S3G02515,HLW,ZEP,0.508,1354,1329,0.647,HLW,1,1,132,115,HLW,True,season win% -.33 ↓ | home/away split +.00 ↓ | L10 margin -2.5 ↓
-2025-10-30,S3G02521,IRN,GLD,0.736,1695,1569,0.766,IRN,2,2,107,119,GLD,False,Elo +126 ↑ | L10 margin +6.6 ↑ | season win% +.17 ↑
-2025-10-30,S3G02523,WYR,VLE,0.731,1550,1405,0.786,WYR,2,2,118,114,WYR,True,Elo +146 ↑ | L10 margin +13.1 ↑ | L10 offence +7.5 pts ↑
-2025-10-30,S3G02520,FAL,BRK,0.313,1352,1601,0.274,BRK,2,2,103,109,BRK,True,Elo -249 ↓ | season win% -.75 ↓ | L10 margin -15.8 ↓
-2025-10-30,S3G02522,OBS,CAS,0.635,1537,1551,0.593,OBS,2,2,107,106,OBS,True,season win% +.50 ↑ | L10 defence +2.5 pts ↑ | streak +2 ↓
-2025-10-30,S3G02524,YEL,JUN,0.405,1467,1628,0.387,JUN,2,2,111,113,JUN,True,Elo -160 ↓ | season win% -.50 ↓ | L10 margin -12.6 ↓
-2025-10-30,S3G02519,AUR,COP,0.478,1456,1504,0.546,COP,2,2,93,107,COP,True,season win% -.33 ↓ | L10 margin -5.3 ↓ | H2H 0% ↓
-2025-10-31,S3G02527,HAV,EMB,0.837,1603,1322,0.889,HAV,2,2,126,99,HAV,True,Elo +281 ↑ | L10 margin +23.9 ↑ | season win% +.25 ↑
-2025-10-31,S3G02533,RVN,HLW,0.77,1511,1374,0.777,RVN,2,2,108,130,HLW,False,Elo +137 ↑ | season win% +.30 ↑ | L10 margin +8.6 ↑
-2025-10-31,S3G02531,PNE,UMB,0.323,1319,1568,0.274,UMB,3,3,111,112,UMB,True,Elo -249 ↓ | season win% -.42 ↓ | L10 margin -14.3 ↓
-2025-10-31,S3G02528,KES,SKY,0.644,1578,1498,0.716,KES,2,2,123,116,KES,True,L10 margin +5.9 ↑ | Elo +81 ↑ | season win% +.00 ↓
-2025-10-31,S3G02532,QRY,XEN,0.624,1601,1536,0.698,QRY,2,2,106,99,QRY,True,L10 margin +10.3 ↑ | home/away split +.00 ↓ | L10 offence +8.7 pts ↑
-2025-10-31,S3G02525,BRK,OBS,0.616,1611,1542,0.702,BRK,1,1,109,123,OBS,False,L10 margin +4.5 ↑ | Elo +69 ↑ | L10 defence +10.0 pts ↑
-2025-10-31,S3G02535,ZEP,MST,0.409,1310,1545,0.29,MST,2,2,110,107,ZEP,False,Elo -235 ↓ | L10 margin -9.9 ↓ | Elo p(home) 29% ↓
-2025-10-31,S3G02529,LUM,DUN,0.551,1452,1378,0.708,LUM,3,3,118,103,LUM,True,Elo +74 ↑ | L10 margin -2.5 ↓ | home/away split +.00 ↓
-2025-10-31,S3G02530,NOR,MRW,0.462,1513,1596,0.496,MRW,2,2,119,108,NOR,False,season win% -.55 ↓ | Elo -83 ↓ | L10 margin -2.4 ↓
-2025-10-31,S3G02526,COP,IRN,0.51,1534,1652,0.446,COP,1,1,123,125,IRN,False,Elo -118 ↓ | home/away split +.00 ↑ | L10 margin -8.9 ↓
-2025-10-31,S3G02534,TMB,SLT,0.496,1444,1538,0.48,SLT,3,3,118,109,TMB,False,Elo -94 ↓ | L10 margin -4.2 ↓ | L10 defence -6.4 pts ↓
-2025-11-01,S3G02538,FAL,GLD,0.314,1342,1612,0.251,GLD,2,2,109,125,GLD,True,Elo -270 ↓ | season win% -.60 ↓ | L10 margin -11.9 ↓
-2025-11-01,S3G02537,CAS,VLE,0.61,1546,1399,0.787,CAS,2,2,108,112,VLE,False,Elo +147 ↑ | season win% -.30 ↓ | home/away split +.00 ↑
-2025-11-01,S3G02536,AUR,YEL,0.518,1426,1459,0.567,AUR,2,2,116,111,AUR,True,season win% -.20 ↓ | L10 margin -0.2 ↓ | home/away split +.00 ↓
-2025-11-01,S3G02539,WYR,JUN,0.486,1557,1636,0.501,JUN,2,2,119,117,WYR,False,Elo -79 ↓ | home/away split -.08 ↓ | L10 margin -0.5 ↓
-2025-11-02,S3G02541,HAV,DUN,0.82,1610,1363,0.868,HAV,2,2,100,102,DUN,False,Elo +247 ↑ | L10 margin +14.5 ↑ | season win% +.55 ↑
-2025-11-02,S3G02544,SLT,PNE,0.776,1514,1315,0.832,SLT,2,2,119,100,SLT,True,Elo +198 ↑ | L10 margin +20.1 ↑ | season win% +.40 ↑
-2025-11-02,S3G02542,OBS,LUM,0.746,1583,1467,0.756,OBS,2,2,124,101,OBS,True,Elo +116 ↑ | season win% +.43 ↑ | L10 margin +3.4 ↑
-2025-11-02,S3G02540,BRK,UMB,0.589,1570,1571,0.612,BRK,2,2,116,108,BRK,True,L10 margin +4.5 ↑ | home/away split -.17 ↓ | season win% -.08 ↓
-2025-11-02,S3G02543,RVN,KES,0.435,1457,1589,0.425,KES,2,2,114,105,RVN,False,Elo -133 ↓ | season win% -.20 ↓ | L10 margin -8.8 ↓
-2025-11-02,S3G02545,ZEP,HLW,0.505,1331,1428,0.475,ZEP,2,2,117,104,ZEP,True,Elo -97 ↓ | L10 margin -2.9 ↓ | L10 defence -6.4 pts ↓
-2025-11-03,S3G02558,ZEP,OBS,0.332,1359,1597,0.287,OBS,1,1,113,107,ZEP,False,Elo -239 ↓ | season win% -.36 ↓ | L10 margin -11.7 ↓
-2025-11-03,S3G02550,FAL,WYR,0.334,1329,1568,0.286,WYR,2,2,119,112,FAL,False,Elo -239 ↓ | season win% -.83 ↓ | L10 margin -13.5 ↓
-2025-11-03,S3G02555,VLE,AUR,0.651,1427,1441,0.594,VLE,2,2,111,118,AUR,False,season win% +.40 ↑ | home/away split +.00 ↑ | streak +0 ↓
-2025-11-03,S3G02552,NOR,MST,0.622,1538,1524,0.633,NOR,3,3,122,109,NOR,True,season win% +.23 ↑ | home/away split +.50 ↑ | streak +3 ↓
-2025-11-03,S3G02549,EMB,TMB,0.393,1316,1468,0.397,TMB,3,3,112,118,TMB,True,Elo -152 ↓ | season win% -.35 ↓ | L10 margin -17.1 ↓
-2025-11-03,S3G02557,YEL,GLD,0.413,1444,1625,0.358,GLD,2,2,126,118,YEL,False,Elo -181 ↓ | season win% -.50 ↓ | L10 margin -9.7 ↓
-2025-11-03,S3G02553,RVN,HAV,0.442,1484,1587,0.466,HAV,1,1,99,125,HAV,True,Elo -103 ↓ | L10 margin -15.6 ↓ | L10 defence -11.9 pts ↓
-2025-11-03,S3G02547,COP,QRY,0.536,1524,1613,0.488,COP,3,3,106,111,QRY,False,season win% -.60 ↓ | Elo -89 ↓ | home/away split +.00 ↑
-2025-11-03,S3G02548,DUN,LUM,0.52,1385,1453,0.518,DUN,1,1,124,106,DUN,True,Elo -67 ↓ | L10 margin +3.6 ↑ | home/away split +.00 ↓
-2025-11-03,S3G02554,SKY,MRW,0.48,1487,1571,0.494,MRW,3,3,117,122,MRW,True,season win% -.27 ↓ | Elo -85 ↓ | L10 margin +1.2 ↓
-2025-11-03,S3G02556,XEN,IRN,0.511,1524,1661,0.418,XEN,3,3,123,107,XEN,True,Elo -138 ↓ | season win% +.20 ↑ | L10 margin -12.7 ↓
-2025-11-03,S3G02551,KES,BRK,0.506,1562,1587,0.579,KES,1,1,125,111,KES,True,season win% -.21 ↓ | L10 margin -0.8 ↓ | home/away split +.00 ↓
-2025-11-03,S3G02546,CAS,JUN,0.504,1518,1625,0.461,CAS,2,2,104,109,JUN,False,Elo -107 ↓ | season win% -.50 ↓ | L10 margin -7.8 ↓
-2025-11-04,S3G02563,WYR,ZEP,0.744,1536,1389,0.787,WYR,1,1,129,120,WYR,True,Elo +147 ↑ | L10 margin +7.6 ↑ | season win% +.14 ↑
-2025-11-04,S3G02562,UMB,HLW,0.668,1555,1400,0.795,UMB,2,2,102,105,HLW,False,Elo +155 ↑ | season win% +.31 ↑ | L10 margin +1.0 ↓
-2025-11-04,S3G02561,PNE,SLT,0.343,1307,1522,0.314,SLT,2,2,97,128,SLT,True,Elo -216 ↓ | season win% -.50 ↓ | L10 margin -23.6 ↓
-2025-11-04,S3G02560,LUM,AUR,0.572,1424,1466,0.554,LUM,1,1,122,113,LUM,True,L10 margin -0.6 ↓ | home/away split +.17 ↑ | L10 defence +4.1 pts ↑
-2025-11-04,S3G02559,JUN,HAV,0.495,1641,1618,0.644,HAV,1,1,117,115,JUN,False,L10 defence -8.5 pts ↓ | L10 margin -8.0 ↓ | home/away split +.00 ↓
-2025-11-05,S3G02565,KES,CAS,0.742,1585,1501,0.719,KES,2,2,107,113,CAS,False,season win% +.43 ↑ | L10 margin +8.2 ↑ | Elo +83 ↑
-2025-11-05,S3G02566,MRW,XEN,0.53,1589,1558,0.655,MRW,2,2,103,105,XEN,False,home/away split -.17 ↓ | Elo +31 ↑ | L10 margin +1.4 ↓
-2025-11-05,S3G02567,MST,GLD,0.474,1505,1596,0.485,GLD,2,2,119,92,MST,False,Elo -90 ↓ | season win% -.43 ↓ | L10 margin -5.8 ↓
-2025-11-05,S3G02568,NOR,BRK,0.521,1557,1565,0.603,NOR,2,2,101,119,BRK,False,home/away split -.15 ↓ | L10 margin -2.5 ↓ | L10 defence -6.2 pts ↓
-2025-11-05,S3G02564,FAL,VLE,0.514,1361,1401,0.557,FAL,2,2,112,116,VLE,False,season win% -.36 ↓ | L10 defence -6.8 pts ↓ | L10 margin -7.4 ↓
-2025-11-06,S3G02573,QRY,RVN,0.796,1630,1454,0.814,QRY,3,3,118,107,QRY,True,Elo +177 ↑ | L10 margin +16.3 ↑ | season win% +.57 ↑
-2025-11-06,S3G02570,HAV,AUR,0.772,1610,1446,0.803,HAV,2,2,126,103,HAV,True,Elo +164 ↑ | L10 margin +17.0 ↑ | season win% +.34 ↑
-2025-11-06,S3G02571,IRN,SKY,0.724,1628,1469,0.798,IRN,3,3,115,103,IRN,True,Elo +159 ↑ | L10 margin +4.1 ↑ | season win% +.17 ↑
-2025-11-06,S3G02572,OBS,COP,0.685,1567,1507,0.692,OBS,3,3,118,124,COP,False,season win% +.42 ↑ | L10 margin +6.0 ↑ | L10 defence +2.3 pts ↑
-2025-11-06,S3G02569,EMB,TMB,0.389,1301,1483,0.357,TMB,3,3,93,114,TMB,True,Elo -182 ↓ | season win% -.47 ↓ | L10 margin -16.1 ↓
-2025-11-06,S3G02574,YEL,DUN,0.501,1473,1413,0.691,YEL,3,3,107,128,DUN,False,season win% -.21 ↓ | home/away split +.00 ↓ | L10 margin -5.2 ↓
-2025-11-07,S3G02575,JUN,HLW,0.798,1649,1425,0.852,JUN,3,3,129,111,JUN,True,Elo +224 ↑ | season win% +.38 ↑ | L10 margin +7.5 ↑
-2025-11-07,S3G02576,PNE,WYR,0.319,1286,1545,0.264,WYR,3,3,103,109,WYR,True,Elo -258 ↓ | season win% -.61 ↓ | L10 margin -19.6 ↓
-2025-11-07,S3G02577,UMB,LUM,0.65,1530,1445,0.722,UMB,3,3,118,104,UMB,True,Elo +86 ↑ | L10 defence -3.0 pts ↓ | season win% +.12 ↑
-2025-11-07,S3G02578,ZEP,SLT,0.424,1380,1543,0.383,SLT,3,3,109,110,SLT,True,Elo -163 ↓ | L10 margin -14.7 ↓ | season win% -.21 ↓
-2025-11-08,S3G02581,KES,FAL,0.797,1554,1343,0.843,KES,3,3,116,113,KES,True,Elo +212 ↑ | L10 margin +9.5 ↑ | season win% +.38 ↑
-2025-11-08,S3G02582,XEN,MST,0.646,1573,1540,0.657,XEN,3,3,118,106,XEN,True,season win% +.61 ↑ | home/away split +1.00 ↑ | L10 defence +8.3 pts ↑
-2025-11-08,S3G02579,BRK,MRW,0.618,1601,1574,0.65,BRK,3,3,107,109,MRW,False,L10 margin +4.3 ↑ | L10 defence +4.0 pts ↑ | season win% +.04 ↑
-2025-11-08,S3G02580,GLD,NOR,0.612,1561,1520,0.667,GLD,3,3,119,116,GLD,True,L10 margin -0.5 ↓ | home/away split +.50 ↑ | season win% +.07 ↑
-2025-11-09,S3G02584,OBS,RVN,0.753,1539,1445,0.731,OBS,3,3,113,108,OBS,True,L10 margin +16.2 ↑ | season win% +.29 ↑ | Elo +93 ↑
-2025-11-09,S3G02586,TMB,COP,0.67,1504,1536,0.569,TMB,3,3,114,106,TMB,True,season win% +.40 ↑ | L10 margin +3.7 ↑ | home/away split +.07 ↓
-2025-11-09,S3G02587,YEL,IRN,0.37,1428,1637,0.322,IRN,3,3,126,116,YEL,False,Elo -209 ↓ | season win% -.32 ↓ | L10 margin -13.9 ↓
-2025-11-09,S3G02585,SKY,HAV,0.406,1460,1622,0.384,HAV,3,3,108,110,HAV,True,Elo -162 ↓ | season win% -.38 ↓ | L10 margin -15.5 ↓
-2025-11-09,S3G02583,CAS,VLE,0.589,1532,1420,0.751,CAS,4,4,104,105,VLE,False,Elo +112 ↑ | season win% -.32 ↓ | L10 margin -3.4 ↓
-2025-11-10,S3G02596,WYR,HLW,0.764,1554,1417,0.777,WYR,3,3,123,97,WYR,True,Elo +137 ↑ | season win% +.44 ↑ | L10 margin +7.9 ↑
-2025-11-10,S3G02591,JUN,UMB,0.743,1656,1544,0.751,JUN,3,3,120,105,JUN,True,Elo +112 ↑ | season win% +.21 ↑ | L10 margin +5.3 ↑
-2025-11-10,S3G02588,DUN,AUR,0.697,1459,1435,0.645,DUN,4,4,105,87,DUN,True,L10 margin +11.6 ↑ | season win% +.32 ↑ | L10 defence +7.3 pts ↑
-2025-11-10,S3G02589,EMB,QRY,0.313,1280,1638,0.167,QRY,4,4,123,137,QRY,True,Elo -359 ↓ | season win% -.71 ↓ | L10 margin -23.6 ↓
-2025-11-10,S3G02593,LUM,SLT,0.379,1431,1548,0.446,SLT,3,3,111,114,SLT,True,Elo -118 ↓ | season win% -.42 ↓ | L10 margin -15.9 ↓
-2025-11-10,S3G02592,KES,NOR,0.615,1558,1512,0.674,KES,2,2,112,121,NOR,False,season win% +.18 ↑ | home/away split +.80 ↑ | L20 form +.1 ↓
-2025-11-10,S3G02595,PNE,ZEP,0.434,1277,1375,0.474,ZEP,3,3,118,119,ZEP,True,season win% -.32 ↓ | Elo -98 ↓ | L10 margin -11.0 ↓
-2025-11-10,S3G02594,MRW,XEN,0.563,1589,1590,0.612,MRW,2,2,130,120,MRW,True,season win% -.21 ↓ | L10 margin +3.5 ↑ | home/away split -.42 ↓
-2025-11-10,S3G02590,GLD,BRK,0.492,1570,1586,0.591,BRK,2,2,123,102,GLD,False,home/away split -.13 ↓ | L10 margin -5.4 ↓ | L10 defence -6.0 pts ↓
-2025-11-11,S3G02600,MST,FAL,0.705,1523,1339,0.821,MST,3,3,106,109,FAL,False,Elo +184 ↑ | L10 margin +3.9 ↑ | season win% +.11 ↑
-2025-11-11,S3G02604,XEN,NOR,0.646,1572,1545,0.649,XEN,1,1,120,117,XEN,True,season win% +.33 ↑ | home/away split +.67 ↑ | L10 defence +5.6 pts ↑
-2025-11-11,S3G02598,EMB,DUN,0.356,1272,1479,0.325,DUN,1,1,117,105,EMB,False,Elo -207 ↓ | season win% -.38 ↓ | L10 margin -17.5 ↓
-2025-11-11,S3G02602,SKY,RVN,0.64,1451,1436,0.633,SKY,2,2,117,129,RVN,False,L10 margin +8.6 ↑ | season win% -.08 ↓ | home/away split +.33 ↑
-2025-11-11,S3G02599,MRW,WYR,0.555,1607,1567,0.665,MRW,1,1,109,113,WYR,False,L10 margin +0.3 ↓ | Elo +39 ↑ | L10 defence +3.6 pts ↑
-2025-11-11,S3G02597,CAS,COP,0.55,1520,1517,0.617,CAS,2,2,125,109,CAS,True,L10 margin -4.0 ↓ | season win% -.15 ↓ | L10 form -.3 ↑
-2025-11-11,S3G02601,OBS,HAV,0.47,1547,1630,0.497,HAV,2,2,100,115,HAV,True,Elo -82 ↓ | home/away split -.08 ↓ | L10 margin -4.7 ↓
-2025-11-11,S3G02603,VLE,IRN,0.486,1431,1602,0.372,IRN,2,2,118,108,VLE,False,Elo -171 ↓ | L10 margin -1.7 ↓ | season win% +.12 ↑
-2025-11-11,S3G02605,YEL,TMB,0.486,1462,1523,0.528,TMB,2,2,121,105,YEL,False,season win% -.52 ↓ | Elo -60 ↓ | L10 margin -10.5 ↓
-2025-11-12,S3G02609,ZEP,AUR,0.713,1381,1415,0.566,ZEP,2,2,135,97,ZEP,True,season win% +.28 ↑ | L10 margin +7.5 ↑ | L10 offence +7.1 pts ↑
-2025-11-12,S3G02608,PNE,QRY,0.34,1270,1647,0.154,QRY,2,2,102,119,QRY,True,Elo -376 ↓ | season win% -.89 ↓ | L10 margin -24.1 ↓
-2025-11-12,S3G02606,HLW,BRK,0.404,1404,1562,0.389,BRK,2,2,109,135,BRK,True,Elo -158 ↓ | season win% -.25 ↓ | L10 margin -5.0 ↓
-2025-11-12,S3G02607,LUM,KES,0.509,1418,1525,0.461,LUM,2,2,132,116,LUM,True,Elo -107 ↓ | season win% -.20 ↓ | home/away split +.35 ↑
-2025-11-13,S3G02619,VLE,EMB,0.783,1463,1308,0.794,VLE,2,2,122,101,VLE,True,Elo +154 ↑ | L10 margin +11.4 ↑ | season win% +.33 ↑
-2025-11-13,S3G02620,WYR,YEL,0.752,1590,1489,0.739,WYR,2,2,106,123,YEL,False,Elo +101 ↑ | season win% +.42 ↑ | L10 margin +7.2 ↑
-2025-11-13,S3G02618,SLT,UMB,0.709,1560,1532,0.651,SLT,3,3,105,102,SLT,True,season win% +.28 ↑ | L10 margin +9.3 ↑ | home/away split +.42 ↑
-2025-11-13,S3G02616,NOR,RVN,0.663,1535,1470,0.697,NOR,2,2,129,111,NOR,True,L10 margin +3.8 ↑ | home/away split +.17 ↑ | Elo +65 ↑
-2025-11-13,S3G02615,MRW,OBS,0.581,1584,1520,0.696,MRW,2,2,110,106,MRW,True,L10 margin -1.1 ↓ | Elo +64 ↑ | L10 defence +0.1 pts ↑
-2025-11-13,S3G02610,CAS,IRN,0.573,1541,1571,0.572,CAS,2,2,117,124,IRN,False,L10 margin +0.0 ↓ | L20 form -.2 ↑ | L10 defence +2.6 pts ↑
-2025-11-13,S3G02617,SKY,MST,0.557,1417,1497,0.5,SKY,2,2,105,112,MST,False,Elo -80 ↓ | L10 margin -2.0 ↓ | season win% +.02 ↑
-2025-11-13,S3G02612,FAL,COP,0.453,1365,1496,0.427,COP,2,2,90,105,COP,True,Elo -131 ↓ | L10 margin -5.0 ↓ | season win% -.13 ↓
-2025-11-13,S3G02621,XEN,HAV,0.533,1581,1657,0.505,XEN,2,2,104,98,XEN,True,Elo -76 ↓ | L10 margin -7.8 ↓ | L10 defence -6.6 pts ↓
-2025-11-13,S3G02611,DUN,TMB,0.478,1442,1496,0.537,TMB,2,2,117,115,DUN,False,Elo -54 ↓ | home/away split -.08 ↓ | season win% -.19 ↓
-2025-11-13,S3G02613,GLD,JUN,0.504,1595,1669,0.508,GLD,3,3,96,119,JUN,False,Elo -74 ↓ | season win% -.20 ↓ | L10 margin -3.8 ↓
-2025-11-13,S3G02614,HLW,ZEP,0.496,1379,1412,0.567,ZEP,1,1,117,112,HLW,False,season win% -.27 ↓ | home/away split +.00 ↓ | L10 margin -8.7 ↓
-2025-11-14,S3G02626,QRY,PNE,0.834,1654,1262,0.938,QRY,2,2,132,96,QRY,True,Elo +392 ↑ | L10 margin +25.1 ↑ | season win% +.90 ↑
-2025-11-14,S3G02622,BRK,AUR,0.801,1587,1384,0.836,BRK,2,2,107,94,BRK,True,Elo +203 ↑ | L10 margin +13.6 ↑ | season win% +.38 ↑
-2025-11-14,S3G02627,XEN,SKY,0.783,1600,1397,0.836,XEN,1,1,111,112,SKY,False,Elo +203 ↑ | season win% +.62 ↑ | L10 margin +8.8 ↑
-2025-11-14,S3G02625,KES,LUM,0.593,1494,1449,0.673,KES,2,2,126,101,KES,True,L10 margin +0.9 ↓ | home/away split +.67 ↑ | season win% +.09 ↑
-2025-11-14,S3G02624,HAV,JUN,0.523,1638,1701,0.524,HAV,1,1,116,120,JUN,False,Elo -63 ↓ | L10 margin +4.4 ↑ | home/away split -.05 ↓
-2025-11-14,S3G02623,GLD,OBS,0.502,1562,1511,0.681,GLD,1,1,95,113,OBS,False,home/away split +.00 ↓ | L10 margin -7.4 ↓ | L10 defence -5.7 pts ↓
-2025-11-15,S3G02629,MRW,FAL,0.808,1593,1342,0.871,MRW,2,2,111,115,FAL,False,Elo +251 ↑ | L10 margin +9.1 ↑ | season win% +.48 ↑
-2025-11-15,S3G02635,WYR,HLW,0.771,1543,1394,0.789,WYR,2,2,123,107,WYR,True,Elo +149 ↑ | season win% +.42 ↑ | L10 margin +8.9 ↑
-2025-11-15,S3G02628,IRN,CAS,0.636,1595,1517,0.714,IRN,2,2,111,124,CAS,False,season win% +.23 ↑ | Elo +79 ↑ | L10 margin +1.4 ↓
-2025-11-15,S3G02631,NOR,COP,0.607,1552,1519,0.657,NOR,2,2,112,122,COP,False,L10 offence +6.0 pts ↑ | season win% +.05 ↑ | L10 defence -2.7 pts ↓
-2025-11-15,S3G02630,MST,ZEP,0.604,1518,1397,0.761,MST,2,2,115,109,MST,True,Elo +121 ↑ | season win% -.23 ↓ | L10 margin -2.6 ↓
-2025-11-15,S3G02634,VLE,YEL,0.601,1474,1535,0.527,VLE,2,2,119,114,VLE,True,Elo -61 ↓ | season win% +.25 ↑ | home/away split +.42 ↑
-2025-11-15,S3G02633,UMB,SLT,0.52,1522,1569,0.547,UMB,2,2,118,115,UMB,True,season win% -.36 ↓ | home/away split -.08 ↓ | L10 margin -6.9 ↓
-2025-11-15,S3G02632,RVN,TMB,0.492,1454,1486,0.568,TMB,2,2,99,106,TMB,True,season win% -.30 ↓ | L10 margin -8.2 ↓ | home/away split -.17 ↓
-2025-11-16,S3G02639,JUN,PNE,0.837,1718,1259,0.957,JUN,2,2,131,111,JUN,True,Elo +460 ↑ | L10 margin +23.2 ↑ | season win% +.74 ↑
-2025-11-16,S3G02640,KES,AUR,0.801,1514,1376,0.778,KES,2,2,123,102,KES,True,Elo +138 ↑ | L10 margin +14.1 ↑ | season win% +.32 ↑
-2025-11-16,S3G02636,DUN,EMB,0.766,1452,1297,0.795,DUN,3,3,119,122,EMB,False,Elo +155 ↑ | L10 margin +11.8 ↑ | season win% +.30 ↑
-2025-11-16,S3G02638,HAV,XEN,0.589,1621,1587,0.659,HAV,2,2,107,115,XEN,False,L10 margin +4.2 ↑ | home/away split -.03 ↓ | season win% -.13 ↓
-2025-11-16,S3G02642,SKY,LUM,0.569,1410,1429,0.587,SKY,2,2,115,104,SKY,True,L10 margin -1.3 ↓ | season win% -.06 ↓ | home/away split +.20 ↑
-2025-11-16,S3G02641,OBS,BRK,0.56,1553,1594,0.556,OBS,2,2,134,106,OBS,True,L10 margin -0.3 ↓ | home/away split -.14 ↓ | H2H 100% ↑
-2025-11-16,S3G02637,GLD,QRY,0.451,1520,1658,0.417,QRY,2,2,108,121,QRY,True,Elo -138 ↓ | season win% -.50 ↓ | L10 margin -19.4 ↓
-2025-11-17,S3G02649,TMB,VLE,0.579,1510,1491,0.639,TMB,2,2,132,127,TMB,True,L10 margin +1.4 ↓ | Elo +19 ↑ | home/away split +.04 ↓
-2025-11-17,S3G02647,NOR,COP,0.553,1519,1552,0.566,NOR,2,2,106,112,COP,False,home/away split -.06 ↓ | L10 margin -0.6 ↓ | H2H 50% ↑
-2025-11-17,S3G02643,CAS,UMB,0.545,1557,1535,0.643,CAS,2,2,110,105,CAS,True,L10 margin -0.9 ↓ | home/away split +.00 ↓ | season win% -.17 ↓
-2025-11-17,S3G02648,RVN,WYR,0.458,1429,1554,0.436,WYR,2,2,118,119,WYR,True,Elo -125 ↓ | season win% -.44 ↓ | L10 margin -9.9 ↓
-2025-11-17,S3G02645,HLW,MST,0.475,1383,1527,0.41,MST,2,2,103,106,MST,True,Elo -143 ↓ | L10 margin -7.9 ↓ | L20 form -.2 ↑
-2025-11-17,S3G02646,IRN,MRW,0.513,1555,1560,0.606,IRN,2,2,120,107,IRN,True,L10 margin -3.6 ↓ | L10 defence -6.5 pts ↓ | season win% -.16 ↓
-2025-11-17,S3G02644,FAL,ZEP,0.492,1375,1389,0.594,ZEP,2,2,113,128,ZEP,True,season win% -.21 ↓ | home/away split -.02 ↓ | L10 margin -8.9 ↓
-2025-11-17,S3G02650,YEL,SLT,0.494,1519,1557,0.559,SLT,2,2,108,119,SLT,True,season win% -.31 ↓ | L10 defence -8.4 pts ↓ | home/away split -.14 ↓
-2025-11-18,S3G02652,HAV,EMB,0.803,1590,1321,0.882,HAV,2,2,107,91,HAV,True,Elo +269 ↑ | L10 margin +13.8 ↑ | season win% +.21 ↑
-2025-11-18,S3G02653,KES,DUN,0.643,1527,1427,0.738,KES,2,2,126,118,KES,True,Elo +99 ↑ | L10 offence +7.2 pts ↑ | L10 defence -5.4 pts ↓
-2025-11-18,S3G02651,GLD,LUM,0.637,1498,1409,0.726,GLD,2,2,134,118,GLD,True,Elo +89 ↑ | L10 margin -1.2 ↓ | season win% +.15 ↑
-2025-11-18,S3G02654,OBS,BRK,0.619,1583,1565,0.637,OBS,2,2,124,106,OBS,True,L10 margin +6.6 ↑ | home/away split +.00 ↓ | season win% +.07 ↑
-2025-11-19,S3G02658,MST,HLW,0.744,1538,1372,0.804,MST,2,2,119,123,HLW,False,Elo +165 ↑ | L10 margin +7.5 ↑ | L10 defence +5.4 pts ↑
-2025-11-19,S3G02659,NOR,FAL,0.743,1496,1341,0.795,NOR,2,2,114,117,FAL,False,Elo +156 ↑ | L10 margin +5.6 ↑ | season win% +.15 ↑
-2025-11-19,S3G02655,AUR,QRY,0.337,1364,1679,0.205,QRY,3,3,99,122,QRY,True,Elo -316 ↓ | season win% -.83 ↓ | L10 margin -29.9 ↓
-2025-11-19,S3G02660,PNE,SKY,0.378,1256,1430,0.369,SKY,3,3,116,115,PNE,False,Elo -173 ↓ | season win% -.25 ↓ | L10 margin -11.1 ↓
-2025-11-19,S3G02661,RVN,COP,0.428,1424,1575,0.399,COP,2,2,115,129,COP,True,Elo -151 ↓ | season win% -.19 ↓ | L10 margin -7.2 ↓
-2025-11-19,S3G02662,UMB,MRW,0.566,1523,1540,0.589,UMB,2,2,112,113,MRW,False,season win% -.12 ↓ | home/away split +.09 ↓ | H2H 100% ↑
-2025-11-19,S3G02656,CAS,SLT,0.537,1569,1585,0.591,CAS,2,2,125,133,SLT,False,season win% -.37 ↓ | L10 margin -6.9 ↓ | L20 form -.2 ↑
-2025-11-19,S3G02663,XEN,JUN,0.53,1617,1720,0.467,XEN,3,3,104,118,JUN,False,Elo -103 ↓ | L10 margin -5.8 ↓ | L20 form -.3 ↑
-2025-11-19,S3G02657,IRN,TMB,0.519,1575,1523,0.682,IRN,2,2,131,100,IRN,True,season win% -.23 ↓ | home/away split +.00 ↓ | L10 margin -8.1 ↓
-2025-11-19,S3G02664,YEL,VLE,0.507,1490,1478,0.629,YEL,2,2,117,119,VLE,False,season win% -.28 ↓ | home/away split -.12 ↓ | L10 margin -5.1 ↓
-2025-11-20,S3G02668,OBS,BRK,0.676,1603,1544,0.69,OBS,2,2,114,117,BRK,False,L10 margin +10.7 ↑ | season win% +.13 ↑ | L10 defence +6.3 pts ↑
-2025-11-20,S3G02666,HAV,GLD,0.656,1596,1513,0.72,HAV,2,2,123,119,HAV,True,L10 margin +8.1 ↑ | Elo +84 ↑ | home/away split +.06 ↓
-2025-11-20,S3G02669,ZEP,WYR,0.372,1423,1560,0.418,WYR,3,3,106,107,WYR,True,Elo -138 ↓ | season win% -.29 ↓ | home/away split -.12 ↓
-2025-11-20,S3G02667,LUM,EMB,0.585,1395,1316,0.714,LUM,2,2,117,93,LUM,True,Elo +79 ↑ | L10 margin +0.9 ↓ | season win% -.05 ↓
-2025-11-20,S3G02665,DUN,KES,0.512,1417,1538,0.442,DUN,2,2,115,111,DUN,True,Elo -121 ↓ | home/away split +.40 ↑ | L10 margin -3.5 ↓
-2025-11-21,S3G02672,IRN,AUR,0.829,1596,1352,0.866,IRN,2,2,125,110,IRN,True,Elo +244 ↑ | L10 margin +15.1 ↑ | season win% +.38 ↑
-2025-11-21,S3G02671,COP,HLW,0.775,1596,1401,0.829,COP,2,2,105,111,HLW,False,Elo +195 ↑ | L10 margin +10.2 ↑ | season win% +.21 ↑
-2025-11-21,S3G02674,PNE,VLE,0.308,1266,1493,0.3,VLE,2,2,108,128,VLE,True,Elo -227 ↓ | season win% -.54 ↓ | L10 margin -18.9 ↓
-2025-11-21,S3G02677,XEN,YEL,0.67,1592,1476,0.756,XEN,2,2,114,105,XEN,True,Elo +116 ↑ | season win% +.36 ↑ | L10 margin +1.0 ↓
-2025-11-21,S3G02675,TMB,JUN,0.352,1502,1745,0.28,JUN,2,2,113,111,TMB,False,Elo -244 ↓ | season win% -.19 ↓ | L10 margin -7.4 ↓
-2025-11-21,S3G02676,UMB,QRY,0.427,1514,1691,0.364,QRY,2,2,116,108,UMB,False,Elo -177 ↓ | season win% -.58 ↓ | L10 margin -16.0 ↓
-2025-11-21,S3G02670,CAS,MST,0.555,1543,1508,0.659,CAS,2,2,128,112,CAS,True,L10 margin +1.0 ↓ | home/away split +.00 ↓ | Elo +34 ↑
-2025-11-21,S3G02673,MRW,SLT,0.463,1548,1612,0.523,SLT,2,2,111,120,SLT,True,Elo -64 ↓ | L10 margin -10.4 ↓ | season win% -.17 ↓
-2025-11-22,S3G02678,BRK,EMB,0.802,1565,1299,0.88,BRK,2,2,114,124,EMB,False,Elo +266 ↑ | L10 margin +9.4 ↑ | season win% +.25 ↑
-2025-11-22,S3G02682,OBS,DUN,0.692,1583,1435,0.788,OBS,2,2,120,114,OBS,True,Elo +148 ↑ | home/away split +.17 ↑ | season win% +.09 ↑
-2025-11-22,S3G02681,NOR,FAL,0.688,1472,1365,0.745,NOR,3,3,118,112,NOR,True,Elo +106 ↑ | L10 margin +5.0 ↑ | home/away split -.10 ↓
-2025-11-22,S3G02679,GLD,LUM,0.642,1504,1412,0.73,GLD,2,2,130,110,GLD,True,Elo +92 ↑ | season win% +.13 ↑ | home/away split +.50 ↑
-2025-11-22,S3G02680,KES,ZEP,0.611,1519,1417,0.741,KES,2,2,99,119,ZEP,False,Elo +102 ↑ | L10 margin -2.4 ↓ | L10 defence -2.3 pts ↓
-2025-11-22,S3G02684,WYR,HAV,0.554,1566,1605,0.559,WYR,2,2,115,122,HAV,False,season win% +.18 ↑ | L10 margin -2.5 ↓ | L10 defence -4.3 pts ↓
-2025-11-22,S3G02683,RVN,SKY,0.548,1403,1421,0.588,RVN,3,3,113,123,SKY,False,L10 margin -5.1 ↓ | home/away split +.01 ↓ | L10 defence -5.2 pts ↓
-2025-11-23,S3G02688,PNE,COP,0.303,1248,1559,0.21,COP,2,2,101,119,COP,True,Elo -311 ↓ | season win% -.36 ↓ | L10 margin -16.4 ↓
-2025-11-23,S3G02690,VLE,YEL,0.692,1510,1466,0.672,VLE,2,2,103,113,YEL,False,season win% +.38 ↑ | L10 margin +5.7 ↑ | home/away split +.58 ↑
-2025-11-23,S3G02686,HLW,QRY,0.318,1438,1662,0.304,QRY,2,2,107,127,QRY,True,Elo -224 ↓ | season win% -.55 ↓ | L10 margin -20.6 ↓
-2025-11-23,S3G02685,AUR,UMB,0.347,1346,1543,0.337,UMB,2,2,114,107,AUR,False,Elo -198 ↓ | season win% -.32 ↓ | L10 margin -13.9 ↓
-2025-11-23,S3G02687,MST,TMB,0.549,1490,1519,0.573,MST,2,2,130,91,MST,True,season win% -.36 ↓ | home/away split -.14 ↓ | L10 margin -1.7 ↓
-2025-11-23,S3G02689,SLT,JUN,0.52,1636,1728,0.483,SLT,2,2,118,137,JUN,False,Elo -92 ↓ | L10 margin -2.4 ↓ | home/away split +.05 ↓
-2025-11-24,S3G02693,HAV,FAL,0.811,1628,1356,0.884,HAV,2,2,114,101,HAV,True,Elo +272 ↑ | L10 margin +8.9 ↑ | season win% +.38 ↑
-2025-11-24,S3G02694,KES,RVN,0.747,1470,1374,0.734,KES,2,2,114,116,RVN,False,Elo +96 ↑ | season win% +.23 ↑ | L10 margin +8.7 ↑
-2025-11-24,S3G02697,WYR,SKY,0.735,1542,1450,0.729,WYR,2,2,126,105,WYR,True,season win% +.39 ↑ | L10 margin +5.6 ↑ | Elo +92 ↑
-2025-11-24,S3G02692,EMB,IRN,0.311,1349,1602,0.269,IRN,2,3,102,114,IRN,True,Elo -253 ↓ | L10 margin -13.5 ↓ | season win% -.21 ↓
-2025-11-24,S3G02698,XEN,MRW,0.667,1603,1524,0.713,XEN,3,3,116,122,MRW,False,L10 margin +4.1 ↑ | season win% +.17 ↑ | Elo +78 ↑
-2025-11-24,S3G02691,CAS,ZEP,0.589,1561,1466,0.733,CAS,3,2,105,98,CAS,True,Elo +95 ↑ | L10 margin -2.7 ↓ | home/away split +.00 ↓
-2025-11-24,S3G02695,LUM,OBS,0.415,1397,1590,0.342,OBS,2,2,106,124,OBS,True,Elo -194 ↓ | season win% -.33 ↓ | L10 defence -7.5 pts ↓
-2025-11-24,S3G02696,NOR,DUN,0.552,1481,1428,0.683,NOR,2,2,134,113,NOR,True,L10 margin -3.3 ↓ | Elo +53 ↑ | L10 defence -4.2 pts ↓
-2025-11-25,S3G02703,LUM,HAV,0.307,1377,1634,0.266,HAV,1,1,109,104,LUM,False,Elo -256 ↓ | season win% -.37 ↓ | L10 margin -12.0 ↓
-2025-11-25,S3G02702,IRN,NOR,0.686,1615,1499,0.755,IRN,1,1,122,118,IRN,True,Elo +116 ↑ | season win% +.16 ↑ | L10 defence +2.7 pts ↑
-2025-11-25,S3G02704,PNE,TMB,0.315,1237,1488,0.272,TMB,2,2,97,121,TMB,True,Elo -251 ↓ | season win% -.51 ↓ | L10 margin -12.8 ↓
-2025-11-25,S3G02708,YEL,QRY,0.379,1500,1679,0.36,QRY,2,2,97,117,QRY,True,Elo -180 ↓ | season win% -.55 ↓ | L10 margin -12.5 ↓
-2025-11-25,S3G02701,COP,VLE,0.607,1570,1476,0.732,COP,2,2,104,110,VLE,False,Elo +94 ↑ | L10 margin -0.7 ↓ | season win% -.13 ↓
-2025-11-25,S3G02707,UMB,MST,0.607,1514,1521,0.604,UMB,2,2,113,115,MST,False,L10 margin -5.1 ↓ | home/away split +.46 ↑ | season win% +.05 ↑
-2025-11-25,S3G02700,BRK,GLD,0.578,1515,1519,0.607,BRK,3,3,107,106,BRK,True,L10 margin +0.0 ↓ | home/away split +.00 ↓ | season win% +.03 ↑
-2025-11-25,S3G02705,SKY,XEN,0.452,1434,1573,0.417,XEN,1,1,124,109,SKY,False,Elo -138 ↓ | season win% -.35 ↓ | L10 margin -4.7 ↓
-2025-11-25,S3G02706,SLT,JUN,0.459,1608,1757,0.401,JUN,2,2,110,104,SLT,False,Elo -149 ↓ | home/away split -.13 ↓ | L10 margin -5.5 ↓
-2025-11-25,S3G02699,AUR,HLW,0.526,1375,1421,0.549,AUR,2,2,120,122,HLW,False,home/away split -.07 ↓ | L10 margin -5.5 ↓ | season win% -.15 ↓
-2025-11-25,S3G02709,ZEP,MRW,0.523,1456,1554,0.474,ZEP,1,1,114,121,MRW,False,Elo -98 ↓ | L10 margin +5.4 ↑ | home/away split -.15 ↓
-2025-11-26,S3G02713,KES,RVN,0.677,1453,1391,0.693,KES,2,2,121,108,KES,True,L10 margin +7.8 ↑ | season win% +.16 ↑ | L10 defence +4.3 pts ↑
-2025-11-26,S3G02711,DUN,OBS,0.37,1409,1609,0.333,OBS,2,2,98,106,OBS,True,Elo -200 ↓ | season win% -.20 ↓ | home/away split -.05 ↓
-2025-11-26,S3G02712,FAL,EMB,0.607,1351,1336,0.634,FAL,2,2,126,110,FAL,True,L10 margin +5.0 ↑ | season win% -.08 ↓ | L10 defence +2.7 pts ↑
-2025-11-26,S3G02710,CAS,WYR,0.552,1571,1558,0.632,CAS,2,2,115,112,CAS,True,season win% -.33 ↓ | L10 margin -1.8 ↓ | L20 form -.3 ↑
-2025-11-27,S3G02718,TMB,PNE,0.834,1504,1221,0.89,TMB,2,2,116,108,TMB,True,Elo +283 ↑ | L10 margin +15.1 ↑ | season win% +.54 ↑
-2025-11-27,S3G02717,SLT,AUR,0.826,1632,1362,0.882,SLT,2,2,114,104,SLT,True,Elo +269 ↑ | L10 margin +20.5 ↑ | season win% +.56 ↑
-2025-11-27,S3G02716,QRY,NOR,0.788,1700,1492,0.84,QRY,2,2,131,127,QRY,True,Elo +208 ↑ | L10 margin +12.6 ↑ | season win% +.52 ↑
-2025-11-27,S3G02715,MRW,COP,0.571,1574,1539,0.659,MRW,2,2,112,111,MRW,True,L10 margin -3.3 ↓ | season win% +.11 ↑ | Elo +34 ↑
-2025-11-27,S3G02714,GLD,HAV,0.433,1514,1605,0.484,HAV,2,2,112,110,GLD,False,Elo -91 ↓ | home/away split -.07 ↓ | L10 margin -6.0 ↓
-2025-11-27,S3G02719,VLE,IRN,0.535,1507,1622,0.449,VLE,2,2,117,115,VLE,True,Elo -115 ↓ | L10 margin -0.7 ↓ | home/away split +.17 ↑
-2025-11-28,S3G02721,CAS,EMB,0.827,1581,1316,0.879,CAS,2,2,139,112,CAS,True,Elo +265 ↑ | L10 margin +14.9 ↑ | season win% +.16 ↑
-2025-11-28,S3G02724,JUN,UMB,0.816,1733,1501,0.858,JUN,3,3,129,102,JUN,True,Elo +233 ↑ | L10 margin +11.8 ↑ | season win% +.36 ↑
-2025-11-28,S3G02725,MST,LUM,0.728,1535,1406,0.769,MST,3,3,118,102,MST,True,Elo +129 ↑ | L10 margin +11.1 ↑ | L10 defence +8.3 pts ↑
-2025-11-28,S3G02720,BRK,SKY,0.592,1520,1468,0.682,BRK,3,3,127,111,BRK,True,season win% +.18 ↑ | L10 margin +0.0 ↓ | home/away split +.17 ↑
-2025-11-28,S3G02727,SLT,QRY,0.424,1637,1705,0.517,QRY,1,1,126,114,SLT,False,Elo -68 ↓ | L10 margin -12.1 ↓ | home/away split -.16 ↓
-2025-11-28,S3G02723,HLW,YEL,0.533,1433,1479,0.549,HLW,3,3,121,108,HLW,True,L10 margin -7.7 ↓ | home/away split +.00 ↓ | L10 defence -5.3 pts ↓
-2025-11-28,S3G02722,FAL,KES,0.468,1371,1468,0.476,KES,2,2,108,110,KES,True,Elo -97 ↓ | season win% -.21 ↓ | L10 margin -4.9 ↓
-2025-11-28,S3G02729,ZEP,XEN,0.511,1436,1539,0.467,ZEP,3,3,111,90,ZEP,True,Elo -103 ↓ | season win% -.20 ↓ | L10 margin +5.5 ↑
-2025-11-28,S3G02728,WYR,OBS,0.506,1548,1623,0.507,WYR,2,2,110,105,WYR,True,Elo -75 ↓ | home/away split -.05 ↓ | L10 margin -3.1 ↓
-2025-11-28,S3G02726,RVN,DUN,0.504,1376,1395,0.586,RVN,2,2,114,102,RVN,True,home/away split -.06 ↓ | L10 margin -5.2 ↓ | season win% -.14 ↓
-2025-11-29,S3G02736,MRW,AUR,0.845,1578,1358,0.849,MRW,2,2,108,106,MRW,True,Elo +221 ↑ | L10 margin +15.5 ↑ | season win% +.46 ↑
-2025-11-29,S3G02730,COP,PNE,0.801,1535,1217,0.908,COP,2,2,117,110,COP,True,Elo +318 ↑ | L10 margin +17.5 ↑ | season win% +.35 ↑
-2025-11-29,S3G02735,KES,QRY,0.316,1478,1680,0.331,QRY,1,1,112,97,KES,False,Elo -202 ↓ | season win% -.36 ↓ | L10 margin -10.9 ↓
-2025-11-29,S3G02733,GLD,TMB,0.589,1526,1508,0.636,GLD,2,2,117,105,GLD,True,season win% -.19 ↓ | L10 margin +3.7 ↑ | home/away split +.04 ↓
-2025-11-29,S3G02734,HAV,IRN,0.568,1594,1610,0.591,HAV,2,2,111,121,IRN,False,L10 margin -1.7 ↓ | L10 defence +5.3 pts ↑ | L10 offence -7.0 pts ↓
-2025-11-29,S3G02737,NOR,VLE,0.55,1487,1519,0.569,NOR,2,2,118,119,VLE,False,season win% -.32 ↓ | L10 margin -2.8 ↓ | L20 form -.3 ↑
-2025-11-29,S3G02731,DUN,YEL,0.548,1375,1455,0.499,DUN,1,1,95,125,YEL,False,Elo -81 ↓ | L10 margin -3.9 ↓ | season win% +.08 ↑
-2025-11-29,S3G02732,FAL,UMB,0.455,1360,1492,0.426,UMB,1,1,104,106,UMB,True,Elo -132 ↓ | L10 margin +0.7 ↓ | L10 defence +0.1 pts ↑
-2025-11-30,S3G02741,SLT,EMB,0.833,1661,1309,0.923,SLT,2,2,116,93,SLT,True,Elo +352 ↑ | L10 margin +14.5 ↑ | season win% +.48 ↑
-2025-11-30,S3G02742,WYR,RVN,0.752,1566,1397,0.807,WYR,2,2,125,115,WYR,True,Elo +169 ↑ | season win% +.40 ↑ | L10 margin +8.9 ↑
-2025-11-30,S3G02740,SKY,LUM,0.649,1451,1394,0.687,SKY,2,2,122,105,SKY,True,L10 margin +4.2 ↑ | home/away split +.43 ↑ | season win% +.04 ↑
-2025-11-30,S3G02739,HLW,CAS,0.396,1456,1588,0.426,CAS,2,2,103,131,CAS,True,Elo -132 ↓ | L10 margin -13.2 ↓ | home/away split -.05 ↓
-2025-11-30,S3G02743,XEN,MST,0.592,1506,1547,0.557,XEN,2,2,117,118,MST,False,season win% +.17 ↑ | L10 margin -7.9 ↓ | home/away split +.37 ↑
-2025-11-30,S3G02738,BRK,ZEP,0.548,1537,1470,0.7,BRK,2,2,142,126,BRK,True,L10 margin -8.9 ↓ | L10 defence -6.6 pts ↓ | season win% +.11 ↑
-2025-12-01,S3G02747,IRN,PNE,0.834,1639,1214,0.948,IRN,2,2,120,123,PNE,False,Elo +425 ↑ | L10 margin +21.7 ↑ | season win% +.50 ↑
-2025-12-01,S3G02751,SKY,EMB,0.765,1468,1305,0.802,SKY,1,1,117,99,SKY,True,Elo +163 ↑ | L10 margin +11.1 ↑ | L10 offence +8.4 pts ↑
-2025-12-01,S3G02752,TMB,DUN,0.762,1491,1340,0.79,TMB,2,2,108,121,DUN,False,Elo +150 ↑ | season win% +.26 ↑ | L10 margin +4.0 ↑
-2025-12-01,S3G02750,QRY,MRW,0.71,1641,1581,0.691,QRY,2,2,120,99,QRY,True,L10 margin +10.7 ↑ | season win% +.18 ↑ | L10 offence +6.4 pts ↑
-2025-12-01,S3G02746,HAV,NOR,0.654,1564,1479,0.721,HAV,2,2,118,105,HAV,True,season win% +.20 ↑ | Elo +85 ↑ | L10 margin -0.9 ↓
-2025-12-01,S3G02744,AUR,GLD,0.372,1355,1543,0.348,GLD,2,2,109,129,GLD,True,Elo -189 ↓ | season win% -.36 ↓ | L10 margin -14.7 ↓
-2025-12-01,S3G02745,FAL,UMB,0.462,1351,1501,0.401,UMB,2,2,114,107,FAL,False,Elo -150 ↓ | home/away split -.04 ↓ | season win% -.15 ↓
-2025-12-01,S3G02749,OBS,JUN,0.469,1606,1741,0.421,JUN,3,3,100,113,JUN,True,Elo -136 ↓ | home/away split -.03 ↓ | L10 margin -6.3 ↓
-2025-12-01,S3G02748,KES,COP,0.53,1517,1538,0.585,KES,2,2,128,120,KES,True,L10 margin +0.1 ↓ | season win% +.05 ↑ | home/away split +.08 ↓
-2025-12-01,S3G02753,YEL,VLE,0.526,1490,1527,0.561,YEL,2,2,103,106,VLE,False,season win% -.35 ↓ | L10 margin -3.9 ↓ | L10 offence -5.1 pts ↓
-2025-12-02,S3G02756,IRN,DUN,0.814,1605,1387,0.848,IRN,1,1,120,114,IRN,True,Elo +218 ↑ | L10 margin +14.3 ↑ | season win% +.16 ↑
-2025-12-02,S3G02755,EMB,OBS,0.318,1294,1584,0.23,OBS,1,1,97,117,OBS,True,Elo -290 ↓ | season win% -.36 ↓ | L10 margin -21.5 ↓
-2025-12-02,S3G02762,XEN,HLW,0.666,1498,1428,0.703,XEN,2,2,103,118,HLW,False,season win% +.18 ↑ | Elo +70 ↑ | home/away split +.18 ↑
-2025-12-02,S3G02758,PNE,KES,0.336,1248,1535,0.233,KES,1,1,120,131,KES,True,Elo -287 ↓ | season win% -.41 ↓ | L10 margin -21.2 ↓
-2025-12-02,S3G02757,LUM,WYR,0.363,1377,1574,0.338,WYR,2,2,132,117,LUM,False,Elo -197 ↓ | season win% -.45 ↓ | L10 margin -10.9 ↓
-2025-12-02,S3G02754,BRK,ZEP,0.633,1553,1454,0.737,BRK,2,2,129,108,BRK,True,Elo +99 ↑ | L10 margin -5.4 ↓ | season win% +.15 ↑
-2025-12-02,S3G02760,SLT,CAS,0.609,1665,1616,0.678,SLT,2,2,105,91,SLT,True,season win% +.26 ↑ | L10 margin -4.0 ↓ | Elo +49 ↑
-2025-12-02,S3G02759,RVN,MST,0.435,1388,1554,0.378,MST,2,2,120,119,RVN,False,Elo -166 ↓ | home/away split -.07 ↓ | L10 margin -9.8 ↓
-2025-12-02,S3G02761,TMB,GLD,0.49,1444,1564,0.443,GLD,1,1,119,125,GLD,True,Elo -120 ↓ | L10 margin -6.2 ↓ | season win% +.06 ↑
-2025-12-03,S3G02767,QRY,MRW,0.771,1659,1563,0.734,QRY,2,2,123,102,QRY,True,Elo +96 ↑ | L10 margin +12.8 ↑ | season win% +.22 ↑
-2025-12-03,S3G02765,HAV,YEL,0.695,1578,1474,0.743,HAV,2,2,127,108,HAV,True,Elo +105 ↑ | season win% +.24 ↑ | Elo p(home) 74% ↑
-2025-12-03,S3G02768,VLE,JUN,0.347,1543,1763,0.309,JUN,2,2,102,115,JUN,True,Elo -220 ↓ | L10 margin -8.2 ↓ | home/away split -.03 ↓
-2025-12-03,S3G02766,NOR,UMB,0.618,1466,1476,0.599,NOR,2,2,103,118,UMB,False,L10 margin +4.3 ↑ | L10 offence +9.3 pts ↑ | season win% -.04 ↓
-2025-12-03,S3G02764,COP,SKY,0.583,1520,1478,0.669,COP,2,2,112,92,COP,True,home/away split -.10 ↓ | season win% +.05 ↑ | L10 defence +2.7 pts ↑
-2025-12-03,S3G02769,XEN,TMB,0.567,1456,1427,0.652,XEN,1,1,96,108,TMB,False,L10 margin +0.5 ↓ | Elo +29 ↑ | L10 defence +3.3 pts ↑
-2025-12-03,S3G02763,AUR,FAL,0.535,1334,1377,0.554,AUR,2,2,94,106,FAL,False,L10 margin -11.4 ↓ | L10 defence -6.9 pts ↓ | home/away split -.12 ↓
-2025-12-04,S3G02773,HLW,PNE,0.793,1470,1237,0.858,HLW,2,2,124,113,HLW,True,Elo +233 ↑ | season win% +.28 ↑ | L10 margin +11.8 ↑
-2025-12-04,S3G02776,OBS,LUM,0.774,1597,1416,0.818,OBS,2,2,107,99,OBS,True,Elo +181 ↑ | L10 margin +17.4 ↑ | season win% +.30 ↑
-2025-12-04,S3G02770,CAS,RVN,0.77,1600,1397,0.836,CAS,2,2,114,101,CAS,True,Elo +202 ↑ | L10 margin +12.8 ↑ | season win% +.15 ↑
-2025-12-04,S3G02772,EMB,BRK,0.333,1282,1568,0.234,BRK,2,2,102,120,BRK,True,Elo -286 ↓ | season win% -.37 ↓ | L10 margin -18.3 ↓
-2025-12-04,S3G02777,ZEP,SLT,0.337,1439,1682,0.281,SLT,2,2,113,121,SLT,True,Elo -243 ↓ | season win% -.37 ↓ | L10 margin -7.8 ↓
-2025-12-04,S3G02771,DUN,WYR,0.392,1382,1535,0.396,WYR,2,2,116,121,WYR,True,Elo -153 ↓ | season win% -.31 ↓ | home/away split -.17 ↓
-2025-12-04,S3G02774,KES,GLD,0.586,1546,1581,0.565,KES,2,2,114,116,GLD,False,L10 margin +1.2 ↓ | season win% +.02 ↑ | L10 defence +1.2 pts ↑
-2025-12-04,S3G02775,MST,IRN,0.516,1545,1610,0.522,MST,2,2,136,118,MST,True,Elo -65 ↓ | L10 margin -2.0 ↓ | season win% -.15 ↓
-2025-12-05,S3G02779,JUN,SKY,0.826,1778,1459,0.909,JUN,2,2,116,101,JUN,True,Elo +319 ↑ | L10 margin +11.1 ↑ | season win% +.40 ↑
-2025-12-05,S3G02783,YEL,AUR,0.739,1459,1306,0.794,YEL,2,2,119,102,YEL,True,Elo +154 ↑ | L10 margin +6.9 ↑ | season win% +.18 ↑
-2025-12-05,S3G02778,COP,UMB,0.628,1539,1510,0.652,COP,2,2,115,108,COP,True,L10 margin +7.5 ↑ | season win% +.08 ↑ | home/away split +.06 ↓
-2025-12-05,S3G02780,NOR,HAV,0.398,1431,1592,0.385,HAV,2,2,111,122,HAV,True,Elo -161 ↓ | season win% -.28 ↓ | home/away split -.13 ↓
-2025-12-05,S3G02781,TMB,VLE,0.477,1462,1528,0.521,VLE,2,2,121,114,TMB,False,Elo -65 ↓ | home/away split -.10 ↓ | L10 margin -6.1 ↓
-2025-12-05,S3G02782,XEN,MRW,0.507,1421,1548,0.433,XEN,2,2,109,108,XEN,True,Elo -127 ↓ | home/away split -.13 ↓ | L10 margin -1.7 ↓
-2025-12-06,S3G02784,FAL,QRY,0.308,1406,1674,0.253,QRY,3,3,111,120,QRY,True,Elo -268 ↓ | season win% -.52 ↓ | Elo p(home) 25% ↓
-2025-12-06,S3G02785,GLD,IRN,0.612,1593,1582,0.628,GLD,2,2,105,107,IRN,False,L10 margin -0.8 ↓ | L10 defence +0.2 pts ↑ | season win% +.02 ↑
-2025-12-06,S3G02786,HLW,OBS,0.393,1476,1604,0.432,OBS,2,2,118,132,OBS,True,Elo -128 ↓ | L10 margin -10.1 ↓ | L10 defence -8.9 pts ↓
-2025-12-06,S3G02787,WYR,MST,0.6,1549,1573,0.579,WYR,2,2,105,96,WYR,True,season win% +.25 ↑ | L10 margin -3.0 ↓ | home/away split +.39 ↑
-2025-12-07,S3G02789,DUN,PNE,0.745,1368,1231,0.777,DUN,3,3,119,115,DUN,True,Elo +137 ↑ | season win% +.24 ↑ | L10 margin +3.6 ↑
-2025-12-07,S3G02790,EMB,SLT,0.309,1269,1693,0.121,SLT,3,3,98,128,SLT,True,Elo -424 ↓ | season win% -.57 ↓ | L10 margin -24.6 ↓
-2025-12-07,S3G02791,LUM,RVN,0.588,1409,1390,0.639,LUM,3,3,114,106,LUM,True,L10 margin -0.9 ↓ | Elo +19 ↑ | home/away split +.45 ↑
-2025-12-07,S3G02788,BRK,CAS,0.556,1580,1607,0.576,BRK,3,3,115,109,BRK,True,L10 margin -5.8 ↓ | season win% +.11 ↑ | L10 defence -5.1 pts ↓
-2025-12-07,S3G02792,ZEP,KES,0.535,1427,1533,0.463,ZEP,3,3,111,120,KES,False,Elo -106 ↓ | L10 margin -3.9 ↓ | home/away split +.17 ↑
-2025-12-08,S3G02794,JUN,TMB,0.808,1783,1482,0.899,JUN,3,3,95,104,TMB,False,Elo +301 ↑ | L10 margin +16.5 ↑ | season win% +.19 ↑
-2025-12-08,S3G02793,HAV,VLE,0.675,1611,1508,0.741,HAV,3,3,130,113,HAV,True,Elo +103 ↑ | L10 margin +6.7 ↑ | home/away split -.07 ↓
-2025-12-08,S3G02795,SKY,NOR,0.631,1455,1413,0.668,SKY,3,3,106,103,SKY,True,home/away split +.41 ↑ | season win% +.06 ↑ | L10 defence +5.7 pts ↑
-2025-12-08,S3G02796,UMB,XEN,0.631,1496,1429,0.7,UMB,3,3,111,122,XEN,False,L10 margin +3.5 ↑ | season win% -.15 ↓ | home/away split +.12 ↑
-2025-12-08,S3G02797,YEL,MRW,0.499,1470,1540,0.515,MRW,3,3,120,98,YEL,False,Elo -69 ↓ | season win% -.20 ↓ | home/away split -.20 ↓
-2025-12-09,S3G02798,COP,AUR,0.84,1553,1295,0.875,COP,4,4,117,104,COP,True,Elo +258 ↑ | L10 margin +16.6 ↑ | season win% +.38 ↑
-2025-12-09,S3G02803,KES,EMB,0.836,1554,1262,0.895,KES,2,2,108,96,KES,True,Elo +292 ↑ | L10 margin +20.8 ↑ | season win% +.36 ↑
-2025-12-09,S3G02806,RVN,PNE,0.742,1374,1225,0.79,RVN,2,2,110,120,PNE,False,Elo +150 ↑ | L10 margin +4.5 ↑ | season win% +.18 ↑
-2025-12-09,S3G02807,ZEP,SLT,0.314,1406,1701,0.225,SLT,2,2,128,110,ZEP,False,Elo -294 ↓ | season win% -.43 ↓ | L10 margin -11.4 ↓
-2025-12-09,S3G02799,DUN,BRK,0.362,1374,1597,0.306,BRK,2,2,109,115,BRK,True,Elo -222 ↓ | season win% -.24 ↓ | L10 margin -9.2 ↓
-2025-12-09,S3G02805,MST,QRY,0.412,1555,1685,0.428,QRY,3,3,108,96,MST,False,Elo -130 ↓ | season win% -.40 ↓ | home/away split -.13 ↓
-2025-12-09,S3G02801,GLD,WYR,0.586,1579,1568,0.628,GLD,3,3,127,122,GLD,True,L10 margin +4.4 ↑ | home/away split -.12 ↓ | season win% -.17 ↓
-2025-12-09,S3G02804,LUM,CAS,0.444,1424,1591,0.377,CAS,2,2,109,125,CAS,True,Elo -167 ↓ | L10 margin -11.4 ↓ | L10 defence -5.9 pts ↓
-2025-12-09,S3G02802,IRN,OBS,0.533,1597,1627,0.571,IRN,3,3,129,121,IRN,True,L10 margin -1.4 ↓ | home/away split +.00 ↓ | L10 defence -5.8 pts ↓
-2025-12-09,S3G02800,FAL,HLW,0.493,1395,1454,0.531,HLW,3,3,101,113,HLW,True,Elo -58 ↓ | L10 margin +0.5 ↓ | L10 defence +4.3 pts ↑
-2025-12-10,S3G02812,QRY,EMB,0.831,1655,1257,0.94,QRY,1,1,132,90,QRY,True,Elo +398 ↑ | L10 margin +21.4 ↑ | season win% +.60 ↑
-2025-12-10,S3G02810,JUN,YEL,0.808,1733,1501,0.858,JUN,2,2,103,111,YEL,False,Elo +232 ↑ | L10 margin +9.1 ↑ | season win% +.38 ↑
-2025-12-10,S3G02816,WYR,FAL,0.718,1555,1368,0.823,WYR,1,1,124,115,WYR,True,Elo +187 ↑ | season win% +.40 ↑ | L10 offence +6.0 pts ↑
-2025-12-10,S3G02809,HAV,TMB,0.658,1625,1532,0.73,HAV,2,2,115,103,HAV,True,L10 margin +7.5 ↑ | Elo +93 ↑ | L10 offence +7.5 pts ↑
-2025-12-10,S3G02808,COP,HLW,0.645,1559,1481,0.713,COP,1,1,126,115,COP,True,L10 margin +5.7 ↑ | Elo +78 ↑ | home/away split -.04 ↓
-2025-12-10,S3G02815,VLE,XEN,0.622,1494,1466,0.65,VLE,2,2,118,131,XEN,False,L10 margin +5.0 ↑ | season win% +.07 ↑ | home/away split +.02 ↓
-2025-12-10,S3G02814,UMB,NOR,0.615,1459,1404,0.685,UMB,2,2,104,106,NOR,False,L10 margin -1.0 ↓ | home/away split +.43 ↑ | season win% +.08 ↑
-2025-12-10,S3G02813,SKY,MRW,0.602,1463,1509,0.549,SKY,2,2,120,106,SKY,True,L10 margin +4.7 ↑ | home/away split +.03 ↓ | season win% -.13 ↓
-2025-12-10,S3G02811,KES,MST,0.586,1559,1585,0.577,KES,1,1,123,107,KES,True,L10 margin -1.2 ↓ | home/away split +.35 ↑ | season win% +.12 ↑
-2025-12-11,S3G02821,GLD,PNE,0.831,1592,1267,0.911,GLD,2,2,126,92,GLD,True,Elo +325 ↑ | L10 margin +15.0 ↑ | season win% +.41 ↑
-2025-12-11,S3G02824,SLT,DUN,0.825,1650,1363,0.892,SLT,2,2,115,109,SLT,True,Elo +287 ↑ | L10 margin +15.2 ↑ | season win% +.39 ↑
-2025-12-11,S3G02825,WYR,UMB,0.782,1562,1443,0.759,WYR,1,1,109,105,WYR,True,Elo +119 ↑ | season win% +.36 ↑ | L10 margin +6.7 ↑
-2025-12-11,S3G02819,COP,MRW,0.693,1572,1485,0.723,COP,1,1,124,94,COP,True,L10 margin +12.7 ↑ | Elo +87 ↑ | L10 offence +5.9 pts ↑
-2025-12-11,S3G02820,EMB,HAV,0.315,1253,1638,0.148,HAV,1,1,106,123,HAV,True,Elo -384 ↓ | season win% -.45 ↓ | L10 margin -29.3 ↓
-2025-12-11,S3G02823,RVN,CAS,0.356,1332,1612,0.241,CAS,2,2,112,122,CAS,True,Elo -280 ↓ | L10 margin -14.5 ↓ | season win% -.22 ↓
-2025-12-11,S3G02826,XEN,QRY,0.366,1503,1659,0.392,QRY,1,1,96,114,QRY,True,Elo -156 ↓ | season win% -.24 ↓ | L10 margin -13.4 ↓
-2025-12-11,S3G02822,HLW,NOR,0.598,1468,1420,0.676,HLW,1,1,114,107,HLW,True,L10 margin +0.8 ↓ | season win% +.11 ↑ | home/away split +.14 ↑
-2025-12-11,S3G02827,ZEP,IRN,0.447,1457,1615,0.389,IRN,2,2,109,104,ZEP,False,Elo -158 ↓ | season win% -.19 ↓ | L10 margin -4.4 ↓
-2025-12-11,S3G02818,BRK,OBS,0.549,1608,1608,0.612,BRK,2,2,98,140,OBS,False,home/away split +.00 ↓ | L10 margin +1.4 ↓ | L10 defence -3.2 pts ↓
-2025-12-11,S3G02817,AUR,LUM,0.525,1289,1403,0.451,AUR,2,2,119,139,LUM,False,Elo -114 ↓ | L10 margin -6.4 ↓ | season win% -.20 ↓
-2025-12-12,S3G02829,COP,RVN,0.824,1590,1321,0.881,COP,1,1,120,121,RVN,False,Elo +268 ↑ | L10 margin +15.0 ↑ | season win% +.29 ↑
-2025-12-12,S3G02832,MST,FAL,0.768,1561,1360,0.834,MST,2,2,121,110,MST,True,Elo +201 ↑ | L10 margin +6.4 ↑ | season win% +.17 ↑
-2025-12-12,S3G02833,SLT,IRN,0.677,1654,1592,0.693,SLT,1,1,107,121,IRN,False,season win% +.21 ↑ | L10 margin +5.8 ↑ | home/away split +.40 ↑
-2025-12-12,S3G02828,AUR,BRK,0.362,1262,1560,0.222,BRK,1,1,110,113,BRK,True,Elo -298 ↓ | season win% -.51 ↓ | L10 margin -13.9 ↓
-2025-12-12,S3G02836,YEL,SKY,0.606,1544,1487,0.687,YEL,2,2,116,114,YEL,True,L10 defence +3.0 pts ↑ | home/away split +.21 ↑ | season win% -.02 ↓
-2025-12-12,S3G02831,LUM,CAS,0.434,1430,1622,0.344,CAS,1,1,119,116,LUM,False,Elo -192 ↓ | L10 margin -14.7 ↓ | home/away split +.17 ↑
-2025-12-12,S3G02830,DUN,XEN,0.453,1360,1480,0.442,XEN,1,1,140,105,DUN,False,Elo -121 ↓ | home/away split -.15 ↓ | season win% -.19 ↓
-2025-12-12,S3G02835,WYR,GLD,0.526,1569,1597,0.575,WYR,1,1,114,119,GLD,False,L10 margin -5.8 ↓ | season win% +.13 ↑ | L10 defence -3.6 pts ↓
-2025-12-12,S3G02834,VLE,KES,0.492,1458,1582,0.437,KES,2,2,116,123,KES,True,Elo -124 ↓ | L10 margin -11.0 ↓ | L10 defence -5.9 pts ↓
-2025-12-13,S3G02844,MST,FAL,0.832,1568,1353,0.846,MST,1,1,105,97,MST,True,Elo +215 ↑ | L10 margin +9.6 ↑ | season win% +.20 ↑
-2025-12-13,S3G02845,QRY,ZEP,0.78,1681,1479,0.835,QRY,2,2,121,102,QRY,True,Elo +202 ↑ | L10 margin +10.0 ↑ | season win% +.39 ↑
-2025-12-13,S3G02837,AUR,CAS,0.318,1256,1603,0.177,CAS,1,1,108,122,CAS,True,Elo -347 ↓ | season win% -.40 ↓ | L10 margin -17.3 ↓
-2025-12-13,S3G02840,HLW,UMB,0.665,1480,1436,0.672,HLW,2,2,130,114,HLW,True,L10 margin +3.7 ↑ | L10 offence +7.4 pts ↑ | season win% +.11 ↑
-2025-12-13,S3G02838,DUN,KES,0.351,1400,1600,0.334,KES,1,1,95,112,KES,True,Elo -200 ↓ | season win% -.23 ↓ | L10 margin -11.2 ↓
-2025-12-13,S3G02843,MRW,NOR,0.591,1468,1407,0.692,MRW,2,2,106,103,MRW,True,season win% +.18 ↑ | L10 margin -5.8 ↓ | Elo +60 ↑
-2025-12-13,S3G02842,JUN,OBS,0.587,1689,1656,0.656,JUN,3,2,109,133,OBS,False,L10 margin -1.4 ↓ | season win% +.09 ↑ | Elo +32 ↑
-2025-12-13,S3G02841,IRN,BRK,0.565,1632,1566,0.699,IRN,1,1,131,101,IRN,True,L10 margin -1.9 ↓ | Elo +67 ↑ | season win% -.05 ↓
-2025-12-13,S3G02846,TMB,HAV,0.46,1519,1645,0.435,HAV,3,2,108,118,HAV,True,Elo -126 ↓ | L10 margin -10.7 ↓ | L10 defence -2.9 pts ↓
-2025-12-13,S3G02847,VLE,WYR,0.475,1440,1548,0.46,WYR,1,1,120,136,WYR,True,Elo -108 ↓ | L10 margin -6.9 ↓ | home/away split -.19 ↓
-2025-12-13,S3G02839,EMB,PNE,0.523,1246,1261,0.592,EMB,2,2,119,114,EMB,True,L10 margin -11.9 ↓ | home/away split -.07 ↓ | season win% +.03 ↑
-2025-12-14,S3G02859,YEL,RVN,0.767,1551,1336,0.845,YEL,2,2,112,84,YEL,True,Elo +215 ↑ | L10 margin +8.2 ↑ | Elo p(home) 85% ↑
-2025-12-14,S3G02852,EMB,UMB,0.398,1260,1418,0.39,UMB,1,1,115,99,EMB,False,Elo -158 ↓ | L10 margin -14.3 ↓ | L10 defence -6.7 pts ↓
-2025-12-14,S3G02850,CAS,KES,0.565,1612,1618,0.604,CAS,1,1,111,104,CAS,True,L10 margin -0.7 ↓ | home/away split +.04 ↓ | season win% -.10 ↓
-2025-12-14,S3G02849,BRK,MST,0.559,1546,1574,0.574,BRK,1,1,129,110,BRK,True,L10 margin -2.7 ↓ | season win% +.13 ↑ | L10 defence -5.1 pts ↓
-2025-12-14,S3G02858,XEN,GLD,0.442,1439,1618,0.362,GLD,2,2,113,109,XEN,False,Elo -179 ↓ | L10 margin -17.5 ↓ | home/away split -.05 ↓
-2025-12-14,S3G02853,FAL,DUN,0.555,1347,1382,0.564,FAL,1,1,111,114,DUN,False,home/away split -.09 ↓ | L10 margin +1.2 ↓ | L10 defence +4.0 pts ↑
-2025-12-14,S3G02848,AUR,NOR,0.445,1248,1399,0.398,NOR,1,1,116,117,NOR,True,Elo -152 ↓ | season win% -.19 ↓ | home/away split -.02 ↓
-2025-12-14,S3G02851,COP,SLT,0.539,1575,1613,0.56,COP,2,2,132,119,COP,True,season win% -.20 ↓ | L10 margin -0.5 ↓ | L20 form -.2 ↑
-2025-12-14,S3G02855,LUM,SKY,0.538,1449,1481,0.569,LUM,2,2,111,113,SKY,False,L10 margin -1.7 ↓ | home/away split +.46 ↑ | L10 defence -3.9 pts ↓
-2025-12-14,S3G02857,WYR,IRN,0.529,1574,1652,0.503,WYR,1,1,104,116,IRN,False,Elo -78 ↓ | L10 margin -0.9 ↓ | season win% +.10 ↑
-2025-12-14,S3G02856,MRW,TMB,0.512,1476,1499,0.581,MRW,1,1,115,119,TMB,False,L10 margin -10.3 ↓ | home/away split +.01 ↓ | H2H 75% ↑
-2025-12-14,S3G02854,HAV,QRY,0.497,1665,1690,0.58,QRY,1,1,104,98,HAV,False,home/away split -.00 ↓ | L10 margin -1.3 ↓ | season win% -.16 ↓
-2025-12-15,S3G02864,OBS,PNE,0.841,1701,1247,0.956,OBS,2,2,114,104,OBS,True,Elo +453 ↑ | L10 margin +19.9 ↑ | season win% +.51 ↑
-2025-12-15,S3G02866,SLT,AUR,0.833,1591,1242,0.922,SLT,1,1,122,105,SLT,True,Elo +348 ↑ | L10 margin +17.0 ↑ | season win% +.62 ↑
-2025-12-15,S3G02862,JUN,VLE,0.767,1644,1414,0.856,JUN,2,2,114,113,JUN,True,Elo +230 ↑ | L10 margin +9.9 ↑ | season win% +.15 ↑
-2025-12-15,S3G02861,GLD,MRW,0.757,1597,1457,0.78,GLD,1,1,101,118,MRW,False,Elo +140 ↑ | L10 margin +18.7 ↑ | L10 offence +13.7 pts ↑
-2025-12-15,S3G02863,NOR,QRY,0.312,1405,1674,0.252,QRY,1,1,119,102,NOR,False,Elo -269 ↓ | season win% -.47 ↓ | L10 margin -13.9 ↓
-2025-12-15,S3G02865,RVN,HAV,0.343,1327,1681,0.171,HAV,1,1,116,111,RVN,False,Elo -355 ↓ | season win% -.38 ↓ | L10 margin -17.1 ↓
-2025-12-15,S3G02860,FAL,MST,0.395,1331,1550,0.311,MST,1,1,86,117,MST,True,Elo -218 ↓ | season win% -.22 ↓ | home/away split -.09 ↓
-2025-12-16,S3G02868,IRN,UMB,0.827,1678,1382,0.897,IRN,2,2,127,104,IRN,True,Elo +295 ↑ | L10 margin +12.9 ↑ | season win% +.31 ↑
-2025-12-16,S3G02867,BRK,XEN,0.728,1571,1461,0.749,BRK,2,2,123,129,XEN,False,Elo +110 ↑ | L10 margin +10.6 ↑ | L10 offence +10.7 pts ↑
-2025-12-16,S3G02870,YEL,COP,0.554,1560,1598,0.56,YEL,2,2,94,101,COP,False,home/away split -.04 ↓ | L10 margin -3.9 ↓ | L10 defence +3.6 pts ↑
-2025-12-16,S3G02871,ZEP,CAS,0.446,1471,1628,0.391,CAS,3,2,115,121,CAS,True,Elo -157 ↓ | L10 margin -13.5 ↓ | L10 defence -7.5 pts ↓
-2025-12-16,S3G02869,LUM,TMB,0.466,1437,1518,0.498,TMB,2,2,105,108,TMB,True,season win% -.23 ↓ | Elo -81 ↓ | L10 margin +0.5 ↓
-2025-12-17,S3G02876,JUN,AUR,0.837,1646,1239,0.943,JUN,2,2,107,98,JUN,True,Elo +407 ↑ | L10 margin +16.0 ↑ | season win% +.61 ↑
-2025-12-17,S3G02879,NOR,PNE,0.786,1452,1246,0.839,NOR,2,2,134,111,NOR,True,Elo +206 ↑ | season win% +.20 ↑ | L10 margin +4.4 ↑
-2025-12-17,S3G02874,EMB,MST,0.274,1296,1570,0.247,MST,3,2,122,119,EMB,False,Elo -274 ↓ | season win% -.24 ↓ | L10 margin -19.5 ↓
-2025-12-17,S3G02877,KES,HLW,0.724,1602,1498,0.743,KES,3,4,117,106,KES,True,Elo +104 ↑ | L10 margin +6.3 ↑ | home/away split +.21 ↑
-2025-12-17,S3G02872,COP,XEN,0.71,1622,1493,0.769,COP,1,1,101,114,XEN,False,Elo +129 ↑ | L10 margin +14.5 ↑ | L10 offence +6.3 pts ↑
-2025-12-17,S3G02873,DUN,HAV,0.31,1398,1647,0.274,HAV,3,2,130,107,DUN,False,Elo -249 ↓ | season win% -.26 ↓ | L10 margin -10.5 ↓
-2025-12-17,S3G02880,OBS,SLT,0.657,1702,1594,0.747,OBS,2,2,123,113,OBS,True,Elo +108 ↑ | L10 margin +3.5 ↑ | home/away split -.07 ↓
-2025-12-17,S3G02878,MRW,QRY,0.398,1507,1626,0.443,QRY,2,2,95,106,QRY,True,Elo -120 ↓ | season win% -.26 ↓ | L10 margin -17.1 ↓
-2025-12-17,S3G02881,SKY,WYR,0.434,1494,1548,0.537,WYR,3,3,111,112,WYR,True,season win% -.25 ↓ | Elo -54 ↓ | home/away split -.03 ↓
-2025-12-17,S3G02882,VLE,GLD,0.437,1413,1546,0.423,GLD,2,2,113,110,VLE,False,Elo -134 ↓ | L10 margin -12.9 ↓ | home/away split -.14 ↓
-2025-12-17,S3G02875,FAL,RVN,0.518,1311,1361,0.543,FAL,2,2,97,111,RVN,False,home/away split -.09 ↓ | L10 margin -0.6 ↓ | L10 defence +3.8 pts ↑
-2025-12-18,S3G02888,XEN,PNE,0.807,1538,1237,0.9,XEN,1,1,124,111,XEN,True,Elo +301 ↑ | season win% +.44 ↑ | L10 margin +6.0 ↑
-2025-12-18,S3G02883,CAS,BRK,0.676,1642,1539,0.742,CAS,2,2,112,106,CAS,True,Elo +103 ↑ | L10 margin +6.0 ↑ | home/away split -.03 ↓
-2025-12-18,S3G02887,UMB,LUM,0.585,1377,1423,0.549,UMB,2,2,103,112,LUM,False,L10 margin -5.3 ↓ | home/away split +.42 ↑ | season win% -.05 ↓
-2025-12-18,S3G02886,SLT,HAV,0.559,1583,1597,0.594,SLT,1,1,125,136,HAV,False,L10 margin -3.4 ↓ | season win% +.07 ↑ | home/away split +.20 ↑
-2025-12-18,S3G02884,MST,WYR,0.547,1547,1556,0.601,MST,1,1,104,116,WYR,False,season win% -.22 ↓ | home/away split +.00 ↓ | L10 defence +5.1 pts ↑
-2025-12-18,S3G02885,SKY,KES,0.458,1486,1614,0.432,KES,1,1,113,116,KES,True,Elo -128 ↓ | season win% -.21 ↓ | L10 margin -8.2 ↓
-2025-12-18,S3G02889,YEL,IRN,0.468,1536,1683,0.405,IRN,2,2,100,127,IRN,True,Elo -147 ↓ | season win% -.20 ↓ | L10 margin -0.4 ↓
-2025-12-18,S3G02890,ZEP,TMB,0.479,1456,1532,0.506,TMB,2,2,119,111,ZEP,False,Elo -76 ↓ | season win% -.21 ↓ | home/away split -.07 ↓
-2025-12-19,S3G02894,HLW,AUR,0.842,1486,1237,0.87,HLW,2,2,108,115,AUR,False,Elo +250 ↑ | L10 margin +13.6 ↑ | season win% +.36 ↑
-2025-12-19,S3G02891,COP,FAL,0.841,1577,1281,0.897,COP,2,2,125,92,COP,True,Elo +296 ↑ | L10 margin +15.7 ↑ | season win% +.33 ↑
-2025-12-19,S3G02895,KES,PNE,0.817,1626,1232,0.939,KES,1,1,121,100,KES,True,Elo +394 ↑ | L10 margin +17.5 ↑ | season win% +.50 ↑
-2025-12-19,S3G02893,EMB,JUN,0.283,1319,1648,0.193,JUN,2,2,105,118,JUN,True,Elo -329 ↓ | season win% -.45 ↓ | L10 margin -16.4 ↓
-2025-12-19,S3G02892,DUN,QRY,0.32,1448,1648,0.334,QRY,2,2,116,122,QRY,True,Elo -200 ↓ | season win% -.36 ↓ | home/away split -.12 ↓
-2025-12-19,S3G02899,VLE,OBS,0.394,1429,1714,0.236,OBS,2,2,112,90,VLE,False,Elo -285 ↓ | L10 margin -16.9 ↓ | Elo p(home) 24% ↓
-2025-12-19,S3G02898,TMB,BRK,0.549,1510,1530,0.586,TMB,1,1,112,110,TMB,True,L10 margin -0.3 ↓ | L10 defence +3.7 pts ↑ | home/away split +.04 ↓
-2025-12-19,S3G02897,RVN,MRW,0.511,1391,1485,0.479,RVN,2,2,110,107,RVN,True,Elo -94 ↓ | L10 margin +4.6 ↑ | home/away split -.15 ↓
-2025-12-19,S3G02896,NOR,GLD,0.504,1461,1530,0.516,NOR,2,2,116,121,GLD,False,Elo -69 ↓ | home/away split -.03 ↓ | season win% -.17 ↓
-2025-12-20,S3G02903,UMB,CAS,0.301,1351,1652,0.219,CAS,2,2,120,109,UMB,False,Elo -301 ↓ | season win% -.29 ↓ | L10 margin -12.9 ↓
-2025-12-20,S3G02902,SLT,ZEP,0.695,1553,1478,0.71,SLT,2,2,102,101,SLT,True,season win% +.26 ↑ | L10 margin +3.6 ↑ | Elo +75 ↑
-2025-12-20,S3G02900,LUM,IRN,0.341,1449,1709,0.261,IRN,2,2,106,122,IRN,True,Elo -261 ↓ | season win% -.28 ↓ | Elo p(home) 26% ↓
-2025-12-20,S3G02901,SKY,YEL,0.57,1475,1510,0.564,SKY,2,2,116,130,YEL,False,L10 margin -3.8 ↓ | home/away split +.17 ↑ | L10 defence -3.9 pts ↓
-2025-12-21,S3G02905,BRK,FAL,0.806,1521,1275,0.867,BRK,2,2,130,90,BRK,True,Elo +246 ↑ | L10 margin +8.4 ↑ | season win% +.35 ↑
-2025-12-21,S3G02904,AUR,VLE,0.367,1279,1482,0.33,VLE,2,2,127,111,AUR,False,Elo -203 ↓ | season win% -.43 ↓ | Elo p(home) 33% ↓
-2025-12-21,S3G02906,HAV,WYR,0.593,1628,1587,0.667,HAV,3,3,110,114,WYR,False,L10 margin +4.1 ↑ | home/away split -.01 ↓ | season win% -.05 ↓
-2025-12-21,S3G02908,OBS,KES,0.579,1661,1629,0.656,OBS,2,2,110,114,KES,False,L10 margin -0.2 ↓ | Elo +32 ↑ | home/away split +.13 ↑
-2025-12-21,S3G02907,MST,XEN,0.566,1515,1542,0.575,MST,3,3,111,110,MST,True,home/away split +.03 ↓ | season win% -.13 ↓ | L10 defence +4.1 pts ↑
-2025-12-22,S3G02910,DUN,PNE,0.815,1436,1229,0.839,DUN,3,3,123,103,DUN,True,Elo +207 ↑ | L10 margin +14.1 ↑ | season win% +.28 ↑
-2025-12-22,S3G02913,JUN,MRW,0.802,1657,1471,0.823,JUN,3,3,126,110,JUN,True,Elo +187 ↑ | L10 margin +13.6 ↑ | season win% +.26 ↑
-2025-12-22,S3G02914,RVN,QRY,0.305,1405,1660,0.267,QRY,3,3,117,127,QRY,True,Elo -255 ↓ | season win% -.41 ↓ | L10 margin -13.6 ↓
-2025-12-22,S3G02909,COP,TMB,0.613,1583,1519,0.696,COP,3,3,115,117,TMB,False,L10 margin +11.9 ↑ | home/away split +.01 ↓ | L10 offence +6.0 pts ↑
-2025-12-22,S3G02911,EMB,NOR,0.402,1310,1443,0.425,NOR,3,3,114,120,NOR,True,Elo -133 ↓ | L10 margin -12.7 ↓ | L10 defence -5.8 pts ↓
-2025-12-22,S3G02912,HLW,GLD,0.45,1444,1549,0.464,GLD,3,3,118,119,GLD,True,Elo -105 ↓ | home/away split -.10 ↓ | L10 margin -4.1 ↓
-2025-12-23,S3G02925,XEN,FAL,0.835,1537,1266,0.882,XEN,2,2,136,112,XEN,True,Elo +270 ↑ | L10 margin +17.7 ↑ | season win% +.35 ↑
-2025-12-23,S3G02926,YEL,UMB,0.736,1541,1394,0.787,YEL,3,3,126,99,YEL,True,Elo +147 ↑ | L10 margin +9.7 ↑ | L10 defence +7.0 pts ↑
-2025-12-23,S3G02918,LUM,IRN,0.316,1435,1723,0.232,IRN,3,3,105,99,LUM,False,Elo -288 ↓ | season win% -.30 ↓ | Elo p(home) 23% ↓
-2025-12-23,S3G02922,SLT,SKY,0.681,1557,1443,0.753,SLT,3,3,122,114,SLT,True,Elo +113 ↑ | season win% +.31 ↑ | L10 margin +1.4 ↓
-2025-12-23,S3G02915,AUR,WYR,0.332,1319,1610,0.229,WYR,2,2,101,128,WYR,True,Elo -291 ↓ | season win% -.55 ↓ | L10 margin -10.4 ↓
-2025-12-23,S3G02920,OBS,CAS,0.663,1639,1609,0.653,OBS,2,3,120,99,OBS,True,L10 margin +4.2 ↑ | season win% +.08 ↑ | home/away split +.12 ↑
-2025-12-23,S3G02917,KES,HAV,0.662,1651,1605,0.674,KES,2,2,104,102,KES,True,L10 margin +4.1 ↑ | home/away split +.14 ↑ | L10 defence +5.9 pts ↑
-2025-12-23,S3G02921,PNE,DUN,0.346,1220,1444,0.304,DUN,1,1,125,114,PNE,False,Elo -224 ↓ | season win% -.30 ↓ | L10 margin -17.6 ↓
-2025-12-23,S3G02923,TMB,QRY,0.403,1535,1672,0.419,QRY,1,1,108,133,QRY,True,Elo -137 ↓ | home/away split +.00 ↓ | season win% -.18 ↓
-2025-12-23,S3G02919,NOR,HLW,0.572,1459,1437,0.642,NOR,1,1,113,126,HLW,False,L10 margin +0.3 ↓ | home/away split -.02 ↓ | Elo +21 ↑
-2025-12-23,S3G02916,BRK,MST,0.566,1530,1521,0.625,BRK,2,2,115,123,MST,False,L10 margin -1.6 ↓ | L10 defence -5.8 pts ↓ | season win% +.11 ↑
-2025-12-23,S3G02924,VLE,ZEP,0.554,1442,1474,0.569,VLE,2,3,123,125,ZEP,False,L10 margin -1.6 ↓ | season win% +.14 ↑ | H2H 0% ↓
-2025-12-24,S3G02931,KES,VLE,0.808,1658,1429,0.856,KES,1,1,116,108,KES,True,Elo +229 ↑ | L10 margin +14.0 ↑ | season win% +.14 ↑
-2025-12-24,S3G02928,COP,MRW,0.742,1567,1462,0.744,COP,2,2,124,120,COP,True,Elo +105 ↑ | L10 margin +17.9 ↑ | L10 offence +11.9 pts ↑
-2025-12-24,S3G02933,RVN,EMB,0.724,1393,1294,0.738,RVN,2,2,116,115,RVN,True,Elo +100 ↑ | L10 margin +5.8 ↑ | home/away split +.17 ↑
-2025-12-24,S3G02930,JUN,GLD,0.658,1666,1555,0.75,JUN,2,2,113,106,JUN,True,Elo +111 ↑ | L10 margin +1.3 ↓ | season win% +.17 ↑
-2025-12-24,S3G02932,PNE,YEL,0.344,1257,1554,0.223,YEL,1,1,98,123,YEL,True,Elo -297 ↓ | season win% -.31 ↓ | L10 margin -17.4 ↓
-2025-12-24,S3G02934,ZEP,OBS,0.376,1487,1659,0.37,OBS,1,1,111,104,ZEP,False,Elo -172 ↓ | L10 margin -12.6 ↓ | home/away split -.10 ↓
-2025-12-24,S3G02927,BRK,DUN,0.596,1501,1407,0.731,BRK,1,1,132,124,BRK,True,Elo +94 ↑ | L10 margin -6.5 ↓ | season win% +.16 ↑
-2025-12-24,S3G02929,HLW,WYR,0.409,1473,1624,0.399,WYR,1,1,110,108,HLW,False,Elo -151 ↓ | season win% -.28 ↓ | L10 margin -3.6 ↓
-2025-12-25,S3G02938,SKY,FAL,0.783,1433,1260,0.812,SKY,2,2,123,110,SKY,True,Elo +174 ↑ | L10 margin +14.1 ↑ | season win% +.16 ↑
-2025-12-25,S3G02937,QRY,MST,0.751,1699,1549,0.789,QRY,2,2,106,114,MST,False,Elo +149 ↑ | season win% +.31 ↑ | L10 margin +7.5 ↑
-2025-12-25,S3G02935,AUR,CAS,0.305,1305,1588,0.237,CAS,2,2,92,102,CAS,True,Elo -283 ↓ | season win% -.39 ↓ | Elo p(home) 24% ↓
-2025-12-25,S3G02939,SLT,NOR,0.643,1567,1423,0.784,SLT,2,2,123,116,SLT,True,Elo +143 ↑ | season win% +.33 ↑ | L10 margin -2.2 ↓
-2025-12-25,S3G02940,TMB,LUM,0.611,1509,1468,0.667,TMB,2,2,128,111,TMB,True,season win% +.21 ↑ | L10 margin -2.9 ↓ | home/away split +.47 ↑
-2025-12-25,S3G02936,HAV,XEN,0.579,1598,1543,0.685,HAV,2,2,115,107,HAV,True,L10 margin +0.9 ↓ | L10 defence +3.3 pts ↑ | season win% +.02 ↑
-2025-12-26,S3G02943,HLW,EMB,0.813,1487,1290,0.831,HLW,2,2,108,99,HLW,True,Elo +196 ↑ | L10 margin +10.3 ↑ | season win% +.21 ↑
-2025-12-26,S3G02948,ZEP,PNE,0.807,1514,1244,0.882,ZEP,2,2,96,110,PNE,False,Elo +270 ↑ | L10 margin +12.7 ↑ | season win% +.30 ↑
-2025-12-26,S3G02946,VLE,UMB,0.673,1423,1381,0.669,VLE,2,3,95,113,UMB,False,season win% +.21 ↑ | L10 margin +4.9 ↑ | L10 offence +8.0 pts ↑
-2025-12-26,S3G02945,MRW,RVN,0.633,1454,1397,0.688,MRW,2,2,118,110,MRW,True,L10 margin -4.2 ↓ | season win% +.07 ↑ | home/away split +.13 ↑
-2025-12-26,S3G02944,IRN,JUN,0.621,1690,1676,0.633,IRN,3,2,118,108,IRN,True,L10 margin +8.8 ↑ | L10 offence +6.7 pts ↑ | season win% -.11 ↓
-2025-12-26,S3G02947,YEL,BRK,0.597,1567,1512,0.685,YEL,2,2,113,108,YEL,True,L10 margin +13.3 ↑ | home/away split -.06 ↓ | season win% -.10 ↓
-2025-12-26,S3G02942,DUN,GLD,0.444,1396,1545,0.402,GLD,2,2,118,122,GLD,True,Elo -149 ↓ | home/away split -.03 ↓ | L10 margin +1.0 ↓
-2025-12-26,S3G02941,COP,OBS,0.502,1574,1632,0.533,COP,2,2,113,111,COP,True,Elo -57 ↓ | home/away split -.06 ↓ | season win% -.06 ↓
-2025-12-27,S3G02950,CAS,FAL,0.837,1599,1251,0.921,CAS,2,2,128,98,CAS,True,Elo +348 ↑ | L10 margin +22.0 ↑ | season win% +.35 ↑
-2025-12-27,S3G02951,GLD,EMB,0.828,1558,1283,0.885,GLD,1,1,117,112,GLD,True,Elo +275 ↑ | L10 margin +9.9 ↑ | season win% +.33 ↑
-2025-12-27,S3G02953,MRW,PNE,0.747,1467,1301,0.805,MRW,1,1,111,112,PNE,False,Elo +166 ↑ | L10 margin +7.2 ↑ | season win% +.29 ↑
-2025-12-27,S3G02955,QRY,MST,0.729,1660,1588,0.706,QRY,2,2,114,116,MST,False,season win% +.27 ↑ | L10 margin +8.3 ↑ | Elo +72 ↑
-2025-12-27,S3G02949,AUR,HAV,0.33,1295,1611,0.204,HAV,2,2,101,135,HAV,True,Elo -316 ↓ | season win% -.47 ↓ | L10 margin -10.8 ↓
-2025-12-27,S3G02956,SLT,SKY,0.646,1575,1442,0.773,SLT,2,2,104,115,SKY,False,Elo +132 ↑ | season win% +.32 ↑ | L10 margin -1.6 ↓
-2025-12-27,S3G02954,NOR,LUM,0.603,1415,1450,0.565,NOR,2,2,114,123,LUM,False,L10 defence +0.2 pts ↑ | H2H 75% ↑ | season win% -.01 ↓
-2025-12-27,S3G02952,KES,WYR,0.57,1664,1610,0.683,KES,3,3,122,114,KES,True,L10 defence +4.3 pts ↑ | home/away split +.06 ↓ | season win% -.02 ↓
-2025-12-28,S3G02968,WYR,PNE,0.82,1597,1313,0.89,WYR,1,1,130,117,WYR,True,Elo +284 ↑ | L10 margin +12.8 ↑ | season win% +.48 ↑
-2025-12-28,S3G02961,IRN,HLW,0.796,1707,1493,0.844,IRN,2,2,117,114,IRN,True,Elo +213 ↑ | L10 margin +10.0 ↑ | season win% +.17 ↑
-2025-12-28,S3G02965,OBS,VLE,0.748,1621,1382,0.863,OBS,2,2,111,114,VLE,False,Elo +240 ↑ | L10 margin +12.0 ↑ | Elo p(home) 86% ↑
-2025-12-28,S3G02957,AUR,HAV,0.31,1282,1625,0.181,HAV,1,1,116,128,HAV,True,Elo -343 ↓ | season win% -.49 ↓ | L10 margin -14.4 ↓
-2025-12-28,S3G02964,MST,SKY,0.676,1605,1485,0.76,MST,1,1,125,104,MST,True,Elo +120 ↑ | home/away split +.35 ↑ | L10 defence +2.5 pts ↑
-2025-12-28,S3G02962,JUN,XEN,0.645,1659,1530,0.769,JUN,2,3,110,109,JUN,True,Elo +129 ↑ | L10 margin -0.1 ↓ | season win% +.16 ↑
-2025-12-28,S3G02969,ZEP,RVN,0.642,1457,1384,0.707,ZEP,2,2,129,111,ZEP,True,Elo +73 ↑ | L10 defence +2.3 pts ↑ | season win% +.06 ↑
-2025-12-28,S3G02966,SLT,LUM,0.591,1532,1476,0.686,SLT,1,1,135,111,SLT,True,season win% +.30 ↑ | L10 margin -1.3 ↓ | home/away split +.53 ↑
-2025-12-28,S3G02967,UMB,BRK,0.415,1423,1501,0.502,BRK,2,2,108,91,UMB,False,season win% -.24 ↓ | Elo -78 ↓ | home/away split -.03 ↓
-2025-12-28,S3G02958,COP,YEL,0.572,1585,1578,0.622,COP,2,2,112,103,COP,True,L10 margin -1.3 ↓ | season win% +.09 ↑ | home/away split +.13 ↑
-2025-12-28,S3G02963,MRW,CAS,0.442,1454,1603,0.402,CAS,1,1,117,125,CAS,True,Elo -149 ↓ | home/away split -.03 ↓ | L10 margin -8.9 ↓
-2025-12-28,S3G02960,FAL,NOR,0.455,1246,1388,0.412,NOR,1,1,117,123,NOR,True,Elo -142 ↓ | L10 margin -21.0 ↓ | home/away split -.11 ↓
-2025-12-28,S3G02959,DUN,TMB,0.511,1384,1527,0.41,DUN,2,3,134,109,DUN,True,Elo -143 ↓ | season win% -.22 ↓ | L10 margin +4.7 ↑
-2025-12-29,S3G02972,HAV,PNE,0.825,1633,1308,0.911,HAV,1,1,131,105,HAV,True,Elo +324 ↑ | L10 margin +14.6 ↑ | season win% +.45 ↑
-2025-12-29,S3G02970,EMB,QRY,0.312,1280,1643,0.163,QRY,2,2,111,137,QRY,True,Elo -364 ↓ | season win% -.52 ↓ | L10 margin -12.5 ↓
-2025-12-29,S3G02973,TMB,UMB,0.609,1487,1452,0.661,TMB,1,1,117,116,TMB,True,season win% +.24 ↑ | L10 margin -0.1 ↓ | home/away split +.42 ↑
-2025-12-29,S3G02971,GLD,KES,0.53,1562,1677,0.45,GLD,2,2,122,111,GLD,True,Elo -115 ↓ | L10 margin -5.1 ↓ | L20 form -.2 ↑
-2025-12-30,S3G02977,SKY,FAL,0.84,1471,1231,0.864,SKY,2,2,130,111,SKY,True,Elo +240 ↑ | L10 margin +19.3 ↑ | season win% +.21 ↑
-2025-12-30,S3G02979,WYR,MRW,0.773,1602,1437,0.804,WYR,2,2,123,109,WYR,True,Elo +165 ↑ | season win% +.25 ↑ | L10 margin +6.5 ↑
-2025-12-30,S3G02974,CAS,XEN,0.704,1620,1527,0.73,CAS,2,2,121,102,CAS,True,L10 margin +4.9 ↑ | Elo +93 ↑ | home/away split +.17 ↑
-2025-12-30,S3G02978,VLE,NOR,0.57,1410,1404,0.621,VLE,2,2,119,117,VLE,True,season win% +.14 ↑ | L10 margin -5.6 ↓ | home/away split +.10 ↓
-2025-12-30,S3G02975,HLW,YEL,0.481,1490,1561,0.512,YEL,2,2,119,124,YEL,True,Elo -72 ↓ | L10 defence -7.3 pts ↓ | L10 margin -5.2 ↓
-2025-12-30,S3G02976,RVN,LUM,0.508,1368,1457,0.486,RVN,2,2,128,81,RVN,True,Elo -90 ↓ | L10 margin -3.5 ↓ | L10 defence -0.1 pts ↑
-2025-12-31,S3G02982,IRN,COP,0.724,1711,1601,0.748,IRN,3,3,110,111,COP,False,Elo +109 ↑ | L10 margin +4.2 ↑ | home/away split +.21 ↑
-2025-12-31,S3G02983,JUN,BRK,0.659,1662,1473,0.825,JUN,3,3,129,116,JUN,True,Elo +189 ↑ | L10 margin +0.3 ↓ | season win% +.19 ↑
-2025-12-31,S3G02980,AUR,ZEP,0.346,1274,1473,0.334,ZEP,3,3,91,124,ZEP,True,Elo -200 ↓ | season win% -.31 ↓ | L10 margin -11.9 ↓
-2025-12-31,S3G02984,OBS,MST,0.625,1593,1618,0.579,OBS,3,3,117,121,MST,False,season win% +.06 ↑ | home/away split +.19 ↑ | H2H 100% ↑
-2025-12-31,S3G02986,TMB,HAV,0.422,1492,1638,0.406,HAV,2,2,104,129,HAV,True,Elo -146 ↓ | L10 margin -10.2 ↓ | L10 defence -6.0 pts ↓
-2025-12-31,S3G02985,QRY,KES,0.574,1653,1649,0.619,QRY,2,2,129,99,QRY,True,L10 margin +0.8 ↓ | season win% +.09 ↑ | L20 form -.2 ↑
-2025-12-31,S3G02981,DUN,SLT,0.475,1423,1551,0.432,SLT,3,3,113,104,DUN,False,Elo -128 ↓ | season win% -.29 ↓ | L10 margin +6.2 ↑
-2026-01-01,S3G02991,OBS,AUR,0.816,1574,1251,0.911,OBS,1,1,118,124,AUR,False,Elo +323 ↑ | L10 margin +14.3 ↑ | season win% +.44 ↑
-2026-01-01,S3G02988,GLD,EMB,0.802,1589,1270,0.909,GLD,3,3,119,105,GLD,True,Elo +319 ↑ | season win% +.36 ↑ | L10 margin +5.3 ↑
-2026-01-01,S3G02993,UMB,PNE,0.747,1447,1303,0.784,UMB,3,3,94,109,PNE,False,Elo +144 ↑ | L10 margin +6.5 ↑ | season win% +.15 ↑
-2026-01-01,S3G02992,SKY,NOR,0.604,1478,1396,0.718,SKY,2,2,95,120,NOR,False,Elo +82 ↑ | L10 margin -2.1 ↓ | Elo p(home) 72% ↑
-2026-01-01,S3G02987,FAL,LUM,0.423,1224,1417,0.342,LUM,2,2,116,115,FAL,False,Elo -194 ↓ | L10 margin -13.1 ↓ | home/away split +.00 ↓
-2026-01-01,S3G02994,VLE,RVN,0.577,1418,1408,0.627,VLE,2,2,109,106,VLE,True,season win% +.15 ↑ | L10 margin -3.8 ↓ | home/away split +.18 ↑
-2026-01-01,S3G02995,WYR,CAS,0.563,1612,1635,0.581,WYR,2,2,111,113,CAS,False,L10 margin -0.3 ↓ | season win% +.10 ↑ | L10 defence -3.8 pts ↓
-2026-01-01,S3G02989,HLW,YEL,0.455,1471,1580,0.459,YEL,2,2,109,123,YEL,True,Elo -108 ↓ | home/away split -.02 ↓ | L10 margin -4.3 ↓
-2026-01-01,S3G02990,MRW,XEN,0.518,1428,1512,0.493,MRW,2,2,109,115,XEN,False,Elo -85 ↓ | home/away split -.03 ↓ | L10 margin -3.2 ↓
-2026-01-02,S3G02996,HAV,DUN,0.804,1663,1450,0.844,HAV,2,2,124,109,HAV,True,Elo +213 ↑ | season win% +.24 ↑ | L10 margin +4.8 ↑
-2026-01-02,S3G02999,QRY,MST,0.682,1678,1638,0.667,QRY,2,2,106,103,QRY,True,season win% +.22 ↑ | L10 margin +3.4 ↑ | home/away split +.42 ↑
-2026-01-02,S3G03000,TMB,IRN,0.348,1466,1699,0.293,IRN,2,2,105,100,TMB,False,Elo -233 ↓ | L10 margin -18.2 ↓ | Elo p(home) 29% ↓
-2026-01-02,S3G02997,JUN,ZEP,0.65,1670,1496,0.812,JUN,2,2,109,105,JUN,True,Elo +174 ↑ | season win% +.28 ↑ | L10 margin -1.5 ↓
-2026-01-02,S3G02998,KES,COP,0.571,1624,1613,0.628,KES,2,2,107,99,KES,True,L10 margin -4.4 ↓ | home/away split +.15 ↑ | season win% +.04 ↑
-2026-01-03,S3G03002,CAS,LUM,0.836,1648,1408,0.864,CAS,2,2,125,106,CAS,True,Elo +241 ↑ | L10 margin +14.2 ↑ | season win% +.25 ↑
-2026-01-03,S3G03003,EMB,YEL,0.305,1266,1604,0.185,YEL,2,2,104,125,YEL,True,Elo -338 ↓ | season win% -.29 ↓ | L10 margin -12.5 ↓
-2026-01-03,S3G03005,RVN,UMB,0.624,1398,1399,0.611,RVN,2,2,123,126,UMB,False,L10 margin +6.4 ↑ | L10 defence +2.5 pts ↑ | season win% +.04 ↑
-2026-01-03,S3G03006,SKY,NOR,0.584,1428,1447,0.587,SKY,2,2,125,113,SKY,True,L10 margin -6.8 ↓ | home/away split +.18 ↑ | L10 offence -5.8 pts ↓
-2026-01-03,S3G03004,MRW,HLW,0.564,1408,1447,0.56,MRW,2,2,120,100,MRW,True,home/away split -.06 ↓ | L10 margin -3.7 ↓ | L20 form -.2 ↑
-2026-01-03,S3G03007,VLE,WYR,0.444,1428,1599,0.372,WYR,2,2,108,111,WYR,True,Elo -171 ↓ | home/away split -.17 ↓ | L10 margin -5.9 ↓
-2026-01-03,S3G03001,BRK,SLT,0.497,1464,1525,0.529,SLT,3,3,108,101,BRK,False,Elo -60 ↓ | home/away split -.01 ↓ | L10 margin +0.7 ↓
-2026-01-04,S3G03012,XEN,AUR,0.821,1531,1295,0.861,XEN,3,3,116,98,XEN,True,Elo +237 ↑ | L10 margin +15.0 ↑ | season win% +.39 ↑
-2026-01-04,S3G03009,FAL,OBS,0.282,1233,1531,0.222,OBS,3,3,112,123,OBS,True,Elo -298 ↓ | season win% -.35 ↓ | L10 margin -20.2 ↓
-2026-01-04,S3G03010,PNE,GLD,0.314,1352,1594,0.283,GLD,3,3,117,100,PNE,False,Elo -242 ↓ | season win% -.39 ↓ | L10 margin -8.6 ↓
-2026-01-04,S3G03011,QRY,JUN,0.647,1687,1675,0.629,QRY,2,2,114,96,QRY,True,L10 margin +5.4 ↑ | home/away split +.19 ↑ | season win% +.02 ↑
-2026-01-04,S3G03008,DUN,MST,0.426,1443,1629,0.352,MST,2,2,115,108,DUN,False,Elo -186 ↓ | L10 margin -2.1 ↓ | Elo p(home) 35% ↓
-2026-01-05,S3G03018,MRW,EMB,0.762,1435,1256,0.816,MRW,2,2,122,118,MRW,True,Elo +179 ↑ | season win% +.21 ↑ | L10 margin +4.1 ↑
-2026-01-05,S3G03024,WYR,SLT,0.711,1609,1505,0.742,WYR,2,2,126,123,WYR,True,Elo +103 ↑ | L10 margin +5.3 ↑ | L10 defence +3.7 pts ↑
-2026-01-05,S3G03021,PNE,FAL,0.699,1397,1223,0.811,PNE,1,1,120,92,PNE,True,Elo +173 ↑ | L10 margin +14.2 ↑ | home/away split -.02 ↓
-2026-01-05,S3G03015,JUN,DUN,0.68,1654,1471,0.82,JUN,1,1,101,106,DUN,False,Elo +183 ↑ | season win% +.30 ↑ | L10 margin -0.4 ↓
-2026-01-05,S3G03020,NOR,UMB,0.66,1426,1416,0.626,NOR,2,2,129,98,NOR,True,L10 margin +5.4 ↑ | L10 offence +10.4 pts ↑ | home/away split +.15 ↑
-2026-01-05,S3G03014,HLW,CAS,0.36,1420,1655,0.291,CAS,2,2,119,99,HLW,False,Elo -235 ↓ | L10 margin -10.5 ↓ | home/away split -.13 ↓
-2026-01-05,S3G03023,TMB,IRN,0.42,1493,1672,0.362,IRN,3,3,125,115,TMB,False,Elo -179 ↓ | L10 margin -16.2 ↓ | L10 defence -11.4 pts ↓
-2026-01-05,S3G03016,KES,YEL,0.575,1639,1614,0.647,KES,3,2,123,105,KES,True,L10 margin -4.4 ↓ | season win% +.14 ↑ | Elo +25 ↑
-2026-01-05,S3G03019,MST,XEN,0.573,1600,1538,0.694,MST,1,1,110,121,XEN,False,L10 margin -3.2 ↓ | Elo +62 ↑ | home/away split +.19 ↑
-2026-01-05,S3G03025,ZEP,BRK,0.573,1490,1484,0.622,ZEP,3,2,124,121,ZEP,True,season win% -.10 ↓ | L10 defence +3.8 pts ↑ | H2H 25% ↓
-2026-01-05,S3G03022,SKY,RVN,0.564,1448,1380,0.701,SKY,2,2,111,113,RVN,False,L10 margin -4.5 ↓ | Elo +68 ↑ | season win% +.07 ↑
-2026-01-05,S3G03017,LUM,VLE,0.524,1401,1418,0.589,LUM,2,2,109,121,VLE,False,season win% -.18 ↓ | L10 margin -8.9 ↓ | home/away split +.01 ↓
-2026-01-05,S3G03013,COP,HAV,0.512,1597,1671,0.508,COP,3,3,114,129,HAV,False,Elo -74 ↓ | home/away split -.02 ↓ | L10 margin -5.6 ↓
-2026-01-06,S3G03029,HAV,UMB,0.833,1699,1392,0.903,HAV,1,1,123,98,HAV,True,Elo +308 ↑ | L10 margin +19.7 ↑ | season win% +.34 ↑
-2026-01-06,S3G03031,QRY,GLD,0.778,1708,1549,0.798,QRY,2,2,125,119,QRY,True,Elo +159 ↑ | L10 margin +12.3 ↑ | season win% +.19 ↑
-2026-01-06,S3G03030,KES,HLW,0.759,1659,1467,0.828,KES,1,1,116,102,KES,True,Elo +192 ↑ | season win% +.23 ↑ | L10 margin +3.7 ↑
-2026-01-06,S3G03028,FAL,DUN,0.323,1212,1504,0.227,DUN,1,1,93,116,DUN,True,Elo -292 ↓ | season win% -.24 ↓ | L10 margin -22.5 ↓
-2026-01-06,S3G03026,AUR,OBS,0.328,1287,1541,0.269,OBS,2,2,128,103,AUR,False,Elo -254 ↓ | season win% -.42 ↓ | L10 margin -10.8 ↓
-2026-01-06,S3G03027,EMB,TMB,0.347,1251,1526,0.246,TMB,1,1,106,98,EMB,False,Elo -275 ↓ | season win% -.39 ↓ | Elo p(home) 25% ↓
-2026-01-06,S3G03032,YEL,JUN,0.517,1595,1621,0.577,YEL,1,1,121,123,JUN,False,season win% -.20 ↓ | home/away split -.12 ↓ | L10 defence -2.8 pts ↓
-2026-01-07,S3G03041,SLT,LUM,0.778,1499,1369,0.769,SLT,2,2,138,107,SLT,True,Elo +129 ↑ | L10 margin +10.1 ↑ | season win% +.31 ↑
-2026-01-07,S3G03033,CAS,PNE,0.769,1609,1408,0.834,CAS,2,2,110,103,CAS,True,Elo +201 ↑ | season win% +.35 ↑ | L10 margin +4.0 ↑
-2026-01-07,S3G03037,IRN,SKY,0.754,1640,1432,0.84,IRN,2,2,119,102,IRN,True,Elo +208 ↑ | L10 margin +8.7 ↑ | season win% +.19 ↑
-2026-01-07,S3G03036,FAL,YEL,0.313,1199,1582,0.149,YEL,1,1,95,122,YEL,True,Elo -383 ↓ | season win% -.30 ↓ | L10 margin -27.5 ↓
-2026-01-07,S3G03035,EMB,HAV,0.315,1287,1705,0.125,HAV,1,1,105,126,HAV,True,Elo -418 ↓ | season win% -.45 ↓ | L10 margin -24.5 ↓
-2026-01-07,S3G03034,COP,NOR,0.678,1569,1451,0.758,COP,2,2,112,109,COP,True,Elo +118 ↑ | season win% +.20 ↑ | L10 margin -0.2 ↓
-2026-01-07,S3G03039,MST,DUN,0.605,1564,1517,0.674,MST,2,1,121,109,MST,True,L10 margin -4.0 ↓ | season win% +.05 ↑ | Elo +46 ↑
-2026-01-07,S3G03040,RVN,XEN,0.397,1397,1575,0.362,XEN,2,2,109,116,XEN,True,Elo -179 ↓ | season win% -.20 ↓ | home/away split -.10 ↓
-2026-01-07,S3G03042,ZEP,VLE,0.58,1500,1449,0.68,ZEP,2,2,121,106,ZEP,True,L10 margin +5.1 ↑ | home/away split +.00 ↓ | season win% -.07 ↓
-2026-01-07,S3G03038,MRW,BRK,0.537,1440,1474,0.566,MRW,2,2,107,97,MRW,True,L10 margin -2.1 ↓ | L20 form -.2 ↑ | L10 defence -2.7 pts ↓
-2026-01-08,S3G03045,MRW,EMB,0.789,1460,1280,0.817,MRW,1,1,110,98,MRW,True,Elo +180 ↑ | L10 margin +9.2 ↑ | season win% +.23 ↑
-2026-01-08,S3G03043,GLD,HLW,0.652,1542,1459,0.719,GLD,2,2,111,114,HLW,False,season win% +.14 ↑ | Elo +83 ↑ | Elo p(home) 72% ↑
-2026-01-08,S3G03046,OBS,DUN,0.607,1489,1502,0.596,OBS,2,1,130,115,OBS,True,L10 margin -6.0 ↓ | season win% +.11 ↑ | L10 form -.3 ↑
-2026-01-08,S3G03044,KES,JUN,0.579,1668,1634,0.658,KES,2,2,124,96,KES,True,home/away split +.13 ↑ | season win% -.04 ↓ | L20 form +.2 ↓
-2026-01-08,S3G03047,UMB,TMB,0.459,1386,1489,0.467,TMB,2,2,104,107,TMB,True,season win% -.26 ↓ | Elo -103 ↓ | home/away split -.03 ↓
-2026-01-08,S3G03048,WYR,QRY,0.483,1615,1715,0.472,QRY,3,2,111,103,WYR,False,Elo -100 ↓ | L10 margin -5.0 ↓ | home/away split +.01 ↓
-2026-01-09,S3G03049,CAS,AUR,0.802,1615,1339,0.886,CAS,2,3,129,114,CAS,True,Elo +276 ↑ | L10 margin +12.3 ↑ | season win% +.43 ↑
-2026-01-09,S3G03051,FAL,SKY,0.297,1190,1424,0.292,SKY,2,2,109,110,SKY,True,Elo -234 ↓ | L10 margin -14.8 ↓ | season win% -.21 ↓
-2026-01-09,S3G03050,COP,PNE,0.673,1575,1402,0.811,COP,2,2,125,104,COP,True,Elo +173 ↑ | season win% +.34 ↑ | L10 margin -0.1 ↓
-2026-01-09,S3G03054,MST,BRK,0.671,1579,1453,0.766,MST,2,2,119,115,MST,True,Elo +126 ↑ | L10 margin +3.8 ↑ | season win% +.00 ↓
-2026-01-09,S3G03055,RVN,XEN,0.365,1382,1590,0.324,XEN,2,2,112,118,XEN,True,Elo -208 ↓ | season win% -.22 ↓ | home/away split -.14 ↓
-2026-01-09,S3G03052,IRN,HAV,0.554,1648,1711,0.524,IRN,2,2,105,118,HAV,False,Elo -63 ↓ | L10 margin -10.5 ↓ | L10 form -.3 ↑
-2026-01-09,S3G03056,SLT,YEL,0.533,1513,1590,0.504,SLT,2,2,131,116,SLT,True,Elo -77 ↓ | season win% +.15 ↑ | L10 margin -6.5 ↓
-2026-01-09,S3G03053,LUM,ZEP,0.501,1355,1517,0.384,LUM,2,2,110,116,ZEP,False,Elo -162 ↓ | L10 margin -21.9 ↓ | L10 defence -13.8 pts ↓
-2026-01-10,S3G03057,EMB,JUN,0.312,1272,1612,0.183,JUN,2,2,113,99,EMB,False,Elo -340 ↓ | season win% -.48 ↓ | L10 margin -8.7 ↓
-2026-01-10,S3G03061,UMB,KES,0.338,1373,1689,0.204,KES,2,2,99,117,KES,True,Elo -316 ↓ | season win% -.37 ↓ | L10 margin -10.2 ↓
-2026-01-10,S3G03059,NOR,VLE,0.596,1445,1432,0.63,NOR,3,3,118,108,NOR,True,L10 margin +6.4 ↑ | L10 offence +6.0 pts ↑ | home/away split -.14 ↓
-2026-01-10,S3G03058,GLD,DUN,0.594,1520,1480,0.666,GLD,2,2,105,109,DUN,False,L10 margin -0.8 ↓ | season win% +.13 ↑ | Elo +40 ↑
-2026-01-10,S3G03060,TMB,HLW,0.559,1502,1480,0.643,TMB,2,2,118,102,TMB,True,season win% +.16 ↑ | L10 margin -3.6 ↓ | L10 defence -3.3 pts ↓
-2026-01-10,S3G03062,WYR,QRY,0.484,1639,1692,0.539,QRY,2,2,119,124,QRY,True,Elo -53 ↓ | L10 margin -4.0 ↓ | home/away split +.06 ↓
-2026-01-11,S3G03069,YEL,FAL,0.836,1563,1186,0.933,YEL,2,2,134,100,YEL,True,Elo +377 ↑ | L10 margin +21.0 ↑ | season win% +.31 ↑
-2026-01-11,S3G03065,MRW,OBS,0.565,1469,1511,0.554,MRW,3,3,116,95,MRW,True,home/away split -.06 ↓ | L10 defence +2.9 pts ↑ | season win% -.10 ↓
-2026-01-11,S3G03067,PNE,BRK,0.449,1391,1447,0.536,BRK,2,2,109,106,PNE,False,season win% -.27 ↓ | Elo -55 ↓ | home/away split -.16 ↓
-2026-01-11,S3G03068,SLT,XEN,0.542,1541,1602,0.527,SLT,2,2,111,129,XEN,False,Elo -61 ↓ | L10 margin +1.3 ↓ | season win% +.07 ↑
-2026-01-11,S3G03066,MST,HAV,0.476,1586,1739,0.396,HAV,2,2,108,109,HAV,True,Elo -153 ↓ | L10 margin -15.6 ↓ | season win% -.17 ↓
-2026-01-11,S3G03064,LUM,SKY,0.479,1340,1428,0.49,SKY,2,2,107,124,SKY,True,Elo -87 ↓ | L10 margin -12.5 ↓ | L10 defence -7.4 pts ↓
-2026-01-11,S3G03063,AUR,RVN,0.504,1334,1370,0.562,AUR,2,2,138,125,AUR,True,home/away split -.11 ↓ | L10 margin -9.7 ↓ | season win% -.18 ↓
-2026-01-12,S3G03074,MST,AUR,0.801,1581,1356,0.852,MST,1,1,122,113,MST,True,Elo +225 ↑ | L10 margin +13.4 ↑ | season win% +.32 ↑
-2026-01-12,S3G03076,QRY,IRN,0.714,1711,1620,0.728,QRY,2,3,118,117,QRY,True,L10 margin +5.7 ↑ | season win% +.17 ↑ | Elo +91 ↑
-2026-01-12,S3G03078,UMB,WYR,0.333,1363,1619,0.266,WYR,2,2,112,114,WYR,True,Elo -257 ↓ | season win% -.37 ↓ | L10 margin -13.3 ↓
-2026-01-12,S3G03071,DUN,KES,0.334,1503,1700,0.337,KES,2,2,117,104,DUN,False,Elo -198 ↓ | season win% -.25 ↓ | Elo p(home) 34% ↓
-2026-01-12,S3G03077,SKY,BRK,0.629,1456,1434,0.643,SKY,1,1,124,120,SKY,True,L10 margin +5.6 ↑ | season win% -.06 ↓ | home/away split +.14 ↑
-2026-01-12,S3G03072,EMB,GLD,0.401,1322,1497,0.366,GLD,2,2,102,100,EMB,False,Elo -175 ↓ | season win% -.31 ↓ | home/away split -.17 ↓
-2026-01-12,S3G03080,YEL,HAV,0.417,1567,1745,0.363,HAV,1,1,112,100,YEL,False,Elo -178 ↓ | L10 margin -12.5 ↓ | season win% -.20 ↓
-2026-01-12,S3G03079,VLE,JUN,0.429,1415,1562,0.405,JUN,2,2,124,122,VLE,False,Elo -147 ↓ | season win% -.17 ↓ | home/away split -.13 ↓
-2026-01-12,S3G03070,COP,CAS,0.55,1585,1621,0.564,COP,3,3,104,101,COP,True,L10 margin -2.1 ↓ | home/away split +.10 ↓ | H2H 50% ↑
-2026-01-12,S3G03075,NOR,ZEP,0.518,1462,1531,0.515,NOR,2,3,113,112,NOR,True,Elo -70 ↓ | L10 margin -3.9 ↓ | L10 defence -5.9 pts ↓
-2026-01-12,S3G03073,HLW,TMB,0.496,1461,1521,0.528,TMB,2,2,121,101,HLW,False,Elo -61 ↓ | home/away split -.10 ↓ | L10 margin -0.7 ↓
-2026-01-13,S3G03084,MRW,LUM,0.787,1496,1312,0.82,MRW,2,2,112,105,MRW,True,Elo +184 ↑ | L10 margin +21.1 ↑ | season win% +.17 ↑
-2026-01-13,S3G03086,SLT,RVN,0.746,1509,1348,0.801,SLT,2,2,113,118,RVN,False,Elo +162 ↑ | season win% +.30 ↑ | L10 margin +4.5 ↑
-2026-01-13,S3G03083,IRN,VLE,0.737,1617,1429,0.824,IRN,1,1,127,107,IRN,True,Elo +188 ↑ | L10 margin +4.2 ↑ | home/away split +.19 ↑
-2026-01-13,S3G03087,YEL,HLW,0.732,1601,1489,0.751,YEL,1,1,111,116,HLW,False,Elo +112 ↑ | L10 margin +8.9 ↑ | L10 offence +7.7 pts ↑
-2026-01-13,S3G03082,FAL,XEN,0.316,1182,1633,0.106,XEN,2,2,100,118,XEN,True,Elo -451 ↓ | season win% -.42 ↓ | L10 margin -24.0 ↓
-2026-01-13,S3G03081,AUR,UMB,0.537,1350,1357,0.604,AUR,1,1,117,112,AUR,True,L10 defence -7.7 pts ↓ | L10 margin -3.0 ↓ | home/away split +.01 ↓
-2026-01-13,S3G03085,PNE,OBS,0.465,1404,1484,0.5,OBS,2,2,105,112,OBS,True,season win% -.30 ↓ | Elo -80 ↓ | L10 defence +5.8 pts ↑
-2026-01-14,S3G03090,EMB,KES,0.275,1337,1663,0.195,KES,2,2,102,119,KES,True,Elo -327 ↓ | season win% -.42 ↓ | L10 margin -12.7 ↓
-2026-01-14,S3G03089,COP,MST,0.568,1597,1587,0.627,COP,2,2,115,105,COP,True,L10 margin -1.2 ↓ | season win% +.08 ↑ | L20 form +.2 ↓
-2026-01-14,S3G03088,BRK,DUN,0.544,1423,1540,0.447,BRK,2,2,128,106,BRK,True,Elo -117 ↓ | L10 margin -8.8 ↓ | L20 form -.3 ↑
-2026-01-14,S3G03091,ZEP,WYR,0.491,1525,1625,0.471,WYR,2,2,92,119,WYR,True,Elo -100 ↓ | season win% -.21 ↓ | home/away split -.08 ↓
-2026-01-15,S3G03092,CAS,TMB,0.718,1609,1493,0.755,CAS,3,3,123,111,CAS,True,Elo +116 ↑ | L10 margin +11.3 ↑ | home/away split +.21 ↑
-2026-01-15,S3G03093,NOR,SKY,0.629,1468,1467,0.615,NOR,3,3,120,109,NOR,True,L10 margin +4.1 ↑ | season win% -.05 ↓ | home/away split +.13 ↑
-2026-01-15,S3G03094,QRY,HAV,0.558,1715,1710,0.619,QRY,3,3,121,115,QRY,True,L10 margin -7.0 ↓ | season win% +.08 ↑ | L10 defence -2.9 pts ↓
-2026-01-16,S3G03104,VLE,LUM,0.798,1419,1305,0.753,VLE,3,3,114,100,VLE,True,Elo +114 ↑ | L10 margin +11.1 ↑ | season win% +.20 ↑
-2026-01-16,S3G03100,HLW,UMB,0.76,1519,1343,0.813,HLW,3,3,122,102,HLW,True,Elo +175 ↑ | L10 margin +5.6 ↑ | season win% +.17 ↑
-2026-01-16,S3G03101,IRN,RVN,0.744,1626,1380,0.868,IRN,3,3,128,112,IRN,True,Elo +247 ↑ | season win% +.23 ↑ | Elo p(home) 87% ↑
-2026-01-16,S3G03097,EMB,COP,0.304,1327,1614,0.232,COP,2,2,114,128,COP,True,Elo -288 ↓ | season win% -.37 ↓ | L10 margin -12.1 ↓
-2026-01-16,S3G03103,PNE,XEN,0.34,1383,1638,0.268,XEN,3,3,106,125,XEN,True,Elo -255 ↓ | season win% -.36 ↓ | Elo p(home) 27% ↓
-2026-01-16,S3G03095,BRK,KES,0.377,1458,1673,0.314,KES,2,2,106,112,KES,True,Elo -215 ↓ | L10 margin -8.7 ↓ | season win% -.19 ↓
-2026-01-16,S3G03105,YEL,OBS,0.607,1572,1505,0.699,YEL,3,3,122,113,YEL,True,L10 margin +10.8 ↑ | home/away split -.05 ↓ | L10 offence +6.9 pts ↑
-2026-01-16,S3G03096,DUN,WYR,0.4,1504,1656,0.399,WYR,2,2,128,110,DUN,False,Elo -151 ↓ | season win% -.25 ↓ | home/away split -.14 ↓
-2026-01-16,S3G03102,MRW,JUN,0.581,1503,1548,0.549,MRW,3,4,123,98,MRW,True,L10 margin +10.2 ↑ | home/away split -.01 ↓ | season win% -.17 ↓
-2026-01-16,S3G03099,GLD,SLT,0.556,1483,1477,0.621,GLD,4,3,110,102,GLD,True,L10 margin -2.9 ↓ | L10 defence +3.3 pts ↑ | season win% -.10 ↓
-2026-01-16,S3G03106,ZEP,MST,0.545,1494,1570,0.505,ZEP,2,2,133,106,ZEP,True,Elo -76 ↓ | L10 defence +3.0 pts ↑ | home/away split +.20 ↑
-2026-01-16,S3G03098,FAL,AUR,0.504,1177,1364,0.35,FAL,3,3,118,117,FAL,True,Elo -187 ↓ | L10 margin -9.4 ↓ | Elo p(home) 35% ↓
-2026-01-17,S3G03109,JUN,EMB,0.681,1519,1315,0.837,JUN,1,1,101,92,JUN,True,Elo +204 ↑ | season win% +.40 ↑ | L10 margin +0.7 ↓
-2026-01-17,S3G03107,COP,ZEP,0.661,1626,1526,0.738,COP,1,1,113,127,ZEP,False,Elo +99 ↑ | L10 margin -1.6 ↓ | season win% +.15 ↑
-2026-01-17,S3G03112,RVN,PNE,0.624,1373,1368,0.62,RVN,1,1,108,110,PNE,False,L10 offence +6.2 pts ↑ | season win% +.11 ↑ | home/away split +.15 ↑
-2026-01-17,S3G03111,QRY,HAV,0.582,1729,1696,0.657,QRY,2,2,118,114,QRY,True,L10 margin -3.8 ↓ | season win% +.10 ↑ | Elo +33 ↑
-2026-01-17,S3G03110,NOR,CAS,0.435,1487,1620,0.424,CAS,2,2,107,104,NOR,False,Elo -133 ↓ | season win% -.20 ↓ | home/away split +.00 ↓
-2026-01-17,S3G03113,SKY,TMB,0.548,1448,1481,0.567,SKY,2,2,122,119,SKY,True,season win% -.15 ↓ | home/away split +.05 ↓ | H2H 0% ↓
-2026-01-17,S3G03108,HLW,YEL,0.487,1529,1585,0.535,YEL,1,1,120,111,HLW,False,Elo -56 ↓ | home/away split +.00 ↓ | L10 margin -7.8 ↓
-2026-01-18,S3G03114,IRN,MST,0.718,1633,1537,0.734,IRN,2,2,118,115,IRN,True,Elo +96 ↑ | L10 margin +6.6 ↑ | home/away split +.39 ↑
-2026-01-18,S3G03115,OBS,WYR,0.441,1492,1619,0.432,WYR,2,2,118,120,WYR,True,Elo -127 ↓ | home/away split -.11 ↓ | L10 margin -8.2 ↓
-2026-01-18,S3G03116,UMB,VLE,0.461,1333,1431,0.474,VLE,2,2,96,123,VLE,True,season win% -.23 ↓ | Elo -98 ↓ | home/away split -.11 ↓
-2026-01-19,S3G03123,KES,FAL,0.822,1685,1186,0.965,KES,3,3,108,106,KES,True,Elo +499 ↑ | L10 margin +21.4 ↑ | season win% +.50 ↑
-2026-01-19,S3G03118,BRK,LUM,0.768,1447,1293,0.793,BRK,3,3,122,102,BRK,True,Elo +153 ↑ | L10 margin +14.7 ↑ | season win% +.19 ↑
-2026-01-19,S3G03122,HAV,HLW,0.754,1686,1550,0.776,HAV,2,2,119,118,HAV,True,Elo +136 ↑ | L10 margin +8.0 ↑ | season win% +.18 ↑
-2026-01-19,S3G03117,AUR,XEN,0.34,1355,1653,0.221,XEN,3,3,102,123,XEN,True,Elo -298 ↓ | season win% -.42 ↓ | L10 margin -12.2 ↓
-2026-01-19,S3G03119,DUN,MRW,0.576,1541,1532,0.626,DUN,3,3,130,126,DUN,True,L10 margin -6.5 ↓ | home/away split +.16 ↑ | season win% -.04 ↓
-2026-01-19,S3G03120,EMB,SKY,0.452,1308,1460,0.398,SKY,2,2,121,118,EMB,False,Elo -152 ↓ | season win% -.21 ↓ | home/away split +.00 ↓
-2026-01-19,S3G03121,GLD,SLT,0.544,1499,1461,0.663,GLD,3,3,102,100,GLD,True,L10 margin +0.1 ↓ | Elo +38 ↑ | L10 defence +3.8 pts ↑
-2026-01-20,S3G03125,HLW,LUM,0.825,1547,1282,0.88,HLW,1,1,110,128,LUM,False,Elo +265 ↑ | L10 margin +20.0 ↑ | season win% +.18 ↑
-2026-01-20,S3G03132,WYR,OBS,0.744,1628,1482,0.786,WYR,2,2,114,113,WYR,True,Elo +146 ↑ | L10 margin +7.1 ↑ | season win% +.15 ↑
-2026-01-20,S3G03129,QRY,NOR,0.733,1739,1503,0.861,QRY,3,3,118,122,NOR,False,Elo +236 ↑ | season win% +.36 ↑ | Elo p(home) 86% ↑
-2026-01-20,S3G03128,PNE,CAS,0.34,1383,1604,0.307,CAS,3,3,110,123,CAS,True,Elo -221 ↓ | season win% -.34 ↓ | L10 margin -7.1 ↓
-2026-01-20,S3G03130,RVN,ZEP,0.429,1359,1570,0.32,ZEP,3,3,108,113,ZEP,True,Elo -211 ↓ | Elo p(home) 32% ↓ | L10 margin -8.0 ↓
-2026-01-20,S3G03126,JUN,COP,0.559,1526,1582,0.534,JUN,3,3,120,105,JUN,True,Elo -56 ↓ | L10 margin -8.8 ↓ | home/away split +.18 ↑
-2026-01-20,S3G03124,GLD,VLE,0.556,1506,1463,0.67,GLD,1,2,128,100,GLD,True,L10 margin -0.4 ↓ | Elo +43 ↑ | L10 defence +3.0 pts ↑
-2026-01-20,S3G03131,TMB,YEL,0.519,1470,1563,0.48,TMB,3,3,113,105,TMB,True,Elo -94 ↓ | L10 margin -8.7 ↓ | season win% +.06 ↑
-2026-01-20,S3G03127,MST,IRN,0.51,1530,1640,0.457,MST,2,2,124,119,MST,True,Elo -110 ↓ | L10 margin -6.6 ↓ | L10 offence -3.9 pts ↓
-2026-01-21,S3G03135,HAV,SKY,0.789,1688,1443,0.867,HAV,2,2,127,107,HAV,True,Elo +246 ↑ | season win% +.23 ↑ | L10 margin +9.0 ↑
-2026-01-21,S3G03134,EMB,MRW,0.364,1326,1520,0.341,MRW,2,2,121,126,MRW,True,Elo -194 ↓ | season win% -.24 ↓ | L10 margin -12.5 ↓
-2026-01-21,S3G03133,BRK,XEN,0.405,1458,1666,0.324,XEN,2,2,132,126,BRK,False,Elo -208 ↓ | L10 margin -9.9 ↓ | Elo p(home) 32% ↓
-2026-01-22,S3G03138,KES,OBS,0.783,1686,1480,0.838,KES,3,2,111,106,KES,True,Elo +206 ↑ | L10 margin +10.3 ↑ | season win% +.17 ↑
-2026-01-22,S3G03141,QRY,YEL,0.741,1707,1540,0.805,QRY,2,2,116,110,QRY,True,Elo +167 ↑ | season win% +.27 ↑ | L10 margin +3.6 ↑
-2026-01-22,S3G03143,VLE,RVN,0.676,1442,1348,0.731,VLE,2,2,112,103,VLE,True,Elo +93 ↑ | season win% +.18 ↑ | L10 defence +4.4 pts ↑
-2026-01-22,S3G03142,UMB,FAL,0.646,1302,1186,0.756,UMB,4,3,122,106,UMB,True,Elo +116 ↑ | L10 margin -0.1 ↓ | season win% +.09 ↑
-2026-01-22,S3G03139,MST,JUN,0.605,1550,1552,0.611,MST,2,2,135,111,MST,True,L10 offence +7.3 pts ↑ | season win% -.16 ↓ | home/away split +.14 ↑
-2026-01-22,S3G03136,AUR,SLT,0.411,1342,1454,0.454,SLT,3,3,112,110,AUR,False,Elo -112 ↓ | season win% -.40 ↓ | L10 margin -6.6 ↓
-2026-01-22,S3G03137,DUN,CAS,0.473,1553,1619,0.519,CAS,3,2,118,114,DUN,False,Elo -67 ↓ | L10 margin -3.6 ↓ | L10 defence -3.9 pts ↓
-2026-01-22,S3G03140,NOR,WYR,0.489,1536,1631,0.478,WYR,2,2,104,112,WYR,True,season win% -.26 ↓ | Elo -96 ↓ | L10 margin +4.7 ↑
-2026-01-23,S3G03146,COP,LUM,0.817,1557,1343,0.844,COP,3,3,113,101,COP,True,Elo +214 ↑ | L10 margin +10.9 ↑ | season win% +.29 ↑
-2026-01-23,S3G03152,QRY,VLE,0.781,1714,1453,0.877,QRY,1,1,104,105,VLE,False,Elo +261 ↑ | season win% +.24 ↑ | L10 margin +4.9 ↑
-2026-01-23,S3G03149,JUN,RVN,0.666,1527,1337,0.826,JUN,1,1,125,106,JUN,True,Elo +191 ↑ | season win% +.32 ↑ | L10 margin -3.6 ↓
-2026-01-23,S3G03144,AUR,MST,0.365,1354,1574,0.309,MST,1,1,112,122,MST,True,Elo -220 ↓ | season win% -.30 ↓ | home/away split -.07 ↓
-2026-01-23,S3G03147,HAV,MRW,0.626,1696,1532,0.803,HAV,2,2,111,106,HAV,True,Elo +164 ↑ | L10 margin -2.0 ↓ | season win% +.17 ↑
-2026-01-23,S3G03151,PNE,GLD,0.418,1367,1527,0.387,GLD,3,3,103,109,GLD,True,Elo -160 ↓ | season win% -.31 ↓ | L10 margin -3.3 ↓
-2026-01-23,S3G03154,UMB,EMB,0.555,1315,1314,0.614,UMB,1,2,110,118,EMB,False,L10 margin -6.1 ↓ | L10 defence -5.6 pts ↓ | season win% +.05 ↑
-2026-01-23,S3G03145,BRK,XEN,0.445,1486,1638,0.398,XEN,2,2,120,107,BRK,False,Elo -152 ↓ | L10 margin -9.3 ↓ | H2H 75% ↑
-2026-01-23,S3G03148,HLW,IRN,0.484,1486,1620,0.422,IRN,3,3,110,92,HLW,False,Elo -134 ↓ | L10 margin +0.7 ↓ | H2H 50% ↑
-2026-01-23,S3G03150,NOR,CAS,0.513,1515,1604,0.487,NOR,1,1,96,101,CAS,False,Elo -89 ↓ | season win% -.17 ↓ | home/away split +.02 ↓
-2026-01-23,S3G03153,TMB,ZEP,0.502,1493,1581,0.488,TMB,3,3,122,111,TMB,True,Elo -88 ↓ | L10 margin -9.7 ↓ | season win% +.07 ↑
-2026-01-24,S3G03155,BRK,RVN,0.791,1519,1328,0.826,BRK,1,1,124,122,BRK,True,Elo +191 ↑ | L10 margin +10.1 ↑ | season win% +.19 ↑
-2026-01-24,S3G03163,QRY,AUR,0.782,1700,1340,0.926,QRY,1,1,121,113,QRY,True,Elo +359 ↑ | season win% +.54 ↑ | L10 margin +6.2 ↑
-2026-01-24,S3G03156,DUN,SKY,0.731,1568,1436,0.772,DUN,2,3,119,112,DUN,True,Elo +132 ↑ | L10 margin +3.8 ↑ | L10 defence +3.6 pts ↑
-2026-01-24,S3G03157,FAL,YEL,0.291,1173,1534,0.166,YEL,2,2,104,117,YEL,True,Elo -361 ↓ | season win% -.30 ↓ | L10 margin -19.6 ↓
-2026-01-24,S3G03160,MST,VLE,0.651,1588,1468,0.76,MST,1,1,114,118,VLE,False,Elo +120 ↑ | home/away split +.16 ↑ | season win% -.01 ↓
-2026-01-24,S3G03158,HAV,MRW,0.65,1702,1525,0.814,HAV,1,1,126,117,HAV,True,Elo +177 ↑ | L10 margin -3.1 ↓ | season win% +.19 ↑
-2026-01-24,S3G03159,JUN,IRN,0.558,1537,1585,0.545,JUN,1,1,122,112,JUN,True,L10 margin -5.7 ↓ | home/away split +.40 ↑ | season win% +.07 ↑
-2026-01-24,S3G03164,WYR,KES,0.543,1652,1691,0.559,WYR,2,2,131,127,WYR,True,L10 defence -8.7 pts ↓ | L10 margin -7.2 ↓ | home/away split +.16 ↑
-2026-01-24,S3G03161,NOR,XEN,0.473,1497,1605,0.461,XEN,1,1,111,128,XEN,True,Elo -107 ↓ | home/away split -.11 ↓ | season win% -.18 ↓
-2026-01-24,S3G03162,OBS,SLT,0.518,1475,1442,0.657,OBS,2,2,113,107,OBS,True,L10 margin -2.8 ↓ | Elo +33 ↑ | L10 defence -2.6 pts ↓
-2026-01-25,S3G03170,ZEP,LUM,0.814,1555,1336,0.848,ZEP,2,2,123,114,ZEP,True,Elo +219 ↑ | L10 margin +14.7 ↑ | season win% +.20 ↑
-2026-01-25,S3G03169,TMB,EMB,0.753,1518,1342,0.814,TMB,2,2,112,108,TMB,True,Elo +176 ↑ | season win% +.32 ↑ | L10 margin +6.1 ↑
-2026-01-25,S3G03165,BRK,VLE,0.642,1522,1494,0.65,BRK,1,1,108,112,VLE,False,L10 margin +5.2 ↑ | home/away split +.12 ↑ | season win% -.02 ↓
-2026-01-25,S3G03166,CAS,GLD,0.63,1621,1542,0.715,CAS,2,2,129,110,CAS,True,Elo +80 ↑ | Elo p(home) 71% ↑ | L20 form +.1 ↓
-2026-01-25,S3G03168,PNE,UMB,0.603,1353,1287,0.699,PNE,2,2,108,128,UMB,False,L10 margin +10.0 ↑ | home/away split +.03 ↓ | season win% -.04 ↓
-2026-01-25,S3G03167,HLW,COP,0.563,1521,1564,0.553,HLW,2,2,121,112,HLW,True,home/away split -.06 ↓ | season win% -.13 ↓ | L10 defence +0.8 pts ↑
-2026-01-26,S3G03173,JUN,FAL,0.834,1558,1165,0.938,JUN,2,2,100,109,FAL,False,Elo +393 ↑ | L10 margin +12.3 ↑ | season win% +.48 ↑
-2026-01-26,S3G03172,HAV,MST,0.747,1710,1561,0.788,HAV,2,2,103,105,MST,False,Elo +149 ↑ | L10 margin +4.1 ↑ | season win% +.17 ↑
-2026-01-26,S3G03171,AUR,KES,0.337,1338,1677,0.184,KES,2,2,127,118,AUR,False,Elo -339 ↓ | season win% -.48 ↓ | L10 margin -11.0 ↓
-2026-01-26,S3G03174,MRW,NOR,0.65,1518,1471,0.674,MRW,2,2,127,121,MRW,True,L10 margin +3.9 ↑ | season win% +.07 ↑ | L10 defence +0.3 pts ↑
-2026-01-26,S3G03175,QRY,YEL,0.645,1702,1541,0.8,QRY,2,2,114,115,YEL,False,Elo +161 ↑ | season win% +.27 ↑ | L10 margin -2.9 ↓
-2026-01-26,S3G03176,RVN,SLT,0.415,1324,1429,0.464,SLT,2,2,128,109,RVN,False,season win% -.26 ↓ | Elo -105 ↓ | home/away split -.09 ↓
-2026-01-26,S3G03177,XEN,WYR,0.58,1631,1666,0.565,XEN,2,2,104,100,XEN,True,L10 margin +6.6 ↑ | home/away split -.08 ↓ | season win% -.10 ↓
-2026-01-27,S3G03189,ZEP,PNE,0.834,1561,1307,0.872,ZEP,2,2,109,110,PNE,False,Elo +254 ↑ | L10 margin +10.0 ↑ | season win% +.26 ↑
-2026-01-27,S3G03183,MRW,FAL,0.825,1530,1220,0.904,MRW,1,1,104,112,FAL,False,Elo +309 ↑ | L10 margin +19.2 ↑ | season win% +.30 ↑
-2026-01-27,S3G03178,CAS,LUM,0.819,1637,1330,0.903,CAS,2,2,115,93,CAS,True,Elo +307 ↑ | L10 margin +15.1 ↑ | season win% +.32 ↑
-2026-01-27,S3G03182,IRN,SKY,0.707,1564,1427,0.777,IRN,3,3,104,102,IRN,True,Elo +137 ↑ | L10 margin +3.4 ↑ | season win% +.16 ↑
-2026-01-27,S3G03187,UMB,KES,0.298,1332,1634,0.218,KES,2,1,101,109,KES,True,Elo -302 ↓ | season win% -.37 ↓ | L10 margin -13.6 ↓
-2026-01-27,S3G03188,WYR,HLW,0.653,1652,1541,0.75,WYR,1,2,119,108,WYR,True,Elo +111 ↑ | season win% +.21 ↑ | L10 margin -2.4 ↓
-2026-01-27,S3G03181,GLD,OBS,0.619,1526,1487,0.664,GLD,2,3,128,126,GLD,True,home/away split +.15 ↑ | L10 defence +4.9 pts ↑ | season win% +.03 ↑
-2026-01-27,S3G03180,EMB,BRK,0.387,1337,1500,0.382,BRK,2,2,107,139,BRK,True,Elo -163 ↓ | season win% -.25 ↓ | home/away split -.03 ↓
-2026-01-27,S3G03185,SLT,JUN,0.589,1397,1503,0.462,SLT,1,1,118,127,JUN,False,Elo -107 ↓ | home/away split +.17 ↑ | L20 form -.2 ↑
-2026-01-27,S3G03179,COP,VLE,0.584,1544,1516,0.649,COP,2,2,115,108,COP,True,L10 margin +0.7 ↓ | Elo +27 ↑ | season win% +.04 ↑
-2026-01-27,S3G03186,TMB,DUN,0.569,1523,1577,0.539,TMB,2,3,102,120,DUN,False,Elo -53 ↓ | home/away split +.38 ↑ | L10 margin -1.5 ↓
-2026-01-27,S3G03184,NOR,YEL,0.512,1459,1554,0.479,NOR,1,1,117,101,NOR,True,Elo -95 ↓ | home/away split -.02 ↓ | L10 margin -3.6 ↓
-2026-01-28,S3G03191,CAS,TMB,0.731,1642,1491,0.791,CAS,1,1,123,99,CAS,True,Elo +151 ↑ | L10 margin +10.2 ↑ | home/away split +.29 ↑
-2026-01-28,S3G03193,RVN,QRY,0.319,1357,1690,0.189,QRY,2,2,104,109,QRY,True,Elo -333 ↓ | season win% -.42 ↓ | Elo p(home) 19% ↓
-2026-01-28,S3G03194,XEN,HAV,0.582,1645,1690,0.55,XEN,2,2,107,112,HAV,False,L10 margin +6.6 ↑ | season win% -.05 ↓ | home/away split +.03 ↓
-2026-01-28,S3G03190,AUR,JUN,0.419,1380,1524,0.409,JUN,2,1,117,124,JUN,True,Elo -144 ↓ | season win% -.43 ↓ | L10 margin -2.3 ↓
-2026-01-28,S3G03192,LUM,NOR,0.478,1325,1489,0.382,NOR,1,1,107,110,NOR,True,Elo -164 ↓ | L10 margin -12.9 ↓ | L10 defence -6.7 pts ↓
-2026-01-29,S3G03196,IRN,FAL,0.821,1568,1269,0.899,IRN,2,2,112,95,IRN,True,Elo +300 ↑ | L10 margin +10.4 ↑ | season win% +.37 ↑
-2026-01-29,S3G03201,WYR,UMB,0.805,1664,1323,0.918,WYR,2,2,132,113,WYR,True,Elo +340 ↑ | season win% +.40 ↑ | L10 margin +8.3 ↑
-2026-01-29,S3G03198,MST,EMB,0.794,1580,1311,0.882,MST,3,2,123,106,MST,True,Elo +269 ↑ | season win% +.27 ↑ | L10 margin +5.9 ↑
-2026-01-29,S3G03195,GLD,SKY,0.76,1533,1423,0.749,GLD,2,2,114,90,GLD,True,Elo +110 ↑ | L10 margin +4.7 ↑ | season win% +.16 ↑
-2026-01-29,S3G03197,KES,MRW,0.661,1643,1481,0.801,KES,2,2,114,109,KES,True,Elo +162 ↑ | L10 margin +0.8 ↓ | season win% +.20 ↑
-2026-01-29,S3G03199,OBS,ZEP,0.56,1480,1547,0.519,OBS,2,2,103,107,ZEP,False,Elo -67 ↓ | L10 margin -7.3 ↓ | home/away split +.18 ↑
-2026-01-29,S3G03200,VLE,COP,0.482,1503,1558,0.536,COP,2,2,104,109,COP,True,Elo -55 ↓ | home/away split +.00 ↓ | L10 margin -2.6 ↓
-2026-01-30,S3G03210,YEL,PNE,0.802,1524,1322,0.836,YEL,3,3,134,121,YEL,True,Elo +202 ↑ | L10 margin +11.2 ↑ | season win% +.23 ↑
-2026-01-30,S3G03209,TMB,RVN,0.705,1479,1351,0.769,TMB,2,2,121,108,TMB,True,Elo +129 ↑ | season win% +.25 ↑ | L10 margin +1.2 ↓
-2026-01-30,S3G03206,LUM,JUN,0.319,1315,1541,0.301,JUN,2,2,92,102,JUN,True,Elo -226 ↓ | season win% -.38 ↓ | L10 margin -10.1 ↓
-2026-01-30,S3G03207,OBS,HAV,0.39,1464,1710,0.277,HAV,1,2,99,113,HAV,True,Elo -247 ↓ | home/away split -.09 ↓ | Elo p(home) 28% ↓
-2026-01-30,S3G03202,AUR,NOR,0.409,1364,1499,0.421,NOR,2,2,122,111,AUR,False,Elo -135 ↓ | season win% -.21 ↓ | home/away split -.07 ↓
-2026-01-30,S3G03205,KES,COP,0.588,1649,1577,0.706,KES,1,1,107,116,COP,False,L10 margin +0.1 ↓ | Elo +72 ↑ | season win% +.08 ↑
-2026-01-30,S3G03203,CAS,QRY,0.58,1654,1696,0.555,CAS,2,2,99,117,QRY,False,L10 margin +7.1 ↑ | season win% -.12 ↓ | L10 defence +7.2 pts ↑
-2026-01-30,S3G03204,DUN,BRK,0.55,1609,1526,0.719,DUN,3,3,115,116,BRK,False,Elo +83 ↑ | L10 margin -5.9 ↓ | Elo p(home) 72% ↑
-2026-01-30,S3G03208,SLT,HLW,0.54,1376,1529,0.395,SLT,3,3,127,111,SLT,True,Elo -154 ↓ | L10 margin -5.8 ↓ | season win% +.07 ↑
-2026-01-31,S3G03212,GLD,UMB,0.82,1547,1319,0.855,GLD,2,2,119,112,GLD,True,Elo +228 ↑ | L10 margin +11.3 ↑ | season win% +.29 ↑
-2026-01-31,S3G03215,WYR,SKY,0.818,1668,1408,0.876,WYR,2,2,130,96,WYR,True,Elo +260 ↑ | L10 margin +9.4 ↑ | season win% +.31 ↑
-2026-01-31,S3G03216,XEN,IRN,0.631,1625,1573,0.681,XEN,3,2,105,108,IRN,False,L10 margin +6.8 ↑ | L20 form +.1 ↓ | season win% +.02 ↑
-2026-01-31,S3G03213,MRW,VLE,0.594,1475,1483,0.602,MRW,2,2,120,116,MRW,True,L10 margin +3.4 ↑ | L10 offence +6.3 pts ↑ | home/away split +.03 ↓
-2026-01-31,S3G03214,MST,ZEP,0.56,1586,1564,0.643,MST,2,2,118,106,MST,True,L10 margin -0.2 ↓ | Elo +22 ↑ | L10 defence -3.0 pts ↓
-2026-01-31,S3G03211,EMB,FAL,0.548,1305,1264,0.668,EMB,2,2,126,117,EMB,True,L10 margin -0.2 ↓ | Elo +41 ↑ | L10 defence -3.4 pts ↓
-2026-02-01,S3G03217,AUR,LUM,0.683,1393,1301,0.729,AUR,2,2,121,120,AUR,True,L10 margin +6.7 ↑ | Elo +92 ↑ | L10 offence +10.3 pts ↑
-2026-02-01,S3G03219,HAV,BRK,0.672,1724,1537,0.824,HAV,2,2,102,124,BRK,False,Elo +188 ↑ | L10 margin -5.2 ↓ | season win% +.15 ↑
-2026-02-01,S3G03221,OBS,QRY,0.334,1450,1729,0.241,QRY,2,2,109,111,QRY,True,Elo -280 ↓ | season win% -.26 ↓ | Elo p(home) 24% ↓
-2026-02-01,S3G03222,RVN,PNE,0.65,1339,1314,0.647,RVN,2,2,113,99,RVN,True,L10 margin +4.6 ↑ | season win% +.06 ↑ | home/away split +.08 ↓
-2026-02-01,S3G03218,COP,DUN,0.581,1612,1598,0.632,COP,2,2,123,110,COP,True,L10 margin -0.8 ↓ | season win% +.12 ↑ | L10 defence +3.9 pts ↑
-2026-02-01,S3G03224,TMB,CAS,0.445,1490,1621,0.427,CAS,2,2,117,123,CAS,True,Elo -131 ↓ | L10 margin -9.2 ↓ | L10 defence -7.8 pts ↓
-2026-02-01,S3G03223,SLT,NOR,0.553,1411,1469,0.531,SLT,2,2,121,118,SLT,True,Elo -58 ↓ | L10 margin -2.8 ↓ | season win% +.14 ↑
-2026-02-01,S3G03220,HLW,JUN,0.465,1494,1554,0.528,JUN,2,2,107,130,JUN,True,Elo -60 ↓ | season win% -.20 ↓ | home/away split -.04 ↓
-2026-02-01,S3G03225,YEL,KES,0.491,1532,1614,0.496,KES,2,2,111,108,YEL,False,Elo -83 ↓ | L10 margin -0.4 ↓ | season win% -.17 ↓
-2026-02-02,S3G03227,XEN,UMB,0.827,1605,1314,0.894,XEN,2,2,129,105,XEN,True,Elo +291 ↑ | L10 margin +13.0 ↑ | season win% +.31 ↑
-2026-02-02,S3G03228,ZEP,EMB,0.802,1546,1319,0.854,ZEP,2,2,124,96,ZEP,True,Elo +227 ↑ | season win% +.23 ↑ | L10 margin +8.5 ↑
-2026-02-02,S3G03226,MST,IRN,0.53,1604,1593,0.627,MST,2,2,113,111,MST,True,L10 margin -0.1 ↓ | L10 defence -3.1 pts ↓ | season win% -.06 ↓
-2026-02-03,S3G03231,WYR,FAL,0.834,1675,1249,0.949,WYR,3,3,120,124,FAL,False,Elo +426 ↑ | L10 margin +17.5 ↑ | season win% +.51 ↑
-2026-02-03,S3G03230,SKY,VLE,0.517,1400,1471,0.514,SKY,3,3,98,124,VLE,False,Elo -71 ↓ | L10 defence -8.4 pts ↓ | L10 margin -9.2 ↓
-2026-02-03,S3G03229,MRW,GLD,0.5,1487,1553,0.521,GLD,3,3,92,110,GLD,True,Elo -66 ↓ | L10 margin -3.6 ↓ | L10 defence -8.1 pts ↓
-2026-02-04,S3G03232,BRK,HLW,0.777,1595,1460,0.775,BRK,3,3,112,104,BRK,True,Elo +135 ↑ | L10 margin +11.6 ↑ | L10 offence +7.6 pts ↑
-2026-02-04,S3G03234,COP,TMB,0.741,1631,1474,0.796,COP,3,3,125,121,COP,True,Elo +156 ↑ | L10 margin +7.9 ↑ | L10 defence +4.7 pts ↑
-2026-02-04,S3G03235,JUN,KES,0.642,1588,1600,0.596,JUN,3,3,115,120,KES,False,L10 margin +5.1 ↑ | L5 form +.4 ↑ | home/away split +.28 ↑
-2026-02-04,S3G03236,OBS,NOR,0.624,1445,1457,0.597,OBS,3,3,107,110,NOR,False,L10 margin -0.2 ↓ | home/away split +.17 ↑ | season win% +.08 ↑
-2026-02-04,S3G03233,CAS,HAV,0.605,1637,1665,0.574,CAS,3,3,130,97,CAS,True,L10 margin +5.6 ↑ | season win% -.05 ↓ | L10 defence +4.4 pts ↑
-2026-02-04,S3G03238,YEL,DUN,0.6,1546,1579,0.566,YEL,3,3,117,121,DUN,False,L10 margin -3.7 ↓ | L10 defence -0.2 pts ↑ | season win% +.03 ↑
-2026-02-04,S3G03237,RVN,AUR,0.589,1358,1397,0.559,RVN,3,3,130,120,RVN,True,L10 margin -1.9 ↓ | season win% +.08 ↑ | L10 defence +2.9 pts ↑
-2026-02-05,S3G03243,QRY,SLT,0.8,1734,1424,0.904,QRY,4,4,96,103,SLT,False,Elo +310 ↑ | L10 margin +9.3 ↑ | season win% +.19 ↑
-2026-02-05,S3G03244,SKY,WYR,0.332,1366,1636,0.252,WYR,2,2,101,134,WYR,True,Elo -269 ↓ | season win% -.32 ↓ | L10 margin -17.3 ↓
-2026-02-05,S3G03239,FAL,VLE,0.338,1289,1505,0.314,VLE,2,2,119,115,FAL,False,Elo -216 ↓ | season win% -.31 ↓ | L10 margin -8.0 ↓
-2026-02-05,S3G03245,UMB,EMB,0.602,1308,1311,0.61,UMB,3,3,127,97,UMB,True,L10 margin +0.7 ↓ | season win% +.02 ↑ | H2H 50% ↑
-2026-02-05,S3G03240,IRN,XEN,0.587,1585,1611,0.578,IRN,3,3,116,113,IRN,True,L10 margin -5.0 ↓ | home/away split +.18 ↑ | H2H 75% ↑
-2026-02-05,S3G03246,ZEP,MST,0.538,1555,1612,0.534,ZEP,3,3,122,99,ZEP,True,Elo -57 ↓ | L10 margin -0.2 ↓ | home/away split +.21 ↑
-2026-02-05,S3G03242,PNE,LUM,0.528,1296,1298,0.61,PNE,4,4,119,113,PNE,True,L10 margin -0.6 ↓ | home/away split +.09 ↓ | L10 defence -2.5 pts ↓
-2026-02-05,S3G03241,MRW,GLD,0.493,1456,1584,0.432,GLD,2,2,134,111,MRW,False,Elo -127 ↓ | L10 margin -8.3 ↓ | L10 defence -10.3 pts ↓
-2026-02-06,S3G03249,DUN,NOR,0.726,1598,1474,0.764,DUN,2,2,124,122,DUN,True,Elo +124 ↑ | L10 margin +5.6 ↑ | L10 offence +6.4 pts ↑
-2026-02-06,S3G03251,KES,TMB,0.721,1622,1468,0.794,KES,2,2,121,107,KES,True,Elo +154 ↑ | L10 margin +3.7 ↑ | home/away split +.36 ↑
-2026-02-06,S3G03250,HAV,RVN,0.718,1636,1378,0.875,HAV,2,2,109,113,RVN,False,Elo +258 ↑ | season win% +.32 ↑ | L10 margin +0.5 ↓
-2026-02-06,S3G03253,QRY,ZEP,0.679,1688,1584,0.742,QRY,1,1,116,110,QRY,True,Elo +104 ↑ | season win% +.23 ↑ | L10 margin -5.6 ↓
-2026-02-06,S3G03255,YEL,OBS,0.661,1527,1428,0.737,YEL,2,2,111,88,YEL,True,Elo +99 ↑ | home/away split +.08 ↓ | Elo p(home) 74% ↑
-2026-02-06,S3G03254,WYR,XEN,0.65,1652,1599,0.682,WYR,1,1,116,117,XEN,False,L10 margin +4.9 ↑ | home/away split +.14 ↑ | season win% +.11 ↑
-2026-02-06,S3G03252,LUM,EMB,0.614,1283,1285,0.61,LUM,1,1,126,109,LUM,True,L20 form -.2 ↑ | L10 defence +4.8 pts ↑ | home/away split +.30 ↑
-2026-02-06,S3G03248,COP,JUN,0.552,1636,1566,0.704,COP,2,2,114,112,COP,True,Elo +70 ↑ | L10 margin -2.9 ↓ | home/away split +.09 ↓
-2026-02-06,S3G03247,BRK,CAS,0.524,1604,1667,0.525,BRK,2,2,116,101,BRK,True,Elo -62 ↓ | L10 margin -0.3 ↓ | home/away split +.15 ↑
-2026-02-07,S3G03258,GLD,UMB,0.81,1547,1334,0.844,GLD,2,2,111,116,UMB,False,Elo +213 ↑ | L10 margin +10.0 ↑ | season win% +.29 ↑
-2026-02-07,S3G03260,PNE,MST,0.305,1310,1582,0.249,MST,2,2,105,108,MST,True,Elo -272 ↓ | season win% -.28 ↓ | L10 margin -12.5 ↓
-2026-02-07,S3G03259,HLW,RVN,0.604,1451,1412,0.665,HLW,3,1,116,106,HLW,True,L10 margin -1.5 ↓ | season win% +.09 ↑ | Elo +39 ↑
-2026-02-07,S3G03262,VLE,MRW,0.584,1481,1493,0.597,VLE,2,2,119,123,MRW,False,L10 margin +0.7 ↓ | L10 defence +5.4 pts ↑ | home/away split +.14 ↑
-2026-02-07,S3G03261,SKY,SLT,0.42,1350,1470,0.443,SLT,2,2,118,122,SLT,True,Elo -120 ↓ | L10 margin -13.2 ↓ | season win% -.20 ↓
-2026-02-07,S3G03256,DUN,IRN,0.524,1603,1597,0.621,DUN,1,2,106,126,IRN,False,L10 offence +7.1 pts ↑ | L10 margin +1.2 ↓ | L10 defence -5.9 pts ↓
-2026-02-07,S3G03257,FAL,AUR,0.5,1312,1376,0.523,FAL,2,3,119,123,AUR,False,Elo -64 ↓ | L10 margin +0.3 ↓ | L10 defence +5.6 pts ↑
-2026-02-08,S3G03269,XEN,LUM,0.803,1609,1305,0.901,XEN,2,2,118,107,XEN,True,Elo +304 ↑ | season win% +.32 ↑ | L10 margin +8.5 ↑
-2026-02-08,S3G03266,JUN,NOR,0.739,1560,1469,0.728,JUN,2,2,125,105,JUN,True,season win% +.24 ↑ | L10 margin +6.8 ↑ | Elo +91 ↑
-2026-02-08,S3G03264,EMB,CAS,0.275,1263,1641,0.153,CAS,2,2,106,122,CAS,True,Elo -377 ↓ | season win% -.37 ↓ | L10 margin -19.8 ↓
-2026-02-08,S3G03267,QRY,BRK,0.64,1698,1630,0.7,QRY,2,2,120,106,QRY,True,season win% +.19 ↑ | L10 margin -8.3 ↓ | home/away split +.34 ↑
-2026-02-08,S3G03265,HAV,ZEP,0.591,1603,1575,0.65,HAV,2,2,99,109,ZEP,False,L10 margin -6.0 ↓ | season win% +.15 ↑ | Elo +28 ↑
-2026-02-08,S3G03268,TMB,OBS,0.579,1458,1412,0.673,TMB,2,2,119,124,OBS,False,season win% +.08 ↑ | L10 defence -3.4 pts ↓ | Elo +46 ↑
-2026-02-08,S3G03263,COP,WYR,0.514,1643,1642,0.614,COP,2,2,133,118,COP,True,home/away split -.00 ↓ | L10 margin -8.7 ↓ | L10 offence -6.3 pts ↓
-2026-02-09,S3G03272,MST,VLE,0.687,1589,1461,0.767,MST,2,2,115,124,VLE,False,Elo +127 ↑ | home/away split +.17 ↑ | Elo p(home) 77% ↑
-2026-02-09,S3G03271,IRN,SLT,0.678,1636,1484,0.792,IRN,2,2,125,110,IRN,True,Elo +152 ↑ | L10 defence +3.0 pts ↑ | Elo p(home) 79% ↑
-2026-02-09,S3G03274,UMB,AUR,0.574,1369,1393,0.58,UMB,2,2,125,115,UMB,True,L10 margin +0.7 ↓ | L10 defence +4.6 pts ↑ | L20 form -.2 ↑
-2026-02-09,S3G03273,RVN,GLD,0.446,1396,1512,0.449,GLD,2,2,125,97,RVN,False,Elo -115 ↓ | season win% -.23 ↓ | home/away split -.07 ↓
-2026-02-09,S3G03270,HLW,DUN,0.528,1466,1563,0.476,HLW,2,2,108,117,DUN,False,Elo -97 ↓ | L10 margin -5.4 ↓ | home/away split +.15 ↑
-2026-02-09,S3G03275,YEL,KES,0.513,1542,1633,0.486,YEL,3,3,112,132,KES,False,Elo -90 ↓ | L10 margin -0.4 ↓ | L10 defence +0.7 pts ↑
-2026-02-10,S3G03277,COP,EMB,0.834,1663,1256,0.943,COP,2,2,133,128,COP,True,Elo +408 ↑ | L10 margin +17.5 ↑ | season win% +.40 ↑
-2026-02-10,S3G03278,JUN,ZEP,0.629,1575,1608,0.568,JUN,2,2,119,111,JUN,True,home/away split +.36 ↑ | season win% +.14 ↑ | streak +0 ↓
-2026-02-10,S3G03280,PNE,MRW,0.381,1304,1513,0.322,MRW,3,3,94,108,MRW,True,Elo -209 ↓ | season win% -.24 ↓ | home/away split -.16 ↓
-2026-02-10,S3G03276,BRK,HAV,0.617,1615,1570,0.673,BRK,2,2,113,104,BRK,True,L10 margin +9.9 ↑ | L10 offence +9.8 pts ↑ | season win% -.09 ↓
-2026-02-10,S3G03281,SKY,FAL,0.583,1336,1295,0.667,SKY,3,3,117,127,FAL,False,L10 margin -11.4 ↓ | L10 defence -6.7 pts ↓ | season win% +.14 ↑
-2026-02-10,S3G03279,OBS,TMB,0.575,1438,1432,0.621,OBS,2,2,119,99,OBS,True,L10 margin -0.8 ↓ | L20 form -.2 ↑ | L10 defence +3.7 pts ↑
-2026-02-11,S3G03284,WYR,NOR,0.791,1621,1454,0.806,WYR,3,3,111,113,NOR,False,Elo +168 ↑ | L10 margin +12.7 ↑ | season win% +.27 ↑
-2026-02-11,S3G03283,LUM,QRY,0.327,1301,1713,0.129,QRY,3,3,98,122,QRY,True,Elo -412 ↓ | season win% -.48 ↓ | Elo p(home) 13% ↓
-2026-02-11,S3G03282,CAS,XEN,0.668,1648,1613,0.659,CAS,3,3,129,109,CAS,True,L10 margin +6.1 ↑ | home/away split +.16 ↑ | L10 defence +5.8 pts ↑
-2026-02-12,S3G03289,JUN,EMB,0.834,1594,1254,0.918,JUN,2,2,96,103,EMB,False,Elo +340 ↑ | L10 margin +20.3 ↑ | season win% +.42 ↑
-2026-02-12,S3G03291,RVN,IRN,0.334,1434,1647,0.318,IRN,3,3,93,113,IRN,True,Elo -212 ↓ | season win% -.25 ↓ | home/away split +.01 ↓
-2026-02-12,S3G03286,DUN,UMB,0.656,1585,1389,0.831,DUN,3,3,110,105,DUN,True,Elo +196 ↑ | L10 margin -0.1 ↓ | season win% +.18 ↑
-2026-02-12,S3G03285,AUR,COP,0.347,1373,1665,0.228,COP,3,2,93,111,COP,True,Elo -292 ↓ | season win% -.40 ↓ | Elo p(home) 23% ↓
-2026-02-12,S3G03290,KES,VLE,0.634,1662,1500,0.801,KES,3,3,120,98,KES,True,Elo +162 ↑ | L10 margin +1.2 ↓ | season win% +.16 ↑
-2026-02-12,S3G03287,FAL,MRW,0.376,1329,1530,0.333,MRW,2,2,112,123,MRW,True,Elo -200 ↓ | season win% -.26 ↓ | Elo p(home) 33% ↓
-2026-02-12,S3G03288,GLD,YEL,0.606,1474,1513,0.559,GLD,3,3,114,108,GLD,True,L10 margin +1.1 ↓ | season win% +.06 ↑ | L10 defence +0.7 pts ↑
-2026-02-12,S3G03292,SKY,ZEP,0.421,1302,1589,0.233,ZEP,2,2,118,110,SKY,False,Elo -287 ↓ | L10 margin -19.9 ↓ | Elo p(home) 23% ↓
-2026-02-12,S3G03294,TMB,BRK,0.443,1410,1629,0.31,BRK,2,2,108,122,BRK,True,Elo -219 ↓ | L10 margin -14.7 ↓ | Elo p(home) 31% ↓
-2026-02-12,S3G03293,SLT,MST,0.545,1473,1550,0.505,SLT,3,3,117,100,SLT,True,Elo -76 ↓ | L10 margin -5.7 ↓ | L20 form -.2 ↑
-2026-02-13,S3G03298,HLW,PNE,0.677,1445,1287,0.797,HLW,4,3,121,111,HLW,True,Elo +157 ↑ | season win% +.20 ↑ | Elo p(home) 80% ↑
-2026-02-13,S3G03301,QRY,WYR,0.666,1720,1601,0.758,QRY,2,2,113,109,QRY,True,Elo +119 ↑ | L10 margin -0.7 ↓ | home/away split +.13 ↑
-2026-02-13,S3G03297,HAV,OBS,0.636,1556,1460,0.733,HAV,3,3,105,106,OBS,False,Elo +96 ↑ | L10 margin -2.5 ↓ | season win% +.14 ↑
-2026-02-13,S3G03299,LUM,NOR,0.44,1293,1474,0.36,NOR,2,2,104,114,NOR,True,Elo -180 ↓ | L10 margin -4.6 ↓ | Elo p(home) 36% ↓
-2026-02-13,S3G03295,DUN,IRN,0.481,1590,1665,0.508,IRN,1,1,117,103,DUN,False,Elo -74 ↓ | L10 defence -7.6 pts ↓ | L10 margin -3.5 ↓
-2026-02-13,S3G03300,MST,KES,0.517,1521,1673,0.398,MST,1,1,111,114,KES,False,Elo -152 ↓ | L10 margin -5.6 ↓ | home/away split +.14 ↑
-2026-02-13,S3G03302,RVN,YEL,0.51,1416,1496,0.5,RVN,1,1,133,112,RVN,True,Elo -80 ↓ | home/away split -.03 ↓ | H2H 50% ↑
-2026-02-13,S3G03296,GLD,XEN,0.502,1491,1594,0.467,GLD,1,2,103,118,XEN,False,Elo -103 ↓ | L10 margin -2.5 ↓ | home/away split +.10 ↓
-2026-02-14,S3G03304,CAS,EMB,0.82,1668,1301,0.929,CAS,3,2,109,114,EMB,False,Elo +367 ↑ | L10 margin +24.5 ↑ | season win% +.38 ↑
-2026-02-14,S3G03308,ZEP,FAL,0.804,1552,1313,0.862,ZEP,2,2,126,115,ZEP,True,Elo +239 ↑ | season win% +.25 ↑ | L10 margin +5.8 ↑
-2026-02-14,S3G03303,BRK,TMB,0.796,1645,1394,0.87,BRK,2,2,118,124,TMB,False,Elo +251 ↑ | L10 margin +17.3 ↑ | L10 offence +7.5 pts ↑
-2026-02-14,S3G03305,MRW,SKY,0.78,1545,1339,0.838,MRW,2,2,113,104,MRW,True,Elo +206 ↑ | L10 margin +17.4 ↑ | L10 offence +9.8 pts ↑
-2026-02-14,S3G03307,UMB,COP,0.335,1383,1677,0.226,COP,2,2,103,129,COP,True,Elo -294 ↓ | season win% -.35 ↓ | Elo p(home) 23% ↓
-2026-02-14,S3G03306,SLT,JUN,0.544,1502,1547,0.55,SLT,2,2,116,110,SLT,True,L10 margin -5.8 ↓ | home/away split +.13 ↑ | L10 defence -5.2 pts ↓
-2026-02-15,S3G03315,QRY,OBS,0.799,1727,1471,0.874,QRY,2,2,123,103,QRY,True,Elo +256 ↑ | season win% +.27 ↑ | L10 margin +8.9 ↑
-2026-02-15,S3G03316,SLT,EMB,0.769,1519,1343,0.814,SLT,1,1,134,113,SLT,True,Elo +176 ↑ | L10 margin +12.8 ↑ | season win% +.32 ↑
-2026-02-15,S3G03317,VLE,AUR,0.749,1489,1361,0.768,VLE,3,3,128,108,VLE,True,Elo +128 ↑ | season win% +.26 ↑ | L10 margin +3.5 ↑
-2026-02-15,S3G03311,KES,XEN,0.648,1684,1619,0.697,KES,2,2,125,107,KES,True,season win% +.09 ↑ | L10 defence -0.0 pts ↑ | home/away split +.22 ↑
-2026-02-15,S3G03312,LUM,GLD,0.367,1277,1465,0.349,GLD,2,2,111,105,LUM,False,Elo -189 ↓ | season win% -.30 ↓ | home/away split -.02 ↓
-2026-02-15,S3G03313,MST,NOR,0.599,1510,1490,0.641,MST,2,2,114,117,NOR,False,L10 margin -1.2 ↓ | season win% +.09 ↑ | Elo +20 ↑
-2026-02-15,S3G03310,IRN,WYR,0.593,1638,1594,0.671,IRN,2,2,107,99,IRN,True,L10 margin -1.3 ↓ | home/away split +.16 ↑ | Elo +44 ↑
-2026-02-15,S3G03319,ZEP,MRW,0.562,1558,1552,0.622,ZEP,1,1,108,105,ZEP,True,L10 margin +0.1 ↓ | home/away split +.19 ↑ | season win% -.02 ↓
-2026-02-15,S3G03318,YEL,CAS,0.44,1465,1626,0.386,CAS,2,1,120,117,YEL,False,Elo -161 ↓ | L10 margin -11.6 ↓ | L10 defence -7.4 pts ↓
-2026-02-15,S3G03314,PNE,RVN,0.45,1279,1447,0.376,RVN,2,2,107,108,RVN,True,Elo -168 ↓ | L10 margin -13.4 ↓ | home/away split -.04 ↓
-2026-02-15,S3G03309,HLW,HAV,0.501,1453,1545,0.484,HLW,2,2,121,113,HLW,True,Elo -91 ↓ | home/away split -.07 ↓ | L10 defence -3.1 pts ↓
-2026-02-16,S3G03321,DUN,SKY,0.829,1617,1333,0.891,DUN,3,2,124,122,DUN,True,Elo +284 ↑ | L10 margin +16.6 ↑ | season win% +.16 ↑
-2026-02-16,S3G03320,COP,JUN,0.749,1691,1530,0.8,COP,2,2,114,112,COP,True,Elo +161 ↑ | L10 margin +4.7 ↑ | home/away split +.16 ↑
-2026-02-16,S3G03323,TMB,FAL,0.673,1434,1307,0.767,TMB,2,2,111,116,FAL,False,Elo +127 ↑ | season win% +.29 ↑ | L10 margin -6.9 ↓
-2026-02-16,S3G03322,PNE,CAS,0.335,1274,1608,0.187,CAS,1,1,108,109,CAS,True,Elo -335 ↓ | season win% -.36 ↓ | L10 margin -15.4 ↓
-2026-02-17,S3G03328,MST,EMB,0.765,1492,1333,0.798,MST,2,2,108,111,EMB,False,Elo +159 ↑ | L10 margin +9.4 ↑ | season win% +.25 ↑
-2026-02-17,S3G03327,LUM,MRW,0.334,1304,1542,0.287,MRW,2,2,94,118,MRW,True,Elo -238 ↓ | season win% -.24 ↓ | L10 margin -9.5 ↓
-2026-02-17,S3G03324,AUR,IRN,0.335,1348,1652,0.216,IRN,2,2,114,119,IRN,True,Elo -304 ↓ | season win% -.37 ↓ | L10 margin -12.0 ↓
-2026-02-17,S3G03329,NOR,QRY,0.355,1509,1734,0.302,QRY,2,2,107,110,QRY,True,Elo -225 ↓ | season win% -.33 ↓ | L10 margin -8.4 ↓
-2026-02-17,S3G03326,GLD,RVN,0.611,1439,1452,0.595,GLD,2,2,103,116,RVN,False,season win% +.17 ↑ | L10 margin -5.0 ↓ | home/away split +.35 ↑
-2026-02-17,S3G03330,OBS,HLW,0.606,1464,1476,0.597,OBS,2,2,106,131,HLW,False,L10 margin -3.0 ↓ | L20 form -.2 ↑ | L10 offence -4.3 pts ↓
-2026-02-17,S3G03333,XEN,ZEP,0.593,1603,1568,0.659,XEN,2,2,109,107,XEN,True,L10 margin -3.9 ↓ | Elo +34 ↑ | season win% +.08 ↑
-2026-02-17,S3G03325,BRK,WYR,0.573,1605,1580,0.647,BRK,3,2,136,111,BRK,True,L10 margin +1.4 ↓ | L10 defence +2.8 pts ↑ | Elo +25 ↑
-2026-02-17,S3G03332,VLE,SLT,0.573,1502,1529,0.575,VLE,2,2,97,112,SLT,False,L10 margin -1.8 ↓ | L10 form -.3 ↑ | home/away split +.06 ↓
-2026-02-17,S3G03331,UMB,HAV,0.465,1370,1522,0.398,HAV,3,2,115,112,UMB,False,Elo -152 ↓ | season win% -.30 ↓ | L10 margin +4.6 ↑
-2026-02-18,S3G03341,TMB,SKY,0.714,1404,1331,0.707,TMB,2,2,119,117,TMB,True,L10 margin +6.3 ↑ | season win% +.15 ↑ | L10 offence +6.0 pts ↑
-2026-02-18,S3G03336,FAL,COP,0.307,1338,1695,0.169,COP,2,2,107,112,COP,True,Elo -357 ↓ | season win% -.42 ↓ | L10 margin -12.0 ↓
-2026-02-18,S3G03342,ZEP,GLD,0.693,1561,1406,0.794,ZEP,1,1,107,111,GLD,False,Elo +155 ↑ | L10 margin +7.4 ↑ | season win% -.04 ↓
-2026-02-18,S3G03337,JUN,YEL,0.678,1526,1483,0.67,JUN,2,3,112,108,JUN,True,L10 margin +7.0 ↑ | season win% +.13 ↑ | home/away split +.31 ↑
-2026-02-18,S3G03338,LUM,WYR,0.339,1286,1558,0.249,WYR,1,1,113,105,LUM,False,Elo -272 ↓ | season win% -.36 ↓ | Elo p(home) 25% ↓
-2026-02-18,S3G03340,PNE,DUN,0.342,1271,1619,0.176,DUN,2,2,107,99,PNE,False,Elo -348 ↓ | season win% -.29 ↓ | Elo p(home) 18% ↓
-2026-02-18,S3G03335,CAS,KES,0.537,1611,1701,0.486,CAS,2,3,103,122,KES,False,Elo -90 ↓ | L10 margin -2.4 ↓ | home/away split +.19 ↑
-2026-02-18,S3G03334,AUR,RVN,0.483,1341,1484,0.41,RVN,1,1,108,109,RVN,True,Elo -143 ↓ | L10 margin -9.3 ↓ | home/away split -.01 ↓
-2026-02-18,S3G03339,NOR,SLT,0.488,1501,1562,0.527,SLT,1,1,117,107,NOR,False,Elo -61 ↓ | home/away split -.01 ↓ | L10 margin -8.3 ↓
-2026-02-19,S3G03347,QRY,UMB,0.819,1742,1387,0.924,QRY,2,2,127,105,QRY,True,Elo +355 ↑ | L10 margin +13.0 ↑ | season win% +.45 ↑
-2026-02-19,S3G03344,CAS,AUR,0.802,1582,1336,0.867,CAS,1,1,132,97,CAS,True,Elo +246 ↑ | season win% +.37 ↑ | L10 margin +7.1 ↑
-2026-02-19,S3G03348,XEN,OBS,0.763,1610,1424,0.822,XEN,2,2,111,121,OBS,False,Elo +185 ↑ | L10 margin +6.9 ↑ | L10 offence +6.8 pts ↑
-2026-02-19,S3G03343,BRK,MRW,0.674,1627,1559,0.701,BRK,2,2,112,120,MRW,False,L10 margin +4.3 ↑ | season win% +.04 ↑ | Elo +68 ↑
-2026-02-19,S3G03346,HAV,VLE,0.611,1505,1469,0.66,HAV,2,2,120,126,VLE,False,L10 margin -6.5 ↓ | season win% +.09 ↑ | Elo +35 ↑
-2026-02-19,S3G03345,EMB,HLW,0.4,1357,1516,0.388,HLW,2,2,122,113,EMB,False,Elo -159 ↓ | season win% -.20 ↓ | home/away split -.06 ↓
-2026-02-19,S3G03349,YEL,NOR,0.576,1473,1523,0.543,YEL,1,1,129,125,YEL,True,L10 margin -1.8 ↓ | home/away split +.17 ↑ | season win% +.05 ↑
-2026-02-20,S3G03350,COP,GLD,0.807,1700,1435,0.879,COP,2,2,130,117,COP,True,Elo +265 ↑ | L10 margin +15.4 ↑ | L10 offence +12.6 pts ↑
-2026-02-20,S3G03352,JUN,SKY,0.807,1536,1325,0.842,JUN,2,2,107,108,SKY,False,Elo +211 ↑ | L10 margin +17.9 ↑ | season win% +.28 ↑
-2026-02-20,S3G03351,DUN,TMB,0.709,1578,1410,0.806,DUN,2,2,110,93,DUN,True,Elo +168 ↑ | L10 margin +4.1 ↑ | season win% -.00 ↓
-2026-02-20,S3G03353,KES,SLT,0.692,1730,1540,0.826,KES,2,2,101,108,SLT,False,Elo +190 ↑ | home/away split +.35 ↑ | season win% +.11 ↑
-2026-02-20,S3G03355,PNE,IRN,0.324,1313,1659,0.177,IRN,2,3,100,124,IRN,True,Elo -346 ↓ | season win% -.37 ↓ | L10 margin -11.6 ↓
-2026-02-20,S3G03356,ZEP,RVN,0.63,1532,1490,0.67,ZEP,2,2,129,101,ZEP,True,L10 margin -1.5 ↓ | season win% +.10 ↑ | Elo +43 ↑
-2026-02-20,S3G03354,LUM,FAL,0.587,1322,1332,0.6,LUM,2,2,127,95,LUM,True,L10 margin -2.1 ↓ | home/away split +.16 ↑ | L10 defence +5.2 pts ↑
-2026-02-21,S3G03360,MRW,UMB,0.803,1592,1383,0.841,MRW,2,2,115,116,UMB,False,Elo +209 ↑ | L10 margin +13.1 ↑ | season win% +.21 ↑
-2026-02-21,S3G03358,CAS,OBS,0.752,1590,1469,0.761,CAS,2,2,119,105,CAS,True,Elo +121 ↑ | L10 margin +12.0 ↑ | L10 offence +9.3 pts ↑
-2026-02-21,S3G03363,VLE,QRY,0.349,1496,1746,0.274,QRY,2,2,110,113,QRY,True,Elo -249 ↓ | season win% -.25 ↓ | L10 margin -9.9 ↓
-2026-02-21,S3G03364,XEN,HLW,0.642,1565,1487,0.713,XEN,2,2,132,110,XEN,True,Elo +78 ↑ | L10 defence +2.6 pts ↑ | season win% +.12 ↑
-2026-02-21,S3G03357,AUR,WYR,0.399,1327,1522,0.34,WYR,2,3,108,95,AUR,False,Elo -195 ↓ | season win% -.39 ↓ | L10 margin -8.3 ↓
-2026-02-21,S3G03361,MST,HAV,0.583,1467,1478,0.599,MST,4,2,98,103,HAV,False,L10 margin +5.8 ↑ | season win% -.09 ↓ | home/away split +.05 ↓
-2026-02-21,S3G03359,EMB,YEL,0.424,1387,1487,0.47,YEL,2,2,113,118,YEL,True,Elo -101 ↓ | season win% -.21 ↓ | home/away split -.05 ↓
-2026-02-21,S3G03362,NOR,BRK,0.495,1509,1594,0.492,BRK,2,2,113,95,NOR,False,Elo -86 ↓ | L10 margin -7.0 ↓ | home/away split +.04 ↓
-2026-02-22,S3G03365,DUN,TMB,0.725,1588,1400,0.824,DUN,2,2,105,136,TMB,False,Elo +188 ↑ | L10 margin +8.9 ↑ | L10 defence +6.9 pts ↑
-2026-02-22,S3G03366,FAL,ZEP,0.318,1305,1553,0.275,ZEP,2,2,107,130,ZEP,True,Elo -248 ↓ | season win% -.26 ↓ | home/away split -.16 ↓
-2026-02-22,S3G03369,LUM,SLT,0.334,1350,1579,0.298,SLT,2,2,97,117,SLT,True,Elo -229 ↓ | season win% -.30 ↓ | home/away split +.00 ↓
-2026-02-22,S3G03368,JUN,RVN,0.642,1522,1469,0.683,JUN,2,2,116,115,JUN,True,season win% +.23 ↑ | L10 margin +1.2 ↓ | home/away split +.38 ↑
-2026-02-22,S3G03367,IRN,KES,0.571,1669,1690,0.584,IRN,2,2,127,111,IRN,True,L10 margin +0.0 ↓ | season win% -.06 ↓ | L10 defence +1.8 pts ↑
-2026-02-23,S3G03376,YEL,EMB,0.76,1504,1370,0.774,YEL,2,2,117,87,YEL,True,Elo +134 ↑ | season win% +.22 ↑ | L10 margin +5.3 ↑
-2026-02-23,S3G03374,WYR,AUR,0.745,1486,1364,0.761,WYR,2,2,120,101,WYR,True,Elo +122 ↑ | season win% +.37 ↑ | L10 margin +3.4 ↑
-2026-02-23,S3G03370,CAS,NOR,0.684,1602,1539,0.695,CAS,2,2,119,105,CAS,True,L10 margin +6.0 ↑ | season win% +.18 ↑ | home/away split +.35 ↑
-2026-02-23,S3G03373,SKY,COP,0.318,1338,1706,0.16,COP,3,3,112,113,COP,True,Elo -368 ↓ | season win% -.32 ↓ | L10 margin -21.4 ↓
-2026-02-23,S3G03372,PNE,GLD,0.422,1302,1429,0.433,GLD,3,3,115,114,PNE,False,Elo -127 ↓ | season win% -.29 ↓ | L10 margin +0.9 ↓
-2026-02-23,S3G03371,OBS,VLE,0.554,1457,1489,0.568,OBS,2,2,97,104,VLE,False,home/away split -.06 ↓ | L10 margin -6.0 ↓ | L20 form -.2 ↑
-2026-02-23,S3G03375,XEN,BRK,0.554,1582,1564,0.637,XEN,2,2,124,110,XEN,True,L10 margin -2.3 ↓ | L10 defence -3.2 pts ↓ | season win% +.05 ↑
-2026-02-24,S3G03380,KES,JUN,0.719,1667,1526,0.781,KES,2,2,110,108,KES,True,Elo +141 ↑ | L10 margin +6.5 ↑ | Elo p(home) 78% ↑
-2026-02-24,S3G03378,FAL,IRN,0.315,1289,1692,0.135,IRN,2,2,105,112,IRN,True,Elo -403 ↓ | season win% -.40 ↓ | L10 margin -15.8 ↓
-2026-02-24,S3G03379,HAV,QRY,0.324,1500,1753,0.27,QRY,3,3,106,115,QRY,True,Elo -253 ↓ | L10 margin -18.2 ↓ | home/away split -.12 ↓
-2026-02-24,S3G03377,EMB,XEN,0.336,1356,1601,0.279,XEN,1,1,104,127,XEN,True,Elo -245 ↓ | season win% -.33 ↓ | L10 margin -8.4 ↓
-2026-02-24,S3G03384,SKY,BRK,0.372,1336,1545,0.322,BRK,1,1,102,117,BRK,True,Elo -209 ↓ | L10 margin -8.9 ↓ | Elo p(home) 32% ↓
-2026-02-24,S3G03381,LUM,DUN,0.404,1333,1523,0.346,DUN,2,2,106,102,LUM,False,Elo -190 ↓ | season win% -.23 ↓ | L10 margin -2.6 ↓
-2026-02-24,S3G03386,UMB,YEL,0.461,1396,1518,0.44,YEL,3,1,131,119,UMB,False,Elo -122 ↓ | home/away split +.01 ↓ | L10 margin -4.5 ↓
-2026-02-24,S3G03382,MST,MRW,0.518,1445,1579,0.423,MST,3,3,115,114,MST,True,Elo -134 ↓ | L10 margin -11.7 ↓ | home/away split +.12 ↑
-2026-02-24,S3G03385,TMB,SLT,0.486,1465,1596,0.428,SLT,2,2,115,106,TMB,False,Elo -131 ↓ | L10 margin -11.2 ↓ | L10 defence -10.3 pts ↓
-2026-02-24,S3G03383,RVN,ZEP,0.488,1465,1570,0.464,ZEP,2,2,111,114,ZEP,True,Elo -105 ↓ | L10 margin -3.8 ↓ | home/away split +.06 ↓
-2026-02-25,S3G03389,NOR,OBS,0.639,1523,1433,0.727,NOR,2,2,96,112,OBS,False,L10 margin +5.6 ↑ | Elo +90 ↑ | L10 offence +6.2 pts ↑
-2026-02-25,S3G03390,PNE,AUR,0.633,1310,1351,0.556,PNE,2,2,112,113,AUR,False,L10 margin +4.9 ↑ | L10 defence +7.1 pts ↑ | home/away split +.12 ↑
-2026-02-25,S3G03391,WYR,COP,0.41,1499,1707,0.323,COP,2,2,115,119,COP,True,Elo -209 ↓ | L10 margin -11.5 ↓ | Elo p(home) 32% ↓
-2026-02-25,S3G03388,HLW,VLE,0.552,1470,1514,0.553,HLW,4,2,111,123,VLE,False,home/away split -.01 ↓ | L10 margin -5.4 ↓ | H2H 50% ↑
-2026-02-25,S3G03387,GLD,CAS,0.454,1421,1617,0.339,CAS,2,2,99,106,CAS,True,Elo -196 ↓ | L10 margin -15.2 ↓ | L10 defence -7.8 pts ↓
-2026-02-26,S3G03394,IRN,LUM,0.835,1697,1355,0.919,IRN,2,2,124,109,IRN,True,Elo +342 ↑ | L10 margin +12.6 ↑ | season win% +.34 ↑
-2026-02-26,S3G03396,UMB,KES,0.304,1426,1672,0.278,KES,2,2,93,111,KES,True,Elo -246 ↓ | season win% -.34 ↓ | home/away split -.09 ↓
-2026-02-26,S3G03397,ZEP,HAV,0.678,1582,1488,0.732,ZEP,2,2,128,122,ZEP,True,L10 margin +13.4 ↑ | Elo +94 ↑ | season win% -.07 ↓
-2026-02-26,S3G03393,FAL,TMB,0.353,1284,1492,0.324,TMB,2,2,110,131,TMB,True,Elo -208 ↓ | season win% -.30 ↓ | Elo p(home) 32% ↓
-2026-02-26,S3G03392,DUN,RVN,0.58,1501,1452,0.677,DUN,2,2,96,125,RVN,False,L10 margin -1.6 ↓ | season win% +.14 ↑ | Elo +49 ↑
-2026-02-26,S3G03395,MST,SLT,0.476,1453,1569,0.449,SLT,2,2,98,115,SLT,True,Elo -116 ↓ | L10 margin -11.3 ↓ | L10 form -.4 ↑
-2026-02-27,S3G03402,XEN,EMB,0.836,1617,1339,0.887,XEN,3,3,121,99,XEN,True,Elo +278 ↑ | L10 margin +11.6 ↑ | season win% +.34 ↑
-2026-02-27,S3G03401,QRY,SKY,0.819,1764,1319,0.954,QRY,3,3,125,99,QRY,True,Elo +445 ↑ | L10 margin +16.5 ↑ | season win% +.43 ↑
-2026-02-27,S3G03400,MRW,YEL,0.687,1570,1489,0.717,MRW,3,3,117,108,MRW,True,L10 margin +8.6 ↑ | Elo +81 ↑ | home/away split +.16 ↑
-2026-02-27,S3G03398,AUR,PNE,0.539,1359,1302,0.687,AUR,2,2,118,100,AUR,True,L10 margin -5.1 ↓ | L10 defence -5.3 pts ↓ | Elo +56 ↑
-2026-02-27,S3G03399,BRK,JUN,0.537,1562,1522,0.667,BRK,3,3,116,123,JUN,False,L10 margin +0.5 ↓ | season win% -.08 ↓ | Elo +40 ↑
-2026-02-28,S3G03404,COP,OBS,0.835,1717,1478,0.863,COP,3,3,103,106,OBS,False,Elo +240 ↑ | L10 margin +12.8 ↑ | season win% +.22 ↑
-2026-02-28,S3G03407,KES,UMB,0.799,1687,1410,0.886,KES,2,2,131,98,KES,True,Elo +277 ↑ | L10 margin +10.3 ↑ | season win% +.35 ↑
-2026-02-28,S3G03405,IRN,RVN,0.791,1701,1501,0.834,IRN,2,2,117,115,IRN,True,Elo +200 ↑ | season win% +.26 ↑ | L10 margin +7.5 ↑
-2026-02-28,S3G03403,CAS,HLW,0.778,1631,1442,0.825,CAS,3,3,111,122,HLW,False,Elo +189 ↑ | L10 margin +11.0 ↑ | season win% +.18 ↑
-2026-02-28,S3G03410,SLT,NOR,0.746,1594,1479,0.755,SLT,2,3,117,99,SLT,True,Elo +116 ↑ | L10 margin +8.3 ↑ | season win% +.18 ↑
-2026-02-28,S3G03411,VLE,GLD,0.712,1542,1408,0.775,VLE,3,3,112,116,GLD,False,Elo +134 ↑ | L10 margin +8.4 ↑ | L10 offence +7.0 pts ↑
-2026-02-28,S3G03408,LUM,FAL,0.705,1351,1265,0.722,LUM,2,2,101,108,FAL,False,L10 margin +4.5 ↑ | Elo +86 ↑ | L10 defence +9.2 pts ↑
-2026-02-28,S3G03413,ZEP,TMB,0.655,1592,1511,0.717,ZEP,2,2,95,108,TMB,False,L10 margin +4.4 ↑ | Elo +81 ↑ | season win% -.01 ↓
-2026-02-28,S3G03406,JUN,QRY,0.377,1551,1767,0.315,QRY,1,1,115,102,JUN,False,Elo -215 ↓ | L10 margin -10.9 ↓ | home/away split -.03 ↓
-2026-02-28,S3G03412,WYR,DUN,0.598,1489,1452,0.662,WYR,3,2,108,94,WYR,True,L10 margin -1.6 ↓ | Elo +37 ↑ | L10 form -.4 ↑
-2026-02-28,S3G03409,SKY,AUR,0.563,1317,1376,0.53,SKY,1,1,119,116,SKY,True,Elo -59 ↓ | season win% +.08 ↑ | home/away split +.29 ↑
-2026-03-01,S3G03419,TMB,LUM,0.82,1552,1319,0.858,TMB,1,1,126,98,TMB,True,Elo +233 ↑ | season win% +.25 ↑ | L10 margin +7.6 ↑
-2026-03-01,S3G03414,BRK,EMB,0.775,1533,1333,0.834,BRK,2,2,120,119,BRK,True,Elo +200 ↑ | season win% +.27 ↑ | L10 margin +7.8 ↑
-2026-03-01,S3G03420,VLE,DUN,0.666,1515,1434,0.716,VLE,1,1,131,118,VLE,True,L10 margin +4.5 ↑ | Elo +80 ↑ | L10 offence +6.7 pts ↑
-2026-03-01,S3G03415,GLD,AUR,0.626,1436,1363,0.706,GLD,1,1,125,123,GLD,True,season win% +.27 ↑ | L10 margin +0.0 ↓ | Elo +72 ↑
-2026-03-01,S3G03417,PNE,MST,0.411,1285,1427,0.411,MST,2,3,104,136,MST,True,Elo -142 ↓ | season win% -.24 ↓ | home/away split -.14 ↓
-2026-03-01,S3G03418,RVN,JUN,0.42,1498,1590,0.482,JUN,1,1,121,119,RVN,False,season win% -.25 ↓ | Elo -92 ↓ | home/away split -.11 ↓
-2026-03-01,S3G03416,HAV,MRW,0.549,1478,1583,0.465,HAV,3,2,132,110,HAV,True,Elo -104 ↓ | L10 margin -12.5 ↓ | home/away split +.15 ↑
-2026-03-01,S3G03421,YEL,XEN,0.48,1477,1623,0.406,XEN,2,2,109,110,XEN,True,Elo -146 ↓ | L10 margin -9.1 ↓ | home/away split +.01 ↓
-2026-03-02,S3G03423,IRN,NOR,0.836,1704,1465,0.862,IRN,2,2,111,104,IRN,True,Elo +239 ↑ | L10 margin +11.0 ↑ | season win% +.23 ↑
-2026-03-02,S3G03424,OBS,FAL,0.788,1506,1298,0.84,OBS,2,2,120,105,OBS,True,Elo +208 ↑ | season win% +.25 ↑ | L10 margin +7.7 ↑
-2026-03-02,S3G03426,QRY,CAS,0.734,1728,1584,0.784,QRY,2,2,120,112,QRY,True,Elo +144 ↑ | L10 margin +5.9 ↑ | season win% +.15 ↑
-2026-03-02,S3G03428,SLT,WYR,0.725,1607,1506,0.739,SLT,2,2,122,127,WYR,False,Elo +101 ↑ | L10 margin +14.8 ↑ | home/away split +.17 ↑
-2026-03-02,S3G03422,HLW,SKY,0.721,1488,1330,0.798,HLW,2,2,118,114,HLW,True,Elo +159 ↑ | L10 margin +5.7 ↑ | season win% +.11 ↑
-2026-03-02,S3G03429,UMB,COP,0.311,1404,1689,0.234,COP,2,2,101,100,UMB,False,Elo -286 ↓ | season win% -.36 ↓ | L10 margin -15.9 ↓
-2026-03-02,S3G03425,PNE,YEL,0.342,1257,1471,0.316,YEL,1,1,104,120,YEL,True,Elo -214 ↓ | season win% -.24 ↓ | home/away split -.16 ↓
-2026-03-02,S3G03430,XEN,ZEP,0.607,1629,1551,0.712,XEN,1,2,111,115,ZEP,False,L10 margin +0.4 ↓ | Elo +77 ↑ | Elo p(home) 71% ↑
-2026-03-02,S3G03427,RVN,JUN,0.439,1509,1578,0.515,JUN,1,1,119,114,RVN,False,season win% -.23 ↓ | Elo -69 ↓ | home/away split -.07 ↓
-2026-03-03,S3G03434,VLE,LUM,0.835,1529,1310,0.848,VLE,2,2,107,106,VLE,True,Elo +219 ↑ | season win% +.24 ↑ | L10 margin +7.7 ↑
-2026-03-03,S3G03432,KES,MST,0.809,1694,1455,0.862,KES,3,2,105,122,MST,False,Elo +239 ↑ | L10 margin +13.3 ↑ | season win% +.19 ↑
-2026-03-03,S3G03431,BRK,AUR,0.75,1535,1357,0.815,BRK,2,2,125,115,BRK,True,Elo +178 ↑ | season win% +.28 ↑ | L10 margin +6.4 ↑
-2026-03-03,S3G03433,TMB,MRW,0.624,1560,1549,0.629,TMB,2,2,130,133,MRW,False,home/away split +.20 ↑ | season win% +.04 ↑ | L10 defence -0.2 pts ↑
-2026-03-04,S3G03439,QRY,FAL,0.82,1737,1290,0.954,QRY,2,2,139,110,QRY,True,Elo +447 ↑ | L10 margin +21.9 ↑ | season win% +.54 ↑
-2026-03-04,S3G03437,JUN,DUN,0.761,1561,1420,0.781,JUN,2,3,128,114,JUN,True,Elo +141 ↑ | L10 margin +6.8 ↑ | L10 offence +6.1 pts ↑
-2026-03-04,S3G03436,IRN,WYR,0.753,1709,1535,0.812,IRN,2,2,127,104,IRN,True,Elo +174 ↑ | L10 margin +11.6 ↑ | L10 defence +5.9 pts ↑
-2026-03-04,S3G03440,RVN,UMB,0.726,1526,1415,0.75,RVN,2,2,124,92,RVN,True,Elo +111 ↑ | L10 margin +9.4 ↑ | L10 defence +4.6 pts ↑
-2026-03-04,S3G03438,PNE,NOR,0.341,1240,1460,0.309,NOR,2,2,117,137,NOR,True,Elo -220 ↓ | home/away split -.11 ↓ | L10 margin -7.3 ↓
-2026-03-04,S3G03435,EMB,GLD,0.424,1331,1442,0.456,GLD,3,3,107,109,GLD,True,season win% -.27 ↓ | Elo -111 ↓ | home/away split -.11 ↓
-2026-03-04,S3G03441,SKY,HLW,0.475,1324,1494,0.373,HLW,2,2,109,111,HLW,True,Elo -170 ↓ | L10 margin -6.3 ↓ | L20 form -.3 ↓
-2026-03-04,S3G03443,YEL,ZEP,0.518,1488,1576,0.489,YEL,2,2,113,86,YEL,True,Elo -88 ↓ | L10 margin -4.8 ↓ | home/away split +.16 ↑
-2026-03-04,S3G03442,SLT,COP,0.495,1579,1678,0.473,COP,2,2,119,105,SLT,False,Elo -99 ↓ | L10 margin +1.0 ↓ | L20 form -.2 ↑
-2026-03-05,S3G03446,IRN,WYR,0.779,1720,1524,0.83,IRN,1,1,114,105,IRN,True,Elo +195 ↑ | L10 margin +14.0 ↑ | L10 offence +7.8 pts ↑
-2026-03-05,S3G03451,XEN,OBS,0.706,1604,1514,0.727,XEN,3,3,102,89,XEN,True,L10 margin +6.8 ↑ | Elo +90 ↑ | L10 offence +7.5 pts ↑
-2026-03-05,S3G03447,LUM,BRK,0.339,1308,1543,0.291,BRK,2,2,108,121,BRK,True,Elo -235 ↓ | season win% -.26 ↓ | Elo p(home) 29% ↓
-2026-03-05,S3G03444,AUR,FAL,0.646,1349,1287,0.694,AUR,2,1,114,106,AUR,True,L10 margin +8.8 ↑ | home/away split +.06 ↓ | L10 defence +5.3 pts ↑
-2026-03-05,S3G03449,RVN,GLD,0.62,1542,1452,0.728,RVN,1,1,120,109,RVN,True,L10 margin +9.1 ↑ | Elo +91 ↑ | home/away split +.00 ↓
-2026-03-05,S3G03448,MRW,KES,0.451,1567,1636,0.516,KES,2,2,105,110,KES,True,Elo -69 ↓ | L10 margin -3.8 ↓ | L10 defence -5.6 pts ↓
-2026-03-05,S3G03445,HAV,CAS,0.53,1512,1576,0.524,HAV,4,3,104,103,HAV,True,Elo -63 ↓ | L10 margin -5.0 ↓ | L20 form -.2 ↑
-2026-03-05,S3G03450,VLE,TMB,0.514,1531,1542,0.598,VLE,2,2,119,110,VLE,True,L10 margin -7.0 ↓ | home/away split +.03 ↓ | L10 offence -5.7 pts ↓
-2026-03-06,S3G03455,QRY,HLW,0.807,1739,1502,0.861,QRY,2,2,113,108,QRY,True,Elo +237 ↑ | L10 margin +10.3 ↑ | season win% +.30 ↑
-2026-03-06,S3G03456,SLT,DUN,0.791,1607,1410,0.832,SLT,2,2,107,109,DUN,False,Elo +198 ↑ | L10 margin +16.8 ↑ | L10 offence +7.8 pts ↑
-2026-03-06,S3G03452,COP,NOR,0.771,1649,1478,0.809,COP,2,2,114,98,COP,True,Elo +171 ↑ | season win% +.24 ↑ | L10 margin +6.2 ↑
-2026-03-06,S3G03457,ZEP,UMB,0.768,1542,1399,0.783,ZEP,2,2,105,117,UMB,False,Elo +143 ↑ | L10 margin +14.0 ↑ | season win% +.18 ↑
-2026-03-06,S3G03453,JUN,MST,0.655,1572,1514,0.689,JUN,2,3,124,113,JUN,True,L10 margin +3.4 ↑ | season win% +.11 ↑ | home/away split +.31 ↑
-2026-03-06,S3G03454,PNE,EMB,0.509,1223,1321,0.473,PNE,2,2,100,116,EMB,False,Elo -99 ↓ | L10 margin -1.7 ↓ | L10 defence -0.2 pts ↑
-2026-03-07,S3G03460,HAV,LUM,0.819,1519,1294,0.853,HAV,2,2,122,106,HAV,True,Elo +225 ↑ | season win% +.31 ↑ | L10 margin +5.0 ↑
-2026-03-07,S3G03461,IRN,YEL,0.775,1727,1522,0.837,IRN,2,3,113,118,YEL,False,Elo +204 ↑ | L10 margin +5.7 ↑ | season win% +.16 ↑
-2026-03-07,S3G03462,KES,TMB,0.65,1654,1524,0.771,KES,2,2,105,103,KES,True,Elo +130 ↑ | L10 margin -1.2 ↓ | season win% +.15 ↑
-2026-03-07,S3G03459,CAS,RVN,0.629,1569,1555,0.632,CAS,2,2,107,97,CAS,True,season win% +.19 ↑ | L10 margin -1.7 ↓ | home/away split +.38 ↑
-2026-03-07,S3G03458,AUR,SKY,0.577,1362,1316,0.674,AUR,2,3,97,108,SKY,False,season win% -.08 ↓ | home/away split +.13 ↑ | Elo +46 ↑
-2026-03-08,S3G03470,QRY,EMB,0.822,1744,1348,0.939,QRY,2,2,124,90,QRY,True,Elo +396 ↑ | L10 margin +18.8 ↑ | season win% +.51 ↑
-2026-03-08,S3G03463,DUN,PNE,0.771,1431,1196,0.859,DUN,2,2,123,109,DUN,True,Elo +235 ↑ | season win% +.25 ↑ | home/away split +.36 ↑
-2026-03-08,S3G03474,XEN,GLD,0.737,1617,1439,0.816,XEN,3,3,109,108,XEN,True,Elo +178 ↑ | L10 margin +10.4 ↑ | home/away split +.19 ↑
-2026-03-08,S3G03466,JUN,WYR,0.692,1586,1517,0.702,JUN,2,3,116,100,JUN,True,L10 margin +9.2 ↑ | L10 offence +7.7 pts ↑ | Elo +69 ↑
-2026-03-08,S3G03464,FAL,OBS,0.327,1275,1500,0.302,OBS,3,3,101,107,OBS,True,Elo -226 ↓ | season win% -.26 ↓ | L10 margin -9.4 ↓
-2026-03-08,S3G03469,NOR,COP,0.342,1468,1659,0.347,COP,2,2,106,109,COP,True,Elo -190 ↓ | season win% -.25 ↓ | home/away split -.14 ↓
-2026-03-08,S3G03467,LUM,YEL,0.356,1287,1557,0.251,YEL,1,1,108,100,LUM,False,Elo -270 ↓ | season win% -.24 ↓ | L10 margin -11.7 ↓
-2026-03-08,S3G03468,MRW,MST,0.604,1548,1499,0.678,MRW,3,2,121,113,MRW,True,home/away split +.15 ↑ | Elo +49 ↑ | H2H 50% ↑
-2026-03-08,S3G03473,VLE,BRK,0.584,1549,1557,0.601,VLE,3,3,121,105,VLE,True,L10 margin +3.5 ↑ | L10 defence +4.8 pts ↑ | home/away split +.06 ↓
-2026-03-08,S3G03465,HLW,SLT,0.459,1498,1586,0.487,SLT,2,2,110,108,HLW,False,Elo -89 ↓ | L10 defence -8.9 pts ↓ | L10 margin -5.3 ↓
-2026-03-08,S3G03472,UMB,ZEP,0.463,1444,1497,0.538,ZEP,2,2,124,109,UMB,False,L10 margin -10.8 ↓ | Elo -53 ↓ | L10 defence -6.3 pts ↓
-2026-03-08,S3G03471,TMB,KES,0.486,1519,1659,0.415,KES,1,1,125,105,TMB,False,Elo -140 ↓ | season win% -.17 ↓ | L20 form -.3 ↑
-2026-03-09,S3G03478,IRN,AUR,0.822,1692,1326,0.929,IRN,2,2,130,76,IRN,True,Elo +366 ↑ | L10 margin +14.3 ↑ | season win% +.40 ↑
-2026-03-09,S3G03476,FAL,QRY,0.312,1264,1747,0.089,QRY,1,1,117,133,QRY,True,Elo -483 ↓ | season win% -.56 ↓ | L10 margin -26.5 ↓
-2026-03-09,S3G03480,SKY,CAS,0.313,1351,1586,0.291,CAS,2,2,93,110,CAS,True,Elo -234 ↓ | season win% -.25 ↓ | home/away split -.03 ↓
-2026-03-09,S3G03479,PNE,BRK,0.349,1189,1535,0.178,BRK,1,1,115,120,BRK,True,Elo -346 ↓ | season win% -.31 ↓ | L10 margin -13.3 ↓
-2026-03-09,S3G03475,EMB,VLE,0.365,1344,1570,0.301,VLE,1,1,104,105,VLE,True,Elo -226 ↓ | season win% -.28 ↓ | L10 margin -13.1 ↓
-2026-03-09,S3G03481,UMB,JUN,0.384,1469,1602,0.424,JUN,1,1,113,109,UMB,False,Elo -133 ↓ | season win% -.27 ↓ | L10 margin -11.3 ↓
-2026-03-09,S3G03477,HAV,HLW,0.596,1526,1509,0.636,HAV,2,1,126,107,HAV,True,L10 margin +0.7 ↓ | season win% +.12 ↑ | L10 defence +2.3 pts ↑
-2026-03-10,S3G03488,XEN,DUN,0.765,1620,1437,0.819,XEN,2,2,105,120,DUN,False,Elo +182 ↑ | L10 margin +16.4 ↑ | L10 offence +8.6 pts ↑
-2026-03-10,S3G03486,SLT,GLD,0.709,1575,1437,0.779,SLT,2,2,113,100,SLT,True,Elo +138 ↑ | L10 margin +8.2 ↑ | L10 defence +6.7 pts ↑
-2026-03-10,S3G03489,YEL,NOR,0.659,1521,1459,0.693,YEL,2,2,118,114,YEL,True,L10 margin +8.7 ↑ | season win% +.09 ↑ | L10 defence +3.6 pts ↑
-2026-03-10,S3G03482,FAL,HAV,0.347,1259,1547,0.232,HAV,1,1,104,121,HAV,True,Elo -288 ↓ | season win% -.38 ↓ | L10 margin -18.1 ↓
-2026-03-10,S3G03483,KES,RVN,0.643,1622,1538,0.72,KES,2,3,123,100,KES,True,season win% +.27 ↑ | Elo +84 ↑ | L10 margin -1.6 ↓
-2026-03-10,S3G03487,TMB,MRW,0.641,1556,1562,0.605,TMB,2,2,117,110,TMB,True,L10 margin +7.1 ↑ | home/away split +.18 ↑ | L10 defence +5.2 pts ↑
-2026-03-10,S3G03484,LUM,MST,0.423,1323,1486,0.383,MST,2,2,111,112,MST,True,Elo -163 ↓ | season win% -.21 ↓ | L10 margin -5.6 ↓
-2026-03-10,S3G03485,OBS,COP,0.436,1511,1668,0.392,COP,2,2,110,111,COP,True,Elo -156 ↓ | home/away split -.15 ↓ | season win% -.18 ↓
-2026-03-10,S3G03490,ZEP,JUN,0.506,1472,1583,0.455,ZEP,2,1,94,108,JUN,False,Elo -111 ↓ | L10 margin -5.6 ↓ | home/away split +.13 ↑
-2026-03-11,S3G03491,BRK,PNE,0.839,1541,1184,0.925,BRK,2,2,123,89,BRK,True,Elo +357 ↑ | L10 margin +12.6 ↑ | season win% +.32 ↑
-2026-03-11,S3G03498,ZEP,AUR,0.744,1448,1322,0.766,ZEP,1,2,102,121,AUR,False,Elo +126 ↑ | season win% +.24 ↑ | L10 margin +4.2 ↑
-2026-03-11,S3G03497,XEN,RVN,0.64,1568,1521,0.675,XEN,1,1,124,115,XEN,True,season win% +.21 ↑ | home/away split +.31 ↑ | Elo +47 ↑
-2026-03-11,S3G03493,EMB,WYR,0.397,1340,1502,0.385,WYR,2,3,124,119,EMB,False,Elo -161 ↓ | season win% -.33 ↓ | L10 margin -3.3 ↓
-2026-03-11,S3G03492,DUN,HLW,0.588,1489,1488,0.614,DUN,1,2,119,103,DUN,True,L10 margin -3.4 ↓ | season win% +.03 ↑ | H2H 75% ↑
-2026-03-11,S3G03495,SKY,UMB,0.539,1336,1488,0.397,SKY,2,2,132,121,SKY,True,Elo -152 ↓ | L10 margin +0.8 ↓ | L20 form -.3 ↑
-2026-03-11,S3G03494,IRN,QRY,0.534,1697,1751,0.537,IRN,2,2,111,102,IRN,True,Elo -54 ↓ | L10 margin +1.3 ↓ | L10 defence +2.5 pts ↑
-2026-03-11,S3G03496,VLE,CAS,0.531,1574,1602,0.575,VLE,2,2,108,122,CAS,False,L10 margin +0.0 ↓ | home/away split +.02 ↓ | L10 defence -3.6 pts ↓
-2026-03-12,S3G03502,TMB,MST,0.711,1572,1491,0.716,TMB,2,2,114,112,TMB,True,L10 margin +11.1 ↑ | Elo +81 ↑ | L10 offence +7.2 pts ↑
-2026-03-12,S3G03500,FAL,SLT,0.322,1247,1586,0.184,SLT,2,2,105,95,FAL,False,Elo -339 ↓ | season win% -.37 ↓ | L10 margin -20.6 ↓
-2026-03-12,S3G03501,OBS,GLD,0.601,1506,1426,0.715,OBS,2,2,138,109,OBS,True,Elo +80 ↑ | season win% -.03 ↓ | L10 defence +5.9 pts ↑
-2026-03-12,S3G03499,COP,KES,0.574,1673,1639,0.659,COP,2,2,119,104,COP,True,L10 margin +0.2 ↓ | home/away split +.15 ↑ | Elo +34 ↑
-2026-03-12,S3G03503,YEL,JUN,0.492,1530,1608,0.504,JUN,2,2,108,107,YEL,False,Elo -77 ↓ | L10 margin -0.5 ↓ | season win% -.11 ↓
-2026-03-13,S3G03510,WYR,RVN,0.616,1479,1507,0.574,WYR,2,2,100,113,RVN,False,season win% +.19 ↑ | L10 margin -7.2 ↓ | home/away split +.36 ↑
-2026-03-13,S3G03508,NOR,HLW,0.578,1450,1467,0.59,NOR,3,2,100,106,HLW,False,season win% -.06 ↓ | L10 defence +3.6 pts ↑ | home/away split +.09 ↓
-2026-03-13,S3G03504,CAS,QRY,0.478,1634,1730,0.476,QRY,2,2,111,104,CAS,False,Elo -97 ↓ | home/away split +.01 ↓ | L10 margin -1.7 ↓
-2026-03-13,S3G03505,EMB,ZEP,0.52,1363,1397,0.566,EMB,2,2,127,118,EMB,True,season win% -.21 ↓ | home/away split -.05 ↓ | L10 margin -3.3 ↓
-2026-03-13,S3G03507,MRW,HAV,0.52,1546,1559,0.594,MRW,3,3,104,113,HAV,False,L10 margin -4.0 ↓ | home/away split +.02 ↓ | season win% -.10 ↓
-2026-03-13,S3G03506,LUM,UMB,0.489,1318,1457,0.415,UMB,3,2,105,92,LUM,False,Elo -140 ↓ | L10 margin -4.0 ↓ | L20 form -.2 ↑
-2026-03-13,S3G03509,SKY,DUN,0.507,1367,1510,0.41,SKY,2,2,116,111,SKY,True,Elo -143 ↓ | season win% -.15 ↓ | L20 form -.3 ↑
-2026-03-14,S3G03514,XEN,PNE,0.836,1582,1179,0.942,XEN,3,3,119,101,XEN,True,Elo +403 ↑ | L10 margin +24.1 ↑ | season win% +.39 ↑
-2026-03-14,S3G03513,VLE,AUR,0.786,1542,1372,0.808,VLE,3,3,122,118,VLE,True,Elo +170 ↑ | L10 margin +9.1 ↑ | season win% +.28 ↑
-2026-03-14,S3G03512,JUN,SLT,0.576,1601,1541,0.69,JUN,2,2,112,105,JUN,True,L10 margin +0.9 ↓ | Elo +59 ↑ | L10 defence -3.5 pts ↓
-2026-03-14,S3G03511,BRK,IRN,0.451,1546,1718,0.37,IRN,3,3,106,110,IRN,True,Elo -173 ↓ | L10 margin -11.4 ↓ | L10 defence -8.0 pts ↓
-2026-03-14,S3G03515,YEL,COP,0.487,1537,1691,0.395,COP,2,2,129,100,YEL,False,Elo -154 ↓ | home/away split -.03 ↓ | season win% -.17 ↓
-2026-03-15,S3G03521,RVN,ZEP,0.722,1538,1377,0.8,RVN,2,2,113,97,RVN,True,Elo +161 ↑ | L10 margin +14.4 ↑ | season win% -.07 ↓
-2026-03-15,S3G03522,SKY,QRY,0.294,1388,1708,0.201,QRY,2,2,112,107,SKY,False,Elo -320 ↓ | season win% -.40 ↓ | L10 margin -13.3 ↓
-2026-03-15,S3G03517,FAL,MST,0.355,1291,1485,0.342,MST,3,3,104,115,MST,True,Elo -194 ↓ | season win% -.26 ↓ | L10 margin -10.7 ↓
-2026-03-15,S3G03520,KES,OBS,0.613,1621,1524,0.734,KES,3,3,118,121,OBS,False,Elo +97 ↑ | L10 margin -2.9 ↓ | season win% +.18 ↑
-2026-03-15,S3G03523,UMB,DUN,0.544,1425,1488,0.525,UMB,2,2,111,122,DUN,False,Elo -63 ↓ | L10 margin -3.1 ↓ | home/away split +.13 ↑
-2026-03-15,S3G03519,HLW,MRW,0.542,1491,1518,0.576,HLW,2,2,100,102,MRW,False,L10 margin -3.2 ↓ | L10 offence -4.3 pts ↓ | season win% -.03 ↓
-2026-03-15,S3G03516,EMB,LUM,0.538,1383,1349,0.658,EMB,2,2,102,106,LUM,False,L10 margin -2.7 ↓ | Elo +34 ↑ | L10 defence -4.6 pts ↓
-2026-03-15,S3G03518,GLD,TMB,0.491,1408,1578,0.374,TMB,3,3,142,114,GLD,False,Elo -170 ↓ | L10 margin -15.3 ↓ | L10 defence -8.0 pts ↓
-2026-03-16,S3G03527,VLE,PNE,0.837,1548,1176,0.931,VLE,2,2,118,107,VLE,True,Elo +372 ↑ | L10 margin +21.9 ↑ | season win% +.33 ↑
-2026-03-16,S3G03525,IRN,SLT,0.794,1730,1529,0.834,IRN,2,2,124,96,IRN,True,Elo +200 ↑ | L10 margin +9.8 ↑ | L10 offence +6.2 pts ↑
-2026-03-16,S3G03526,NOR,AUR,0.602,1426,1367,0.691,NOR,3,2,112,111,NOR,True,L10 margin -0.8 ↓ | season win% +.14 ↑ | L10 defence +3.1 pts ↑
-2026-03-16,S3G03528,WYR,BRK,0.555,1448,1534,0.491,WYR,3,2,106,108,BRK,False,Elo -86 ↓ | L10 margin -8.2 ↓ | home/away split +.20 ↑
-2026-03-16,S3G03529,XEN,COP,0.554,1585,1648,0.524,XEN,2,2,120,103,XEN,True,Elo -63 ↓ | L10 margin +8.9 ↑ | home/away split +.03 ↓
-2026-03-16,S3G03524,HAV,CAS,0.526,1588,1656,0.517,HAV,3,3,130,106,HAV,True,Elo -68 ↓ | L10 margin +0.5 ↓ | L20 form -.2 ↑
-2026-03-17,S3G03533,MST,UMB,0.792,1501,1399,0.74,MST,2,2,109,128,UMB,False,Elo +102 ↑ | L10 margin +10.5 ↑ | season win% +.15 ↑
-2026-03-17,S3G03534,QRY,DUN,0.773,1676,1514,0.801,QRY,2,2,123,125,DUN,False,Elo +162 ↑ | L10 margin +10.1 ↑ | season win% +.25 ↑
-2026-03-17,S3G03531,HLW,FAL,0.765,1478,1275,0.836,HLW,2,2,106,97,HLW,True,Elo +202 ↑ | season win% +.24 ↑ | L10 margin +7.7 ↑
-2026-03-17,S3G03535,SKY,KES,0.39,1421,1599,0.362,KES,2,2,119,113,SKY,False,Elo -178 ↓ | season win% -.29 ↓ | home/away split -.05 ↓
-2026-03-17,S3G03532,MRW,GLD,0.597,1530,1452,0.713,MRW,2,2,115,128,GLD,False,Elo +79 ↑ | L10 margin +0.3 ↓ | home/away split +.15 ↑
-2026-03-17,S3G03536,ZEP,YEL,0.431,1367,1580,0.318,YEL,2,3,105,110,YEL,True,Elo -212 ↓ | L10 margin -16.7 ↓ | Elo p(home) 32% ↓
-2026-03-17,S3G03530,EMB,RVN,0.447,1360,1548,0.349,RVN,2,2,122,113,EMB,False,Elo -188 ↓ | L10 margin -9.2 ↓ | Elo p(home) 35% ↓
-2026-03-18,S3G03537,JUN,LUM,0.817,1613,1372,0.864,JUN,4,3,123,93,JUN,True,Elo +241 ↑ | L10 margin +11.9 ↑ | season win% +.32 ↑
-2026-03-18,S3G03538,NOR,IRN,0.296,1430,1739,0.211,IRN,2,2,103,107,IRN,True,Elo -309 ↓ | season win% -.27 ↓ | L10 margin -20.9 ↓
-2026-03-18,S3G03539,VLE,BRK,0.553,1551,1545,0.621,VLE,2,2,122,115,VLE,True,L10 margin -0.4 ↓ | home/away split +.07 ↓ | H2H 50% ↑
-2026-03-19,S3G03541,PNE,AUR,0.416,1174,1363,0.348,AUR,3,3,116,122,AUR,True,Elo -189 ↓ | L10 margin -14.4 ↓ | L10 defence -8.1 pts ↓
-2026-03-19,S3G03543,WYR,TMB,0.578,1437,1534,0.476,WYR,3,4,122,109,WYR,True,Elo -97 ↓ | L10 margin -8.3 ↓ | L20 form -.3 ↑
-2026-03-19,S3G03542,SLT,HAV,0.525,1519,1618,0.473,SLT,3,3,93,124,HAV,False,Elo -99 ↓ | L10 margin -9.0 ↓ | home/away split +.12 ↑
-2026-03-19,S3G03540,OBS,XEN,0.501,1546,1612,0.52,OBS,4,3,123,108,OBS,True,Elo -66 ↓ | home/away split -.12 ↓ | L10 margin -4.8 ↓
-2026-03-20,S3G03549,MRW,ZEP,0.765,1490,1356,0.774,MRW,3,3,116,107,MRW,True,Elo +134 ↑ | L10 margin +9.1 ↑ | L10 offence +10.5 pts ↑
-2026-03-20,S3G03546,FAL,CAS,0.295,1269,1625,0.17,CAS,3,4,116,109,FAL,False,Elo -356 ↓ | season win% -.39 ↓ | L10 margin -11.9 ↓
-2026-03-20,S3G03548,LUM,QRY,0.31,1363,1656,0.227,QRY,2,3,95,107,QRY,True,Elo -293 ↓ | season win% -.45 ↓ | L10 margin -12.7 ↓
-2026-03-20,S3G03545,EMB,HLW,0.451,1392,1484,0.482,HLW,3,3,130,108,EMB,False,Elo -92 ↓ | season win% -.19 ↓ | home/away split -.03 ↓
-2026-03-20,S3G03551,SKY,GLD,0.542,1447,1493,0.549,SKY,3,3,95,122,GLD,False,L10 margin +0.4 ↓ | L10 defence +2.8 pts ↑ | season win% -.14 ↓
-2026-03-20,S3G03544,DUN,COP,0.535,1534,1621,0.49,DUN,3,4,98,103,COP,False,Elo -87 ↓ | L10 margin +3.9 ↑ | L10 offence +7.2 pts ↑
-2026-03-20,S3G03547,KES,IRN,0.479,1573,1746,0.369,IRN,3,2,102,115,IRN,True,Elo -173 ↓ | L10 margin -11.5 ↓ | L10 defence -7.6 pts ↓
-2026-03-20,S3G03550,MST,YEL,0.481,1453,1590,0.418,YEL,3,3,130,110,MST,False,Elo -137 ↓ | L10 margin -6.4 ↓ | L10 defence -7.6 pts ↓
-2026-03-20,S3G03552,UMB,RVN,0.507,1448,1517,0.515,UMB,3,3,113,120,RVN,False,Elo -69 ↓ | L10 margin -7.7 ↓ | home/away split +.16 ↑
-2026-03-21,S3G03554,HAV,SLT,0.781,1651,1487,0.803,HAV,2,2,115,117,SLT,False,Elo +164 ↑ | L10 margin +16.4 ↑ | L10 offence +12.5 pts ↑
-2026-03-21,S3G03553,BRK,NOR,0.763,1530,1424,0.744,BRK,3,3,109,117,NOR,False,Elo +106 ↑ | L10 margin +8.4 ↑ | season win% +.15 ↑
-2026-03-21,S3G03555,PNE,JUN,0.315,1161,1621,0.101,JUN,2,3,101,136,JUN,True,Elo -460 ↓ | season win% -.41 ↓ | L10 margin -25.2 ↓
-2026-03-21,S3G03556,TMB,WYR,0.635,1506,1465,0.667,TMB,2,2,124,133,WYR,False,L10 margin +5.5 ↑ | season win% -.05 ↓ | home/away split +.14 ↑
-2026-03-21,S3G03557,VLE,XEN,0.502,1566,1586,0.586,VLE,3,2,108,114,XEN,False,home/away split -.02 ↓ | L10 margin -0.3 ↓ | L10 defence -3.9 pts ↓
-2026-03-22,S3G03564,RVN,FAL,0.806,1538,1308,0.857,RVN,2,2,116,117,FAL,False,Elo +230 ↑ | L10 margin +12.7 ↑ | season win% +.18 ↑
-2026-03-22,S3G03567,YEL,LUM,0.802,1554,1353,0.834,YEL,2,2,107,117,LUM,False,Elo +201 ↑ | L10 margin +13.4 ↑ | season win% +.23 ↑
-2026-03-22,S3G03559,DUN,ZEP,0.765,1517,1347,0.808,DUN,2,2,117,110,DUN,True,Elo +170 ↑ | L10 margin +14.5 ↑ | L10 offence +12.1 pts ↑
-2026-03-22,S3G03558,CAS,SKY,0.684,1585,1409,0.813,CAS,2,2,127,120,CAS,True,Elo +176 ↑ | season win% +.23 ↑ | L10 margin +1.3 ↓
-2026-03-22,S3G03560,EMB,AUR,0.642,1425,1376,0.678,EMB,2,3,109,123,AUR,False,L10 margin +7.1 ↑ | home/away split +.20 ↑ | L10 defence +4.3 pts ↑
-2026-03-22,S3G03563,OBS,IRN,0.376,1573,1764,0.345,IRN,3,2,125,115,OBS,False,Elo -192 ↓ | home/away split -.03 ↓ | L10 margin -8.0 ↓
-2026-03-22,S3G03565,SLT,VLE,0.585,1507,1543,0.563,SLT,1,1,112,118,VLE,False,L10 margin -9.8 ↓ | L10 form -.5 ↑ | H2H 75% ↑
-2026-03-22,S3G03561,GLD,MST,0.578,1530,1489,0.667,GLD,2,2,118,117,GLD,True,L10 margin -0.2 ↓ | Elo +40 ↑ | season win% +.03 ↑
-2026-03-22,S3G03562,HLW,KES,0.451,1452,1554,0.468,KES,2,2,108,116,KES,True,Elo -102 ↓ | season win% -.18 ↓ | L10 margin -3.0 ↓
-2026-03-22,S3G03566,UMB,MRW,0.504,1426,1499,0.509,UMB,2,2,126,120,UMB,True,Elo -73 ↓ | L10 margin +0.2 ↓ | home/away split +.01 ↓
-2026-03-23,S3G03569,DUN,FAL,0.812,1524,1322,0.835,DUN,1,1,110,109,DUN,True,Elo +202 ↑ | L10 margin +12.1 ↑ | season win% +.27 ↑
-2026-03-23,S3G03570,IRN,EMB,0.79,1731,1386,0.921,IRN,1,1,125,114,IRN,True,Elo +346 ↑ | L10 margin +12.3 ↑ | season win% +.38 ↑
-2026-03-23,S3G03573,QRY,TMB,0.779,1667,1473,0.829,QRY,3,2,136,101,QRY,True,Elo +194 ↑ | season win% +.23 ↑ | L10 margin +8.8 ↑
-2026-03-23,S3G03571,JUN,WYR,0.738,1627,1497,0.77,JUN,2,2,111,99,JUN,True,Elo +130 ↑ | L10 margin +14.4 ↑ | L10 defence +9.1 pts ↑
-2026-03-23,S3G03572,PNE,HAV,0.318,1155,1631,0.093,HAV,2,2,101,129,HAV,True,Elo -477 ↓ | season win% -.40 ↓ | L10 margin -30.6 ↓
-2026-03-23,S3G03577,XEN,GLD,0.618,1609,1534,0.71,XEN,2,1,131,126,XEN,True,L10 margin +1.2 ↓ | Elo +75 ↑ | L10 defence +6.0 pts ↑
-2026-03-23,S3G03578,ZEP,AUR,0.603,1340,1415,0.507,ZEP,1,1,106,124,AUR,False,Elo -75 ↓ | season win% +.18 ↑ | L10 margin -9.8 ↓
-2026-03-23,S3G03575,SLT,MRW,0.584,1484,1480,0.619,SLT,1,1,115,122,MRW,False,L10 margin -1.7 ↓ | season win% +.05 ↑ | L10 defence +5.4 pts ↑
-2026-03-23,S3G03576,UMB,NOR,0.526,1445,1460,0.593,UMB,1,2,122,125,NOR,False,L10 margin +1.1 ↓ | season win% -.05 ↓ | L10 defence -3.6 pts ↓
-2026-03-23,S3G03574,RVN,OBS,0.479,1525,1606,0.498,OBS,1,1,107,105,RVN,False,Elo -81 ↓ | home/away split -.04 ↓ | L10 margin -5.6 ↓
-2026-03-23,S3G03568,BRK,COP,0.514,1494,1639,0.408,BRK,2,3,115,96,BRK,True,Elo -145 ↓ | L10 margin +5.4 ↑ | L10 offence +8.5 pts ↑
-2026-03-24,S3G03585,VLE,HLW,0.753,1565,1431,0.774,VLE,2,2,116,107,VLE,True,Elo +134 ↑ | L10 margin +8.8 ↑ | L10 offence +8.1 pts ↑
-2026-03-24,S3G03579,GLD,AUR,0.671,1524,1445,0.715,GLD,1,1,137,120,GLD,True,season win% +.24 ↑ | Elo +80 ↑ | home/away split +.42 ↑
-2026-03-24,S3G03580,JUN,KES,0.665,1638,1574,0.696,JUN,1,2,117,108,JUN,True,L10 margin +17.0 ↑ | L10 offence +7.3 pts ↑ | L10 defence +9.7 pts ↑
-2026-03-24,S3G03586,ZEP,DUN,0.433,1310,1526,0.314,DUN,1,1,118,134,DUN,True,Elo -216 ↓ | L10 margin -18.2 ↓ | Elo p(home) 31% ↓
-2026-03-24,S3G03581,LUM,SKY,0.548,1399,1402,0.608,LUM,2,2,101,113,SKY,False,L10 margin -1.9 ↓ | L10 defence +4.4 pts ↑ | season win% -.07 ↓
-2026-03-24,S3G03583,MST,CAS,0.544,1485,1592,0.461,MST,2,2,108,91,MST,True,Elo -107 ↓ | L10 margin +3.6 ↑ | L10 offence +6.1 pts ↑
-2026-03-24,S3G03584,SLT,OBS,0.517,1458,1595,0.419,SLT,1,1,99,98,SLT,True,Elo -137 ↓ | L10 margin -14.3 ↓ | home/away split +.14 ↑
-2026-03-24,S3G03582,MRW,COP,0.484,1507,1602,0.479,COP,1,1,122,119,MRW,False,Elo -95 ↓ | home/away split -.03 ↓ | L10 offence +8.8 pts ↑
-2026-03-25,S3G03593,QRY,YEL,0.769,1678,1508,0.808,QRY,2,3,120,105,QRY,True,Elo +170 ↑ | season win% +.24 ↑ | L10 margin +5.9 ↑
-2026-03-25,S3G03597,XEN,UMB,0.726,1619,1428,0.826,XEN,2,2,109,96,XEN,True,Elo +191 ↑ | season win% +.27 ↑ | home/away split +.41 ↑
-2026-03-25,S3G03594,SKY,ZEP,0.719,1435,1293,0.782,SKY,1,1,108,109,ZEP,False,Elo +142 ↑ | L10 margin +12.5 ↑ | season win% -.06 ↓
-2026-03-25,S3G03590,FAL,PNE,0.707,1320,1149,0.809,FAL,2,2,110,101,FAL,True,Elo +171 ↑ | L10 margin +13.7 ↑ | home/away split -.02 ↓
-2026-03-25,S3G03588,BRK,WYR,0.632,1531,1487,0.671,BRK,2,2,113,111,BRK,True,L10 margin +10.1 ↑ | home/away split +.13 ↑ | season win% -.03 ↓
-2026-03-25,S3G03595,TMB,IRN,0.403,1462,1734,0.249,IRN,2,2,96,121,IRN,True,Elo -272 ↓ | L10 margin -18.7 ↓ | Elo p(home) 25% ↓
-2026-03-25,S3G03596,VLE,HAV,0.408,1574,1636,0.526,HAV,1,2,105,125,HAV,True,Elo -62 ↓ | L10 margin -12.2 ↓ | home/away split -.05 ↓
-2026-03-25,S3G03589,CAS,MST,0.589,1561,1516,0.671,CAS,1,1,115,124,MST,False,L10 margin -2.7 ↓ | season win% +.10 ↑ | L10 defence +2.6 pts ↑
-2026-03-25,S3G03592,OBS,KES,0.589,1586,1561,0.647,OBS,1,1,126,109,OBS,True,L10 margin +8.9 ↑ | home/away split -.01 ↓ | season win% -.14 ↓
-2026-03-25,S3G03587,AUR,EMB,0.579,1429,1382,0.675,AUR,1,2,114,112,AUR,True,L10 margin -1.9 ↓ | Elo +47 ↑ | home/away split +.15 ↑
-2026-03-25,S3G03591,NOR,GLD,0.489,1477,1540,0.525,GLD,2,1,105,111,GLD,True,Elo -63 ↓ | L10 margin -3.5 ↓ | L10 defence +4.8 pts ↑
-2026-03-26,S3G03603,OBS,EMB,0.804,1606,1376,0.856,OBS,1,1,125,107,OBS,True,Elo +230 ↑ | season win% +.22 ↑ | L10 margin +8.4 ↑
-2026-03-26,S3G03601,GLD,FAL,0.792,1560,1328,0.858,GLD,1,1,132,97,GLD,True,Elo +233 ↑ | season win% +.29 ↑ | L10 margin +7.7 ↑
-2026-03-26,S3G03602,JUN,SLT,0.781,1651,1466,0.821,JUN,2,2,121,99,JUN,True,Elo +185 ↑ | L10 margin +20.4 ↑ | L10 offence +11.0 pts ↑
-2026-03-26,S3G03600,DUN,HLW,0.76,1543,1422,0.761,DUN,2,2,120,123,HLW,False,Elo +121 ↑ | L10 margin +13.6 ↑ | L10 offence +11.6 pts ↑
-2026-03-26,S3G03606,XEN,VLE,0.669,1627,1542,0.721,XEN,1,1,113,108,XEN,True,Elo +85 ↑ | L10 margin +3.8 ↑ | L10 defence +4.0 pts ↑
-2026-03-26,S3G03605,WYR,LUM,0.654,1480,1366,0.753,WYR,1,2,129,116,WYR,True,Elo +113 ↑ | season win% +.27 ↑ | L10 margin -1.1 ↓
-2026-03-26,S3G03607,YEL,TMB,0.638,1498,1447,0.68,YEL,1,1,134,124,YEL,True,L10 margin +11.0 ↑ | home/away split +.20 ↑ | L10 defence +10.5 pts ↑
-2026-03-26,S3G03599,COP,RVN,0.63,1587,1536,0.681,COP,2,3,111,115,RVN,False,season win% +.23 ↑ | L10 margin -3.9 ↓ | home/away split +.38 ↑
-2026-03-26,S3G03598,CAS,MRW,0.589,1528,1522,0.621,CAS,1,2,117,124,MRW,False,L10 margin +0.8 ↓ | season win% +.08 ↑ | L10 defence +4.4 pts ↑
-2026-03-26,S3G03604,UMB,AUR,0.586,1420,1436,0.591,UMB,1,1,122,103,UMB,True,L10 margin +1.4 ↓ | season win% +.06 ↑ | L10 defence -0.6 pts ↑
-2026-03-27,S3G03612,MST,PNE,0.84,1549,1141,0.943,MST,2,2,116,106,MST,True,Elo +408 ↑ | L10 margin +19.3 ↑ | season win% +.30 ↑
-2026-03-27,S3G03613,NOR,ZEP,0.686,1456,1305,0.791,NOR,2,2,106,92,NOR,True,Elo +151 ↑ | L10 margin +10.5 ↑ | season win% -.04 ↓
-2026-03-27,S3G03611,IRN,HAV,0.612,1749,1669,0.716,IRN,2,2,107,114,HAV,False,Elo +81 ↑ | L10 margin -3.0 ↓ | Elo p(home) 72% ↑
-2026-03-27,S3G03609,CAS,DUN,0.59,1501,1519,0.588,CAS,1,1,123,110,CAS,True,L10 margin -6.4 ↓ | season win% +.07 ↑ | L10 offence -6.1 pts ↓
-2026-03-27,S3G03608,BRK,QRY,0.429,1537,1688,0.4,QRY,2,2,103,110,QRY,True,Elo -150 ↓ | season win% -.20 ↓ | home/away split -.04 ↓
-2026-03-27,S3G03610,EMB,HLW,0.547,1368,1445,0.505,EMB,1,1,116,122,HLW,False,Elo -77 ↓ | L10 margin +5.1 ↑ | season win% -.18 ↓
-2026-03-27,S3G03614,UMB,GLD,0.455,1444,1569,0.435,GLD,1,1,117,109,UMB,False,Elo -125 ↓ | season win% -.19 ↓ | L10 margin -9.0 ↓
-2026-03-28,S3G03617,PNE,HLW,0.283,1139,1465,0.196,HLW,1,1,132,120,PNE,False,Elo -326 ↓ | season win% -.26 ↓ | L10 margin -11.8 ↓
-2026-03-28,S3G03618,SKY,JUN,0.321,1423,1661,0.287,JUN,3,2,118,114,SKY,False,Elo -238 ↓ | season win% -.27 ↓ | L10 margin -14.2 ↓
-2026-03-28,S3G03616,LUM,XEN,0.335,1354,1636,0.238,XEN,2,2,120,132,XEN,True,Elo -282 ↓ | season win% -.35 ↓ | Elo p(home) 24% ↓
-2026-03-28,S3G03622,WYR,IRN,0.354,1492,1717,0.302,IRN,2,1,111,126,IRN,True,Elo -226 ↓ | L10 margin -15.5 ↓ | Elo p(home) 30% ↓
-2026-03-28,S3G03620,UMB,YEL,0.546,1469,1513,0.552,UMB,1,2,112,115,YEL,False,L10 margin -0.7 ↓ | season win% -.15 ↓ | home/away split +.08 ↓
-2026-03-28,S3G03621,VLE,COP,0.527,1533,1564,0.57,VLE,2,2,109,114,COP,False,home/away split -.04 ↓ | season win% -.09 ↓ | streak +1 ↓
-2026-03-28,S3G03615,AUR,RVN,0.474,1412,1559,0.405,RVN,2,2,112,104,AUR,False,Elo -147 ↓ | L10 margin -2.6 ↓ | L10 defence -4.9 pts ↓
-2026-03-28,S3G03619,TMB,KES,0.491,1433,1542,0.459,KES,2,3,97,127,KES,True,Elo -109 ↓ | L10 defence -6.7 pts ↓ | L10 margin -4.3 ↓
-2026-03-29,S3G03630,ZEP,QRY,0.296,1295,1704,0.131,QRY,2,2,98,112,QRY,True,Elo -409 ↓ | season win% -.31 ↓ | L10 margin -20.8 ↓
-2026-03-29,S3G03623,GLD,BRK,0.623,1544,1521,0.644,GLD,2,2,107,117,BRK,False,L10 margin +6.5 ↑ | L10 offence +11.7 pts ↑ | home/away split +.21 ↑
-2026-03-29,S3G03627,OBS,MST,0.62,1613,1551,0.694,OBS,3,2,109,117,MST,False,L10 margin +5.6 ↑ | L10 defence +3.4 pts ↑ | season win% +.00 ↓
-2026-03-29,S3G03626,MRW,DUN,0.587,1549,1498,0.679,MRW,3,2,113,108,MRW,True,L10 margin -2.6 ↓ | home/away split +.17 ↑ | Elo +50 ↑
-2026-03-29,S3G03625,IRN,HAV,0.579,1733,1701,0.656,IRN,1,2,128,125,IRN,True,L10 margin -7.7 ↓ | Elo +32 ↑ | season win% +.05 ↑
-2026-03-29,S3G03628,TMB,CAS,0.442,1402,1522,0.442,CAS,1,2,117,132,CAS,True,Elo -120 ↓ | L10 margin -11.5 ↓ | L10 defence -10.5 pts ↓
-2026-03-29,S3G03624,HLW,KES,0.443,1418,1573,0.394,KES,1,1,88,120,KES,True,Elo -155 ↓ | season win% -.18 ↓ | L10 margin -2.3 ↓
-2026-03-29,S3G03629,UMB,YEL,0.532,1454,1529,0.507,UMB,1,1,126,121,UMB,True,Elo -75 ↓ | L10 margin +0.3 ↓ | L10 defence -0.0 pts ↑
-2026-03-30,S3G03634,PNE,SLT,0.311,1186,1456,0.251,SLT,2,4,120,99,PNE,False,Elo -270 ↓ | season win% -.33 ↓ | L10 defence -7.4 pts ↓
-2026-03-30,S3G03632,FAL,JUN,0.315,1319,1636,0.203,JUN,4,2,103,120,JUN,True,Elo -317 ↓ | season win% -.39 ↓ | L10 margin -18.2 ↓
-2026-03-30,S3G03633,LUM,COP,0.351,1343,1585,0.283,COP,2,2,120,127,COP,True,Elo -242 ↓ | season win% -.35 ↓ | home/away split -.16 ↓
-2026-03-30,S3G03631,CAS,YEL,0.594,1546,1511,0.66,CAS,1,1,118,119,YEL,False,L10 margin -1.0 ↓ | season win% +.08 ↑ | Elo +35 ↑
-2026-03-30,S3G03636,UMB,SKY,0.589,1471,1447,0.645,UMB,1,2,120,117,UMB,True,Elo +24 ↑ | season win% -.02 ↓ | H2H 50% ↑
-2026-03-30,S3G03635,RVN,VLE,0.55,1532,1512,0.64,RVN,2,2,108,103,RVN,True,home/away split -.07 ↓ | L10 margin +0.5 ↓ | Elo +20 ↑
-2026-03-31,S3G03639,IRN,WYR,0.783,1742,1476,0.88,IRN,2,3,111,120,WYR,False,Elo +266 ↑ | L10 margin +11.6 ↑ | Elo p(home) 88% ↑
-2026-03-31,S3G03638,HLW,XEN,0.358,1392,1648,0.266,XEN,2,3,129,122,HLW,False,Elo -256 ↓ | L10 margin -11.6 ↓ | home/away split -.08 ↓
-2026-03-31,S3G03637,AUR,MRW,0.466,1439,1559,0.442,MRW,3,2,104,114,MRW,True,Elo -120 ↓ | season win% -.23 ↓ | home/away split -.08 ↓
-2026-03-31,S3G03640,TMB,NOR,0.51,1378,1466,0.487,TMB,2,4,124,118,TMB,True,Elo -89 ↓ | L10 margin -14.3 ↓ | L10 defence -17.0 pts ↓
-2026-04-01,S3G03644,OBS,PNE,0.832,1581,1236,0.92,OBS,3,2,120,115,OBS,True,Elo +344 ↑ | L10 margin +19.8 ↑ | season win% +.28 ↑
-2026-04-01,S3G03646,UMB,LUM,0.772,1481,1332,0.788,UMB,2,2,115,109,UMB,True,Elo +148 ↑ | L10 margin +9.4 ↑ | L10 offence +9.8 pts ↑
-2026-04-01,S3G03643,MST,RVN,0.645,1584,1544,0.666,MST,3,2,127,108,MST,True,L10 margin +3.4 ↑ | season win% +.09 ↑ | L10 defence -0.2 pts ↑
-2026-04-01,S3G03642,GLD,QRY,0.392,1511,1710,0.336,QRY,3,3,98,104,QRY,True,Elo -198 ↓ | season win% -.23 ↓ | home/away split -.05 ↓
-2026-04-01,S3G03641,COP,BRK,0.564,1596,1554,0.669,COP,2,3,118,111,COP,True,L10 margin -8.5 ↓ | L10 defence -5.9 pts ↓ | season win% +.10 ↑
-2026-04-01,S3G03645,SKY,DUN,0.552,1438,1487,0.544,SKY,2,3,96,117,DUN,False,L10 margin -0.1 ↓ | season win% -.13 ↓ | L10 defence +0.4 pts ↑
-2026-04-02,S3G03649,JUN,EMB,0.818,1647,1349,0.898,JUN,3,6,124,107,JUN,True,Elo +298 ↑ | L10 margin +15.1 ↑ | season win% +.36 ↑
-2026-04-02,S3G03648,HAV,HLW,0.807,1692,1425,0.881,HAV,4,2,113,104,HAV,True,Elo +267 ↑ | L10 margin +21.0 ↑ | season win% +.16 ↑
-2026-04-02,S3G03653,WYR,PNE,0.792,1524,1234,0.894,WYR,2,1,121,108,WYR,True,Elo +290 ↑ | season win% +.35 ↑ | L10 margin +8.4 ↑
-2026-04-02,S3G03652,VLE,FAL,0.781,1500,1308,0.827,VLE,3,3,105,115,FAL,False,Elo +191 ↑ | season win% +.29 ↑ | L10 margin +5.9 ↑
-2026-04-02,S3G03647,CAS,TMB,0.738,1536,1398,0.779,CAS,3,2,129,106,CAS,True,Elo +139 ↑ | L10 margin +13.4 ↑ | home/away split +.30 ↑
-2026-04-02,S3G03655,YEL,QRY,0.321,1521,1722,0.332,QRY,3,1,105,110,QRY,True,Elo -202 ↓ | season win% -.24 ↓ | home/away split -.10 ↓
-2026-04-02,S3G03651,SLT,SKY,0.627,1405,1404,0.615,SLT,3,1,117,116,SLT,True,season win% +.16 ↑ | L10 margin -10.2 ↓ | home/away split +.39 ↑
-2026-04-02,S3G03654,XEN,KES,0.58,1615,1599,0.633,XEN,2,4,111,99,XEN,True,home/away split +.15 ↑ | streak -3 ↑ | season win% -.01 ↓
-2026-04-02,S3G03656,ZEP,NOR,0.479,1289,1446,0.39,NOR,4,2,98,120,NOR,True,Elo -158 ↓ | L10 margin -10.4 ↓ | home/away split +.15 ↑
-2026-04-02,S3G03650,MRW,IRN,0.48,1580,1694,0.452,IRN,2,2,106,96,MRW,False,Elo -114 ↓ | L10 margin -5.8 ↓ | L10 defence -3.1 pts ↓
-2026-04-03,S3G03661,OBS,UMB,0.72,1583,1488,0.733,OBS,2,2,113,98,OBS,True,Elo +95 ↑ | L10 margin +6.5 ↑ | L10 defence +4.4 pts ↑
-2026-04-03,S3G03659,JUN,IRN,0.651,1652,1667,0.592,JUN,1,1,112,123,IRN,False,L10 margin +10.9 ↑ | L10 defence +7.5 pts ↑ | season win% -.02 ↓
-2026-04-03,S3G03657,CAS,AUR,0.636,1549,1418,0.771,CAS,1,3,126,104,CAS,True,Elo +131 ↑ | season win% +.30 ↑ | L10 margin -0.4 ↓
-2026-04-03,S3G03662,SLT,TMB,0.634,1410,1385,0.647,SLT,1,1,115,122,TMB,False,L10 margin +6.4 ↑ | season win% +.06 ↑ | L10 offence -6.0 pts ↓
-2026-04-03,S3G03658,GLD,COP,0.572,1499,1609,0.457,GLD,2,2,103,100,GLD,True,Elo -110 ↓ | L10 margin +10.3 ↑ | L10 offence +7.8 pts ↑
-2026-04-03,S3G03660,NOR,KES,0.477,1470,1581,0.455,KES,1,1,109,117,KES,True,Elo -111 ↓ | season win% -.22 ↓ | home/away split -.06 ↓
-2026-04-03,S3G03663,VLE,MST,0.502,1454,1603,0.403,VLE,1,2,111,116,MST,False,Elo -149 ↓ | L10 margin -9.0 ↓ | L10 form -.3 ↑
-2026-04-04,S3G03666,OBS,SKY,0.781,1597,1399,0.832,OBS,1,2,117,111,OBS,True,Elo +198 ↑ | L10 margin +10.5 ↑ | season win% +.15 ↑
-2026-04-04,S3G03665,LUM,PNE,0.661,1325,1229,0.733,LUM,3,2,114,102,LUM,True,Elo +96 ↑ | L10 defence +4.4 pts ↑ | Elo p(home) 73% ↑
-2026-04-04,S3G03664,HLW,FAL,0.593,1420,1353,0.699,HLW,2,2,121,131,FAL,False,season win% +.20 ↑ | L10 margin -3.1 ↓ | L10 defence -7.3 pts ↓
-2026-04-04,S3G03667,SLT,BRK,0.427,1382,1541,0.389,BRK,1,3,92,121,BRK,True,Elo -158 ↓ | L10 margin -15.2 ↓ | L10 defence -9.4 pts ↓
-2026-04-05,S3G03672,TMB,QRY,0.288,1413,1733,0.201,QRY,2,3,121,119,TMB,False,Elo -320 ↓ | season win% -.27 ↓ | L10 margin -22.7 ↓
-2026-04-05,S3G03668,AUR,CAS,0.387,1405,1562,0.391,CAS,2,2,110,104,AUR,False,Elo -157 ↓ | season win% -.31 ↓ | home/away split -.12 ↓
-2026-04-05,S3G03673,WYR,COP,0.548,1529,1594,0.522,WYR,3,2,119,104,WYR,True,Elo -65 ↓ | L10 margin +6.4 ↑ | L10 offence +6.1 pts ↑
-2026-04-05,S3G03674,YEL,MST,0.533,1509,1617,0.46,YEL,3,2,108,115,MST,False,Elo -108 ↓ | L10 margin -8.6 ↓ | home/away split +.14 ↑
-2026-04-05,S3G03670,GLD,XEN,0.468,1514,1633,0.445,XEN,2,3,117,109,GLD,False,Elo -118 ↓ | L10 margin -0.6 ↓ | L20 form -.2 ↑
-2026-04-05,S3G03671,MRW,IRN,0.512,1607,1698,0.485,MRW,3,2,114,111,MRW,True,Elo -91 ↓ | L10 margin -0.8 ↓ | L10 defence +0.5 pts ↑
-2026-04-05,S3G03669,DUN,JUN,0.495,1521,1622,0.471,JUN,4,2,119,126,JUN,True,Elo -100 ↓ | L10 margin -10.2 ↓ | L10 defence -7.3 pts ↓
-2026-04-06,S3G03675,COP,ZEP,0.811,1567,1265,0.9,COP,1,4,112,113,ZEP,False,Elo +302 ↑ | season win% +.20 ↑ | L10 margin +8.3 ↑
-2026-04-06,S3G03677,QRY,LUM,0.81,1714,1337,0.933,QRY,1,2,127,103,QRY,True,Elo +376 ↑ | L10 margin +15.1 ↑ | season win% +.47 ↑
-2026-04-06,S3G03676,HLW,PNE,0.646,1384,1216,0.806,HLW,2,2,110,104,HLW,True,Elo +168 ↑ | season win% +.23 ↑ | L10 margin -0.1 ↓
-2026-04-06,S3G03678,SKY,OBS,0.389,1393,1603,0.322,OBS,2,2,114,109,SKY,False,Elo -210 ↓ | L10 margin -11.9 ↓ | home/away split -.01 ↓
-2026-04-07,S3G03683,XEN,SLT,0.796,1608,1357,0.871,XEN,2,3,111,125,SLT,False,Elo +251 ↑ | L10 margin +15.9 ↑ | L10 offence +11.1 pts ↑
-2026-04-07,S3G03680,GLD,ZEP,0.791,1539,1280,0.876,GLD,2,1,116,110,GLD,True,Elo +259 ↑ | L10 margin +14.4 ↑ | L10 offence +10.2 pts ↑
-2026-04-07,S3G03681,NOR,TMB,0.615,1450,1433,0.637,NOR,4,2,109,124,TMB,False,L10 margin +15.0 ↑ | season win% -.09 ↓ | home/away split +.05 ↓
-2026-04-07,S3G03682,VLE,SKY,0.599,1440,1419,0.642,VLE,4,1,112,92,VLE,True,season win% +.15 ↑ | L10 margin +1.1 ↓ | Elo +22 ↑
-2026-04-07,S3G03679,COP,BRK,0.582,1552,1566,0.594,COP,1,3,134,108,COP,True,L10 margin -5.0 ↓ | season win% +.08 ↑ | L10 defence -3.6 pts ↓
-2026-04-08,S3G03684,UMB,OBS,0.477,1474,1577,0.468,OBS,5,2,114,117,OBS,True,Elo -103 ↓ | L10 margin -4.2 ↓ | L10 defence -4.9 pts ↓
-2026-04-09,S3G03685,HAV,COP,0.71,1696,1578,0.758,HAV,7,2,113,110,HAV,True,Elo +118 ↑ | L10 margin +14.0 ↑ | L10 offence +7.4 pts ↑
-2026-04-09,S3G03688,SLT,QRY,0.311,1412,1717,0.215,QRY,2,3,117,121,QRY,True,Elo -305 ↓ | L10 margin -18.8 ↓ | season win% -.22 ↓
-2026-04-09,S3G03687,SKY,IRN,0.325,1398,1683,0.235,IRN,2,4,117,126,IRN,True,Elo -285 ↓ | season win% -.29 ↓ | Elo p(home) 23% ↓
-2026-04-09,S3G03686,MST,XEN,0.658,1636,1552,0.72,MST,4,2,110,126,XEN,False,L10 margin +6.6 ↑ | Elo +84 ↑ | season win% -.09 ↓
-2026-04-10,S3G03689,COP,UMB,0.676,1572,1461,0.75,COP,1,2,107,86,COP,True,Elo +111 ↑ | season win% +.25 ↑ | L10 margin +1.2 ↓
-2026-04-11,S3G03690,SKY,OBS,0.408,1388,1590,0.332,OBS,2,3,119,110,SKY,False,Elo -202 ↓ | L10 margin -8.8 ↓ | home/away split -.01 ↓
+date,id,h,a,ph,eh,ea,ep,pick,rh,ra,eid,t,hp,ap,w,ok,drivers
+2026-10-20,E401909089,NY,PHI,0.599,1616,1536,0.715,NY,7,7,401909089,7:00 PM,100.0,106.0,PHI,False,L10 defence +6.5 pts ↑ | season win% +.00 ↓ | Elo +80 ↑
+2026-10-20,E401909090,SA,OKC,0.599,1723,1666,0.687,SA,7,7,401909090,9:50 PM,104.0,116.0,OKC,False,L10 margin +3.3 ↑ | season win% +.00 ↓ | home/away split +.00 ↑
+2026-10-20,E401909088,DET,BOS,0.529,1678,1681,0.608,DET,7,7,401909088,3:00 PM,121.0,113.0,DET,True,season win% +.00 ↓ | home/away split +.00 ↑ | Elo -4 ↑
+2026-10-21,E401909837,TOR,CHI,0.81,1534,1340,0.829,TOR,7,7,401909837,7:30 PM,135.0,92.0,TOR,True,Elo +194 ↑ | L10 margin +22.8 ↑ | Elo p(home) 83% ↑
+2026-10-21,E401909840,HOU,DAL,0.81,1595,1368,0.854,HOU,7,7,401909840,8:30 PM,128.0,110.0,HOU,True,Elo +227 ↑ | L10 margin +22.7 ↑ | Elo p(home) 85% ↑
+2026-10-21,E401909092,LAL,GS,0.81,1610,1388,0.85,LAL,7,7,401909092,10:00 PM,127.0,105.0,LAL,True,Elo +222 ↑ | L10 margin +9.9 ↑ | Elo p(home) 85% ↑
+2026-10-21,E401909836,BKN,CHA,0.198,1282,1634,0.173,CHA,7,7,401909836,7:30 PM,103.0,110.0,CHA,True,Elo -352 ↓ | L10 margin -20.0 ↓ | Elo p(home) 17% ↓
+2026-10-21,E401909842,LAC,SAC,0.676,1523,1369,0.794,LAC,7,7,401909842,10:30 PM,121.0,96.0,LAC,True,Elo +154 ↑ | L10 margin +12.4 ↑ | L10 defence +9.2 pts ↑
+2026-10-21,E401909841,POR,PHX,0.613,1545,1543,0.616,POR,7,7,401909841,10:00 PM,124.0,83.0,POR,True,L10 margin +10.1 ↑ | L10 defence +6.9 pts ↑ | season win% +.00 ↓
+2026-10-21,E401909835,WSH,MIL,0.462,1220,1358,0.417,MIL,7,7,401909835,7:00 PM,128.0,116.0,WSH,False,Elo -138 ↓ | L10 defence -13.1 pts ↓ | season win% +.00 ↓
+2026-10-21,E401909091,MIA,MIN,0.529,1520,1541,0.584,MIA,7,7,401909091,7:30 PM,106.0,131.0,MIN,False,L10 offence +10.6 pts ↑ | L10 defence -10.7 pts ↓ | season win% +.00 ↓
+2026-10-21,E401909838,MEM,UTAH,0.529,1257,1286,0.573,MEM,7,7,401909838,8:00 PM,123.0,103.0,MEM,True,season win% +.00 ↓ | home/away split +.00 ↑ | Elo -29 ↑
+2026-10-21,E401909834,ORL,ATL,0.527,1560,1587,0.576,ORL,7,7,401909834,7:00 PM,125.0,132.0,ATL,False,L10 defence -3.9 pts ↓ | season win% +.00 ↓ | home/away split +.00 ↑
+2026-10-21,E401909839,NO,IND,0.527,1414,1350,0.696,NO,7,7,401909839,8:00 PM,120.0,123.0,IND,False,L10 defence -6.6 pts ↓ | Elo +64 ↑ | home/away split +.00 ↑
+2026-10-22,E401909094,OKC,DEN,0.613,1703,1682,0.641,OKC,2,7,401909094,9:30 PM,96.0,84.0,OKC,True,L10 defence +11.4 pts ↑ | season win% +.00 ↓ | home/away split +.00 ↑
+2026-10-22,E401909093,PHI,CLE,0.599,1566,1596,0.571,PHI,2,7,401909093,7:00 PM,114.0,106.0,PHI,True,L10 defence +7.9 pts ↑ | season win% +.00 ↓ | home/away split +.00 ↑
+2026-10-23,E401909846,WSH,TOR,0.198,1250,1546,0.225,TOR,2,2,401909846,7:00 PM,102.0,112.0,TOR,True,Elo -295 ↓ | L10 margin -31.6 ↓ | Elo p(home) 22% ↓
+2026-10-23,E401909844,IND,DAL,0.676,1371,1361,0.627,IND,2,2,401909844,7:00 PM,105.0,121.0,DAL,False,season win% +1.00 ↑ | L10 defence +4.9 pts ↑ | L10 margin +8.0 ↑
+2026-10-23,E401909847,MIA,DET,0.33,1481,1694,0.317,DET,2,3,401909847,8:00 PM,111.0,128.0,DET,True,Elo -214 ↓ | season win% -1.00 ↓ | L10 margin -15.1 ↓
+2026-10-23,E401909852,SAC,POR,0.33,1357,1572,0.314,POR,2,2,401909852,10:00 PM,120.0,128.0,POR,True,Elo -216 ↓ | L10 margin -22.1 ↓ | season win% -1.00 ↓
+2026-10-23,E401909848,MIL,CHI,0.613,1327,1328,0.612,MIL,2,2,401909848,4:00 PM,125.0,132.0,CHI,False,L10 defence +8.4 pts ↑ | L10 margin +7.2 ↑ | home/away split +.00 ↑
+2026-10-23,E401909095,BOS,NY,0.613,1665,1585,0.714,BOS,3,3,401909095,7:00 PM,107.0,103.0,BOS,True,L10 margin +7.9 ↑ | L10 offence +10.9 pts ↑ | L10 defence -3.0 pts ↓
+2026-10-23,E401909851,LAL,LAC,0.613,1618,1535,0.718,LAL,2,2,401909851,10:00 PM,125.0,117.0,LAL,True,L10 margin +3.4 ↑ | home/away split +.00 ↑ | L10 defence +2.3 pts ↑
+2026-10-23,E401909843,CHA,ATL,0.599,1641,1612,0.652,CHA,2,2,401909843,7:00 PM,81.0,128.0,ATL,False,L10 defence +6.1 pts ↑ | home/away split +.00 ↑ | Elo +29 ↑
+2026-10-23,E401909850,GS,MEM,0.599,1380,1282,0.735,GS,2,2,401909850,10:00 PM,108.0,111.0,MEM,False,season win% -1.00 ↓ | L10 margin +9.0 ↑ | L10 defence +11.0 pts ↑
+2026-10-23,E401909849,UTAH,NO,0.462,1260,1393,0.425,NO,2,2,401909849,9:30 PM,120.0,119.0,UTAH,False,Elo -133 ↓ | L10 defence -5.3 pts ↓ | Elo p(home) 42% ↓
+2026-10-23,E401909096,SA,HOU,0.529,1685,1603,0.718,SA,3,2,401909096,9:30 PM,110.0,114.0,HOU,False,season win% -1.00 ↓ | Elo +82 ↑ | L10 defence -3.9 pts ↓
+2026-10-23,E401909845,ORL,MIN,0.527,1536,1580,0.552,ORL,2,2,401909845,7:00 PM,93.0,115.0,MIN,False,season win% -1.00 ↓ | home/away split -1.00 ↓ | Elo -44 ↑
+2026-10-24,E401909855,PHI,MIL,0.864,1584,1301,0.89,PHI,2,1,401909855,7:30 PM,127.0,116.0,PHI,True,Elo +283 ↑ | season win% +1.00 ↑ | Elo p(home) 89% ↑
+2026-10-24,E401909859,DEN,NO,0.82,1665,1385,0.888,DEN,2,1,401909859,9:00 PM,141.0,135.0,DEN,True,Elo +280 ↑ | L10 margin +17.3 ↑ | Elo p(home) 89% ↑
+2026-10-24,E401909854,CLE,BKN,0.81,1577,1276,0.9,CLE,2,3,401909854,7:30 PM,125.0,121.0,CLE,True,Elo +302 ↑ | L10 margin +17.8 ↑ | Elo p(home) 90% ↑
+2026-10-24,E401909853,CHA,MIA,0.676,1588,1463,0.764,CHA,1,1,401909853,6:00 PM,115.0,110.0,CHA,True,season win% +.50 ↑ | Elo +124 ↑ | L10 defence +18.8 pts ↑
+2026-10-24,E401909860,PHX,GS,0.676,1515,1357,0.797,PHX,3,1,401909860,10:00 PM,131.0,122.0,PHX,True,Elo +158 ↑ | L10 defence +5.9 pts ↑ | L10 margin +8.3 ↑
+2026-10-24,E401909858,DAL,SA,0.356,1398,1660,0.259,SA,1,1,401909858,8:00 PM,106.0,122.0,SA,True,Elo -262 ↓ | season win% +.50 ↑ | L10 margin -14.0 ↓
+2026-10-24,E401909857,CHI,WSH,0.599,1355,1241,0.753,CHI,1,1,401909857,8:00 PM,120.0,124.0,WSH,False,home/away split +.00 ↑ | home rest 1d ↓ | L10 defence +2.0 pts ↑
+2026-10-24,E401909856,ATL,HOU,0.529,1665,1628,0.662,ATL,1,1,401909856,8:30 PM,114.0,121.0,HOU,False,L10 defence -1.1 pts ↓ | home/away split +.00 ↑ | home rest 1d ↓
+2026-10-25,E401909865,OKC,LAC,0.864,1721,1524,0.831,OKC,3,2,401909865,7:00 PM,108.0,101.0,OKC,True,Elo +197 ↑ | season win% +.50 ↑ | L10 margin +10.7 ↑
+2026-10-25,E401909861,UTAH,LAL,0.198,1269,1629,0.166,LAL,2,2,401909861,5:00 PM,123.0,132.0,LAL,True,Elo -361 ↓ | L10 margin -17.8 ↓ | season win% -.50 ↓
+2026-10-25,E401909866,PHI,DET,0.336,1589,1712,0.439,DET,1,2,401909866,7:30 PM,93.0,106.0,DET,True,Elo -123 ↓ | home/away split +.00 ↓ | Elo p(home) 44% ↓
+2026-10-25,E401909863,NY,ORL,0.613,1577,1501,0.711,NY,2,2,401909863,7:00 PM,102.0,111.0,ORL,False,L10 defence +10.0 pts ↑ | Elo +76 ↑ | home/away split +.00 ↑
+2026-10-25,E401909862,BKN,IND,0.462,1273,1334,0.528,IND,1,2,401909862,6:00 PM,109.0,136.0,IND,True,season win% -.50 ↓ | L10 margin -10.7 ↓ | home/away split -1.00 ↓
+2026-10-25,E401909867,SAC,MEM,0.529,1344,1305,0.665,SAC,2,2,401909867,9:00 PM,112.0,123.0,MEM,False,season win% -1.00 ↓ | home/away split -1.00 ↓ | L10 margin +8.4 ↑
+2026-10-25,E401909864,MIN,TOR,0.527,1615,1555,0.691,MIN,2,2,401909864,7:00 PM,117.0,94.0,MIN,True,L10 defence -6.0 pts ↓ | L10 margin -4.6 ↓ | home/away split +.00 ↑
+2026-10-26,E401909870,BOS,CHI,0.864,1673,1328,0.92,BOS,3,2,401909870,7:30 PM,134.0,99.0,BOS,True,Elo +345 ↑ | L10 margin +19.8 ↑ | Elo p(home) 92% ↑
+2026-10-26,E401909876,DEN,GS,0.864,1669,1349,0.909,DEN,2,2,401909876,10:00 PM,114.0,134.0,GS,False,Elo +320 ↑ | season win% +.50 ↑ | L10 margin +16.8 ↑
+2026-10-26,E401909873,OKC,PHX,0.82,1727,1523,0.837,OKC,1,2,401909873,8:00 PM,125.0,114.0,OKC,True,Elo +204 ↑ | season win% +.50 ↑ | L10 margin +14.0 ↑
+2026-10-26,E401909868,CHA,WSH,0.81,1595,1267,0.913,CHA,2,2,401909868,7:00 PM,110.0,103.0,CHA,True,Elo +328 ↑ | L10 margin +15.2 ↑ | Elo p(home) 91% ↑
+2026-10-26,E401909874,HOU,ATL,0.599,1657,1636,0.642,HOU,2,2,401909874,8:30 PM,120.0,110.0,HOU,True,season win% +.33 ↑ | home/away split +.00 ↓ | L10 margin +1.5 ↑
+2026-10-26,E401909869,CLE,MIN,0.527,1580,1634,0.538,CLE,2,1,401909869,7:00 PM,127.0,125.0,CLE,True,season win% -.50 ↓ | Elo -54 ↑ | L10 defence -4.0 pts ↓
+2026-10-26,E401909871,MIA,DAL,0.527,1456,1384,0.705,MIA,2,2,401909871,7:30 PM,109.0,113.0,DAL,False,season win% -.33 ↓ | L10 margin +3.3 ↑ | home/away split -.50 ↓
+2026-10-26,E401909872,MIL,IND,0.527,1296,1369,0.51,MIL,2,1,401909872,8:00 PM,110.0,102.0,MIL,True,season win% -.67 ↓ | home/away split -1.00 ↓ | L10 defence -4.3 pts ↓
+2026-10-26,E401909875,UTAH,MEM,0.527,1262,1340,0.503,UTAH,1,1,401909875,9:00 PM,105.0,110.0,MEM,False,season win% -.67 ↓ | home/away split -.50 ↓ | home rest 1d ↓
+2026-10-27,E401909877,BOS,BKN,0.83,1678,1238,0.952,BOS,1,2,401909877,7:30 PM,125.0,124.0,BOS,True,Elo +441 ↑ | season win% +.67 ↑ | L10 margin +30.3 ↑
+2026-10-27,E401909879,SA,SAC,0.83,1674,1309,0.928,SA,3,2,401909879,8:00 PM,130.0,103.0,SA,True,Elo +365 ↑ | season win% +.33 ↑ | L10 margin +15.3 ↑
+2026-10-27,E401909878,NY,DET,0.33,1542,1734,0.343,DET,2,2,401909878,8:00 PM,111.0,97.0,NY,False,Elo -193 ↓ | season win% -1.00 ↓ | home/away split -1.00 ↓
+2026-10-27,E401909880,LAL,POR,0.527,1636,1585,0.68,LAL,2,4,401909880,11:00 PM,129.0,136.0,POR,False,L10 defence -8.0 pts ↓ | L10 margin -7.8 ↓ | home/away split +.00 ↓
+2026-10-28,E401909888,MIN,GS,0.864,1624,1417,0.839,MIN,2,2,401909888,8:00 PM,114.0,119.0,GS,False,Elo +207 ↑ | season win% +.50 ↑ | L10 margin +10.4 ↑
+2026-10-28,E401909887,MIL,HOU,0.152,1318,1673,0.17,HOU,2,2,401909887,8:00 PM,100.0,132.0,HOU,True,Elo -356 ↓ | L10 margin -19.9 ↓ | season win% -.75 ↓
+2026-10-28,E401909890,UTAH,SA,0.152,1244,1678,0.115,SA,2,1,401909890,9:00 PM,111.0,117.0,SA,True,Elo -434 ↓ | L10 margin -18.9 ↓ | season win% -.25 ↓
+2026-10-28,E401909891,DAL,OKC,0.152,1409,1734,0.195,OKC,2,2,401909891,9:30 PM,120.0,96.0,DAL,False,Elo -326 ↓ | season win% -.50 ↓ | L10 margin -15.7 ↓
+2026-10-28,E401909882,CLE,WSH,0.83,1590,1264,0.912,CLE,2,2,401909882,7:00 PM,121.0,111.0,CLE,True,Elo +326 ↑ | L10 margin +11.4 ↑ | Elo p(home) 91% ↑
+2026-10-28,E401909881,ATL,MIA,0.81,1619,1431,0.824,ATL,2,2,401909881,7:00 PM,117.0,129.0,MIA,False,Elo +188 ↑ | season win% +.50 ↑ | L10 margin +13.1 ↑
+2026-10-28,E401909889,NO,DEN,0.269,1381,1601,0.309,DEN,4,2,401909889,8:00 PM,91.0,104.0,DEN,True,Elo -220 ↓ | season win% -.33 ↓ | L10 margin -13.9 ↓
+2026-10-28,E401909884,IND,PHI,0.33,1348,1566,0.311,PHI,2,3,401909884,7:00 PM,109.0,114.0,PHI,True,Elo -218 ↓ | season win% -.25 ↓ | home/away split -1.00 ↓
+2026-10-28,E401909886,CHI,NY,0.336,1323,1579,0.266,NY,2,1,401909886,8:00 PM,127.0,133.0,NY,True,Elo -256 ↓ | L10 margin -18.6 ↓ | Elo p(home) 27% ↓
+2026-10-28,E401909885,TOR,ORL,0.613,1537,1536,0.614,TOR,3,3,401909885,7:30 PM,129.0,99.0,TOR,True,season win% +.33 ↑ | L10 margin +8.5 ↑ | L10 defence +9.0 pts ↑
+2026-10-28,E401909883,DET,CHA,0.527,1697,1598,0.736,DET,1,2,401909883,7:00 PM,97.0,89.0,DET,True,L10 margin +8.0 ↑ | home/away split +.00 ↓ | Elo +98 ↑
+2026-10-28,E401909892,LAC,LAL,0.527,1518,1606,0.488,LAC,3,1,401909892,10:30 PM,87.0,103.0,LAL,False,season win% -.42 ↓ | home/away split +.00 ↓ | L10 defence +3.3 pts ↑
+2026-10-29,E401909895,POR,MEM,0.81,1615,1358,0.875,POR,2,3,401909895,10:00 PM,103.0,124.0,MEM,False,Elo +258 ↑ | L10 margin +24.7 ↑ | Elo p(home) 87% ↑
+2026-10-29,E401909893,ATL,CLE,0.527,1571,1594,0.582,ATL,1,1,401909893,8:00 PM,114.0,111.0,ATL,True,season win% -.35 ↓ | home/away split +.00 ↓ | Elo -22 ↑
+2026-10-29,E401909894,NO,SAC,0.527,1366,1305,0.693,NO,1,2,401909894,8:00 PM,132.0,120.0,NO,True,L10 margin +4.3 ↑ | L10 defence -3.0 pts ↓ | home/away split +.00 ↓
+2026-10-30,E401909278,BOS,CHI,0.864,1679,1314,0.928,BOS,3,2,401909278,7:30 PM,125.0,111.0,BOS,True,Elo +365 ↑ | season win% +.55 ↑ | L10 margin +20.8 ↑
+2026-10-30,E401909279,BKN,DET,0.152,1237,1708,0.095,DET,3,2,401909279,7:30 PM,94.0,110.0,DET,True,Elo -471 ↓ | L10 margin -23.7 ↓ | season win% -.80 ↓
+2026-10-30,E401909277,WSH,CHA,0.198,1261,1588,0.194,CHA,2,2,401909277,7:00 PM,95.0,79.0,WSH,False,Elo -327 ↓ | season win% -.20 ↓ | Elo p(home) 19% ↓
+2026-10-30,E401909283,DAL,HOU,0.25,1467,1684,0.313,HOU,2,2,401909283,8:00 PM,116.0,111.0,DAL,False,Elo -217 ↓ | season win% -.40 ↓ | L10 margin -12.4 ↓
+2026-10-30,E401909285,GS,LAL,0.269,1451,1634,0.357,LAL,2,2,401909285,10:00 PM,112.0,95.0,GS,False,Elo -182 ↓ | season win% -.40 ↓ | L10 margin -10.6 ↓
+2026-10-30,E401909281,TOR,ORL,0.676,1562,1510,0.681,TOR,2,2,401909281,7:30 PM,114.0,121.0,ORL,False,season win% +.50 ↑ | L10 margin +12.4 ↑ | L10 defence +11.3 pts ↑
+2026-10-30,E401909284,MIN,LAC,0.613,1589,1490,0.737,MIN,2,2,401909284,8:00 PM,127.0,101.0,MIN,True,season win% +.35 ↑ | L10 defence -3.9 pts ↓ | L10 margin +8.2 ↑
+2026-10-30,E401909280,PHI,NY,0.599,1577,1589,0.596,PHI,2,2,401909280,7:30 PM,98.0,93.0,PHI,True,season win% +.40 ↑ | L10 defence -2.1 pts ↓ | L10 margin -5.2 ↓
+2026-10-30,E401909282,MIA,IND,0.599,1479,1337,0.782,MIA,2,2,401909282,8:00 PM,145.0,125.0,MIA,True,Elo +142 ↑ | season win% -.20 ↓ | L10 defence -7.6 pts ↓
+2026-10-30,E401909286,PHX,DEN,0.506,1516,1616,0.471,PHX,4,2,401909286,10:00 PM,120.0,127.0,DEN,False,Elo -100 ↓ | season win% -.17 ↓ | L10 margin -11.6 ↓
+2026-10-31,E401909896,UTAH,POR,0.152,1240,1551,0.209,POR,3,2,401909896,3:00 PM,90.0,112.0,POR,True,Elo -312 ↓ | L10 margin -17.7 ↓ | season win% -.55 ↓
+2026-10-31,E401909900,MIL,CLE,0.269,1307,1582,0.245,CLE,3,2,401909900,8:00 PM,111.0,136.0,CLE,True,Elo -275 ↓ | season win% -.40 ↓ | Elo p(home) 25% ↓
+2026-10-31,E401909899,MEM,SAC,0.676,1421,1290,0.772,MEM,2,2,401909899,8:00 PM,136.0,105.0,MEM,True,season win% +1.00 ↑ | Elo +131 ↑ | home/away split +1.00 ↑
+2026-10-31,E401909898,NO,ATL,0.33,1381,1582,0.332,ATL,2,2,401909898,7:00 PM,121.0,99.0,NO,False,Elo -202 ↓ | season win% -.30 ↓ | home/away split -.33 ↓
+2026-10-31,E401909897,CHA,PHI,0.527,1536,1591,0.537,CHA,1,1,401909897,6:00 PM,104.0,109.0,PHI,False,season win% -.33 ↓ | home/away split -.33 ↓ | Elo -54 ↑
+2026-10-31,E401909901,SA,MIN,0.527,1682,1605,0.711,SA,3,1,401909901,8:00 PM,121.0,111.0,SA,True,season win% -.07 ↓ | Elo +77 ↑ | home/away split -.33 ↓
+2026-10-31,E401909902,HOU,OKC,0.527,1658,1676,0.587,HOU,1,3,401909902,8:30 PM,119.0,98.0,HOU,True,L10 defence -1.1 pts ↓ | L10 margin +6.3 ↑ | home/away split +.50 ↑
+2026-11-01,E401909903,ORL,BOS,0.33,1541,1682,0.413,BOS,2,2,401909903,3:30 PM,97.0,108.0,BOS,True,Elo -141 ↓ | season win% -.40 ↓ | Elo p(home) 41% ↓
+2026-11-01,E401909904,IND,BKN,0.613,1325,1232,0.73,IND,2,2,401909904,5:00 PM,90.0,98.0,BKN,False,season win% +.33 ↑ | L10 margin +9.1 ↑ | home/away split +.00 ↓
+2026-11-01,E401909905,GS,LAC,0.599,1490,1474,0.635,GS,2,2,401909905,8:30 PM,124.0,112.0,GS,True,season win% +.30 ↑ | L10 defence -3.0 pts ↓ | home/away split +.50 ↑
+2026-11-01,E401909906,LAL,TOR,0.529,1595,1532,0.694,LAL,2,2,401909906,9:00 PM,131.0,125.0,LAL,True,L10 defence -1.8 pts ↓ | season win% +.07 ↑ | home/away split +.17 ↑
+2026-11-02,E401909912,PHI,CHI,0.864,1610,1310,0.899,PHI,2,3,401909912,7:30 PM,126.0,107.0,PHI,True,Elo +300 ↑ | season win% +.69 ↑ | L10 margin +14.5 ↑
+2026-11-02,E401909913,DAL,SAC,0.864,1493,1276,0.847,DAL,3,2,401909913,8:00 PM,100.0,115.0,SAC,False,Elo +218 ↑ | season win% +.67 ↑ | L10 margin +15.3 ↑
+2026-11-02,E401909915,MIN,MIL,0.864,1592,1292,0.899,MIN,2,2,401909915,8:00 PM,112.0,100.0,MIN,True,Elo +300 ↑ | season win% +.40 ↑ | L10 margin +19.1 ↑
+2026-11-02,E401909917,SA,UTAH,0.864,1694,1228,0.959,SA,2,2,401909917,8:30 PM,119.0,97.0,SA,True,Elo +466 ↑ | season win% +.50 ↑ | L10 margin +16.9 ↑
+2026-11-02,E401909910,NY,BKN,0.82,1575,1267,0.903,NY,3,1,401909910,7:30 PM,103.0,90.0,NY,True,Elo +308 ↑ | L10 margin +13.0 ↑ | Elo p(home) 90% ↑
+2026-11-02,E401909911,ORL,WSH,0.676,1521,1312,0.84,ORL,1,3,401909911,7:30 PM,94.0,103.0,WSH,False,Elo +209 ↑ | season win% -.17 ↓ | Elo p(home) 84% ↑
+2026-11-02,E401909908,CHA,DET,0.33,1517,1712,0.34,DET,2,3,401909908,7:30 PM,91.0,124.0,DET,True,Elo -195 ↓ | season win% -.40 ↓ | L10 margin -16.0 ↓
+2026-11-02,E401909909,IND,ATL,0.33,1290,1538,0.276,ATL,1,2,401909909,7:30 PM,104.0,108.0,ATL,True,Elo -248 ↓ | season win% -.14 ↓ | home/away split -.50 ↓
+2026-11-02,E401909907,CLE,OKC,0.613,1597,1651,0.537,CLE,2,2,401909907,7:00 PM,112.0,117.0,OKC,False,L10 margin +4.4 ↑ | L10 offence +12.2 pts ↑ | L10 defence -7.8 pts ↓
+2026-11-02,E401909914,MEM,NO,0.613,1436,1425,0.628,MEM,2,2,401909914,8:00 PM,134.0,135.0,NO,False,season win% +.67 ↑ | L10 defence +3.9 pts ↑ | home/away split +1.00 ↑
+2026-11-02,E401909916,HOU,BOS,0.613,1682,1702,0.586,HOU,2,1,401909916,8:30 PM,109.0,93.0,HOU,True,L10 margin +3.2 ↑ | home/away split +.50 ↑ | L10 defence -0.2 pts ↓
+2026-11-02,E401909921,LAL,MIA,0.613,1606,1491,0.754,LAL,1,3,401909921,10:00 PM,138.0,117.0,LAL,True,season win% +.38 ↑ | L10 margin +11.5 ↑ | L10 defence +12.4 pts ↑
+2026-11-02,E401909919,GS,PHX,0.599,1508,1497,0.628,GS,1,3,401909919,10:00 PM,116.0,113.0,GS,True,season win% +.32 ↑ | L10 margin +5.8 ↑ | home/away split +.67 ↑
+2026-11-02,E401909918,DEN,POR,0.527,1636,1563,0.706,DEN,3,2,401909918,9:00 PM,110.0,118.0,POR,False,season win% -.20 ↓ | Elo +72 ↑ | home/away split -.50 ↓
+2026-11-02,E401909920,LAC,TOR,0.527,1456,1521,0.522,LAC,1,1,401909920,10:00 PM,118.0,125.0,TOR,False,L10 margin -16.8 ↓ | season win% -.33 ↓ | home/away split +.17 ↑
+2026-11-04,E401909924,BOS,MIL,0.864,1679,1288,0.938,BOS,2,2,401909924,7:30 PM,109.0,102.0,BOS,True,Elo +391 ↑ | season win% +.57 ↑ | L10 margin +18.6 ↑
+2026-11-04,E401909926,NY,CHI,0.864,1579,1305,0.885,NY,2,2,401909926,7:30 PM,135.0,105.0,NY,True,Elo +274 ↑ | season win% +.29 ↑ | L10 margin +16.6 ↑
+2026-11-04,E401909934,SAC,LAL,0.152,1330,1620,0.23,LAL,2,2,401909934,10:00 PM,103.0,116.0,LAL,True,Elo -290 ↓ | L10 margin -22.0 ↓ | season win% -.61 ↓
+2026-11-04,E401909928,NO,UTAH,0.81,1434,1226,0.84,NO,2,2,401909928,8:00 PM,120.0,113.0,NO,True,Elo +208 ↑ | season win% +.29 ↑ | Elo p(home) 84% ↑
+2026-11-04,E401909933,SA,DAL,0.81,1697,1439,0.875,SA,2,2,401909933,9:30 PM,112.0,111.0,SA,True,Elo +258 ↑ | Elo p(home) 87% ↑ | season win% +.14 ↑
+2026-11-04,E401909927,MEM,IND,0.676,1427,1282,0.785,MEM,2,2,401909927,8:00 PM,103.0,107.0,IND,False,Elo +145 ↑ | season win% +.61 ↑ | L10 defence -2.3 pts ↓
+2026-11-04,E401909930,HOU,MIN,0.676,1705,1596,0.748,HOU,2,2,401909930,8:30 PM,107.0,117.0,MIN,False,season win% +.25 ↑ | L10 margin +2.9 ↑ | home/away split +.50 ↑
+2026-11-04,E401909925,BKN,CHA,0.33,1263,1494,0.295,CHA,2,2,401909925,7:30 PM,114.0,104.0,BKN,False,Elo -231 ↓ | season win% -.23 ↓ | home/away split -.33 ↓
+2026-11-04,E401909932,PHX,POR,0.33,1487,1597,0.457,POR,2,2,401909932,9:00 PM,119.0,132.0,POR,True,Elo -110 ↓ | season win% -.63 ↓ | L10 margin -12.8 ↓
+2026-11-04,E401909929,OKC,CLE,0.613,1671,1578,0.731,OKC,2,2,401909929,8:00 PM,124.0,116.0,OKC,True,L10 defence +4.4 pts ↑ | season win% +.14 ↑ | home/away split +.67 ↑
+2026-11-04,E401909922,DET,PHI,0.599,1735,1615,0.759,DET,2,2,401909922,7:00 PM,106.0,112.0,PHI,False,L10 margin +6.0 ↑ | home/away split +.00 ↓ | Elo +120 ↑
+2026-11-04,E401909923,WSH,ATL,0.462,1357,1546,0.347,ATL,2,2,401909923,7:00 PM,105.0,120.0,ATL,True,Elo -190 ↓ | season win% +.07 ↑ | Elo p(home) 35% ↓
+2026-11-04,E401909931,DEN,TOR,0.527,1602,1543,0.691,DEN,2,2,401909931,9:00 PM,128.0,109.0,DEN,True,season win% -.07 ↓ | home/away split -.17 ↓ | Elo +59 ↑
+2026-11-04,E401909935,LAC,MIA,0.527,1434,1477,0.553,LAC,2,2,401909935,10:30 PM,116.0,117.0,MIA,False,season win% -.14 ↓ | home/away split +.00 ↓ | L10 defence +6.7 pts ↑
+2026-11-05,E401909937,GS,MIA,0.676,1518,1485,0.657,GS,3,1,401909937,10:00 PM,120.0,100.0,GS,True,season win% +.25 ↑ | L10 defence +6.1 pts ↑ | home/away split +.25 ↑
+2026-11-05,E401909936,PHX,ORL,0.462,1463,1476,0.595,ORL,1,3,401909936,9:00 PM,117.0,104.0,PHX,False,season win% -.12 ↓ | Elo -13 ↑ | home/away split -.33 ↓
+2026-11-06,E401909295,SAC,SA,0.152,1319,1698,0.152,SA,2,2,401909295,10:00 PM,109.0,124.0,SA,True,Elo -379 ↓ | L10 margin -19.3 ↓ | season win% -.62 ↓
+2026-11-06,E401909290,DAL,UTAH,0.82,1437,1220,0.847,DAL,2,2,401909290,8:00 PM,112.0,100.0,DAL,True,Elo +217 ↑ | season win% +.38 ↑ | Elo p(home) 85% ↑
+2026-11-06,E401909292,MIL,TOR,0.269,1286,1525,0.285,TOR,2,2,401909292,8:00 PM,107.0,121.0,TOR,True,Elo -240 ↓ | season win% -.38 ↓ | L10 margin -15.4 ↓
+2026-11-06,E401909293,NO,MIN,0.269,1440,1636,0.34,MIN,2,2,401909293,8:00 PM,109.0,115.0,MIN,True,Elo -196 ↓ | season win% -.17 ↓ | L10 margin -12.0 ↓
+2026-11-06,E401909287,ATL,WSH,0.676,1565,1338,0.854,ATL,2,2,401909287,7:00 PM,139.0,132.0,ATL,True,Elo +226 ↑ | Elo p(home) 85% ↑ | L10 defence -1.8 pts ↓
+2026-11-06,E401909288,CHA,BOS,0.33,1458,1681,0.305,BOS,2,2,401909288,7:00 PM,80.0,119.0,BOS,True,Elo -223 ↓ | L10 margin -16.5 ↓ | season win% -.42 ↓
+2026-11-06,E401909291,MEM,OKC,0.336,1399,1682,0.237,OKC,2,2,401909291,8:00 PM,97.0,128.0,OKC,True,Elo -283 ↓ | Elo p(home) 24% ↓ | L10 margin +5.1 ↑
+2026-11-06,E401909289,CLE,PHI,0.527,1567,1648,0.498,CLE,2,2,401909289,7:30 PM,119.0,95.0,CLE,True,season win% -.39 ↓ | L10 defence -12.5 pts ↓ | home/away split -.25 ↓
+2026-11-06,E401909294,LAL,POR,0.527,1631,1620,0.627,LAL,2,2,401909294,10:00 PM,124.0,118.0,LAL,True,season win% -.08 ↓ | home/away split -.20 ↓ | Elo +10 ↑
+2026-11-07,E401909941,OKC,WSH,0.83,1697,1333,0.928,OKC,1,1,401909941,8:00 PM,114.0,75.0,OKC,True,Elo +364 ↑ | season win% +.33 ↑ | Elo p(home) 93% ↑
+2026-11-07,E401909939,ATL,BKN,0.82,1570,1299,0.883,ATL,1,3,401909939,7:30 PM,124.0,121.0,ATL,True,Elo +271 ↑ | season win% +.35 ↑ | L10 margin +13.4 ↑
+2026-11-07,E401909938,IND,DEN,0.198,1310,1620,0.211,DEN,3,3,401909938,5:00 PM,102.0,114.0,DEN,True,Elo -310 ↓ | season win% -.24 ↓ | Elo p(home) 21% ↓
+2026-11-07,E401909943,PHX,HOU,0.269,1484,1666,0.357,HOU,2,3,401909943,9:00 PM,102.0,99.0,PHX,False,Elo -182 ↓ | L10 margin -16.8 ↓ | season win% -.49 ↓
+2026-11-07,E401909942,GS,ORL,0.613,1538,1455,0.718,GS,2,2,401909942,8:30 PM,126.0,119.0,GS,True,season win% +.42 ↑ | L10 margin +9.5 ↑ | home/away split +.30 ↑
+2026-11-07,E401909944,POR,SA,0.462,1607,1705,0.473,SA,1,1,401909944,10:00 PM,103.0,125.0,SA,True,Elo -99 ↓ | L10 margin +3.2 ↑ | home/away split -.50 ↓
+2026-11-07,E401909940,CLE,NY,0.529,1599,1586,0.631,CLE,1,3,401909940,8:00 PM,97.0,109.0,NY,False,L10 defence -10.3 pts ↓ | L10 offence +11.5 pts ↑ | season win% +.06 ↑
+2026-11-08,E401909947,MIN,UTAH,0.864,1648,1213,0.951,MIN,2,2,401909947,7:00 PM,,,,,Elo +435 ↑ | season win% +.59 ↑ | L10 margin +23.3 ↑
+2026-11-08,E401909945,CHI,PHI,0.152,1298,1615,0.204,PHI,4,2,401909945,3:30 PM,,,,,Elo -317 ↓ | L10 margin -21.7 ↓ | season win% -.68 ↓
+2026-11-08,E401909949,MIL,BOS,0.152,1271,1702,0.117,BOS,2,2,401909949,8:00 PM,,,,,Elo -431 ↓ | L10 margin -22.4 ↓ | season win% -.67 ↓
+2026-11-08,E401909948,DAL,BKN,0.81,1444,1296,0.788,DAL,2,1,401909948,7:30 PM,,,,,Elo +148 ↑ | season win% +.33 ↑ | L10 margin +12.0 ↑
+2026-11-08,E401909951,SAC,MIA,0.33,1311,1465,0.395,MIA,2,3,401909951,9:00 PM,,,,,Elo -154 ↓ | season win% -.22 ↓ | L10 margin -10.6 ↓
+2026-11-08,E401909946,DET,LAL,0.613,1702,1645,0.688,DET,4,2,401909946,6:00 PM,,,,,L10 margin +2.8 ↑ | L10 defence +10.8 pts ↑ | home/away split -.08 ↓
+2026-11-08,E401909950,LAC,NO,0.527,1426,1428,0.612,LAC,4,2,401909950,9:00 PM,,,,,season win% -.32 ↓ | home/away split -.08 ↓ | L10 defence +5.0 pts ↑
+2026-11-09,E401909954,DET,WSH,0.82,1702,1328,0.932,DET,1,2,401909954,7:00 PM,,,,,Elo +374 ↑ | season win% +.35 ↑ | L10 margin +15.2 ↑
+2026-11-09,E401909958,PHX,SA,0.269,1503,1735,0.294,SA,2,2,401909958,9:00 PM,,,,,Elo -232 ↓ | season win% -.43 ↓ | L10 margin -14.9 ↓
+2026-11-09,E401909959,GS,NO,0.676,1549,1428,0.761,GS,2,1,401909959,10:00 PM,,,,,season win% +.26 ↑ | Elo +121 ↑ | L10 defence +6.5 pts ↑
+2026-11-09,E401909956,DAL,IND,0.667,1444,1301,0.784,DAL,1,2,401909956,8:00 PM,,,,,Elo +144 ↑ | season win% +.26 ↑ | L10 margin +7.1 ↑
+2026-11-09,E401909953,CHA,CLE,0.336,1437,1565,0.431,CLE,3,2,401909953,7:00 PM,,,,,Elo -128 ↓ | season win% -.20 ↓ | L10 margin -16.8 ↓
+2026-11-09,E401909955,TOR,MEM,0.613,1540,1384,0.796,TOR,3,3,401909955,7:30 PM,,,,,Elo +156 ↑ | season win% -.11 ↓ | home/away split -.33 ↓
+2026-11-09,E401909957,HOU,DEN,0.613,1647,1630,0.637,HOU,2,2,401909957,8:30 PM,,,,,season win% +.07 ↑ | L10 defence +6.0 pts ↑ | L10 margin +4.3 ↑
+2026-11-09,E401909952,ATL,LAL,0.527,1573,1645,0.511,ATL,2,1,401909952,7:00 PM,,,,,season win% -.16 ↓ | home/away split -.15 ↓ | L10 margin -4.9 ↓
+2026-11-10,E401909960,NY,MIL,0.864,1620,1271,0.922,NY,3,2,401909960,7:30 PM,,,,,Elo +348 ↑ | season win% +.44 ↑ | L10 margin +16.9 ↑
+2026-11-10,E401909963,UTAH,MIA,0.33,1213,1465,0.271,MIA,2,2,401909963,9:00 PM,,,,,Elo -252 ↓ | season win% -.22 ↓ | home/away split -.20 ↓
+2026-11-10,E401909964,SAC,ORL,0.33,1311,1444,0.424,ORL,2,3,401909964,10:00 PM,,,,,Elo -133 ↓ | season win% -.11 ↓ | home/away split -.40 ↓
+2026-11-10,E401909962,PHX,LAC,0.599,1503,1426,0.711,PHX,1,2,401909962,9:00 PM,,,,,season win% +.25 ↑ | home/away split +.60 ↑ | home rest 1d ↓
+2026-11-10,E401909965,POR,OKC,0.462,1577,1701,0.437,OKC,3,3,401909965,11:00 PM,,,,,Elo -124 ↓ | season win% -.13 ↓ | Elo p(home) 44% ↓
+2026-11-10,E401909961,PHI,BOS,0.527,1615,1702,0.49,PHI,2,2,401909961,8:00 PM,,,,,L10 defence -1.2 pts ↓ | home/away split +.30 ↑ | L10 margin -6.4 ↓
+2026-11-11,E401909969,CHI,SA,0.152,1298,1735,0.114,SA,3,2,401909969,8:00 PM,,,,,Elo -437 ↓ | L10 margin -29.2 ↓ | season win% -.68 ↓
+2026-11-11,E401909971,MIL,LAL,0.152,1271,1645,0.156,LAL,1,2,401909971,8:00 PM,,,,,Elo -373 ↓ | L10 margin -20.9 ↓ | season win% -.69 ↓
+2026-11-11,E401909972,NO,BKN,0.676,1428,1296,0.771,NO,2,3,401909972,8:00 PM,,,,,season win% +.22 ↑ | Elo +131 ↑ | L10 defence -3.8 pts ↓
+2026-11-11,E401909974,HOU,GS,0.676,1647,1549,0.736,HOU,2,2,401909974,9:30 PM,,,,,L10 defence +6.6 pts ↑ | L10 margin +4.0 ↑ | home/away split +.30 ↑
+2026-11-11,E401909973,UTAH,ORL,0.33,1213,1444,0.295,ORL,1,1,401909973,9:00 PM,,,,,Elo -231 ↓ | season win% -.11 ↓ | home/away split -.20 ↓
+2026-11-11,E401909967,NY,CLE,0.599,1620,1565,0.685,NY,1,2,401909967,7:00 PM,,,,,L10 defence +9.3 pts ↑ | season win% +.06 ↑ | home/away split +.35 ↑
+2026-11-11,E401909970,MEM,DEN,0.446,1384,1630,0.278,DEN,2,2,401909970,8:00 PM,,,,,Elo -246 ↓ | home/away split -.35 ↓ | season win% +.04 ↑
+2026-11-11,E401909975,POR,OKC,0.446,1577,1701,0.437,OKC,1,1,401909975,10:00 PM,,,,,Elo -124 ↓ | season win% -.13 ↓ | home/away split -.27 ↓
+2026-11-11,E401909968,TOR,BOS,0.462,1540,1702,0.384,BOS,2,1,401909968,7:00 PM,,,,,Elo -162 ↓ | season win% -.22 ↓ | home/away split +.17 ↑
+2026-11-11,E401909966,IND,WSH,0.527,1301,1328,0.574,IND,2,2,401909966,7:00 PM,,,,,season win% -.10 ↓ | home/away split -.33 ↓ | L10 defence -1.7 pts ↓
+2026-11-12,E401909977,WSH,DET,0.152,1328,1702,0.156,DET,1,3,401909977,7:00 PM,,,,,Elo -374 ↓ | season win% -.35 ↓ | L10 margin -15.2 ↓
+2026-11-12,E401909978,MIN,DAL,0.82,1648,1444,0.837,MIN,4,3,401909978,8:00 PM,,,,,Elo +204 ↑ | Elo p(home) 84% ↑ | L10 defence +4.9 pts ↑
+2026-11-12,E401909976,PHI,TOR,0.676,1615,1540,0.71,PHI,2,1,401909976,7:00 PM,,,,,season win% +.24 ↑ | L10 defence +5.0 pts ↑ | home/away split +.30 ↑
+2026-11-12,E401909979,PHX,CHA,0.613,1503,1437,0.698,PHX,2,3,401909979,9:00 PM,,,,,L10 defence -5.1 pts ↓ | L10 margin +9.3 ↑ | L10 offence +14.4 pts ↑
+2026-11-13,E401909301,HOU,UTAH,0.864,1647,1213,0.951,HOU,2,2,401909301,8:30 PM,,,,,Elo +434 ↑ | season win% +.59 ↑ | L10 margin +21.6 ↑
+2026-11-13,E401909302,SA,GS,0.81,1735,1549,0.822,SA,2,2,401909302,9:30 PM,,,,,Elo +186 ↑ | L10 defence +5.5 pts ↑ | L10 margin +5.3 ↑
+2026-11-13,E401909296,IND,NY,0.198,1301,1620,0.202,NY,2,2,401909296,7:00 PM,,,,,Elo -319 ↓ | season win% -.26 ↓ | Elo p(home) 20% ↓
+2026-11-13,E401909299,CHI,ATL,0.198,1298,1573,0.246,ATL,2,4,401909299,8:00 PM,,,,,Elo -274 ↓ | L10 margin -21.7 ↓ | season win% -.51 ↓
+2026-11-13,E401909304,LAC,OKC,0.198,1426,1701,0.246,OKC,3,2,401909304,10:30 PM,,,,,Elo -275 ↓ | season win% -.68 ↓ | L10 margin -14.6 ↓
+2026-11-13,E401909303,SAC,POR,0.238,1311,1577,0.256,POR,3,2,401909303,10:00 PM,,,,,Elo -266 ↓ | L10 margin -20.1 ↓ | season win% -.56 ↓
+2026-11-13,E401909297,ORL,MIL,0.676,1444,1271,0.811,ORL,2,2,401909297,7:00 PM,,,,,Elo +173 ↑ | L10 defence +6.6 pts ↑ | season win% +.11 ↑
+2026-11-13,E401909298,MIA,CLE,0.336,1465,1565,0.472,CLE,3,2,401909298,8:00 PM,,,,,Elo -100 ↓ | season win% -.17 ↓ | L10 defence -7.9 pts ↓
+2026-11-13,E401909300,NO,MEM,0.527,1428,1384,0.671,NO,2,2,401909300,8:00 PM,,,,,season win% -.22 ↓ | home/away split -.50 ↓ | L10 defence -6.3 pts ↓
+2026-11-14,E401909984,MIN,CHI,0.864,1648,1298,0.922,MIN,2,1,401909984,8:00 PM,,,,,Elo +350 ↑ | season win% +.57 ↑ | L10 margin +29.6 ↑
+2026-11-14,E401909982,MIA,DET,0.2,1465,1702,0.288,DET,1,2,401909982,8:00 PM,,,,,Elo -237 ↓ | season win% -.42 ↓ | L10 margin -13.8 ↓
+2026-11-14,E401909980,NO,DEN,0.33,1428,1630,0.331,DEN,1,3,401909980,7:00 PM,,,,,Elo -202 ↓ | season win% -.18 ↓ | home/away split -.25 ↓
+2026-11-14,E401909983,MEM,BKN,0.613,1384,1296,0.724,MEM,1,3,401909983,8:00 PM,,,,,season win% +.44 ↑ | L10 margin +11.2 ↑ | L10 defence +2.5 pts ↑
+2026-11-14,E401909981,CLE,DAL,0.527,1565,1444,0.761,CLE,1,2,401909981,7:30 PM,,,,,Elo +121 ↑ | season win% -.06 ↓ | L10 defence -1.5 pts ↓
+2026-11-15,E401909985,PHI,IND,0.864,1615,1301,0.907,PHI,3,2,401909985,1:00 PM,,,,,Elo +315 ↑ | season win% +.50 ↑ | Elo p(home) 91% ↑
+2026-11-15,E401909989,BOS,DAL,0.864,1702,1444,0.875,BOS,4,1,401909989,6:00 PM,,,,,Elo +258 ↑ | season win% +.22 ↑ | Elo p(home) 87% ↑
+2026-11-15,E401909988,UTAH,SA,0.152,1213,1735,0.073,SA,2,2,401909988,5:00 PM,,,,,Elo -522 ↓ | L10 margin -22.9 ↓ | season win% -.69 ↓
+2026-11-15,E401909991,WSH,HOU,0.152,1328,1647,0.202,HOU,3,2,401909991,7:00 PM,,,,,Elo -319 ↓ | season win% -.30 ↓ | L10 margin -13.7 ↓
+2026-11-15,E401909992,MIL,ATL,0.152,1271,1573,0.219,ATL,2,2,401909992,8:00 PM,,,,,Elo -301 ↓ | L10 margin -16.0 ↓ | season win% -.53 ↓
+2026-11-15,E401909993,SAC,OKC,0.152,1311,1701,0.144,OKC,2,2,401909993,9:00 PM,,,,,Elo -390 ↓ | L10 margin -21.9 ↓ | season win% -.69 ↓
+2026-11-15,E401909986,PHX,LAL,0.33,1503,1645,0.411,LAL,3,4,401909986,4:00 PM,,,,,Elo -142 ↓ | season win% -.43 ↓ | L10 margin -12.3 ↓
+2026-11-15,E401909990,TOR,NY,0.613,1540,1620,0.5,TOR,3,2,401909990,6:00 PM,,,,,L10 offence +11.5 pts ↑ | L10 margin +4.7 ↑ | L10 defence -6.8 pts ↓
+2026-11-15,E401909987,LAC,CHA,0.527,1426,1437,0.599,LAC,2,3,401909987,4:30 PM,,,,,season win% -.17 ↓ | L10 offence +12.2 pts ↑ | L10 margin +7.3 ↑

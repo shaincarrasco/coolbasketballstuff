@@ -13,11 +13,12 @@
       svg: '<path d="M4 18 10 11l4 4 6-8"/><path d="M15 7h5v5"/>' }
   ];
   var title = document.body.getAttribute('data-title') || 'NBA Projects';
+  var chip = document.body.getAttribute('data-chip') || 'Sample data';
   var mark = document.body.getAttribute('data-mark') || 'NP';
   var bar = document.createElement('header'); bar.className = 'topbar';
   bar.innerHTML =
     '<a class="brand" href="' + depth + 'index.html"><span class="mark">' + mark + '</span><span>' + title + '</span></a>' +
-    '<span class="chip">Sample data</span>' +
+    '<span class="chip" id="shell-chip">' + chip + '</span>' +
     '<nav>' + apps.map(function (a) {
       return '<a href="' + a.href + '" class="' + (a.id === app ? 'on' : '') + '" aria-label="' + a.label + '" title="' + a.label + '">' +
         '<svg viewBox="0 0 24 24">' + a.svg + '</svg></a>';
