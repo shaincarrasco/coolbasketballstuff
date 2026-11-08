@@ -7,7 +7,8 @@ cli.py — AI Jumpshot Analyzer command line.
     python cli.py batch my_clips/ --references references/   # every mp4 -> output/batch.csv + report section
     python cli.py analyze --webcam          # how to record a clip (no camera is opened)
     python cli.py demo                      # generate synthetic clips, build library, analyze
-    python cli.py demo --site ../site/jumpshot   # also emit the static-site page (index.html + video)
+    python cli.py demo --site ../site/jumpshot   # also emit sample/index.html (+ video) and app/*.json
+    python cli.py export-web --out ../site/jumpshot/app   # only the web-app JSON (+ parity fixtures)
 
 Every analyze/batch run appends to output/history.jsonl (progress tracking) and writes
 output/results.csv (per-feature values) next to results.json.
@@ -86,7 +87,8 @@ def _pretty_name(video_path: str) -> str:
 
 
 def _extract(video: str, args, name: str) -> Shot:
-    seq = extract_landmarks(video, model_path=args.pose_model, allow_synthetic=args.landmarks_from_synthetic)
+    seq = extract_landmarks(video, model_path=args.pose_model, allow_synthetic=args.landmarks_from_synthetic,
+                            prefer_synthetic=getattr(args, "prefer_synthetic", False))
     shot = shot_from_pose(seq, name, side=None if args.side == "auto" else args.side)
     ev = shot.events
     print(f"[features] {name}: side={shot.side} frames={shot.per_frame.shape[0]} gap-filled={shot.missing_frames} "
@@ -279,7 +281,11 @@ def cmd_analyze(args) -> int:
     results = compare_shot(user, refs, model, stats)
     best_name = results["closest"]
     best = next(r for r in refs if r.name == best_name)
-    print(f"[compare] closest: {best_name}  score {results['headline_score']:.1f}/100")
+    print(f"[score] mechanics {results['headline_score']:.1f}/100 ({results['score_kind']})  "
+          f"style match {results['style_match']:.1f} (closest: {best_name})")
+    for m in results["mechanics"]:
+        v = "—" if m["value"] is None else f"{m['value']:.2f}"
+        print(f"   [{m['status']:10}] {m['label']:<38} {v:>8} {m['unit']:<5} band {m['band']}  {m['points']:.1f}/{m['maxPoints']}")
     for r in results["references"]:
         print(f"           {r['name']:<32} {r['score']:5.1f}  (dtw {r['dtw_score']:5.1f}, learned {r['learned_score']})")
     for fb in results["references"][0]["feedback"]:
@@ -287,7 +293,7 @@ def cmd_analyze(args) -> int:
             print(f"   [{fb['severity']:5}] {fb['message']}")
 
     os.makedirs(args.output, exist_ok=True)
-    plan = coaching_plan(results["references"][0]["feedback"])
+    plan = coaching_plan(results["feedback"])
     results["coaching_plan"] = plan
     entry = _history_entry(results, getattr(args, "label", None) or "analyze")
     append_history(args.output, entry)
@@ -302,7 +308,10 @@ def cmd_analyze(args) -> int:
     site_dir = getattr(args, "site", None)
     report_path = write_report(results, user, best, frames, args.output, model_info=info, refs=refs,
                                history=history, batch_rows=batch_rows, plan=plan, site_dir=site_dir)
-    print(f"[report] wrote {report_path}" + (f" and {os.path.join(site_dir, 'index.html')}" if site_dir else ""))
+    print(f"[report] wrote {report_path}" + (f" and {os.path.join(site_dir, 'sample', 'index.html')}" if site_dir else ""))
+    if site_dir:
+        import export_web
+        export_web.export(os.path.join(site_dir, "app"), references=args.references)
     csv_summary, csv_frames = write_results_csv(args.output, results, user)
     results_json = results_for_json(results)
     results_json["model"] = {k: v for k, v in (info or {}).items() if k != "loss_history"}
@@ -340,18 +349,30 @@ def cmd_batch(args) -> int:
     return 0
 
 
+def cmd_export_web(args) -> int:
+    import export_web
+    export_web.export(args.out, references=args.references, fixtures=not args.no_fixtures)
+    return 0
+
+
 def cmd_demo(args) -> int:
     t0 = time.time()
     import demo_data
     demo_dir = os.path.join(HERE, "demo")
     manifest = demo_data.generate(demo_dir)
-    # if MediaPipe can run, use it; otherwise fall back to the synthetic sidecars automatically
+    # The demo clips are drawn cartoons: their exact joint positions (sidecars) are the ground truth,
+    # and MediaPipe drops ~40 % of frames on the drawn figure. So the demo uses the sidecars unless
+    # --detect-synthetic asks for the real detector (when it can run).
     backend = mediapipe_backend()
     can_run_mp = backend == "solutions" or (backend == "tasks" and find_pose_model(args.pose_model) is not None)
-    if not can_run_mp:
-        print("[demo] MediaPipe pose model not runnable here (no `solutions` API and no .task model file); "
-              "using synthetic landmark sidecars (--landmarks-from-synthetic).")
-        args.landmarks_from_synthetic = True
+    args.landmarks_from_synthetic = True
+    if getattr(args, "detect_synthetic", False) and can_run_mp:
+        print("[demo] --detect-synthetic: running MediaPipe on the synthetic clips")
+    else:
+        args.prefer_synthetic = True
+        print("[demo] using the synthetic clips' exact landmark sidecars"
+              + ("" if can_run_mp else " (MediaPipe pose model not runnable here)")
+              + "; pass --detect-synthetic to run MediaPipe on the drawn clips instead.")
     args.videos = [r["video"] for r in manifest["references"]]
     args.names = [r["name"] for r in manifest["references"]]
     rc = cmd_build_references(args)
@@ -404,7 +425,7 @@ def build_parser() -> argparse.ArgumentParser:
     a.add_argument("--label", default=None, help="session label stored in history.jsonl")
     a.add_argument("--no-model", action="store_true", help="DTW only, skip the learned embedding")
     a.add_argument("--webcam", action="store_true", help="print how to record a clip (no camera is opened)")
-    a.add_argument("--site", default=None, metavar="DIR", help="also write DIR/index.html (+ video) for the static site, linking ../assets/shell.{css,js}")
+    a.add_argument("--site", default=None, metavar="DIR", help="also write the static sample report to DIR/sample/index.html (+ video, linking ../../assets/shell.{css,js}) and export the web-app data (library/drills/encoder/demo JSON) to DIR/app/")
     a.set_defaults(func=cmd_analyze)
 
     bt = sub.add_parser("batch", parents=[common], help="analyze every video in a folder -> output/batch.csv")
@@ -413,15 +434,22 @@ def build_parser() -> argparse.ArgumentParser:
     bt.add_argument("--label", default=None, help="session label stored in history.jsonl")
     bt.add_argument("--no-model", action="store_true")
     bt.add_argument("--no-report", action="store_true", help="only write batch.csv; skip the full report")
-    bt.add_argument("--site", default=None, metavar="DIR", help="also write DIR/index.html for the static site")
+    bt.add_argument("--site", default=None, metavar="DIR", help="also write DIR/sample/index.html + DIR/app/*.json for the static site")
     bt.set_defaults(func=cmd_batch, name=None)
 
     d = sub.add_parser("demo", parents=[common], help="generate synthetic data, build library, analyze")
     d.add_argument("--output", default=os.path.join(HERE, "output"))
     d.add_argument("--no-train", action="store_true")
     d.add_argument("--no-model", action="store_true")
-    d.add_argument("--site", default=None, metavar="DIR", help="also write DIR/index.html (+ video) for the static site")
+    d.add_argument("--site", default=None, metavar="DIR", help="also write DIR/sample/index.html (+ video) and DIR/app/*.json for the static site (never touches DIR/index.html)")
+    d.add_argument("--detect-synthetic", action="store_true",
+                   help="run MediaPipe on the drawn demo clips instead of using their exact landmark sidecars")
     d.set_defaults(func=cmd_demo, name=None)
+
+    ew = sub.add_parser("export-web", parents=[common], help="export library/drills/encoder/demo JSON (+ parity fixtures) for the web app")
+    ew.add_argument("--out", required=True, help="output dir, e.g. ../site/jumpshot/app")
+    ew.add_argument("--no-fixtures", action="store_true", help="skip tests/fixtures/*.json")
+    ew.set_defaults(func=cmd_export_web)
     return p
 
 

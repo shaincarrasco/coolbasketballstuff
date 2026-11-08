@@ -85,6 +85,48 @@ DRILLS: dict[str, dict[str, tuple[str, str, str]]] = {
     },
 }
 
+# mechanics checks (mechanics.py) -> drills; "high" = above the coaching range, "low" = below it
+DRILLS.update({
+    "set_elbow": {
+        "high": DRILLS["elbow_angle_set"]["high"],
+        "low": DRILLS["elbow_angle_set"]["low"],
+    },
+    "dip_knee": {
+        "high": DRILLS["knee_angle_min"]["high"],
+        "low": DRILLS["knee_angle_min"]["low"],
+    },
+    "release_elbow": {
+        "high": DRILLS["elbow_angle_release"]["high"],
+        "low": DRILLS["elbow_angle_release"]["low"],
+    },
+    "release_shoulder": {
+        "high": ("Set-point under the eye", "3 x 15 from 1.5 m",
+                 "Keep the ball in front of the forehead, not behind the head, so the arm finishes up and out toward the rim."),
+        "low": ("High-release one-hand form shooting", "3 x 20 from 1 m (3 ft)",
+                "Finish with the elbow above the eyebrow: the upper arm should point up toward the rim, not straight ahead."),
+    },
+    "release_timing": {
+        "high": ("Rhythm shots, minimal hop", "3 x 15 from the elbow",
+                 "Release on the way up or at the top of the jump, never on the way down."),
+        "low": ("Jump-then-release timing reps", "3 x 10 from the free-throw line",
+                "Let the legs finish the jump: the ball leaves the hand as you reach the top, not early on the way up."),
+    },
+    "follow_through": {
+        "high": DRILLS["follow_through_hold_s"]["high"],
+        "low": DRILLS["follow_through_hold_s"]["low"],
+    },
+    "balance_lean": {
+        "high": DRILLS["trunk_lean_release"]["high"],
+        "low": DRILLS["trunk_lean_release"]["high"],
+    },
+    "balance_drift": {
+        "high": ("Land-on-the-spot shots", "3 x 10 on a tape cross",
+                 "Jump straight up and land on the same spot: the jump goes up, not forward or sideways."),
+        "low": ("Land-on-the-spot shots", "3 x 10 on a tape cross",
+                "Jump straight up and land on the same spot: the jump goes up, not forward or sideways."),
+    },
+})
+
 GENERIC_MAINTENANCE = ("Form shooting warm-up", "50 makes from 1 m, one hand",
                        "Nothing major flagged - keep the daily close-range form routine to lock the pattern in.")
 
@@ -97,17 +139,23 @@ def drill_for(key: str, delta: float) -> tuple[str, str, str] | None:
 
 
 def coaching_plan(feedback: list[dict], max_items: int = 6) -> list[dict]:
-    """Ordered drill plan from feedback items (majors first, then minors by |delta|/tolerance)."""
+    """Ordered drill plan from feedback items: mechanics findings first (biggest point losses), then
+    style-match findings (majors first, then by |delta|). A drill is listed once."""
     order = {"major": 0, "minor": 1, "ok": 2}
-    flagged = [fb for fb in feedback if fb["severity"] != "ok"]
-    flagged.sort(key=lambda fb: (order[fb["severity"]], -abs(fb["delta"])))
-    plan = []
-    for fb in flagged[:max_items]:
+    mech = [fb for fb in feedback if fb["severity"] != "ok" and fb.get("kind") == "mechanics"]
+    mech.sort(key=lambda fb: -fb.get("points_lost", 0.0))
+    style = [fb for fb in feedback if fb["severity"] != "ok" and fb.get("kind") != "mechanics"]
+    style.sort(key=lambda fb: (order[fb["severity"]], -abs(fb["delta"])))
+    plan, seen = [], set()
+    for fb in mech + style:
+        if len(plan) >= max_items:
+            break
         d = drill_for(fb["key"], fb["delta"])
-        if not d:
+        if not d or d[0] in seen:
             continue
+        seen.add(d[0])
         name, rx, cue = d
-        plan.append(dict(key=fb["key"], finding=fb["label"], severity=fb["severity"], delta=fb["delta"],
+        plan.append(dict(key=fb["key"], kind=fb.get("kind", "style"), finding=fb["label"], severity=fb["severity"], delta=fb["delta"],
                          unit=fb["unit"], drill=name, prescription=rx, cue=cue))
     if not plan:
         name, rx, cue = GENERIC_MAINTENANCE

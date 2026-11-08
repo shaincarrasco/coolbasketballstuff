@@ -149,11 +149,19 @@ def compare_shot(user: Shot, refs: list[Shot], model: ShotEncoder | None, stats:
     per_ref.sort(key=lambda r: -r["score"])
     best = per_ref[0]
     best_shot = next(r for r in refs if r.name == best["name"])
+    from mechanics import mechanics_feedback
+    style_fb = [dict(fb, kind="style") for fb in best["feedback"]]
+    mech_score = user.mechanics_score
     return dict(
         user=dict(name=user.name, side=user.side, facing=user.facing, fps=user.fps, events=user.events.to_dict(),
                   summary=user.summary, n_frames=int(user.per_frame.shape[0]), missing_frames=user.missing_frames,
                   source=user.source, quality=user.quality, video=user.video_path),
-        closest=best["name"], headline_score=best["score"],
+        closest=best["name"],
+        # headline = evidence-based mechanics score; similarity to the references is the style match
+        headline_score=mech_score if mech_score is not None else best["score"],
+        score_kind="mechanics" if mech_score is not None else "style",
+        mechanics_score=mech_score, style_match=best["score"], mechanics=user.mechanics,
+        feedback=mechanics_feedback(user.mechanics) + style_fb,
         weights=dict(dtw=W_DTW, learned=W_LEARNED),
         references=per_ref,
         radar=radar_profile(user, refs, best_shot),

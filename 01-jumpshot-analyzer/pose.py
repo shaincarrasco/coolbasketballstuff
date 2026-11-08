@@ -30,6 +30,10 @@ from enum import IntEnum
 import numpy as np
 
 NUM_LANDMARKS = 33
+# Landmarks with visibility below this are treated as missing (NaN) and gap-filled over time.
+# Applied uniformly to every source (MediaPipe solutions/tasks, synthetic sidecars) by
+# mask_low_visibility(), and mirrored by the web engine (site/jumpshot/app/engine.mjs).
+MIN_VIS = 0.5
 
 
 class LM(IntEnum):
@@ -254,7 +258,7 @@ def _extract_tasks(video_path: str, model_path: str, min_vis: float) -> PoseSequ
     return _finish(np.array(lms), np.array(viss), fps, w, h, "mediapipe-tasks", video_path, min_vis)
 
 
-def _finish(lms, viss, fps, w, h, source, video_path, min_vis) -> PoseSequence:
+def _finish(lms, viss, fps, w, h, source, video_path, min_vis=MIN_VIS) -> PoseSequence:
     if lms.ndim != 3:
         lms = np.zeros((0, NUM_LANDMARKS, 3), np.float32)
         viss = np.zeros((0, NUM_LANDMARKS), np.float32)
@@ -263,11 +267,24 @@ def _finish(lms, viss, fps, w, h, source, video_path, min_vis) -> PoseSequence:
     return PoseSequence(lms, viss, fps, w, h, source, video_path)
 
 
+def mask_low_visibility(seq: PoseSequence, min_vis: float = MIN_VIS) -> PoseSequence:
+    """Copy of `seq` with landmarks whose visibility < min_vis set to NaN (-> gap-filled later)."""
+    lms = seq.landmarks.astype(np.float32).copy()
+    lms[np.nan_to_num(seq.visibility, nan=0.0) < min_vis] = np.nan
+    return PoseSequence(lms, seq.visibility, seq.fps, seq.width, seq.height, seq.source, seq.video_path, seq.meta)
+
+
 def extract_landmarks(video_path: str, model_path: str | None = None, allow_synthetic: bool = False,
-                      min_vis: float = 0.25, verbose: bool = True) -> PoseSequence:
-    """Run the best available backend. See module docstring for the fallback order."""
+                      min_vis: float = MIN_VIS, verbose: bool = True, prefer_synthetic: bool = False) -> PoseSequence:
+    """Run the best available backend. See module docstring for the fallback order.
+    prefer_synthetic: use the synthetic sidecar (exact joint positions) even when MediaPipe can run."""
     backend = mediapipe_backend()
     model = find_pose_model(model_path)
+    side = sidecar_path(video_path)
+    if prefer_synthetic and os.path.isfile(side):
+        if verbose:
+            print(f"[pose] using synthetic landmark sidecar {os.path.basename(side)} (exact joints of the generated clip)")
+        return load_landmarks(side, video_path)
     if backend == "solutions":
         if verbose:
             print(f"[pose] mediapipe.solutions.pose on {video_path}")
@@ -276,7 +293,6 @@ def extract_landmarks(video_path: str, model_path: str | None = None, allow_synt
         if verbose:
             print(f"[pose] mediapipe tasks PoseLandmarker ({os.path.basename(model)}) on {video_path}")
         return _extract_tasks(video_path, model, min_vis)
-    side = sidecar_path(video_path)
     if allow_synthetic and os.path.isfile(side):
         if verbose:
             print(f"[pose] no runnable MediaPipe pose model in this environment -> "
@@ -298,7 +314,8 @@ def extract_landmarks(video_path: str, model_path: str | None = None, allow_synt
 def fill_missing(landmarks: np.ndarray, max_gap: int | None = None) -> tuple[np.ndarray, np.ndarray]:
     """
     Linearly interpolate NaN landmarks over time (per landmark, per coordinate).
-    Leading/trailing gaps are filled by edge values. Returns (filled, was_missing[T]).
+    Leading/trailing gaps are filled by edge values. A landmark coordinate that is never observed
+    stays NaN (callers decide whether it is required). Returns (filled, was_missing[T]).
     """
     T = landmarks.shape[0]
     out = landmarks.astype(np.float32).copy()
@@ -311,7 +328,7 @@ def fill_missing(landmarks: np.ndarray, max_gap: int | None = None) -> tuple[np.
         col = flat[:, c]
         ok = ~np.isnan(col)
         if ok.sum() == 0:
-            flat[:, c] = 0.0
+            continue
         elif ok.sum() < T:
             flat[:, c] = np.interp(t, t[ok], col[ok])
     return flat.reshape(T, NUM_LANDMARKS, 3), was_missing

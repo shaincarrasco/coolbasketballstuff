@@ -6,8 +6,10 @@ Two outputs from the same renderer:
 * ``output/report.html`` — standalone: the shared shell stylesheet (site/assets/shell.css) is
   embedded inline, so the file works on its own from ``file://``. No top bar (that is rendered
   by shell.js on the site build).
-* ``<site>/index.html`` (``--site <dir>``) — links ``../assets/shell.css`` + ``../assets/shell.js``
-  with relative paths and copies ``side_by_side.mp4`` next to it. ``<body data-app="jumpshot">``
+* ``<site>/sample/index.html`` (``--site <dir>``) — the static *sample* report of the site's
+  jumpshot app: links ``../../assets/shell.css`` + ``../../assets/shell.js`` with relative paths,
+  copies ``side_by_side.mp4`` next to it and links back to the in-browser analyzer
+  (``../index.html``, owned by the web app — never written here). ``<body data-app="jumpshot">``
   lets shell.js draw the top bar / app switcher and pick the amber accent.
 
 Visual rules (from the brief): dark surfaces, one accent (amber) used only for the hero score,
@@ -129,6 +131,8 @@ video{width:100%;border:1px solid var(--line);border-radius:var(--r-sm);backgrou
 .card h3{margin:0 0 8px;font-size:14px;font-weight:700}
 .note{font-size:12px;color:var(--muted);margin:8px 0 0}
 .standalone body{padding-top:0}
+.cta-own{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;margin:4px 0 18px}
+.cta-own .btn{min-height:44px}.cta-own .muted{font-size:13px}
 """
 
 # --------------------------------------------------------------------------- helpers
@@ -469,18 +473,31 @@ def _render(results: dict, user_shot, ref_shot, frames: list[dict], *, video_nam
 
     # ---- KPI tiles
     rt, rh = fb_by_key["release_time_s"], fb_by_key["release_height"]
+    _mi = [m for m in (results.get("mechanics") or []) if m["status"] != "unmeasured"]
+    _lost = sorted(_mi, key=lambda m: -(m["maxPoints"] - m["points"]))
+    if results.get("score_kind") == "mechanics" and _lost:
+        top = _lost[0]
+        mech_read = (f"Mechanics score <b>{score:.0f}/100</b> from {len(_mi)} measured checks "
+                     f"({sum(m['status'] == 'good' for m in _mi)} inside the coaching range). "
+                     + (f"Biggest point loss: {e(top['text'])} " if top["maxPoints"] - top["points"] > 0.05 else "Every measured check is inside its range. "))
+    else:
+        mech_read = ""
 
     def tile_sub(fb):
         return (f'<span class="d {_delta_class(fb["key"], fb["delta"])}">{_fmt(fb["delta"], fb["unit"], signed=True)}</span> '
                 f'vs {e(best_short)} ({_fmt(fb["reference"], fb["unit"])})')
 
     runner = f"next {e(_short(others[0]['name']))} at {others[0]['score']:.0f}" if others else "only reference"
+    mitems = results.get("mechanics") or []
+    measured = [m for m in mitems if m["status"] != "unmeasured"]
+    style = float(results.get("style_match", best["score"]))
+    is_mech = results.get("score_kind", "style") == "mechanics"
     kpis = f"""
     <div class="grid g4">
-      <div class="card kpi"><div class="label">Form score</div><b class="hero">{score:.0f}<span style="font-size:16px;color:var(--muted)">/100</span></b>
-        <div class="sub">vs {e(best_short)} · DTW {best['dtw_score']:.0f} · learned {best['learned_score'] if best['learned_score'] is not None else '—'}</div></div>
-      <div class="card kpi"><div class="label">Closest reference</div><div class="name">{e(best_short)}</div>
-        <div class="sub">{e(best_tag) + ' · ' if best_tag else ''}{runner}</div></div>
+      <div class="card kpi"><div class="label">{'Mechanics score' if is_mech else 'Form score'}</div><b class="hero">{score:.0f}<span style="font-size:16px;color:var(--muted)">/100</span></b>
+        <div class="sub">{f"{len(measured)} of {len(mitems)} checks measured · coaching ranges from published kinematics" if is_mech else f"vs {e(best_short)}"}</div></div>
+      <div class="card kpi"><div class="label">Style match</div><b>{style:.0f}<span style="font-size:14px;color:var(--muted)">/100</span></b>
+        <div class="sub">closest {e(best_short)}{' (' + e(best_tag) + ')' if best_tag else ''} · DTW {best['dtw_score']:.0f} · learned {best['learned_score'] if best['learned_score'] is not None else '—'} · {runner}</div></div>
       <div class="card kpi"><div class="label">Load → release</div><b>{s['release_time_s']:.2f}<span style="font-size:14px;color:var(--muted)"> s</span></b>
         <div class="sub">{tile_sub(rt)}</div></div>
       <div class="card kpi"><div class="label">Release height</div><b>{s['release_height']:+.2f}<span style="font-size:14px;color:var(--muted)"> torso</span></b>
@@ -488,8 +505,8 @@ def _render(results: dict, user_shot, ref_shot, frames: list[dict], *, video_nam
     </div>
     <div class="flagrow"><span class="chip {conf_cls}">confidence {e(conf)}</span><span class="chip">hand {e(u['side'])}{'' if q.get('side_detected', True) else ' (forced)'}</span>
       <span class="chip">{T} f · {fps:.0f} fps</span>{flag_chips}</div>
-    {_read(f"Your form matches <b>{e(best_short)}</b> at <b>{score:.0f}/100</b>. The biggest gap is {e(worst['label'].lower())}: "
-           f"{e(_phrase(worst))} than the reference; {n_major} major and {n_minor} minor finding{'s' if n_major + n_minor != 1 else ''}, {n_ok} within tolerance.")}"""
+    {_read(mech_read + f"Style match with <b>{e(best_short)}</b> (a synthetic reference shooter) is {style:.0f}/100; versus that reference the biggest gap is {e(worst['label'].lower())}: "
+           f"{e(_phrase(worst))}.")}"""
 
     # ---- scrubber
     rel_u = float(payload["user"]["feats"][ev["release"]][FEATURE_NAMES.index("wrist_height")])
@@ -545,13 +562,31 @@ def _render(results: dict, user_shot, ref_shot, frames: list[dict], *, video_nam
     {_read(f"Two gaps dominate: {e(worst['label'].lower())} ({e(_phrase(worst))}) and {e(second['label'].lower())} ({e(_phrase(second))}). "
            f"Green deltas are inside the per-metric tolerance; red ones are at least the 'major' threshold.")}"""
 
+    # ---- mechanics checks (headline score)
+    from mechanics import SOURCES
+    src_ix = {sv["id"]: i + 1 for i, sv in enumerate(SOURCES)}
+    st_cls = {"good": "pos", "close": "warn", "off": "neg", "unmeasured": ""}
+    mrows = "".join(f"""<tr><td title="{e(m['text'])}">{e(m['label'])}</td>
+        <td class="n">{'—' if m['value'] is None else e(_fmt(m['value'], m['unit'], signed=m['unit'] == 's' and m['value'] < 0))}</td>
+        <td class="n">{e(f"{m['band'][0]:g}–{m['band'][1]:g}")}</td>
+        <td><span class="chip {st_cls[m['status']]}" title="{e(m.get('reason', ''))}">{e(m['status'])}</span></td>
+        <td class="n">{m['points']:.1f}/{m['maxPoints']}</td><td>{''.join(f'<sup>{src_ix[x]}</sup>' for x in m['source'])}</td></tr>"""
+        for m in (results.get("mechanics") or []))
+    src_list = "".join(f"<li>{e(sv['cite'])}{(' — ' + e(sv['note'])) if sv.get('note') else ''}</li>" for sv in SOURCES)
+    mech_checks = (f"""<div class="tbl"><table><thead><tr><th>Check</th><th class="n">You</th><th class="n">Range</th><th>Status</th><th class="n">Points</th><th>Src</th></tr></thead>
+        <tbody>{mrows}</tbody></table></div>
+        <ol class="note" style="padding-left:18px">{src_list}</ol>
+        {_read("Each check scores full points inside its coaching range and falls off linearly to 0 at range ± tolerance; unmeasured checks "
+               "are left out of the total. Ranges come from 3-D lab studies of skilled shooters; your angles are 2-D projections from one camera, so treat them as estimates.")}"""
+        if results.get("mechanics") else "")
+
     # ---- coaching plan
     plan_items = "".join(f"""<li><div>
         <div class="dn">{e(p['drill'])}</div><div class="rx">{e(p['prescription'])}</div>
         <div class="why"><span class="chip {_sev_class(p['severity'])}">{e(p['finding'])}{(' ' + _fmt(p['delta'], p['unit'], signed=True)) if p['unit'] else ''}</span>
           <span>{e(p['cue'])}</span></div></div></li>""" for p in plan)
     plan_read = (f"Start with <b>{e(plan[0]['drill'])}</b> — it targets the largest gap ({e(plan[0]['finding'].lower())}). "
-                 f"{len(plan)} drill{'s' if len(plan) != 1 else ''} ordered major → minor; drills are generic form-shooting work, not professional coaching."
+                 f"{len(plan)} drill{'s' if len(plan) != 1 else ''}: mechanics findings first (largest point loss), then style-match gaps; drills are generic form-shooting work, not professional coaching."
                  if plan else "No drills: every metric is within tolerance of the closest reference.")
     coaching = f'<ol class="plan">{plan_items}</ol>{_read(plan_read)}'
 
@@ -668,7 +703,7 @@ def _render(results: dict, user_shot, ref_shot, frames: list[dict], *, video_nam
     method = f"""
     <div class="method"><b>Method &amp; limits.</b> MediaPipe-layout pose landmarks (33 per frame) → 9 body-size-normalised mechanics features per frame
       (lengths in torso-lengths, shoulder-mid to hip-mid; 1 torso ≈ 50 cm for an adult) → shot events (onset f{ev['onset']}, set point f{ev['set_point']},
-      peak wrist velocity f{ev['peak_wrist_velocity']}, release f{ev['release']}, follow-through end f{ev['follow_through_end']}) → similarity =
+      peak wrist velocity f{ev['peak_wrist_velocity']}, release f{ev['release']}, follow-through end f{ev['follow_through_end']}) → headline = mechanics score (8 checks against coaching ranges from published jump-shot kinematics; see Mechanics checks) · style match =
       {results['weights']['dtw']:.0%} DTW on z-scored sequences + {results['weights']['learned']:.0%} cosine of a contrastive 1-D conv embedding
       ({mi.get('steps', '?')} steps, {mi.get('train_seconds', 0):.1f} s CPU, final loss {mi.get('final_loss', float('nan')):.3f}). Tolerances per metric come from
       compare.py and are heuristics, not biomechanical norms. {e(source_note)} All demo clips are procedurally generated: no real footage, no real
@@ -678,18 +713,21 @@ def _render(results: dict, user_shot, ref_shot, frames: list[dict], *, video_nam
 
     # ---- assemble
     if site:
-        head_css = '<link rel="stylesheet" href="../assets/shell.css">'
-        shell_js = '<script src="../assets/shell.js"></script>'
-        pwa = ('<link rel="manifest" href="../manifest.webmanifest">'
+        head_css = '<link rel="stylesheet" href="../../assets/shell.css">'
+        shell_js = '<script src="../../assets/shell.js"></script>'
+        pwa = ('<link rel="manifest" href="../../manifest.webmanifest">'
                '<meta name="apple-mobile-web-app-capable" content="yes">'
                '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">'
-               '<link rel="apple-touch-icon" href="../icons/apple-touch-icon.png">')
+               '<link rel="apple-touch-icon" href="../../icons/apple-touch-icon.png">')
         html_cls = ""
+        cta = ('<p class="cta-own"><a class="btn primary" href="../index.html">Analyze your own shot →</a>'
+               '<span class="muted">Runs in your browser; the video never leaves your phone.</span></p>')
     else:
         with open(SHELL_CSS, encoding="utf-8") as f:
             head_css = f"<style>{f.read()}</style>"
         shell_js = ""
         pwa = ""
+        cta = ""
         html_cls = ' class="standalone"'
 
     return f"""<!DOCTYPE html>
@@ -703,12 +741,15 @@ def _render(results: dict, user_shot, ref_shot, frames: list[dict], *, video_nam
   <div class="eyebrow">NBA Projects · 01 · Computer vision</div>
   <h1>Jumpshot Analyzer</h1>
   <p class="lede">One shot's mechanics, measured from body pose and scored against a reference library — the biggest gap and what to drill, first.</p>
+  {cta}
 
   {kpis}
 
+  {('<section class="sec"><div class="sec-h"><h2>Mechanics checks</h2><span class="read">what the score is made of</span></div>' + mech_checks + '</section>') if mech_checks else ''}
+
   <section class="sec"><div class="sec-h"><h2>Frame scrubber</h2><span class="read">you vs the time-warped reference</span></div>{scrub}</section>
 
-  <section class="sec"><div class="sec-h"><h2>Mechanics</h2><span class="read">vs {e(best_short)}</span></div>{mech}</section>
+  <section class="sec"><div class="sec-h"><h2>Style match</h2><span class="read">vs {e(best_short)}</span></div>{mech}</section>
 
   <section class="sec"><div class="sec-h"><h2>Coaching plan</h2><span class="read">{len(plan)} drills</span></div>{coaching}</section>
 
@@ -739,12 +780,14 @@ def write_report(results: dict, user_shot, ref_shot, frames: list[dict], out_dir
                  video_name: str = "side_by_side.mp4", model_info: dict | None = None, refs=None,
                  history: list[dict] | None = None, batch_rows: list[dict] | None = None,
                  plan: list[dict] | None = None, site_dir: str | None = None) -> str:
-    """Write out_dir/report.html (standalone). If site_dir is given, also write site_dir/index.html
-    linked to ../assets/shell.{css,js} and copy the side-by-side video next to it."""
+    """Write out_dir/report.html (standalone). If site_dir is given, also write the sample report to
+    site_dir/sample/index.html (linked to ../../assets/shell.{css,js}) with the side-by-side video next
+    to it. site_dir/index.html belongs to the in-browser app and is never touched (the web-app JSON
+    in site_dir/app/ is exported by cli.py via export_web)."""
     os.makedirs(out_dir, exist_ok=True)
     if plan is None:
         from drills import coaching_plan
-        plan = coaching_plan(results["references"][0]["feedback"])
+        plan = coaching_plan(results.get("feedback") or results["references"][0]["feedback"])
     kw = dict(video_name=video_name, model_info=model_info or {}, history=history or [], batch_rows=batch_rows or [], plan=plan)
     path = os.path.join(out_dir, "report.html")
     with open(path, "w", encoding="utf-8") as f:
@@ -753,10 +796,11 @@ def write_report(results: dict, user_shot, ref_shot, frames: list[dict], out_dir
     if os.path.isfile(stale):
         os.remove(stale)
     if site_dir:
-        os.makedirs(site_dir, exist_ok=True)
+        sample_dir = os.path.join(site_dir, "sample")
+        os.makedirs(sample_dir, exist_ok=True)
         src_video = os.path.join(out_dir, video_name)
         if os.path.isfile(src_video):
-            shutil.copyfile(src_video, os.path.join(site_dir, video_name))
-        with open(os.path.join(site_dir, "index.html"), "w", encoding="utf-8") as f:
+            shutil.copyfile(src_video, os.path.join(sample_dir, video_name))
+        with open(os.path.join(sample_dir, "index.html"), "w", encoding="utf-8") as f:
             f.write(_render(results, user_shot, ref_shot, frames, site=True, **kw))
     return path

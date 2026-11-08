@@ -22,7 +22,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F_
 
-from features import FEATURE_NAMES, N_FRAMES, Shot, per_frame_features, detect_events, resample
+from features import FEATURE_NAMES, N_FRAMES, Shot, per_frame_features, detect_events, resample, rebaseline_hip_rise
 from pose import MIRROR_PAIRS
 
 EMBED_DIM = 64
@@ -123,7 +123,7 @@ def augment_landmarks(px: np.ndarray, fps: float, rng: np.random.Generator, side
     T = out.shape[0]
     # 3) scale + translate (camera distance / framing)
     s = rng.uniform(0.75, 1.3)
-    centre = out.reshape(-1, 2).mean(axis=0)
+    centre = np.nanmean(out.reshape(-1, 2), axis=0)      # NaN = landmark never observed (stays NaN)
     out = (out - centre) * s + centre + rng.normal(0, 25, 2)
     # 4) small in-plane rotation (camera roll)
     ang = np.radians(rng.normal(0, 1.5))
@@ -131,7 +131,7 @@ def augment_landmarks(px: np.ndarray, fps: float, rng: np.random.Generator, side
     rel = out - centre
     out = np.stack([rel[..., 0] * c - rel[..., 1] * sn, rel[..., 0] * sn + rel[..., 1] * c], axis=-1) + centre
     # 5) per-landmark jitter + slow drift (detector noise)
-    torso = np.linalg.norm(out[:, 11:13].mean(1) - out[:, 23:25].mean(1), axis=1).mean()
+    torso = np.nanmean(np.linalg.norm(np.nanmean(out[:, 11:13], 1) - np.nanmean(out[:, 23:25], 1), axis=1))
     out = out + rng.normal(0, 0.012 * torso, out.shape)
     out = out + np.cumsum(rng.normal(0, 0.002 * torso, (T, 1, 2)), axis=0)
     # 6) mirror (left-handed shooter)
@@ -145,8 +145,9 @@ def augment_landmarks(px: np.ndarray, fps: float, rng: np.random.Generator, side
 
 def shot_view(px: np.ndarray, fps: float, side: str) -> np.ndarray:
     """Landmarks -> time-normalised (N_FRAMES, F) features (used for augmented views)."""
-    feats, _, _ = per_frame_features(px, side, fps)
-    ev = detect_events(feats, fps)
+    feats, torso, _, ex = per_frame_features(px, side, fps, extras=True)
+    ev = detect_events(feats, fps, ex["wrist_above_shoulder"])
+    rebaseline_hip_rise(feats, ex, ev, torso, fps)
     return resample(feats, ev.onset, ev.follow_through_end)
 
 

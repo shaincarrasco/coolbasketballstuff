@@ -166,13 +166,22 @@ def run_demo(app: str, project: str) -> bool:
         for ln in tail:
             print("     " + ln)
         return False
-    ok = os.path.exists(os.path.join(out_dir, "index.html"))
-    print(f"[{app}] demo ok" + ("" if ok else f" but site/{app}/index.html was not written"))
+    page = os.path.join(out_dir, *PAGE_OF.get(app, "index.html").split("/"))
+    ok = os.path.exists(page)
+    print(f"[{app}] demo ok" + ("" if ok else f" but site/{app}/{PAGE_OF.get(app, 'index.html')} was not written"))
     return ok
 
 
-def inject_head(app: str, snippet: str) -> str:
-    page = os.path.join(SITE, app, "index.html")
+# Page each app's demo generates. Jumpshot's site/jumpshot/index.html is the hand-built
+# on-device upload app (not generated), so its demo writes the static report to sample/.
+PAGE_OF = {"jumpshot": "sample/index.html"}
+
+
+def inject_head(app: str, snippet: str, rel: str = "index.html") -> str:
+    page = os.path.join(SITE, app, *rel.split("/"))
+    extra = rel.count("/")
+    if extra:
+        snippet = snippet.replace('"../', '"' + "../" * (extra + 1))
     if not os.path.exists(page):
         return "missing"
     with open(page, encoding="utf-8") as f:
@@ -217,7 +226,7 @@ def clean_previews() -> int:
     n = 0
     for dirpath, _, files in os.walk(SITE):
         for fn in files:
-            if fn.startswith("_preview_") and fn.endswith(".png"):
+            if fn.startswith(("_preview_", "_ui_", "_hub_")) and fn.endswith(".png"):
                 os.remove(os.path.join(dirpath, fn))
                 n += 1
     return n
@@ -240,7 +249,7 @@ def main() -> int:
     snip_path = os.path.join(SITE, "_head_snippet.html")
     snippet = open(snip_path, encoding="utf-8").read() if os.path.exists(snip_path) else ""
     for app, _, _ in APPS:
-        summary[app]["head"] = inject_head(app, snippet) if snippet else "no snippet"
+        summary[app]["head"] = inject_head(app, snippet, PAGE_OF.get(app, "index.html")) if snippet else "no snippet"
 
     # 3. KPIs + hub
     tokens = {}
