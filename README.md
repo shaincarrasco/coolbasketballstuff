@@ -58,7 +58,7 @@ The script is idempotent and re-runnable; a failing per-app demo is reported but
 **Publishing.** The built `site/` is committed; CI does not run Python. `.github/workflows/pages.yml`
 uploads `site/` with `actions/upload-pages-artifact` and deploys with `actions/deploy-pages` on every push to
 `main`. One-time setup: repo **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-The live URL is `https://<user>.github.io/nba-projects/` (e.g. `https://shaincarrasco.github.io/nba-projects/`);
+The live URL is `https://<user>.github.io/coolbasketballstuff/` (e.g. `https://shaincarrasco.github.io/coolbasketballstuff/`);
 all paths are `./`-relative so the site also works from `file://` and under any sub-path.
 
 **Add to home screen.** iPhone/iPad: open the URL in Safari → Share → *Add to Home Screen*.
