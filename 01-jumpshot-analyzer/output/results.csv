@@ -1,0 +1,17 @@
+metric,label,unit,user,reference,delta,severity,reference_name
+elbow_angle_set,Elbow angle at set point,deg,100.3935,92.9405,7.4530,minor,Reference C — quick release
+elbow_tuck_set,Elbow in front of shoulder at set point,torso,0.5680,0.5472,0.0207,ok,Reference C — quick release
+knee_angle_min,Deepest knee bend,deg,149.6242,145.5947,4.0294,ok,Reference C — quick release
+hip_angle_set,Shoulder-hip-knee alignment at set point,deg,161.7441,160.6745,1.0696,ok,Reference C — quick release
+trunk_lean_release,Trunk lean at release,deg,7.2183,3.9970,3.2213,minor,Reference C — quick release
+release_height,Release height (wrist above head),torso,0.6340,0.6521,-0.0181,ok,Reference C — quick release
+release_forward,Release point in front of shoulder,torso,0.4094,0.3403,0.0691,ok,Reference C — quick release
+release_time_s,Load-to-release time,s,0.5667,0.3333,0.2333,major,Reference C — quick release
+follow_through_hold_s,Follow-through hold,s,0.3333,0.4333,-0.1000,minor,Reference C — quick release
+follow_through_wrist_angle,Wrist snap (elbow-wrist-finger angle),deg,107.7668,109.5347,-1.7679,ok,Reference C — quick release
+jump_height,Jump height (hip rise),torso,0.2857,0.3254,-0.0397,ok,Reference C — quick release
+elbow_angle_release,Elbow extension at release,deg,161.1036,166.1520,-5.0484,minor,Reference C — quick release
+knee_angle_set,knee_angle_set,,150.3137,145.5947,,,Reference C — quick release
+release_time_from_onset_s,release_time_from_onset_s,,1.0333,0.6000,,,Reference C — quick release
+peak_wrist_velocity_torso_per_s,peak_wrist_velocity_torso_per_s,,1.5184,2.7777,,,Reference C — quick release
+shot_duration_s,shot_duration_s,,1.3667,1.0333,,,Reference C — quick release

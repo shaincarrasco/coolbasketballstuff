@@ -1,0 +1,5 @@
+pandas>=2.2
+numpy>=1.26
+scikit-learn>=1.4
+xgboost>=2.0
+nba_api>=1.4   # optional: real-data loader only (stats.nba.com must be reachable)

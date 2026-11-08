@@ -1,0 +1,419 @@
+{
+  "feature_names": [
+    "fg3_pct_mean",
+    "fg3_pct_std",
+    "fg3_pct_min",
+    "fg3a_rate_sum",
+    "shooters",
+    "non_shooters",
+    "ast_pct_sum",
+    "ast_pct_max",
+    "usage_sum",
+    "usage_max",
+    "usage_std",
+    "handlers",
+    "height_mean",
+    "height_std",
+    "height_min",
+    "height_max",
+    "bigs",
+    "reb_pct_sum",
+    "dbpm_sum",
+    "blk_pct_max",
+    "blk_pct_sum",
+    "stl_pct_sum",
+    "def_rating_proxy_mean",
+    "obpm_sum",
+    "obpm_min",
+    "bpm_sum",
+    "tov_pct_sum",
+    "tov_pct_max",
+    "minutes_mean_log",
+    "zero_minute_players",
+    "pair_usage_absdiff_mean",
+    "pair_height_absdiff_mean",
+    "pair_both_handlers",
+    "pair_both_nonshooters",
+    "shooters_x_bigs",
+    "shooters_x_ast_max",
+    "handlers_x_usage_max",
+    "stl_x_blk",
+    "spacing_x_rim"
+  ],
+  "fit_center": 0.046020915420973044,
+  "fit_scale": 10.024146719899376,
+  "xgb_params": {
+    "n_estimators": 1500,
+    "learning_rate": 0.01,
+    "max_depth": 2,
+    "min_child_weight": 3.0,
+    "subsample": 0.7,
+    "colsample_bytree": 0.5,
+    "reg_lambda": 2.0,
+    "reg_alpha": 0.5,
+    "gamma": 0.0,
+    "objective": "reg:squarederror",
+    "random_state": 7,
+    "n_jobs": 1
+  },
+  "hgb_params": {
+    "max_iter": 300,
+    "learning_rate": 0.04,
+    "max_depth": 3,
+    "max_leaf_nodes": 6,
+    "min_samples_leaf": 10,
+    "l2_regularization": 1.0,
+    "random_state": 7
+  },
+  "ridge_alpha": 30.0,
+  "off_rating_model": "xgboost, same params, 800 rounds; def = off - net",
+  "evaluation": {
+    "n_rows": 560,
+    "n_teams": 8,
+    "n_features": 39,
+    "folds": 8,
+    "metrics": {
+      "ridge": {
+        "rmse_weighted": 5.749883778560258,
+        "r2_weighted": 0.6709792381677888,
+        "spearman_pooled": 0.7730649813401475,
+        "spearman_fold_mean": 0.7157433068109293,
+        "folds_won": 2
+      },
+      "xgboost": {
+        "rmse_weighted": 5.3871263393112585,
+        "r2_weighted": 0.711185168187847,
+        "spearman_pooled": 0.7893898428426805,
+        "spearman_fold_mean": 0.7420257895644243,
+        "folds_won": 5
+      },
+      "hgb": {
+        "rmse_weighted": 5.599783850908909,
+        "r2_weighted": 0.687933106156071,
+        "spearman_pooled": 0.7755912450393062,
+        "spearman_fold_mean": 0.7337780499847952,
+        "folds_won": 1
+      },
+      "mean_baseline": {
+        "rmse_weighted": 10.024146719899376,
+        "r2_weighted": 0.0,
+        "spearman_pooled": 0.0,
+        "spearman_fold_mean": 0.0,
+        "folds_won": 0
+      }
+    },
+    "per_fold": [
+      {
+        "held_out_teams": [
+          "Sable Ridge Nightjars"
+        ],
+        "n": 70,
+        "ridge_spearman": 0.6105837789814907,
+        "ridge_rmse": 6.382291875700249,
+        "xgb_spearman": 0.7727610735162483,
+        "xgb_rmse": 5.391092198030285,
+        "hgb_spearman": 0.7627704342693665,
+        "hgb_rmse": 5.847873490141446
+      },
+      {
+        "held_out_teams": [
+          "Redmesa Monarchs"
+        ],
+        "n": 70,
+        "ridge_spearman": 0.5765677499544626,
+        "ridge_rmse": 6.203544229409351,
+        "xgb_spearman": 0.619505879912834,
+        "xgb_rmse": 6.040678234136053,
+        "hgb_spearman": 0.6104948216697365,
+        "hgb_rmse": 6.194962611107013
+      },
+      {
+        "held_out_teams": [
+          "Port Lumen Beacons"
+        ],
+        "n": 70,
+        "ridge_spearman": 0.8142639693790259,
+        "ridge_rmse": 4.649389717816909,
+        "xgb_spearman": 0.7767493151253593,
+        "xgb_rmse": 4.850978572007843,
+        "hgb_spearman": 0.7460061959445327,
+        "hgb_rmse": 5.109120528383366
+      },
+      {
+        "held_out_teams": [
+          "Northgate Voltage"
+        ],
+        "n": 70,
+        "ridge_spearman": 0.663517144276353,
+        "ridge_rmse": 4.774329911798817,
+        "xgb_spearman": 0.6485394096306275,
+        "xgb_rmse": 4.877907150592397,
+        "hgb_spearman": 0.647297097528003,
+        "hgb_rmse": 5.100839029186816
+      },
+      {
+        "held_out_teams": [
+          "Ironvale Foundry"
+        ],
+        "n": 70,
+        "ridge_spearman": 0.7235680616877198,
+        "ridge_rmse": 5.560062618299572,
+        "xgb_spearman": 0.7258077229431554,
+        "xgb_rmse": 4.953812587859553,
+        "hgb_spearman": 0.7224482310600022,
+        "hgb_rmse": 5.088157811527473
+      },
+      {
+        "held_out_teams": [
+          "Harbor City Tidewalkers"
+        ],
+        "n": 70,
+        "ridge_spearman": 0.7576287804390699,
+        "ridge_rmse": 7.512486652785677,
+        "xgb_spearman": 0.7712416024063122,
+        "xgb_rmse": 6.814436046077462,
+        "hgb_spearman": 0.7684245531303149,
+        "hgb_rmse": 6.934013466667588
+      },
+      {
+        "held_out_teams": [
+          "Glasswater Current"
+        ],
+        "n": 70,
+        "ridge_spearman": 0.8161290620100192,
+        "ridge_rmse": 5.469638305762355,
+        "xgb_spearman": 0.8427600341254331,
+        "xgb_rmse": 5.161550270442852,
+        "hgb_spearman": 0.8243528181823216,
+        "hgb_rmse": 5.413201652273613
+      },
+      {
+        "held_out_teams": [
+          "Copperfield Kestrels"
+        ],
+        "n": 70,
+        "ridge_spearman": 0.7636879077592928,
+        "ridge_rmse": 5.151376994690773,
+        "xgb_spearman": 0.7788412788554241,
+        "xgb_rmse": 5.054403521022225,
+        "hgb_spearman": 0.7884302480940844,
+        "hgb_rmse": 5.180632237069436
+      }
+    ],
+    "learning_curve": {
+      "fractions": [
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "n_train": [
+        105,
+        210,
+        315,
+        420
+      ],
+      "folds": 4,
+      "ridge": [
+        0.7262054580930637,
+        0.7275536294232157,
+        0.7335742580878413,
+        0.7299661774403339
+      ],
+      "ridge_sd": [
+        0.04930208064086148,
+        0.04781951025419661,
+        0.03357239510093277,
+        0.043262792876127366
+      ],
+      "xgboost": [
+        0.7193882244318263,
+        0.7198088035928847,
+        0.7463782531286532,
+        0.7539253414331228
+      ],
+      "xgboost_sd": [
+        0.06581802682181488,
+        0.033207603599636065,
+        0.04429534385458433,
+        0.037106167292818446
+      ],
+      "hgb": [
+        0.6874042897452248,
+        0.6920612940033397,
+        0.7140483426974121,
+        0.7336598775601203
+      ],
+      "hgb_sd": [
+        0.06141129094215927,
+        0.03464812759107265,
+        0.03685355590729709,
+        0.02859087555458591
+      ]
+    }
+  },
+  "feature_importance": [
+    [
+      "shooters_x_bigs",
+      0.17246073715960605
+    ],
+    [
+      "spacing_x_rim",
+      0.12585074684860809
+    ],
+    [
+      "shooters",
+      0.08914490493568394
+    ],
+    [
+      "non_shooters",
+      0.0718667409548896
+    ],
+    [
+      "bigs",
+      0.060999111633556896
+    ],
+    [
+      "shooters_x_ast_max",
+      0.046976258031718836
+    ],
+    [
+      "blk_pct_max",
+      0.044787267497945205
+    ],
+    [
+      "pair_both_nonshooters",
+      0.039762850556490634
+    ],
+    [
+      "height_max",
+      0.03867483262854364
+    ],
+    [
+      "blk_pct_sum",
+      0.026554460797995637
+    ],
+    [
+      "stl_x_blk",
+      0.020624490725236262
+    ],
+    [
+      "usage_sum",
+      0.020523035507296526
+    ],
+    [
+      "reb_pct_sum",
+      0.019235058680690312
+    ],
+    [
+      "height_mean",
+      0.01708757379725242
+    ],
+    [
+      "ast_pct_max",
+      0.016443577180170747
+    ],
+    [
+      "handlers",
+      0.015004914260476936
+    ],
+    [
+      "ast_pct_sum",
+      0.013229160814281892
+    ],
+    [
+      "dbpm_sum",
+      0.012884636752872944
+    ],
+    [
+      "bpm_sum",
+      0.010960044886828555
+    ],
+    [
+      "handlers_x_usage_max",
+      0.010640238810225557
+    ],
+    [
+      "usage_std",
+      0.009521920681926952
+    ],
+    [
+      "tov_pct_max",
+      0.009299024929940591
+    ],
+    [
+      "tov_pct_sum",
+      0.009187088017592047
+    ],
+    [
+      "obpm_min",
+      0.008924524261667741
+    ],
+    [
+      "pair_usage_absdiff_mean",
+      0.008252135278515498
+    ],
+    [
+      "pair_height_absdiff_mean",
+      0.007934624436847832
+    ],
+    [
+      "def_rating_proxy_mean",
+      0.007757066411316402
+    ],
+    [
+      "pair_both_handlers",
+      0.006992087760256605
+    ],
+    [
+      "obpm_sum",
+      0.006934115759051413
+    ],
+    [
+      "usage_max",
+      0.006022117648155556
+    ],
+    [
+      "height_min",
+      0.005681910597331886
+    ],
+    [
+      "height_std",
+      0.005575503031733827
+    ],
+    [
+      "stl_pct_sum",
+      0.005535464946229658
+    ],
+    [
+      "fg3_pct_min",
+      0.005434859730901994
+    ],
+    [
+      "fg3_pct_std",
+      0.0052968908618812255
+    ],
+    [
+      "fg3a_rate_sum",
+      0.0051739390095173745
+    ],
+    [
+      "fg3_pct_mean",
+      0.005076682303139249
+    ],
+    [
+      "minutes_mean_log",
+      0.00456317635515402
+    ],
+    [
+      "zero_minute_players",
+      0.003126225518469456
+    ]
+  ],
+  "target_summary": {
+    "net_rating_mean_weighted": 0.046020915420973044,
+    "net_rating_std": 11.301105281358861,
+    "off_rating_mean_weighted": 115.76757498187156,
+    "minutes_total": 560.0
+  }
+}

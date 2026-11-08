@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+*/output/*.mp4
+*/demo/*.mp4
+*/models/*.pkl
+_preview_*.png
+.DS_Store

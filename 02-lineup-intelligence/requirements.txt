@@ -1,0 +1,16 @@
+# Core (already present on the build machine)
+pandas>=2.0
+numpy>=1.26
+scipy>=1.11
+scikit-learn>=1.4
+xgboost>=2.0
+
+# Optional: real data from stats.nba.com (not reachable from the build machine)
+nba_api>=1.4
+
+# Optional: richer SHAP plots. Not required -- explanations use XGBoost's
+# built-in pred_contribs (SHAP-style attributions) with no extra dependency.
+# shap>=0.44
+
+# Optional: headless verification of the report (verify_report.py); uses system Chrome if present
+# playwright>=1.40

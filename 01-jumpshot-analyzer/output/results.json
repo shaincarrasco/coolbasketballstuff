@@ -1,0 +1,786 @@
+{
+  "user": {
+    "name": "User shot",
+    "side": "right",
+    "facing": 1.0,
+    "fps": 30.0,
+    "events": {
+      "onset": 10,
+      "set_point": 24,
+      "peak_wrist_velocity": 31,
+      "release": 41,
+      "follow_through": 46,
+      "follow_through_end": 51,
+      "hold_s": 0.3333333333333333,
+      "fps": 30.0,
+      "release_found": true
+    },
+    "summary": {
+      "elbow_angle_set": 100.39354705810547,
+      "elbow_angle_release": 161.1035919189453,
+      "elbow_tuck_set": 0.5679582953453064,
+      "knee_angle_min": 149.62416076660156,
+      "knee_angle_set": 150.313720703125,
+      "hip_angle_set": 161.74412536621094,
+      "trunk_lean_release": 7.218301296234131,
+      "release_height": 0.6339945793151855,
+      "release_forward": 0.40941286087036133,
+      "release_time_s": 0.5666666666666667,
+      "release_time_from_onset_s": 1.0333333333333334,
+      "peak_wrist_velocity_torso_per_s": 1.5184061527252197,
+      "follow_through_wrist_angle": 107.76681518554688,
+      "follow_through_hold_s": 0.3333333333333333,
+      "jump_height": 0.28568679094314575,
+      "shot_duration_s": 1.3666666666666667
+    },
+    "n_frames": 60,
+    "missing_frames": 0,
+    "source": "synthetic",
+    "quality": {
+      "body_visibility_pct": 100.0,
+      "arm_visibility_pct": 100.0,
+      "n_frames": 60,
+      "missing_frames": 0,
+      "release_found": true,
+      "side": "right",
+      "side_detected": true,
+      "confidence": "ok",
+      "flags": []
+    },
+    "video": "/home/claude/nba-projects/01-jumpshot-analyzer/demo/user_shot.mp4"
+  },
+  "closest": "Reference C \u2014 quick release",
+  "headline_score": 90.8,
+  "weights": {
+    "dtw": 0.6,
+    "learned": 0.4
+  },
+  "references": [
+    {
+      "name": "Reference C \u2014 quick release",
+      "score": 90.8,
+      "dtw_score": 85.8,
+      "learned_score": 98.4,
+      "dtw_distance": 0.631,
+      "feature_distance": {
+        "elbow_angle": 0.141,
+        "knee_angle": 0.135,
+        "hip_angle": 0.143,
+        "trunk_lean": 0.227,
+        "wrist_height": 0.074,
+        "wrist_forward": 0.199,
+        "elbow_tuck": 0.191,
+        "wrist_angle": 0.236,
+        "hip_rise": 0.158
+      },
+      "feedback": [
+        {
+          "key": "elbow_angle_set",
+          "label": "Elbow angle at set point",
+          "unit": "deg",
+          "user": 100.39354705810547,
+          "reference": 92.94052124023438,
+          "delta": 7.453025817871094,
+          "severity": "minor",
+          "message": "Elbow angle at set point: 100\u00b0 vs 93\u00b0 \u2014 7\u00b0 wider (less loaded) than reference."
+        },
+        {
+          "key": "elbow_tuck_set",
+          "label": "Elbow in front of shoulder at set point",
+          "unit": "torso",
+          "user": 0.5679582953453064,
+          "reference": 0.5472201108932495,
+          "delta": 0.020738184452056885,
+          "severity": "ok",
+          "message": "Elbow in front of shoulder at set point: 0.57 torso vs 0.55 torso \u2014 within 0.06 torso-lengths of reference."
+        },
+        {
+          "key": "knee_angle_min",
+          "label": "Deepest knee bend",
+          "unit": "deg",
+          "user": 149.62416076660156,
+          "reference": 145.59471130371094,
+          "delta": 4.029449462890625,
+          "severity": "ok",
+          "message": "Deepest knee bend: 150\u00b0 vs 146\u00b0 \u2014 within 6\u00b0 of reference."
+        },
+        {
+          "key": "hip_angle_set",
+          "label": "Shoulder-hip-knee alignment at set point",
+          "unit": "deg",
+          "user": 161.74412536621094,
+          "reference": 160.6745147705078,
+          "delta": 1.069610595703125,
+          "severity": "ok",
+          "message": "Shoulder-hip-knee alignment at set point: 162\u00b0 vs 161\u00b0 \u2014 within 6\u00b0 of reference."
+        },
+        {
+          "key": "trunk_lean_release",
+          "label": "Trunk lean at release",
+          "unit": "deg",
+          "user": 7.218301296234131,
+          "reference": 3.9970054626464844,
+          "delta": 3.2212958335876465,
+          "severity": "minor",
+          "message": "Trunk lean at release: 7\u00b0 vs 4\u00b0 \u2014 3\u00b0 more forward than reference."
+        },
+        {
+          "key": "release_height",
+          "label": "Release height (wrist above head)",
+          "unit": "torso",
+          "user": 0.6339945793151855,
+          "reference": 0.6521359086036682,
+          "delta": -0.018141329288482666,
+          "severity": "ok",
+          "message": "Release height (wrist above head): 0.63 torso vs 0.65 torso \u2014 within 0.06 torso-lengths of reference."
+        },
+        {
+          "key": "release_forward",
+          "label": "Release point in front of shoulder",
+          "unit": "torso",
+          "user": 0.40941286087036133,
+          "reference": 0.34029486775398254,
+          "delta": 0.06911799311637878,
+          "severity": "ok",
+          "message": "Release point in front of shoulder: 0.41 torso vs 0.34 torso \u2014 within 0.08 torso-lengths of reference."
+        },
+        {
+          "key": "release_time_s",
+          "label": "Load-to-release time",
+          "unit": "s",
+          "user": 0.5666666666666667,
+          "reference": 0.3333333333333333,
+          "delta": 0.23333333333333334,
+          "severity": "major",
+          "message": "Load-to-release time: 0.57s vs 0.33s \u2014 0.23s later (slower) than reference."
+        },
+        {
+          "key": "follow_through_hold_s",
+          "label": "Follow-through hold",
+          "unit": "s",
+          "user": 0.3333333333333333,
+          "reference": 0.43333333333333335,
+          "delta": -0.10000000000000003,
+          "severity": "minor",
+          "message": "Follow-through hold: 0.33s vs 0.43s \u2014 0.10s shorter than reference."
+        },
+        {
+          "key": "follow_through_wrist_angle",
+          "label": "Wrist snap (elbow-wrist-finger angle)",
+          "unit": "deg",
+          "user": 107.76681518554688,
+          "reference": 109.53466796875,
+          "delta": -1.767852783203125,
+          "severity": "ok",
+          "message": "Wrist snap (elbow-wrist-finger angle): 108\u00b0 vs 110\u00b0 \u2014 within 8\u00b0 of reference."
+        },
+        {
+          "key": "jump_height",
+          "label": "Jump height (hip rise)",
+          "unit": "torso",
+          "user": 0.28568679094314575,
+          "reference": 0.32540568709373474,
+          "delta": -0.03971889615058899,
+          "severity": "ok",
+          "message": "Jump height (hip rise): 0.29 torso vs 0.33 torso \u2014 within 0.08 torso-lengths of reference."
+        },
+        {
+          "key": "elbow_angle_release",
+          "label": "Elbow extension at release",
+          "unit": "deg",
+          "user": 161.1035919189453,
+          "reference": 166.15200805664062,
+          "delta": -5.0484161376953125,
+          "severity": "minor",
+          "message": "Elbow extension at release: 161\u00b0 vs 166\u00b0 \u2014 5\u00b0 less extended than reference."
+        }
+      ],
+      "summary": {
+        "elbow_angle_set": 92.94052124023438,
+        "elbow_angle_release": 166.15200805664062,
+        "elbow_tuck_set": 0.5472201108932495,
+        "knee_angle_min": 145.59471130371094,
+        "knee_angle_set": 145.59471130371094,
+        "hip_angle_set": 160.6745147705078,
+        "trunk_lean_release": 3.9970054626464844,
+        "release_height": 0.6521359086036682,
+        "release_forward": 0.34029486775398254,
+        "release_time_s": 0.3333333333333333,
+        "release_time_from_onset_s": 0.6,
+        "peak_wrist_velocity_torso_per_s": 2.7777092456817627,
+        "follow_through_wrist_angle": 109.53466796875,
+        "follow_through_hold_s": 0.43333333333333335,
+        "jump_height": 0.32540568709373474,
+        "shot_duration_s": 1.0333333333333334
+      },
+      "events": {
+        "onset": 9,
+        "set_point": 17,
+        "peak_wrist_velocity": 21,
+        "release": 27,
+        "follow_through": 33,
+        "follow_through_end": 40,
+        "hold_s": 0.43333333333333335,
+        "fps": 30.0,
+        "release_found": true
+      }
+    },
+    {
+      "name": "Reference B \u2014 deep knee bend",
+      "score": 39.4,
+      "dtw_score": 48.4,
+      "learned_score": 25.9,
+      "dtw_distance": 1.776,
+      "feature_distance": {
+        "elbow_angle": 0.311,
+        "knee_angle": 0.779,
+        "hip_angle": 0.823,
+        "trunk_lean": 0.251,
+        "wrist_height": 0.125,
+        "wrist_forward": 0.493,
+        "elbow_tuck": 0.265,
+        "wrist_angle": 0.209,
+        "hip_rise": 0.582
+      },
+      "feedback": [
+        {
+          "key": "elbow_angle_set",
+          "label": "Elbow angle at set point",
+          "unit": "deg",
+          "user": 100.39354705810547,
+          "reference": 83.4981460571289,
+          "delta": 16.895401000976562,
+          "severity": "major",
+          "message": "Elbow angle at set point: 100\u00b0 vs 83\u00b0 \u2014 17\u00b0 wider (less loaded) than reference."
+        },
+        {
+          "key": "elbow_tuck_set",
+          "label": "Elbow in front of shoulder at set point",
+          "unit": "torso",
+          "user": 0.5679582953453064,
+          "reference": 0.548806369304657,
+          "delta": 0.019151926040649414,
+          "severity": "ok",
+          "message": "Elbow in front of shoulder at set point: 0.57 torso vs 0.55 torso \u2014 within 0.06 torso-lengths of reference."
+        },
+        {
+          "key": "knee_angle_min",
+          "label": "Deepest knee bend",
+          "unit": "deg",
+          "user": 149.62416076660156,
+          "reference": 111.84434509277344,
+          "delta": 37.779815673828125,
+          "severity": "major",
+          "message": "Deepest knee bend: 150\u00b0 vs 112\u00b0 \u2014 38\u00b0 shallower than reference."
+        },
+        {
+          "key": "hip_angle_set",
+          "label": "Shoulder-hip-knee alignment at set point",
+          "unit": "deg",
+          "user": 161.74412536621094,
+          "reference": 138.3902587890625,
+          "delta": 23.353866577148438,
+          "severity": "major",
+          "message": "Shoulder-hip-knee alignment at set point: 162\u00b0 vs 138\u00b0 \u2014 23\u00b0 more upright than reference."
+        },
+        {
+          "key": "trunk_lean_release",
+          "label": "Trunk lean at release",
+          "unit": "deg",
+          "user": 7.218301296234131,
+          "reference": 6.226478576660156,
+          "delta": 0.9918227195739746,
+          "severity": "ok",
+          "message": "Trunk lean at release: 7\u00b0 vs 6\u00b0 \u2014 within 3\u00b0 of reference."
+        },
+        {
+          "key": "release_height",
+          "label": "Release height (wrist above head)",
+          "unit": "torso",
+          "user": 0.6339945793151855,
+          "reference": 0.6945329904556274,
+          "delta": -0.060538411140441895,
+          "severity": "minor",
+          "message": "Release height (wrist above head): 0.63 torso vs 0.69 torso \u2014 0.06 torso-lengths (~3 cm for a 50 cm torso) lower than reference."
+        },
+        {
+          "key": "release_forward",
+          "label": "Release point in front of shoulder",
+          "unit": "torso",
+          "user": 0.40941286087036133,
+          "reference": 0.2645491361618042,
+          "delta": 0.14486372470855713,
+          "severity": "minor",
+          "message": "Release point in front of shoulder: 0.41 torso vs 0.26 torso \u2014 0.14 torso-lengths (~7 cm for a 50 cm torso) further forward than reference."
+        },
+        {
+          "key": "release_time_s",
+          "label": "Load-to-release time",
+          "unit": "s",
+          "user": 0.5666666666666667,
+          "reference": 0.5,
+          "delta": 0.06666666666666665,
+          "severity": "minor",
+          "message": "Load-to-release time: 0.57s vs 0.50s \u2014 0.07s later (slower) than reference."
+        },
+        {
+          "key": "follow_through_hold_s",
+          "label": "Follow-through hold",
+          "unit": "s",
+          "user": 0.3333333333333333,
+          "reference": 0.5666666666666667,
+          "delta": -0.23333333333333334,
+          "severity": "major",
+          "message": "Follow-through hold: 0.33s vs 0.57s \u2014 0.23s shorter than reference."
+        },
+        {
+          "key": "follow_through_wrist_angle",
+          "label": "Wrist snap (elbow-wrist-finger angle)",
+          "unit": "deg",
+          "user": 107.76681518554688,
+          "reference": 108.79643249511719,
+          "delta": -1.0296173095703125,
+          "severity": "ok",
+          "message": "Wrist snap (elbow-wrist-finger angle): 108\u00b0 vs 109\u00b0 \u2014 within 8\u00b0 of reference."
+        },
+        {
+          "key": "jump_height",
+          "label": "Jump height (hip rise)",
+          "unit": "torso",
+          "user": 0.28568679094314575,
+          "reference": 0.6810477375984192,
+          "delta": -0.39536094665527344,
+          "severity": "major",
+          "message": "Jump height (hip rise): 0.29 torso vs 0.68 torso \u2014 0.40 torso-lengths (~20 cm for a 50 cm torso) lower than reference."
+        },
+        {
+          "key": "elbow_angle_release",
+          "label": "Elbow extension at release",
+          "unit": "deg",
+          "user": 161.1035919189453,
+          "reference": 160.84783935546875,
+          "delta": 0.2557525634765625,
+          "severity": "ok",
+          "message": "Elbow extension at release: 161\u00b0 vs 161\u00b0 \u2014 within 5\u00b0 of reference."
+        }
+      ],
+      "summary": {
+        "elbow_angle_set": 83.4981460571289,
+        "elbow_angle_release": 160.84783935546875,
+        "elbow_tuck_set": 0.548806369304657,
+        "knee_angle_min": 111.84434509277344,
+        "knee_angle_set": 111.84434509277344,
+        "hip_angle_set": 138.3902587890625,
+        "trunk_lean_release": 6.226478576660156,
+        "release_height": 0.6945329904556274,
+        "release_forward": 0.2645491361618042,
+        "release_time_s": 0.5,
+        "release_time_from_onset_s": 1.0,
+        "peak_wrist_velocity_torso_per_s": 1.8380306959152222,
+        "follow_through_wrist_angle": 108.79643249511719,
+        "follow_through_hold_s": 0.5666666666666667,
+        "jump_height": 0.6810477375984192,
+        "shot_duration_s": 1.5666666666666667
+      },
+      "events": {
+        "onset": 10,
+        "set_point": 25,
+        "peak_wrist_velocity": 30,
+        "release": 40,
+        "follow_through": 48,
+        "follow_through_end": 57,
+        "hold_s": 0.5666666666666667,
+        "fps": 30.0,
+        "release_found": true
+      }
+    },
+    {
+      "name": "Reference A \u2014 high release",
+      "score": 38.2,
+      "dtw_score": 52.7,
+      "learned_score": 16.4,
+      "dtw_distance": 1.634,
+      "feature_distance": {
+        "elbow_angle": 0.331,
+        "knee_angle": 0.326,
+        "hip_angle": 0.345,
+        "trunk_lean": 0.347,
+        "wrist_height": 0.145,
+        "wrist_forward": 1.038,
+        "elbow_tuck": 0.555,
+        "wrist_angle": 0.264,
+        "hip_rise": 0.365
+      },
+      "feedback": [
+        {
+          "key": "elbow_angle_set",
+          "label": "Elbow angle at set point",
+          "unit": "deg",
+          "user": 100.39354705810547,
+          "reference": 89.45918273925781,
+          "delta": 10.934364318847656,
+          "severity": "minor",
+          "message": "Elbow angle at set point: 100\u00b0 vs 89\u00b0 \u2014 11\u00b0 wider (less loaded) than reference."
+        },
+        {
+          "key": "elbow_tuck_set",
+          "label": "Elbow in front of shoulder at set point",
+          "unit": "torso",
+          "user": 0.5679582953453064,
+          "reference": 0.5214662551879883,
+          "delta": 0.046492040157318115,
+          "severity": "ok",
+          "message": "Elbow in front of shoulder at set point: 0.57 torso vs 0.52 torso \u2014 within 0.06 torso-lengths of reference."
+        },
+        {
+          "key": "knee_angle_min",
+          "label": "Deepest knee bend",
+          "unit": "deg",
+          "user": 149.62416076660156,
+          "reference": 139.86392211914062,
+          "delta": 9.760238647460938,
+          "severity": "minor",
+          "message": "Deepest knee bend: 150\u00b0 vs 140\u00b0 \u2014 10\u00b0 shallower than reference."
+        },
+        {
+          "key": "hip_angle_set",
+          "label": "Shoulder-hip-knee alignment at set point",
+          "unit": "deg",
+          "user": 161.74412536621094,
+          "reference": 157.47853088378906,
+          "delta": 4.265594482421875,
+          "severity": "ok",
+          "message": "Shoulder-hip-knee alignment at set point: 162\u00b0 vs 157\u00b0 \u2014 within 6\u00b0 of reference."
+        },
+        {
+          "key": "trunk_lean_release",
+          "label": "Trunk lean at release",
+          "unit": "deg",
+          "user": 7.218301296234131,
+          "reference": 1.4656295776367188,
+          "delta": 5.752671718597412,
+          "severity": "minor",
+          "message": "Trunk lean at release: 7\u00b0 vs 1\u00b0 \u2014 6\u00b0 more forward than reference."
+        },
+        {
+          "key": "release_height",
+          "label": "Release height (wrist above head)",
+          "unit": "torso",
+          "user": 0.6339945793151855,
+          "reference": 0.7140321731567383,
+          "delta": -0.08003759384155273,
+          "severity": "minor",
+          "message": "Release height (wrist above head): 0.63 torso vs 0.71 torso \u2014 0.08 torso-lengths (~4 cm for a 50 cm torso) lower than reference."
+        },
+        {
+          "key": "release_forward",
+          "label": "Release point in front of shoulder",
+          "unit": "torso",
+          "user": 0.40941286087036133,
+          "reference": -0.026231182739138603,
+          "delta": 0.43564404360949993,
+          "severity": "major",
+          "message": "Release point in front of shoulder: 0.41 torso vs -0.03 torso \u2014 0.44 torso-lengths (~22 cm for a 50 cm torso) further forward than reference."
+        },
+        {
+          "key": "release_time_s",
+          "label": "Load-to-release time",
+          "unit": "s",
+          "user": 0.5666666666666667,
+          "reference": 0.4666666666666667,
+          "delta": 0.09999999999999998,
+          "severity": "minor",
+          "message": "Load-to-release time: 0.57s vs 0.47s \u2014 0.10s later (slower) than reference."
+        },
+        {
+          "key": "follow_through_hold_s",
+          "label": "Follow-through hold",
+          "unit": "s",
+          "user": 0.3333333333333333,
+          "reference": 0.6666666666666666,
+          "delta": -0.3333333333333333,
+          "severity": "major",
+          "message": "Follow-through hold: 0.33s vs 0.67s \u2014 0.33s shorter than reference."
+        },
+        {
+          "key": "follow_through_wrist_angle",
+          "label": "Wrist snap (elbow-wrist-finger angle)",
+          "unit": "deg",
+          "user": 107.76681518554688,
+          "reference": 107.88662719726562,
+          "delta": -0.11981201171875,
+          "severity": "ok",
+          "message": "Wrist snap (elbow-wrist-finger angle): 108\u00b0 vs 108\u00b0 \u2014 within 8\u00b0 of reference."
+        },
+        {
+          "key": "jump_height",
+          "label": "Jump height (hip rise)",
+          "unit": "torso",
+          "user": 0.28568679094314575,
+          "reference": 0.5365832448005676,
+          "delta": -0.2508964538574219,
+          "severity": "major",
+          "message": "Jump height (hip rise): 0.29 torso vs 0.54 torso \u2014 0.25 torso-lengths (~13 cm for a 50 cm torso) lower than reference."
+        },
+        {
+          "key": "elbow_angle_release",
+          "label": "Elbow extension at release",
+          "unit": "deg",
+          "user": 161.1035919189453,
+          "reference": 162.84503173828125,
+          "delta": -1.7414398193359375,
+          "severity": "ok",
+          "message": "Elbow extension at release: 161\u00b0 vs 163\u00b0 \u2014 within 5\u00b0 of reference."
+        }
+      ],
+      "summary": {
+        "elbow_angle_set": 89.45918273925781,
+        "elbow_angle_release": 162.84503173828125,
+        "elbow_tuck_set": 0.5214662551879883,
+        "knee_angle_min": 139.86392211914062,
+        "knee_angle_set": 139.86392211914062,
+        "hip_angle_set": 157.47853088378906,
+        "trunk_lean_release": 1.4656295776367188,
+        "release_height": 0.7140321731567383,
+        "release_forward": -0.026231182739138603,
+        "release_time_s": 0.4666666666666667,
+        "release_time_from_onset_s": 0.9666666666666667,
+        "peak_wrist_velocity_torso_per_s": 1.4722282886505127,
+        "follow_through_wrist_angle": 107.88662719726562,
+        "follow_through_hold_s": 0.6666666666666666,
+        "jump_height": 0.5365832448005676,
+        "shot_duration_s": 1.6333333333333333
+      },
+      "events": {
+        "onset": 8,
+        "set_point": 23,
+        "peak_wrist_velocity": 27,
+        "release": 37,
+        "follow_through": 47,
+        "follow_through_end": 57,
+        "hold_s": 0.6666666666666666,
+        "fps": 30.0,
+        "release_found": true
+      }
+    }
+  ],
+  "radar": {
+    "axes": [
+      {
+        "feature": "elbow_angle",
+        "key": "elbow_angle_set",
+        "label": "Elbow @ set",
+        "unit": "deg"
+      },
+      {
+        "feature": "knee_angle",
+        "key": "knee_angle_min",
+        "label": "Knee min",
+        "unit": "deg"
+      },
+      {
+        "feature": "hip_angle",
+        "key": "hip_angle_set",
+        "label": "Hip align",
+        "unit": "deg"
+      },
+      {
+        "feature": "trunk_lean",
+        "key": "trunk_lean_release",
+        "label": "Trunk lean",
+        "unit": "deg"
+      },
+      {
+        "feature": "wrist_height",
+        "key": "release_height",
+        "label": "Release height",
+        "unit": "torso"
+      },
+      {
+        "feature": "wrist_forward",
+        "key": "release_forward",
+        "label": "Release fwd",
+        "unit": "torso"
+      },
+      {
+        "feature": "elbow_tuck",
+        "key": "elbow_tuck_set",
+        "label": "Elbow tuck",
+        "unit": "torso"
+      },
+      {
+        "feature": "wrist_angle",
+        "key": "follow_through_wrist_angle",
+        "label": "Wrist snap",
+        "unit": "deg"
+      },
+      {
+        "feature": "hip_rise",
+        "key": "jump_height",
+        "label": "Jump height",
+        "unit": "torso"
+      }
+    ],
+    "user": [
+      0.9167,
+      0.9167,
+      0.9167,
+      0.9167,
+      0.0833,
+      0.9167,
+      0.9167,
+      0.0833,
+      0.0833
+    ],
+    "closest": [
+      0.5491,
+      0.8278,
+      0.8785,
+      0.45,
+      0.2722,
+      0.7845,
+      0.545,
+      0.9167,
+      0.1671
+    ],
+    "library_mean": [
+      0.3366,
+      0.5375,
+      0.5754,
+      0.4355,
+      0.6342,
+      0.5024,
+      0.4006,
+      0.5417,
+      0.5653
+    ],
+    "raw": {
+      "user": [
+        100.39354705810547,
+        149.62416076660156,
+        161.74412536621094,
+        7.218301296234131,
+        0.6339945793151855,
+        0.40941286087036133,
+        0.5679582953453064,
+        107.76681518554688,
+        0.28568679094314575
+      ],
+      "closest": [
+        92.94052124023438,
+        145.59471130371094,
+        160.6745147705078,
+        3.9970054626464844,
+        0.6521359086036682,
+        0.34029486775398254,
+        0.5472201108932495,
+        109.53466796875,
+        0.32540568709373474
+      ],
+      "library_mean": [
+        88.6326166788737,
+        132.434326171875,
+        152.18110148111978,
+        3.8963712056477866,
+        0.6869003574053446,
+        0.19287094039221606,
+        0.5391642451286316,
+        108.73924255371094,
+        0.5143455564975739
+      ]
+    },
+    "lo": [
+      81.80860595703125,
+      108.06636352539063,
+      136.05487213134765,
+      0.8903624057769776,
+      0.6259908199310302,
+      -0.0697955871000886,
+      0.5168170511722565,
+      107.59002990722657,
+      0.2461506962776184
+    ],
+    "hi": [
+      102.08308715820313,
+      153.4021423339844,
+      164.0795120239258,
+      7.793568468093872,
+      0.7220359325408936,
+      0.4529772652313113,
+      0.5726074993610382,
+      109.71145324707031,
+      0.7205838322639465
+    ]
+  },
+  "coaching_plan": [
+    {
+      "key": "release_time_s",
+      "finding": "Load-to-release time",
+      "severity": "major",
+      "delta": 0.23333333333333334,
+      "unit": "s",
+      "drill": "One-motion form shooting",
+      "prescription": "3 x 20 from 1 m (3 ft)",
+      "cue": "No pause at the set point: dip, lift and release in one continuous motion."
+    },
+    {
+      "key": "elbow_angle_set",
+      "finding": "Elbow angle at set point",
+      "severity": "minor",
+      "delta": 7.453025817871094,
+      "unit": "deg",
+      "drill": "L-shape set-point holds",
+      "prescription": "3 x 10 holds, 3 s each",
+      "cue": "Form the elbow into an L (about 90 deg) at the set point before every rep; check in a mirror."
+    },
+    {
+      "key": "elbow_angle_release",
+      "finding": "Elbow extension at release",
+      "severity": "minor",
+      "delta": -5.0484161376953125,
+      "unit": "deg",
+      "drill": "Full-extension form shooting",
+      "prescription": "3 x 20 from 1 m",
+      "cue": "Reach the elbow to full extension at release; the arm should look like a straight line to the rim."
+    },
+    {
+      "key": "trunk_lean_release",
+      "finding": "Trunk lean at release",
+      "severity": "minor",
+      "delta": 3.2212958335876465,
+      "unit": "deg",
+      "drill": "Heel-tap balance shots",
+      "prescription": "3 x 10 from 2 m",
+      "cue": "Finish with the hips under the shoulders; land where you jumped from."
+    },
+    {
+      "key": "follow_through_hold_s",
+      "finding": "Follow-through hold",
+      "severity": "minor",
+      "delta": -0.10000000000000003,
+      "unit": "s",
+      "drill": "Freeze the follow-through",
+      "prescription": "3 x 15, freeze 2 s each",
+      "cue": "Hold the finish (hand in the rim) for a full two seconds before dropping the arm."
+    }
+  ],
+  "model": {
+    "steps": 250,
+    "final_loss": 1.7911275625228882,
+    "train_seconds": 2.6673896312713623,
+    "n_shots": 3,
+    "views_per_shot": 24
+  },
+  "pose_backend": {
+    "mediapipe": "tasks",
+    "model_file": null,
+    "landmarks_source": "synthetic"
+  },
+  "outputs": {
+    "report": "/home/claude/nba-projects/01-jumpshot-analyzer/output/report.html",
+    "video": "/home/claude/nba-projects/01-jumpshot-analyzer/output/side_by_side.mp4",
+    "results_csv": "/home/claude/nba-projects/01-jumpshot-analyzer/output/results.csv",
+    "features_csv": "/home/claude/nba-projects/01-jumpshot-analyzer/output/features_per_frame.csv",
+    "history": "/home/claude/nba-projects/01-jumpshot-analyzer/output/history.jsonl"
+  }
+}

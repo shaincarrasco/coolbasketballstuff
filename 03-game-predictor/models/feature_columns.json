@@ -1,0 +1,22 @@
+[
+  "elo_diff",
+  "wp5_diff",
+  "wp10_diff",
+  "wp20_diff",
+  "pdiff10_diff",
+  "off10_diff",
+  "def10_diff",
+  "season_wp_diff",
+  "split_wp_diff",
+  "rest_diff",
+  "b2b_diff",
+  "streak_diff",
+  "gp_diff",
+  "elo_prob",
+  "h2h_home_wp",
+  "h2h_n",
+  "home_rest",
+  "away_rest",
+  "home_b2b",
+  "away_b2b"
+]

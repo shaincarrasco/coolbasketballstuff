@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0d12">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="NBA Projects">
+<meta name="description" content="Three end-to-end basketball analytics projects — computer vision, lineup modeling, game prediction — built in Python and shipped as installable web apps.">
+<title>NBA Projects — basketball analytics portfolio</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+<link rel="stylesheet" href="./assets/shell.css">
+<style>
+/* Hub-only styles. Shared tokens/components live in assets/shell.css. */
+.hero{padding-top:8px}
+.sec-h{flex-wrap:wrap;gap:4px 10px}
+@media(max-width:699px){.sec-h{flex-direction:column;align-items:flex-start}}
+.hero .lede{max-width:58ch}
+.apps{display:grid;gap:12px;margin-top:18px}
+@media(min-width:900px){.apps{grid-template-columns:repeat(3,1fr);gap:14px}}
+.app{display:flex;flex-direction:column;gap:12px;padding:16px;position:relative;isolation:isolate}
+.app::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;border-radius:var(--r) var(--r) 0 0;background:var(--accent);opacity:.9}
+.app .head{display:flex;align-items:center;gap:10px}
+.app .mark{width:34px;height:34px;border-radius:9px;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font:800 13px var(--mono);flex:0 0 auto}
+.app .head h2{font-size:18px}
+.app .head small{display:block;color:var(--muted);font:500 12px var(--sans);margin-top:1px}
+.app .desc{margin:0;color:var(--muted);font-size:13.5px;line-height:1.5}
+.app .chips{display:flex;flex-wrap:wrap;gap:6px}
+.app .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border-top:1px solid var(--line);padding-top:12px}
+.app .kpis .kpi{padding:0;background:transparent;border:0;min-width:0}
+.app .kpis .label{margin-bottom:6px;font-size:10px;letter-spacing:.08em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.app .kpis b{font-size:20px}
+.app .kpis b.hero{font-size:24px}
+.app .kpis .sub{font-size:11px;margin-top:4px;line-height:1.3}
+.app .cta{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:4px}
+.app .cta .btn{min-height:44px}
+.app .cta .meta{color:var(--faint);font:500 11px var(--mono);letter-spacing:.04em;white-space:nowrap}
+.stack{min-width:0}
+.stack table{min-width:640px}
+.stack td:first-child{font-weight:600}
+.stack .dot{display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--accent);margin-right:8px;vertical-align:1px}
+.two{display:grid;gap:12px}
+@media(min-width:900px){.two{grid-template-columns:1.4fr 1fr;align-items:start}}
+.note p{margin:0;color:var(--muted);font-size:13px}
+.note p+p{margin-top:8px}
+.note code{white-space:nowrap;font-family:var(--mono);font-size:12px;background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+.install{display:grid;gap:12px}
+@media(min-width:700px){.install{grid-template-columns:1fr 1fr}}
+.install ol{margin:8px 0 0;padding-left:0;list-style:none;counter-reset:s}
+.install li{position:relative;padding-left:30px;color:var(--muted);font-size:13px;line-height:1.5;min-height:28px;margin-bottom:6px;counter-increment:s}
+.install li::before{content:counter(s);position:absolute;left:0;top:1px;width:20px;height:20px;border-radius:6px;background:var(--surface-2);border:1px solid var(--line-2);color:var(--text);font:700 11px/20px var(--mono);text-align:center}
+.install li b{color:var(--text);font-weight:600}
+.install .os{display:flex;align-items:center;gap:8px;font-weight:700}
+.install .os svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;color:var(--muted)}
+.foot a{color:var(--muted);text-decoration:none}
+.foot a:hover{color:var(--text)}
+</style>
+</head>
+<body data-app="hub" data-depth="" data-title="NBA Projects" data-mark="NP">
+<main class="wrap">
+
+  <section class="hero">
+    <p class="eyebrow">Basketball analytics portfolio</p>
+    <h1>NBA Projects</h1>
+    <p class="lede">Three end-to-end projects — computer vision, lineup modeling, game prediction — built in Python and shipped as installable web apps.</p>
+  </section>
+
+  <section class="apps" aria-label="Apps">
+
+    <article class="card app" data-app="jumpshot">
+      <div class="head">
+        <span class="mark">JS</span>
+        <div><h2>Jumpshot Analyzer</h2><small>Film Room · computer vision</small></div>
+      </div>
+      <p class="desc">Pose-tracks a jump shot from video, scores mechanics against a reference library and prescribes drills.</p>
+      <div class="chips">
+        <span class="chip">Pose tracking</span><span class="chip">Mechanics radar</span><span class="chip">Drill plan</span>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><div class="label">Form score</div><b class="hero">90.8</b><div class="sub">vs Ref C</div></div>
+        <div class="kpi"><div class="label">Release</div><b>1.03 s</b><div class="sub">load to release</div></div>
+        <div class="kpi"><div class="label">Frames</div><b>60</b><div class="sub">30 fps tracked</div></div>
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="./jumpshot/index.html">Open →</a>
+        <span class="meta">OpenCV · MediaPipe · PyTorch</span>
+      </div>
+    </article>
+
+    <article class="card app" data-app="lineup">
+      <div class="head">
+        <span class="mark">LI</span>
+        <div><h2>Lineup Intelligence</h2><small>Tactical Board · lineup modeling</small></div>
+      </div>
+      <p class="desc">Scores every five-man combination on a roster, maps pairwise synergy and builds a starters / bench / closing rotation.</p>
+      <div class="chips">
+        <span class="chip">Every C(n,5)</span><span class="chip">Synergy heatmap</span><span class="chip">What-if swaps</span>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><div class="label">Top fit</div><b class="hero">88.5</b><div class="sub">Copperfield Kestrels</div></div>
+        <div class="kpi"><div class="label">Lineups</div><b>4,894</b><div class="sub">scored · 8 teams</div></div>
+        <div class="kpi"><div class="label">Rank corr.</div><b>0.79</b><div class="sub">Spearman · XGBoost</div></div>
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="./lineup/index.html">Open →</a>
+        <span class="meta">Pandas · scikit-learn · XGBoost</span>
+      </div>
+    </article>
+
+    <article class="card app" data-app="predictor">
+      <div class="head">
+        <span class="mark">GP</span>
+        <div><h2>Game Predictor</h2><small>NBA//DESK · game prediction</small></div>
+      </div>
+      <p class="desc">Leak-free rolling form and Elo feed a calibrated win-probability model with a slate picker, power rankings and playoff odds.</p>
+      <div class="chips">
+        <span class="chip">Calibrated probs</span><span class="chip">Elo + form</span><span class="chip">Monte Carlo odds</span>
+      </div>
+      <div class="kpis">
+        <div class="kpi"><div class="label">Accuracy</div><b class="hero">64.5%</b><div class="sub">1,230 holdout games</div></div>
+        <div class="kpi"><div class="label">Log loss</div><b>0.638</b><div class="sub">baseline 0.682</div></div>
+        <div class="kpi"><div class="label">Calibration</div><b>0.033</b><div class="sub">ECE · sigmoid</div></div>
+      </div>
+      <div class="cta">
+        <a class="btn primary" href="./predictor/index.html">Open →</a>
+        <span class="meta">Pandas · scikit-learn · XGBoost</span>
+      </div>
+    </article>
+
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><h2>How it's built</h2><span class="read">Same shape every time: load → features → model → interactive report.</span></div>
+    <div class="two">
+      <div class="tbl stack">
+        <table>
+          <thead><tr><th>Project</th><th>Data</th><th>Model</th><th>Output</th></tr></thead>
+          <tbody>
+            <tr data-app="jumpshot"><td><span class="dot"></span>Jumpshot Analyzer</td><td>Video → MediaPipe pose landmarks, 33 joints / frame</td><td>DTW vs reference shots + small learned encoder</td><td>Form score, radar, frame scrubber, drill plan</td></tr>
+            <tr data-app="lineup"><td><span class="dot"></span>Lineup Intelligence</td><td>Player box-score rates + observed 5-man net ratings</td><td>Ridge / XGBoost / HistGB, grouped CV</td><td>Ranked lineups, synergy heatmap, rotation</td></tr>
+            <tr data-app="predictor"><td><span class="dot"></span>Game Predictor</td><td>Game logs → rolling form + Elo, walk-forward</td><td>XGBoost with sigmoid calibration vs Elo logit</td><td>Win probs, rankings, playoff odds, upsets</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card note">
+        <div class="sec-h" style="margin-bottom:8px"><h2 style="font-size:15px">Real data</h2><span class="chip">Sample league</span></div>
+        <p>Everything on this site runs on a <b style="color:var(--text)">seeded synthetic league</b> with fictional teams and players, so the demos are reproducible and ship with no licensing baggage.</p>
+        <p>Each project includes an <code>nba_api</code> loader (<code>--real</code>) that pulls from stats.nba.com when run locally and falls back to the sample data if the endpoint is unreachable. Scores and probabilities are for learning and demonstration only.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-h"><h2>Install on your phone</h2><span class="read">Works offline after the first visit.</span></div>
+    <div class="card">
+      <div class="install">
+        <div>
+          <div class="os"><svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg>iPhone / iPad (Safari)</div>
+          <ol>
+            <li>Open this page in <b>Safari</b>.</li>
+            <li>Tap <b>Share</b> (the square with an arrow).</li>
+            <li>Scroll and tap <b>Add to Home Screen</b>, then <b>Add</b>.</li>
+          </ol>
+        </div>
+        <div>
+          <div class="os"><svg viewBox="0 0 24 24"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><circle cx="12" cy="18" r=".8"/></svg>Android (Chrome)</div>
+          <ol>
+            <li>Open this page in <b>Chrome</b>.</li>
+            <li>Tap the <b>⋮ menu</b> in the top right.</li>
+            <li>Tap <b>Install app</b> (or <b>Add to Home screen</b>).</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>NBA Projects</span>
+    <a href="https://github.com/shaincarrasco/nba-projects">GitHub</a>
+    <span>Built 2026-11-07</span>
+    <span>Sample data · not betting advice</span>
+  </footer>
+
+</main>
+<script src="./assets/shell.js"></script>
+</body>
+</html>

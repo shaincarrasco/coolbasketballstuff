@@ -1,0 +1,105 @@
+{
+  "references": [
+    {
+      "name": "Reference A \u2014 high release",
+      "video": "/home/claude/nba-projects/01-jumpshot-analyzer/demo/ref_a_high_release.mp4",
+      "landmarks": "/home/claude/nba-projects/01-jumpshot-analyzer/demo/ref_a_high_release.landmarks.npz",
+      "params": {
+        "name": "Reference A \u2014 high release",
+        "slug": "ref_a_high_release",
+        "elbow_set_deg": 88,
+        "knee_min_deg": 140,
+        "hip_min_deg": 158,
+        "release_shoulder_deg": 178,
+        "release_elbow_deg": 176,
+        "set_shoulder_deg": 105,
+        "jump_height_m": 0.3,
+        "t_dip": 0.78,
+        "t_release": 1.3,
+        "hold_s": 0.5,
+        "trunk_lean_deg": 2.0,
+        "wrist_snap_deg": 70.0,
+        "duration_s": 2.0,
+        "fps": 30,
+        "noise_px": 1.2,
+        "seed": 1
+      }
+    },
+    {
+      "name": "Reference B \u2014 deep knee bend",
+      "video": "/home/claude/nba-projects/01-jumpshot-analyzer/demo/ref_b_deep_knee_bend.mp4",
+      "landmarks": "/home/claude/nba-projects/01-jumpshot-analyzer/demo/ref_b_deep_knee_bend.landmarks.npz",
+      "params": {
+        "name": "Reference B \u2014 deep knee bend",
+        "slug": "ref_b_deep_knee_bend",
+        "elbow_set_deg": 84,
+        "knee_min_deg": 112,
+        "hip_min_deg": 138,
+        "release_shoulder_deg": 165,
+        "release_elbow_deg": 172,
+        "set_shoulder_deg": 92,
+        "jump_height_m": 0.38,
+        "t_dip": 0.85,
+        "t_release": 1.4,
+        "hold_s": 0.42,
+        "trunk_lean_deg": 7.0,
+        "wrist_snap_deg": 70.0,
+        "duration_s": 2.0,
+        "fps": 30,
+        "noise_px": 1.2,
+        "seed": 2
+      }
+    },
+    {
+      "name": "Reference C \u2014 quick release",
+      "video": "/home/claude/nba-projects/01-jumpshot-analyzer/demo/ref_c_quick_release.mp4",
+      "landmarks": "/home/claude/nba-projects/01-jumpshot-analyzer/demo/ref_c_quick_release.landmarks.npz",
+      "params": {
+        "name": "Reference C \u2014 quick release",
+        "slug": "ref_c_quick_release",
+        "elbow_set_deg": 96,
+        "knee_min_deg": 145,
+        "hip_min_deg": 160,
+        "release_shoulder_deg": 160,
+        "release_elbow_deg": 170,
+        "set_shoulder_deg": 90,
+        "jump_height_m": 0.18,
+        "t_dip": 0.58,
+        "t_release": 0.92,
+        "hold_s": 0.35,
+        "trunk_lean_deg": 5.0,
+        "wrist_snap_deg": 70.0,
+        "duration_s": 2.0,
+        "fps": 30,
+        "noise_px": 1.2,
+        "seed": 3
+      }
+    }
+  ],
+  "user": {
+    "name": "User shot",
+    "video": "/home/claude/nba-projects/01-jumpshot-analyzer/demo/user_shot.mp4",
+    "landmarks": "/home/claude/nba-projects/01-jumpshot-analyzer/demo/user_shot.landmarks.npz",
+    "params": {
+      "name": "User shot",
+      "slug": "user_shot",
+      "elbow_set_deg": 104,
+      "knee_min_deg": 150,
+      "hip_min_deg": 160,
+      "release_shoulder_deg": 158,
+      "release_elbow_deg": 165,
+      "set_shoulder_deg": 98,
+      "jump_height_m": 0.17,
+      "t_dip": 0.82,
+      "t_release": 1.42,
+      "hold_s": 0.22,
+      "trunk_lean_deg": 9.0,
+      "wrist_snap_deg": 70.0,
+      "duration_s": 2.0,
+      "fps": 30,
+      "noise_px": 1.8,
+      "seed": 7
+    }
+  },
+  "note": "All clips are procedurally generated; no real footage."
+}

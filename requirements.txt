@@ -1,0 +1,8 @@
+pandas
+numpy
+scikit-learn
+xgboost
+opencv-python-headless
+mediapipe
+torch
+nba_api
