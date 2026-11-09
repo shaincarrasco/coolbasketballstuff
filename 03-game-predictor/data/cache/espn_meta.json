@@ -1,12 +1,12 @@
 {
-  "today_et": "2026-11-08",
+  "today_et": "2026-11-09",
   "n_cached_events": 5397,
   "n_games": 5144,
   "n_regular": 4893,
-  "n_final": 3832,
-  "n_scheduled_7d": 58,
-  "n_scheduled_total": 1061,
-  "last_final": "2026-11-07",
+  "n_final": 3839,
+  "n_scheduled_7d": 59,
+  "n_scheduled_total": 1054,
+  "last_final": "2026-11-08",
   "seasons": {
     "2023-24": 1231,
     "2024-25": 1231,
@@ -14,9 +14,9 @@
     "2026-27": 1200
   },
   "source": "espn",
-  "updated_at": "2026-11-08T16:20:18+00:00",
-  "requests": 13,
-  "cache": "/home/claude/nba-projects/03-game-predictor/data/cache/espn_games.csv",
+  "updated_at": "2026-11-09T21:30:50+00:00",
+  "requests": 20,
+  "cache": "/home/runner/work/coolbasketballstuff/coolbasketballstuff/03-game-predictor/data/cache/espn_games.csv",
   "start": "2023-10-24",
   "end": "2027-04-30",
   "incremental": true

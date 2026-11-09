@@ -1,137 +1,137 @@
 player_a,player_b,n_lineups,mean_fit,synergy,team_mean_fit
-Dru Smith,Keshad Johnson,455,58.997,10.738,48.26
-Bam Adebayo,Keshad Johnson,455,58.354,10.095,48.26
-Bam Adebayo,Dru Smith,455,57.887,9.627,48.26
-Myron Gardner,Keshad Johnson,455,56.832,8.573,48.26
-Bam Adebayo,Myron Gardner,455,56.606,8.346,48.26
-Bam Adebayo,Simone Fontecchio,455,56.386,8.127,48.26
-Dru Smith,Myron Gardner,455,55.955,7.696,48.26
-Davion Mitchell,Keshad Johnson,455,55.847,7.588,48.26
-Bam Adebayo,Tre Donaldson,455,55.524,7.265,48.26
-Bam Adebayo,Vladislav Goldin,455,55.332,7.073,48.26
-Davion Mitchell,Bam Adebayo,455,55.291,7.032,48.26
-Giannis Antetokounmpo,Keshad Johnson,455,55.265,7.006,48.26
-Dru Smith,Simone Fontecchio,455,55.161,6.902,48.26
-Bam Adebayo,Pelle Larsson,455,54.573,6.314,48.26
-Simone Fontecchio,Keshad Johnson,455,54.481,6.222,48.26
-Dru Smith,Vladislav Goldin,455,54.269,6.01,48.26
-Dru Smith,Tre Donaldson,455,54.073,5.814,48.26
-Giannis Antetokounmpo,Bam Adebayo,455,54.07,5.811,48.26
-Keshad Johnson,Vladislav Goldin,455,54.009,5.75,48.26
-Keshad Johnson,Tre Donaldson,455,53.802,5.543,48.26
-Pelle Larsson,Keshad Johnson,455,53.466,5.207,48.26
-Bam Adebayo,Andrew Wiggins,455,53.334,5.074,48.26
-Davion Mitchell,Myron Gardner,455,53.282,5.023,48.26
-Bam Adebayo,Tim Hardaway Jr.,455,53.217,4.958,48.26
-Davion Mitchell,Dru Smith,455,53.188,4.929,48.26
-Pelle Larsson,Dru Smith,455,52.839,4.58,48.26
-Giannis Antetokounmpo,Myron Gardner,455,52.803,4.544,48.26
-Giannis Antetokounmpo,Simone Fontecchio,455,52.727,4.468,48.26
-Myron Gardner,Tre Donaldson,455,52.33,4.071,48.26
-Simone Fontecchio,Myron Gardner,455,52.23,3.971,48.26
-Giannis Antetokounmpo,Dru Smith,455,52.133,3.874,48.26
-Giannis Antetokounmpo,Vladislav Goldin,455,52.084,3.825,48.26
-Bam Adebayo,Ryan Conwell,455,51.924,3.665,48.26
-Andrew Wiggins,Dru Smith,455,51.862,3.603,48.26
-Andrew Wiggins,Keshad Johnson,455,51.69,3.431,48.26
-Tim Hardaway Jr.,Dru Smith,455,51.503,3.244,48.26
-Pelle Larsson,Myron Gardner,455,51.315,3.056,48.26
-Myron Gardner,Vladislav Goldin,455,51.192,2.933,48.26
-Bam Adebayo,Bobby Portis,455,51.077,2.818,48.26
-Bam Adebayo,Nick Richards,455,50.99,2.731,48.26
-Bobby Portis,Dru Smith,455,50.96,2.701,48.26
-Bam Adebayo,Nikola Jovic,455,50.928,2.669,48.26
-Dru Smith,Nick Richards,455,50.925,2.666,48.26
-Tim Hardaway Jr.,Keshad Johnson,455,50.898,2.639,48.26
-Davion Mitchell,Simone Fontecchio,455,50.852,2.593,48.26
-Giannis Antetokounmpo,Tre Donaldson,455,50.56,2.301,48.26
-Bobby Portis,Keshad Johnson,455,50.558,2.299,48.26
-Davion Mitchell,Tre Donaldson,455,50.531,2.272,48.26
-Davion Mitchell,Vladislav Goldin,455,50.257,1.998,48.26
-Ryan Conwell,Dru Smith,455,50.171,1.912,48.26
-Ryan Conwell,Keshad Johnson,455,50.055,1.796,48.26
-Nick Richards,Keshad Johnson,455,49.965,1.706,48.26
-Simone Fontecchio,Tre Donaldson,455,49.845,1.586,48.26
-Simone Fontecchio,Vladislav Goldin,455,49.647,1.388,48.26
-Giannis Antetokounmpo,Tim Hardaway Jr.,455,49.578,1.319,48.26
-Giannis Antetokounmpo,Pelle Larsson,455,49.577,1.318,48.26
-Pelle Larsson,Simone Fontecchio,455,49.511,1.252,48.26
-Nikola Jovic,Dru Smith,455,49.435,1.176,48.26
-Giannis Antetokounmpo,Andrew Wiggins,455,49.29,1.03,48.26
-Nikola Jovic,Keshad Johnson,455,49.167,0.908,48.26
-Andrew Wiggins,Myron Gardner,455,49.155,0.896,48.26
-Davion Mitchell,Pelle Larsson,455,49.061,0.802,48.26
-Pelle Larsson,Vladislav Goldin,455,49.021,0.762,48.26
-Vladislav Goldin,Tre Donaldson,455,48.898,0.638,48.26
-Davion Mitchell,Giannis Antetokounmpo,455,48.868,0.609,48.26
-Bam Adebayo,Klay Thompson,455,48.78,0.521,48.26
-Tim Hardaway Jr.,Myron Gardner,455,48.712,0.453,48.26
-Pelle Larsson,Tre Donaldson,455,48.416,0.157,48.26
-Bobby Portis,Myron Gardner,455,48.253,-0.006,48.26
-Klay Thompson,Keshad Johnson,455,47.813,-0.446,48.26
-Ryan Conwell,Myron Gardner,455,47.638,-0.621,48.26
-Klay Thompson,Dru Smith,455,47.595,-0.664,48.26
-Davion Mitchell,Andrew Wiggins,455,47.413,-0.846,48.26
-Giannis Antetokounmpo,Nikola Jovic,455,47.353,-0.906,48.26
-Nick Richards,Myron Gardner,455,47.234,-1.025,48.26
-Andrew Wiggins,Simone Fontecchio,455,47.073,-1.186,48.26
-Giannis Antetokounmpo,Bobby Portis,455,47.047,-1.212,48.26
-Giannis Antetokounmpo,Ryan Conwell,455,47.036,-1.223,48.26
-Giannis Antetokounmpo,Nick Richards,455,47.008,-1.251,48.26
-Davion Mitchell,Tim Hardaway Jr.,455,46.88,-1.379,48.26
-Andrew Wiggins,Vladislav Goldin,455,46.788,-1.471,48.26
-Andrew Wiggins,Tre Donaldson,455,46.667,-1.592,48.26
-Nikola Jovic,Myron Gardner,455,46.576,-1.683,48.26
-Davion Mitchell,Nick Richards,455,46.481,-1.778,48.26
-Klay Thompson,Myron Gardner,455,46.474,-1.785,48.26
-Tim Hardaway Jr.,Simone Fontecchio,455,46.472,-1.787,48.26
-Davion Mitchell,Bobby Portis,455,46.248,-2.012,48.26
-Tim Hardaway Jr.,Vladislav Goldin,455,46.203,-2.056,48.26
-Bobby Portis,Vladislav Goldin,455,46.178,-2.081,48.26
-Bobby Portis,Simone Fontecchio,455,46.135,-2.124,48.26
-Tim Hardaway Jr.,Tre Donaldson,455,46.134,-2.125,48.26
-Davion Mitchell,Ryan Conwell,455,45.902,-2.358,48.26
-Nick Richards,Vladislav Goldin,455,45.848,-2.411,48.26
-Pelle Larsson,Andrew Wiggins,455,45.817,-2.442,48.26
-Giannis Antetokounmpo,Klay Thompson,455,45.735,-2.525,48.26
-Pelle Larsson,Bobby Portis,455,45.655,-2.604,48.26
-Bobby Portis,Tre Donaldson,455,45.61,-2.649,48.26
-Ryan Conwell,Simone Fontecchio,455,45.588,-2.671,48.26
-Pelle Larsson,Tim Hardaway Jr.,455,45.544,-2.715,48.26
-Ryan Conwell,Tre Donaldson,455,45.384,-2.876,48.26
-Simone Fontecchio,Nick Richards,455,45.329,-2.93,48.26
-Nick Richards,Tre Donaldson,455,45.133,-3.126,48.26
-Ryan Conwell,Vladislav Goldin,455,44.862,-3.397,48.26
-Pelle Larsson,Nick Richards,455,44.659,-3.6,48.26
-Davion Mitchell,Nikola Jovic,455,44.63,-3.629,48.26
-Nikola Jovic,Simone Fontecchio,455,44.47,-3.789,48.26
-Davion Mitchell,Klay Thompson,455,44.333,-3.926,48.26
-Nikola Jovic,Vladislav Goldin,455,44.322,-3.937,48.26
-Pelle Larsson,Ryan Conwell,455,44.291,-3.968,48.26
-Nikola Jovic,Tre Donaldson,455,44.118,-4.141,48.26
-Klay Thompson,Simone Fontecchio,455,44.074,-4.185,48.26
-Pelle Larsson,Nikola Jovic,455,43.965,-4.295,48.26
-Klay Thompson,Vladislav Goldin,455,43.664,-4.596,48.26
-Klay Thompson,Tre Donaldson,455,43.234,-5.026,48.26
-Andrew Wiggins,Tim Hardaway Jr.,455,43.051,-5.208,48.26
-Pelle Larsson,Klay Thompson,455,42.956,-5.304,48.26
-Andrew Wiggins,Bobby Portis,455,42.868,-5.391,48.26
-Bobby Portis,Tim Hardaway Jr.,455,42.382,-5.877,48.26
-Andrew Wiggins,Nick Richards,455,42.277,-5.982,48.26
-Andrew Wiggins,Ryan Conwell,455,42.209,-6.051,48.26
-Tim Hardaway Jr.,Ryan Conwell,455,41.675,-6.584,48.26
-Tim Hardaway Jr.,Nick Richards,455,41.623,-6.636,48.26
-Bobby Portis,Ryan Conwell,455,41.329,-6.93,48.26
-Andrew Wiggins,Nikola Jovic,455,41.071,-7.188,48.26
-Andrew Wiggins,Klay Thompson,455,40.754,-7.505,48.26
-Bobby Portis,Nick Richards,455,40.645,-7.614,48.26
-Tim Hardaway Jr.,Nikola Jovic,455,40.611,-7.649,48.26
-Ryan Conwell,Nick Richards,455,40.403,-7.856,48.26
-Nikola Jovic,Nick Richards,455,40.167,-8.092,48.26
-Bobby Portis,Nikola Jovic,455,40.113,-8.146,48.26
-Klay Thompson,Tim Hardaway Jr.,455,40.111,-8.149,48.26
-Nikola Jovic,Ryan Conwell,455,39.891,-8.368,48.26
-Klay Thompson,Ryan Conwell,455,39.681,-8.578,48.26
-Klay Thompson,Nick Richards,455,39.504,-8.755,48.26
-Klay Thompson,Bobby Portis,455,39.441,-8.818,48.26
-Klay Thompson,Nikola Jovic,455,38.089,-10.17,48.26
+Dru Smith,Keshad Johnson,455,59.48,10.429,49.05
+Bam Adebayo,Keshad Johnson,455,58.951,9.9,49.05
+Bam Adebayo,Dru Smith,455,58.233,9.183,49.05
+Myron Gardner,Keshad Johnson,455,57.719,8.669,49.05
+Davion Mitchell,Keshad Johnson,455,57.015,7.965,49.05
+Bam Adebayo,Myron Gardner,455,56.934,7.884,49.05
+Bam Adebayo,Simone Fontecchio,455,56.819,7.769,49.05
+Davion Mitchell,Bam Adebayo,455,56.173,7.123,49.05
+Giannis Antetokounmpo,Keshad Johnson,455,55.915,6.864,49.05
+Bam Adebayo,Tre Donaldson,455,55.873,6.822,49.05
+Simone Fontecchio,Keshad Johnson,455,55.814,6.763,49.05
+Dru Smith,Myron Gardner,455,55.709,6.659,49.05
+Dru Smith,Simone Fontecchio,455,55.444,6.393,49.05
+Keshad Johnson,Tre Donaldson,455,55.248,6.198,49.05
+Bam Adebayo,Vladislav Goldin,455,55.217,6.167,49.05
+Bam Adebayo,Pelle Larsson,455,54.944,5.894,49.05
+Keshad Johnson,Vladislav Goldin,455,54.702,5.652,49.05
+Pelle Larsson,Keshad Johnson,455,54.642,5.591,49.05
+Dru Smith,Tre Donaldson,455,54.341,5.29,49.05
+Giannis Antetokounmpo,Bam Adebayo,455,54.176,5.125,49.05
+Davion Mitchell,Dru Smith,455,53.904,4.853,49.05
+Davion Mitchell,Myron Gardner,455,53.807,4.757,49.05
+Bam Adebayo,Andrew Wiggins,455,53.769,4.718,49.05
+Giannis Antetokounmpo,Simone Fontecchio,455,53.721,4.671,49.05
+Giannis Antetokounmpo,Myron Gardner,455,53.703,4.652,49.05
+Dru Smith,Vladislav Goldin,455,53.608,4.557,49.05
+Bam Adebayo,Tim Hardaway Jr.,455,53.464,4.413,49.05
+Myron Gardner,Tre Donaldson,455,53.119,4.068,49.05
+Simone Fontecchio,Myron Gardner,455,52.973,3.923,49.05
+Andrew Wiggins,Keshad Johnson,455,52.917,3.867,49.05
+Pelle Larsson,Dru Smith,455,52.887,3.837,49.05
+Giannis Antetokounmpo,Dru Smith,455,52.828,3.778,49.05
+Giannis Antetokounmpo,Vladislav Goldin,455,52.813,3.763,49.05
+Bam Adebayo,Ryan Conwell,455,52.623,3.572,49.05
+Andrew Wiggins,Dru Smith,455,52.15,3.099,49.05
+Davion Mitchell,Simone Fontecchio,455,52.117,3.066,49.05
+Tim Hardaway Jr.,Keshad Johnson,455,51.995,2.945,49.05
+Tim Hardaway Jr.,Dru Smith,455,51.878,2.827,49.05
+Pelle Larsson,Myron Gardner,455,51.799,2.748,49.05
+Bobby Portis,Keshad Johnson,455,51.792,2.742,49.05
+Davion Mitchell,Tre Donaldson,455,51.633,2.583,49.05
+Ryan Conwell,Keshad Johnson,455,51.599,2.548,49.05
+Bam Adebayo,Bobby Portis,455,51.455,2.404,49.05
+Myron Gardner,Vladislav Goldin,455,51.366,2.316,49.05
+Bobby Portis,Dru Smith,455,51.168,2.117,49.05
+Giannis Antetokounmpo,Tre Donaldson,455,51.144,2.093,49.05
+Simone Fontecchio,Tre Donaldson,455,51.075,2.025,49.05
+Bam Adebayo,Nikola Jovic,455,50.929,1.879,49.05
+Ryan Conwell,Dru Smith,455,50.923,1.872,49.05
+Davion Mitchell,Vladislav Goldin,455,50.775,1.725,49.05
+Bam Adebayo,Nick Richards,455,50.702,1.652,49.05
+Giannis Antetokounmpo,Andrew Wiggins,455,50.547,1.496,49.05
+Giannis Antetokounmpo,Pelle Larsson,455,50.498,1.448,49.05
+Giannis Antetokounmpo,Tim Hardaway Jr.,455,50.404,1.354,49.05
+Dru Smith,Nick Richards,455,50.372,1.322,49.05
+Nick Richards,Keshad Johnson,455,50.315,1.265,49.05
+Pelle Larsson,Simone Fontecchio,455,50.263,1.212,49.05
+Davion Mitchell,Giannis Antetokounmpo,455,50.086,1.036,49.05
+Bam Adebayo,Klay Thompson,455,50.066,1.015,49.05
+Simone Fontecchio,Vladislav Goldin,455,50.004,0.954,49.05
+Nikola Jovic,Keshad Johnson,455,49.93,0.88,49.05
+Klay Thompson,Keshad Johnson,455,49.906,0.856,49.05
+Andrew Wiggins,Myron Gardner,455,49.696,0.646,49.05
+Davion Mitchell,Pelle Larsson,455,49.589,0.538,49.05
+Vladislav Goldin,Tre Donaldson,455,49.471,0.42,49.05
+Nikola Jovic,Dru Smith,455,49.345,0.294,49.05
+Tim Hardaway Jr.,Myron Gardner,455,49.302,0.252,49.05
+Pelle Larsson,Tre Donaldson,455,49.197,0.147,49.05
+Bobby Portis,Myron Gardner,455,49.187,0.137,49.05
+Pelle Larsson,Vladislav Goldin,455,49.178,0.127,49.05
+Klay Thompson,Dru Smith,455,48.982,-0.068,49.05
+Ryan Conwell,Myron Gardner,455,48.649,-0.402,49.05
+Giannis Antetokounmpo,Ryan Conwell,455,48.549,-0.502,49.05
+Davion Mitchell,Andrew Wiggins,455,48.512,-0.539,49.05
+Davion Mitchell,Tim Hardaway Jr.,455,48.484,-0.567,49.05
+Andrew Wiggins,Simone Fontecchio,455,48.26,-0.791,49.05
+Giannis Antetokounmpo,Bobby Portis,455,47.98,-1.071,49.05
+Giannis Antetokounmpo,Nick Richards,455,47.973,-1.077,49.05
+Giannis Antetokounmpo,Nikola Jovic,455,47.901,-1.149,49.05
+Andrew Wiggins,Tre Donaldson,455,47.815,-1.236,49.05
+Klay Thompson,Myron Gardner,455,47.808,-1.243,49.05
+Davion Mitchell,Bobby Portis,455,47.586,-1.464,49.05
+Davion Mitchell,Ryan Conwell,455,47.532,-1.518,49.05
+Tim Hardaway Jr.,Simone Fontecchio,455,47.443,-1.608,49.05
+Bobby Portis,Simone Fontecchio,455,47.405,-1.646,49.05
+Nick Richards,Myron Gardner,455,47.365,-1.686,49.05
+Tim Hardaway Jr.,Tre Donaldson,455,47.287,-1.764,49.05
+Andrew Wiggins,Vladislav Goldin,455,47.205,-1.846,49.05
+Giannis Antetokounmpo,Klay Thompson,455,47.088,-1.963,49.05
+Davion Mitchell,Nick Richards,455,47.07,-1.981,49.05
+Ryan Conwell,Tre Donaldson,455,47.034,-2.016,49.05
+Ryan Conwell,Simone Fontecchio,455,47.022,-2.028,49.05
+Nikola Jovic,Myron Gardner,455,46.908,-2.143,49.05
+Bobby Portis,Vladislav Goldin,455,46.788,-2.263,49.05
+Bobby Portis,Tre Donaldson,455,46.622,-2.429,49.05
+Pelle Larsson,Andrew Wiggins,455,46.578,-2.473,49.05
+Tim Hardaway Jr.,Vladislav Goldin,455,46.393,-2.658,49.05
+Pelle Larsson,Bobby Portis,455,46.337,-2.713,49.05
+Davion Mitchell,Klay Thompson,455,46.287,-2.764,49.05
+Pelle Larsson,Tim Hardaway Jr.,455,46.237,-2.814,49.05
+Klay Thompson,Simone Fontecchio,455,45.952,-3.098,49.05
+Davion Mitchell,Nikola Jovic,455,45.846,-3.205,49.05
+Nick Richards,Vladislav Goldin,455,45.749,-3.301,49.05
+Simone Fontecchio,Nick Richards,455,45.643,-3.407,49.05
+Pelle Larsson,Ryan Conwell,455,45.6,-3.451,49.05
+Ryan Conwell,Vladislav Goldin,455,45.406,-3.645,49.05
+Nick Richards,Tre Donaldson,455,45.395,-3.655,49.05
+Nikola Jovic,Simone Fontecchio,455,45.393,-3.658,49.05
+Klay Thompson,Tre Donaldson,455,45.037,-4.014,49.05
+Nikola Jovic,Tre Donaldson,455,44.81,-4.24,49.05
+Klay Thompson,Vladislav Goldin,455,44.714,-4.337,49.05
+Pelle Larsson,Nick Richards,455,44.674,-4.377,49.05
+Pelle Larsson,Klay Thompson,455,44.417,-4.634,49.05
+Pelle Larsson,Nikola Jovic,455,44.312,-4.738,49.05
+Nikola Jovic,Vladislav Goldin,455,44.293,-4.758,49.05
+Andrew Wiggins,Bobby Portis,455,44.153,-4.898,49.05
+Andrew Wiggins,Tim Hardaway Jr.,455,44.012,-5.039,49.05
+Andrew Wiggins,Ryan Conwell,455,43.52,-5.53,49.05
+Bobby Portis,Tim Hardaway Jr.,455,43.492,-5.558,49.05
+Tim Hardaway Jr.,Ryan Conwell,455,42.98,-6.07,49.05
+Bobby Portis,Ryan Conwell,455,42.737,-6.313,49.05
+Andrew Wiggins,Klay Thompson,455,42.605,-6.446,49.05
+Andrew Wiggins,Nick Richards,455,42.392,-6.659,49.05
+Andrew Wiggins,Nikola Jovic,455,41.802,-7.249,49.05
+Klay Thompson,Tim Hardaway Jr.,455,41.719,-7.332,49.05
+Klay Thompson,Ryan Conwell,455,41.565,-7.485,49.05
+Tim Hardaway Jr.,Nick Richards,455,41.43,-7.62,49.05
+Tim Hardaway Jr.,Nikola Jovic,455,41.375,-7.676,49.05
+Bobby Portis,Nick Richards,455,41.276,-7.775,49.05
+Klay Thompson,Bobby Portis,455,41.219,-7.831,49.05
+Ryan Conwell,Nick Richards,455,41.129,-7.921,49.05
+Bobby Portis,Nikola Jovic,455,40.982,-8.069,49.05
+Ryan Conwell,Nikola Jovic,455,40.844,-8.207,49.05
+Klay Thompson,Nick Richards,455,40.307,-8.744,49.05
+Nikola Jovic,Nick Richards,455,40.066,-8.984,49.05
+Klay Thompson,Nikola Jovic,455,39.585,-9.466,49.05
