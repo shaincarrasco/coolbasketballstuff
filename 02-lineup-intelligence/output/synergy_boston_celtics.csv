@@ -1,121 +1,137 @@
 player_a,player_b,n_lineups,mean_fit,synergy,team_mean_fit
-Derrick White,Neemias Queta,364,63.005,7.141,55.86
-Derrick White,Mitchell Robinson,364,62.871,7.007,55.86
-Payton Pritchard,Neemias Queta,364,62.506,6.642,55.86
-Payton Pritchard,Mitchell Robinson,364,62.27,6.406,55.86
-Neemias Queta,Mitchell Robinson,364,61.04,5.176,55.86
-Neemias Queta,Sam Hauser,364,60.938,5.075,55.86
-Payton Pritchard,Sam Hauser,364,60.854,4.991,55.86
-Payton Pritchard,Baylor Scheierman,364,60.828,4.964,55.86
-Neemias Queta,Baylor Scheierman,364,60.628,4.764,55.86
-Derrick White,Sam Hauser,364,60.605,4.741,55.86
-Derrick White,Baylor Scheierman,364,60.459,4.595,55.86
-Derrick White,Payton Pritchard,364,60.368,4.504,55.86
-Paul George,Neemias Queta,364,60.337,4.473,55.86
-Jayson Tatum,Payton Pritchard,364,60.321,4.457,55.86
-Jayson Tatum,Mitchell Robinson,364,60.266,4.403,55.86
-Sam Hauser,Mitchell Robinson,364,60.195,4.331,55.86
-Jayson Tatum,Neemias Queta,364,60.154,4.29,55.86
-Neemias Queta,Ron Harper Jr.,364,60.136,4.272,55.86
-Neemias Queta,Mike Conley,364,60.113,4.249,55.86
-Baylor Scheierman,Mitchell Robinson,364,59.92,4.056,55.86
-Payton Pritchard,Jordan Walsh,364,59.916,4.052,55.86
-Neemias Queta,Jordan Walsh,364,59.896,4.032,55.86
-Payton Pritchard,Hugo Gonzalez,364,59.848,3.984,55.86
-Mitchell Robinson,Ron Harper Jr.,364,59.727,3.863,55.86
-Neemias Queta,Hugo Gonzalez,364,59.662,3.799,55.86
-Payton Pritchard,Ron Harper Jr.,364,59.593,3.729,55.86
-Jayson Tatum,Sam Hauser,364,59.545,3.681,55.86
-Derrick White,Jordan Walsh,364,59.527,3.663,55.86
-Derrick White,Hugo Gonzalez,364,59.422,3.558,55.86
-Mitchell Robinson,Jordan Walsh,364,59.391,3.527,55.86
-Mitchell Robinson,Mike Conley,364,59.39,3.526,55.86
-Paul George,Mitchell Robinson,364,59.252,3.388,55.86
-Jayson Tatum,Paul George,364,59.208,3.344,55.86
-Jayson Tatum,Baylor Scheierman,364,59.183,3.319,55.86
-Derrick White,Ron Harper Jr.,364,59.131,3.268,55.86
-Mitchell Robinson,Hugo Gonzalez,364,59.085,3.222,55.86
-Derrick White,Luka Garza,364,58.7,2.836,55.86
-Jayson Tatum,Derrick White,364,58.654,2.79,55.86
-Payton Pritchard,Luka Garza,364,58.592,2.729,55.86
-Neemias Queta,Luka Garza,364,58.585,2.722,55.86
-Paul George,Payton Pritchard,364,58.497,2.634,55.86
-Jayson Tatum,Jordan Walsh,364,58.453,2.59,55.86
-Sam Hauser,Baylor Scheierman,364,58.433,2.57,55.86
-Derrick White,Mike Conley,364,58.347,2.483,55.86
-Jayson Tatum,Hugo Gonzalez,364,58.337,2.473,55.86
-Mitchell Robinson,Luka Garza,364,58.301,2.437,55.86
-Derrick White,Paul George,364,58.263,2.4,55.86
-Jayson Tatum,Luka Garza,364,58.174,2.31,55.86
-Jayson Tatum,Ron Harper Jr.,364,58.141,2.278,55.86
-Payton Pritchard,Mike Conley,364,58.05,2.187,55.86
-Jayson Tatum,Mike Conley,364,57.47,1.606,55.86
-Baylor Scheierman,Ron Harper Jr.,364,57.215,1.351,55.86
-Baylor Scheierman,Jordan Walsh,364,57.184,1.32,55.86
-Paul George,Sam Hauser,364,57.157,1.293,55.86
-Sam Hauser,Jordan Walsh,364,57.119,1.255,55.86
-Sam Hauser,Ron Harper Jr.,364,57.109,1.246,55.86
-Paul George,Baylor Scheierman,364,57.032,1.169,55.86
-Baylor Scheierman,Hugo Gonzalez,364,56.983,1.119,55.86
-Mitchell Robinson,Devin Carter,364,56.965,1.102,55.86
-Sam Hauser,Hugo Gonzalez,364,56.894,1.03,55.86
-Baylor Scheierman,Mike Conley,364,56.869,1.005,55.86
-Neemias Queta,Devin Carter,364,56.762,0.898,55.86
-Sam Hauser,Luka Garza,364,56.709,0.845,55.86
-Sam Hauser,Mike Conley,364,56.628,0.764,55.86
-Baylor Scheierman,Luka Garza,364,56.545,0.682,55.86
-Jayson Tatum,Devin Carter,364,56.259,0.396,55.86
-Jordan Walsh,Ron Harper Jr.,364,56.056,0.192,55.86
-Paul George,Jordan Walsh,364,56.028,0.164,55.86
-Paul George,Ron Harper Jr.,364,55.984,0.12,55.86
-Paul George,Hugo Gonzalez,364,55.938,0.074,55.86
-Hugo Gonzalez,Ron Harper Jr.,364,55.828,-0.036,55.86
-Jordan Walsh,Luka Garza,364,55.739,-0.125,55.86
-Luka Garza,Ron Harper Jr.,364,55.694,-0.169,55.86
-Jordan Walsh,Hugo Gonzalez,364,55.686,-0.178,55.86
-Jordan Walsh,Mike Conley,364,55.634,-0.229,55.86
-Hugo Gonzalez,Mike Conley,364,55.622,-0.242,55.86
-Luka Garza,Hugo Gonzalez,364,55.595,-0.268,55.86
-Paul George,Luka Garza,364,55.383,-0.481,55.86
-Payton Pritchard,Devin Carter,364,55.221,-0.643,55.86
-Derrick White,Devin Carter,364,55.161,-0.703,55.86
-Paul George,Mike Conley,364,55.121,-0.742,55.86
-Mike Conley,Ron Harper Jr.,364,55.047,-0.817,55.86
-Neemias Queta,Amari Williams,364,54.925,-0.938,55.86
-Luka Garza,Mike Conley,364,54.732,-1.132,55.86
-Derrick White,Amari Williams,364,54.569,-1.294,55.86
-Mitchell Robinson,Amari Williams,364,54.308,-1.556,55.86
-Sam Hauser,Devin Carter,364,54.156,-1.708,55.86
-Baylor Scheierman,Devin Carter,364,54.055,-1.808,55.86
-Jayson Tatum,Amari Williams,364,53.91,-1.954,55.86
-Payton Pritchard,Amari Williams,364,53.83,-2.034,55.86
-Hugo Gonzalez,Devin Carter,364,53.141,-2.722,55.86
-Ron Harper Jr.,Devin Carter,364,52.951,-2.913,55.86
-Jordan Walsh,Devin Carter,364,52.905,-2.958,55.86
-Mike Conley,Devin Carter,364,52.137,-3.726,55.86
-Luka Garza,Devin Carter,364,52.133,-3.73,55.86
-Baylor Scheierman,Amari Williams,364,52.074,-3.789,55.86
-Paul George,Devin Carter,364,51.924,-3.939,55.86
-Sam Hauser,Amari Williams,364,51.889,-3.974,55.86
-Neemias Queta,Dillon Mitchell,364,51.522,-4.342,55.86
-Paul George,Amari Williams,364,51.512,-4.352,55.86
-Mike Conley,Amari Williams,364,51.094,-4.77,55.86
-Mitchell Robinson,Dillon Mitchell,364,51.08,-4.783,55.86
-Jordan Walsh,Amari Williams,364,50.902,-4.962,55.86
-Hugo Gonzalez,Amari Williams,364,50.633,-5.231,55.86
-Ron Harper Jr.,Amari Williams,364,50.534,-5.329,55.86
-Jayson Tatum,Dillon Mitchell,364,50.137,-5.727,55.86
-Payton Pritchard,Dillon Mitchell,364,49.742,-6.122,55.86
-Luka Garza,Amari Williams,364,49.662,-6.202,55.86
-Derrick White,Dillon Mitchell,364,49.415,-6.449,55.86
-Sam Hauser,Dillon Mitchell,364,47.843,-8.02,55.86
-Devin Carter,Amari Williams,364,47.768,-8.096,55.86
-Baylor Scheierman,Dillon Mitchell,364,47.767,-8.097,55.86
-Jordan Walsh,Dillon Mitchell,364,46.425,-9.439,55.86
-Hugo Gonzalez,Dillon Mitchell,364,46.319,-9.544,55.86
-Mike Conley,Dillon Mitchell,364,46.09,-9.774,55.86
-Ron Harper Jr.,Dillon Mitchell,364,46.06,-9.804,55.86
-Paul George,Dillon Mitchell,364,45.854,-10.01,55.86
-Luka Garza,Dillon Mitchell,364,45.565,-10.299,55.86
-Dillon Mitchell,Devin Carter,364,44.668,-11.195,55.86
-Dillon Mitchell,Amari Williams,364,41.654,-14.209,55.86
+Derrick White,Neemias Queta,455,64.07,6.44,57.63
+Derrick White,Mitchell Robinson,455,63.958,6.328,57.63
+Payton Pritchard,Neemias Queta,455,63.573,5.943,57.63
+Payton Pritchard,Mitchell Robinson,455,63.377,5.747,57.63
+Neemias Queta,Sam Hauser,455,62.768,5.138,57.63
+Neemias Queta,Mitchell Robinson,455,62.285,4.655,57.63
+Payton Pritchard,Sam Hauser,455,62.246,4.615,57.63
+Neemias Queta,Chris Cenac Jr.,455,62.2,4.569,57.63
+Neemias Queta,Baylor Scheierman,455,62.185,4.555,57.63
+Mitchell Robinson,Chris Cenac Jr.,455,62.133,4.503,57.63
+Derrick White,Sam Hauser,455,62.079,4.449,57.63
+Neemias Queta,Mike Conley,455,61.943,4.313,57.63
+Payton Pritchard,Baylor Scheierman,455,61.938,4.308,57.63
+Sam Hauser,Mitchell Robinson,455,61.932,4.302,57.63
+Derrick White,Baylor Scheierman,455,61.857,4.227,57.63
+Neemias Queta,Jordan Walsh,455,61.663,4.033,57.63
+Payton Pritchard,Hugo Gonzalez,455,61.625,3.995,57.63
+Neemias Queta,Hugo Gonzalez,455,61.554,3.924,57.63
+Baylor Scheierman,Mitchell Robinson,455,61.54,3.909,57.63
+Derrick White,Payton Pritchard,455,61.458,3.828,57.63
+Payton Pritchard,Jordan Walsh,455,61.422,3.792,57.63
+Jayson Tatum,Payton Pritchard,455,61.319,3.688,57.63
+Neemias Queta,Ron Harper Jr.,455,61.302,3.672,57.63
+Mitchell Robinson,Jordan Walsh,455,61.275,3.645,57.63
+Payton Pritchard,Chris Cenac Jr.,455,61.271,3.641,57.63
+Mitchell Robinson,Mike Conley,455,61.217,3.587,57.63
+Derrick White,Hugo Gonzalez,455,61.197,3.567,57.63
+Paul George,Neemias Queta,455,61.148,3.518,57.63
+Mitchell Robinson,Hugo Gonzalez,455,61.109,3.479,57.63
+Derrick White,Jordan Walsh,455,61.027,3.397,57.63
+Jayson Tatum,Mitchell Robinson,455,60.98,3.349,57.63
+Mitchell Robinson,Ron Harper Jr.,455,60.923,3.293,57.63
+Derrick White,Chris Cenac Jr.,455,60.819,3.189,57.63
+Jayson Tatum,Neemias Queta,455,60.648,3.017,57.63
+Neemias Queta,Luka Garza,455,60.6,2.97,57.63
+Jayson Tatum,Sam Hauser,455,60.529,2.898,57.63
+Sam Hauser,Chris Cenac Jr.,455,60.478,2.848,57.63
+Payton Pritchard,Ron Harper Jr.,455,60.466,2.835,57.63
+Paul George,Mitchell Robinson,455,60.262,2.631,57.63
+Mitchell Robinson,Luka Garza,455,60.24,2.609,57.63
+Baylor Scheierman,Chris Cenac Jr.,455,60.105,2.475,57.63
+Sam Hauser,Baylor Scheierman,455,60.038,2.408,57.63
+Derrick White,Luka Garza,455,59.979,2.349,57.63
+Derrick White,Ron Harper Jr.,455,59.96,2.33,57.63
+Jayson Tatum,Paul George,455,59.955,2.324,57.63
+Jayson Tatum,Baylor Scheierman,455,59.888,2.258,57.63
+Paul George,Payton Pritchard,455,59.805,2.174,57.63
+Hugo Gonzalez,Chris Cenac Jr.,455,59.647,2.016,57.63
+Jordan Walsh,Chris Cenac Jr.,455,59.577,1.947,57.63
+Payton Pritchard,Luka Garza,455,59.558,1.928,57.63
+Jayson Tatum,Chris Cenac Jr.,455,59.498,1.867,57.63
+Jayson Tatum,Derrick White,455,59.495,1.865,57.63
+Derrick White,Mike Conley,455,59.457,1.827,57.63
+Jayson Tatum,Hugo Gonzalez,455,59.392,1.761,57.63
+Jayson Tatum,Jordan Walsh,455,59.357,1.727,57.63
+Baylor Scheierman,Hugo Gonzalez,455,59.252,1.622,57.63
+Payton Pritchard,Mike Conley,455,59.205,1.575,57.63
+Sam Hauser,Hugo Gonzalez,455,59.198,1.567,57.63
+Baylor Scheierman,Jordan Walsh,455,59.179,1.549,57.63
+Mike Conley,Chris Cenac Jr.,455,59.14,1.51,57.63
+Derrick White,Paul George,455,59.107,1.477,57.63
+Sam Hauser,Jordan Walsh,455,59.064,1.433,57.63
+Jayson Tatum,Luka Garza,455,58.973,1.343,57.63
+Baylor Scheierman,Mike Conley,455,58.787,1.157,57.63
+Jayson Tatum,Ron Harper Jr.,455,58.727,1.097,57.63
+Baylor Scheierman,Ron Harper Jr.,455,58.69,1.059,57.63
+Sam Hauser,Ron Harper Jr.,455,58.667,1.037,57.63
+Ron Harper Jr.,Chris Cenac Jr.,455,58.645,1.015,57.63
+Mitchell Robinson,Devin Carter,455,58.632,1.002,57.63
+Sam Hauser,Mike Conley,455,58.607,0.976,57.63
+Neemias Queta,Devin Carter,455,58.562,0.932,57.63
+Paul George,Sam Hauser,455,58.471,0.84,57.63
+Sam Hauser,Luka Garza,455,58.428,0.798,57.63
+Paul George,Chris Cenac Jr.,455,58.425,0.795,57.63
+Luka Garza,Chris Cenac Jr.,455,58.347,0.716,57.63
+Paul George,Baylor Scheierman,455,58.287,0.657,57.63
+Jordan Walsh,Hugo Gonzalez,455,58.256,0.626,57.63
+Hugo Gonzalez,Mike Conley,455,58.235,0.604,57.63
+Baylor Scheierman,Luka Garza,455,58.217,0.587,57.63
+Jayson Tatum,Mike Conley,455,58.119,0.489,57.63
+Hugo Gonzalez,Ron Harper Jr.,455,57.869,0.238,57.63
+Chris Cenac Jr.,Devin Carter,455,57.865,0.234,57.63
+Hugo Gonzalez,Luka Garza,455,57.826,0.196,57.63
+Jordan Walsh,Mike Conley,455,57.817,0.187,57.63
+Jordan Walsh,Luka Garza,455,57.706,0.076,57.63
+Jordan Walsh,Ron Harper Jr.,455,57.675,0.045,57.63
+Paul George,Hugo Gonzalez,455,57.649,0.019,57.63
+Jayson Tatum,Devin Carter,455,57.504,-0.127,57.63
+Paul George,Jordan Walsh,455,57.452,-0.178,57.63
+Payton Pritchard,Devin Carter,455,57.116,-0.514,57.63
+Paul George,Ron Harper Jr.,455,57.105,-0.525,57.63
+Neemias Queta,Amari Williams,455,56.969,-0.661,57.63
+Luka Garza,Ron Harper Jr.,455,56.954,-0.676,57.63
+Paul George,Luka Garza,455,56.935,-0.695,57.63
+Ron Harper Jr.,Mike Conley,455,56.692,-0.938,57.63
+Luka Garza,Mike Conley,455,56.475,-1.155,57.63
+Derrick White,Devin Carter,455,56.466,-1.165,57.63
+Sam Hauser,Devin Carter,455,56.449,-1.182,57.63
+Mitchell Robinson,Amari Williams,455,56.326,-1.305,57.63
+Baylor Scheierman,Devin Carter,455,56.221,-1.409,57.63
+Derrick White,Amari Williams,455,56.103,-1.528,57.63
+Paul George,Mike Conley,455,56.092,-1.538,57.63
+Hugo Gonzalez,Devin Carter,455,55.766,-1.864,57.63
+Payton Pritchard,Amari Williams,455,55.329,-2.301,57.63
+Chris Cenac Jr.,Amari Williams,455,55.168,-2.463,57.63
+Jordan Walsh,Devin Carter,455,54.998,-2.632,57.63
+Ron Harper Jr.,Devin Carter,455,54.766,-2.864,57.63
+Jayson Tatum,Amari Williams,455,54.664,-2.967,57.63
+Sam Hauser,Amari Williams,455,54.644,-2.986,57.63
+Mike Conley,Devin Carter,455,54.302,-3.328,57.63
+Paul George,Devin Carter,455,54.299,-3.331,57.63
+Baylor Scheierman,Amari Williams,455,54.177,-3.453,57.63
+Luka Garza,Devin Carter,455,54.164,-3.466,57.63
+Mike Conley,Amari Williams,455,53.542,-4.088,57.63
+Neemias Queta,Dillon Mitchell,455,53.473,-4.157,57.63
+Hugo Gonzalez,Amari Williams,455,53.365,-4.266,57.63
+Jordan Walsh,Amari Williams,455,53.337,-4.293,57.63
+Paul George,Amari Williams,455,53.088,-4.542,57.63
+Mitchell Robinson,Dillon Mitchell,455,52.881,-4.75,57.63
+Ron Harper Jr.,Amari Williams,455,52.359,-5.271,57.63
+Luka Garza,Amari Williams,455,52.233,-5.397,57.63
+Chris Cenac Jr.,Dillon Mitchell,455,51.54,-6.09,57.63
+Jayson Tatum,Dillon Mitchell,455,51.23,-6.4,57.63
+Payton Pritchard,Dillon Mitchell,455,50.67,-6.96,57.63
+Derrick White,Dillon Mitchell,455,50.629,-7.002,57.63
+Devin Carter,Amari Williams,455,49.888,-7.743,57.63
+Sam Hauser,Dillon Mitchell,455,49.678,-7.952,57.63
+Baylor Scheierman,Dillon Mitchell,455,49.588,-8.043,57.63
+Hugo Gonzalez,Dillon Mitchell,455,48.663,-8.967,57.63
+Jordan Walsh,Dillon Mitchell,455,48.267,-9.363,57.63
+Mike Conley,Dillon Mitchell,455,47.628,-10.003,57.63
+Paul George,Dillon Mitchell,455,47.351,-10.279,57.63
+Luka Garza,Dillon Mitchell,455,47.25,-10.381,57.63
+Ron Harper Jr.,Dillon Mitchell,455,47.136,-10.495,57.63
+Dillon Mitchell,Devin Carter,455,45.433,-12.198,57.63
+Dillon Mitchell,Amari Williams,455,43.404,-14.226,57.63

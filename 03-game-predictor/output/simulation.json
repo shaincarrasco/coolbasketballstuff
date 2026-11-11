@@ -1,13 +1,13 @@
 {
   "season": "2026-27",
-  "date": "2026-11-10",
+  "date": "2026-11-11",
   "n_sims": 2000,
   "seed": 42,
   "sample_data": false,
   "live": true,
-  "schedule_note": "Published schedule as of 2026-11-10: 1046 unplayed games. 30 games are not on the schedule yet (NBA Cup knockout rounds and the extra regular-season games for non-finalists are fixed in December); expected wins are pro-rated to 82 games below.",
-  "games_played": 154,
-  "games_remaining": 1046,
+  "schedule_note": "Published schedule as of 2026-11-11: 1040 unplayed games. 30 games are not on the schedule yet (NBA Cup knockout rounds and the extra regular-season games for non-finalists are fixed in December); expected wins are pro-rated to 82 games below.",
+  "games_played": 160,
+  "games_remaining": 1040,
   "playoff_spots": 6,
   "method": "Elo win probabilities with in-path Elo updates (K=20, +80 home), random tiebreaks",
   "season_complete": false,
@@ -20,11 +20,11 @@
     },
     {
       "wins": 29,
-      "n": 1
+      "n": 0
     },
     {
       "wins": 30,
-      "n": 2
+      "n": 4
     },
     {
       "wins": 31,
@@ -32,123 +32,123 @@
     },
     {
       "wins": 32,
-      "n": 5
+      "n": 4
     },
     {
       "wins": 33,
-      "n": 9
+      "n": 6
     },
     {
       "wins": 34,
-      "n": 11
+      "n": 4
     },
     {
       "wins": 35,
-      "n": 3
+      "n": 10
     },
     {
       "wins": 36,
-      "n": 16
+      "n": 27
     },
     {
       "wins": 37,
-      "n": 16
-    },
-    {
-      "wins": 38,
       "n": 20
     },
     {
-      "wins": 39,
-      "n": 33
-    },
-    {
-      "wins": 40,
+      "wins": 38,
       "n": 26
     },
     {
+      "wins": 39,
+      "n": 36
+    },
+    {
+      "wins": 40,
+      "n": 35
+    },
+    {
       "wins": 41,
-      "n": 37
-    },
-    {
-      "wins": 42,
-      "n": 46
-    },
-    {
-      "wins": 43,
-      "n": 65
-    },
-    {
-      "wins": 44,
-      "n": 67
-    },
-    {
-      "wins": 45,
-      "n": 85
-    },
-    {
-      "wins": 46,
-      "n": 88
-    },
-    {
-      "wins": 47,
-      "n": 105
-    },
-    {
-      "wins": 48,
-      "n": 125
-    },
-    {
-      "wins": 49,
-      "n": 102
-    },
-    {
-      "wins": 50,
-      "n": 120
-    },
-    {
-      "wins": 51,
-      "n": 126
-    },
-    {
-      "wins": 52,
-      "n": 124
-    },
-    {
-      "wins": 53,
-      "n": 105
-    },
-    {
-      "wins": 54,
-      "n": 125
-    },
-    {
-      "wins": 55,
-      "n": 87
-    },
-    {
-      "wins": 56,
-      "n": 87
-    },
-    {
-      "wins": 57,
-      "n": 92
-    },
-    {
-      "wins": 58,
-      "n": 57
-    },
-    {
-      "wins": 59,
       "n": 47
     },
     {
+      "wins": 42,
+      "n": 55
+    },
+    {
+      "wins": 43,
+      "n": 59
+    },
+    {
+      "wins": 44,
+      "n": 72
+    },
+    {
+      "wins": 45,
+      "n": 77
+    },
+    {
+      "wins": 46,
+      "n": 104
+    },
+    {
+      "wins": 47,
+      "n": 101
+    },
+    {
+      "wins": 48,
+      "n": 107
+    },
+    {
+      "wins": 49,
+      "n": 128
+    },
+    {
+      "wins": 50,
+      "n": 121
+    },
+    {
+      "wins": 51,
+      "n": 115
+    },
+    {
+      "wins": 52,
+      "n": 109
+    },
+    {
+      "wins": 53,
+      "n": 108
+    },
+    {
+      "wins": 54,
+      "n": 114
+    },
+    {
+      "wins": 55,
+      "n": 98
+    },
+    {
+      "wins": 56,
+      "n": 67
+    },
+    {
+      "wins": 57,
+      "n": 78
+    },
+    {
+      "wins": 58,
+      "n": 69
+    },
+    {
+      "wins": 59,
+      "n": 51
+    },
+    {
       "wins": 60,
-      "n": 39
+      "n": 45
     },
     {
       "wins": 61,
-      "n": 49
+      "n": 33
     },
     {
       "wins": 62,
@@ -156,27 +156,27 @@
     },
     {
       "wins": 63,
-      "n": 18
+      "n": 27
     },
     {
       "wins": 64,
-      "n": 20
-    },
-    {
-      "wins": 65,
       "n": 14
     },
     {
-      "wins": 66,
+      "wins": 65,
       "n": 10
     },
     {
-      "wins": 67,
+      "wins": 66,
       "n": 6
     },
     {
+      "wins": 67,
+      "n": 4
+    },
+    {
       "wins": 68,
-      "n": 5
+      "n": 2
     },
     {
       "wins": 69,
@@ -188,18 +188,18 @@
       "team": "BOS",
       "name": "Boston Celtics",
       "conf": "East",
-      "elo": 1708.4,
-      "w": 8,
+      "elo": 1739.1,
+      "w": 9,
       "l": 2,
-      "gp": 10,
+      "gp": 11,
       "sched_g": 80,
-      "exp_w": 61.3,
-      "sd_w": 5.9,
-      "w_lo": 51,
-      "w_hi": 70,
-      "playoff": 0.9935,
-      "top_seed": 0.477,
-      "seed_mean": 1.96,
+      "exp_w": 63.8,
+      "sd_w": 5.6,
+      "w_lo": 54,
+      "w_hi": 71,
+      "playoff": 0.999,
+      "top_seed": 0.6355,
+      "seed_mean": 1.57,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -213,33 +213,13 @@
       "l": 3,
       "gp": 10,
       "sched_g": 80,
-      "exp_w": 58.9,
-      "sd_w": 6.0,
-      "w_lo": 49,
-      "w_hi": 67,
-      "playoff": 0.9845,
-      "top_seed": 0.2865,
-      "seed_mean": 2.43,
-      "final_w": null,
-      "final_l": null,
-      "made_playoffs": null
-    },
-    {
-      "team": "PHI",
-      "name": "Philadelphia 76ers",
-      "conf": "East",
-      "elo": 1622.5,
-      "w": 9,
-      "l": 2,
-      "gp": 11,
-      "sched_g": 80,
-      "exp_w": 55.6,
-      "sd_w": 6.5,
-      "w_lo": 45,
-      "w_hi": 65,
-      "playoff": 0.9585,
-      "top_seed": 0.15,
-      "seed_mean": 3.23,
+      "exp_w": 59.2,
+      "sd_w": 6.1,
+      "w_lo": 48,
+      "w_hi": 68,
+      "playoff": 0.9895,
+      "top_seed": 0.255,
+      "seed_mean": 2.39,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -248,18 +228,38 @@
       "team": "NY",
       "name": "New York Knicks",
       "conf": "East",
-      "elo": 1619.7,
-      "w": 5,
+      "elo": 1624.1,
+      "w": 6,
       "l": 4,
-      "gp": 9,
+      "gp": 10,
       "sched_g": 80,
-      "exp_w": 52.0,
-      "sd_w": 7.0,
+      "exp_w": 52.2,
+      "sd_w": 6.8,
       "w_lo": 39,
       "w_hi": 62,
-      "playoff": 0.8765,
-      "top_seed": 0.069,
-      "seed_mean": 4.18,
+      "playoff": 0.9,
+      "top_seed": 0.0435,
+      "seed_mean": 4.07,
+      "final_w": null,
+      "final_l": null,
+      "made_playoffs": null
+    },
+    {
+      "team": "PHI",
+      "name": "Philadelphia 76ers",
+      "conf": "East",
+      "elo": 1591.8,
+      "w": 9,
+      "l": 3,
+      "gp": 12,
+      "sched_g": 80,
+      "exp_w": 52.2,
+      "sd_w": 6.7,
+      "w_lo": 41,
+      "w_hi": 62,
+      "playoff": 0.889,
+      "top_seed": 0.051,
+      "seed_mean": 4.07,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -273,13 +273,13 @@
       "l": 5,
       "gp": 12,
       "sched_g": 80,
-      "exp_w": 46.7,
+      "exp_w": 46.8,
       "sd_w": 6.7,
-      "w_lo": 34,
-      "w_hi": 57,
-      "playoff": 0.711,
-      "top_seed": 0.0105,
-      "seed_mean": 5.6,
+      "w_lo": 35,
+      "w_hi": 58,
+      "playoff": 0.6805,
+      "top_seed": 0.008,
+      "seed_mean": 5.58,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -293,13 +293,13 @@
       "l": 6,
       "gp": 11,
       "sched_g": 80,
-      "exp_w": 44.9,
-      "sd_w": 6.7,
-      "w_lo": 33,
+      "exp_w": 44.5,
+      "sd_w": 7.0,
+      "w_lo": 32,
       "w_hi": 55,
-      "playoff": 0.5925,
+      "playoff": 0.563,
       "top_seed": 0.0045,
-      "seed_mean": 6.16,
+      "seed_mean": 6.26,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -308,18 +308,18 @@
       "team": "MIA",
       "name": "Miami Heat",
       "conf": "East",
-      "elo": 1480.3,
-      "w": 4,
+      "elo": 1489.3,
+      "w": 5,
       "l": 6,
-      "gp": 10,
+      "gp": 11,
       "sched_g": 80,
-      "exp_w": 40.0,
-      "sd_w": 7.0,
+      "exp_w": 40.6,
+      "sd_w": 6.9,
       "w_lo": 28,
-      "w_hi": 51,
-      "playoff": 0.297,
-      "top_seed": 0.0015,
-      "seed_mean": 7.6,
+      "w_hi": 52,
+      "playoff": 0.316,
+      "top_seed": 0.001,
+      "seed_mean": 7.44,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -333,13 +333,33 @@
       "l": 5,
       "gp": 10,
       "sched_g": 80,
-      "exp_w": 39.8,
-      "sd_w": 7.2,
+      "exp_w": 40.2,
+      "sd_w": 7.0,
       "w_lo": 28,
-      "w_hi": 51,
-      "playoff": 0.293,
-      "top_seed": 0.001,
-      "seed_mean": 7.6,
+      "w_hi": 52,
+      "playoff": 0.3125,
+      "top_seed": 0.0015,
+      "seed_mean": 7.55,
+      "final_w": null,
+      "final_l": null,
+      "made_playoffs": null
+    },
+    {
+      "team": "ORL",
+      "name": "Orlando Magic",
+      "conf": "East",
+      "elo": 1460.7,
+      "w": 3,
+      "l": 7,
+      "gp": 10,
+      "sched_g": 80,
+      "exp_w": 36.8,
+      "sd_w": 7.2,
+      "w_lo": 25,
+      "w_hi": 49,
+      "playoff": 0.1745,
+      "top_seed": 0.0,
+      "seed_mean": 8.58,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -353,33 +373,13 @@
       "l": 7,
       "gp": 11,
       "sched_g": 80,
-      "exp_w": 36.7,
-      "sd_w": 7.0,
+      "exp_w": 36.6,
+      "sd_w": 7.1,
       "w_lo": 25,
       "w_hi": 48,
-      "playoff": 0.166,
+      "playoff": 0.163,
       "top_seed": 0.0,
-      "seed_mean": 8.51,
-      "final_w": null,
-      "final_l": null,
-      "made_playoffs": null
-    },
-    {
-      "team": "ORL",
-      "name": "Orlando Magic",
-      "conf": "East",
-      "elo": 1444.4,
-      "w": 2,
-      "l": 7,
-      "gp": 9,
-      "sched_g": 80,
-      "exp_w": 35.0,
-      "sd_w": 7.2,
-      "w_lo": 23,
-      "w_hi": 47,
-      "playoff": 0.1145,
-      "top_seed": 0.0,
-      "seed_mean": 9.03,
+      "seed_mean": 8.58,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -393,13 +393,13 @@
       "l": 7,
       "gp": 11,
       "sched_g": 80,
-      "exp_w": 26.1,
-      "sd_w": 6.4,
+      "exp_w": 25.9,
+      "sd_w": 6.5,
       "w_lo": 16,
       "w_hi": 36,
-      "playoff": 0.008,
+      "playoff": 0.0095,
       "top_seed": 0.0,
-      "seed_mean": 11.59,
+      "seed_mean": 11.69,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -413,13 +413,13 @@
       "l": 8,
       "gp": 11,
       "sched_g": 80,
-      "exp_w": 22.4,
-      "sd_w": 5.5,
-      "w_lo": 14,
-      "w_hi": 31,
-      "playoff": 0.0,
+      "exp_w": 22.1,
+      "sd_w": 5.7,
+      "w_lo": 13,
+      "w_hi": 32,
+      "playoff": 0.001,
       "top_seed": 0.0,
-      "seed_mean": 12.62,
+      "seed_mean": 12.7,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -433,13 +433,13 @@
       "l": 8,
       "gp": 9,
       "sched_g": 80,
-      "exp_w": 21.2,
-      "sd_w": 6.3,
+      "exp_w": 21.1,
+      "sd_w": 6.1,
       "w_lo": 11,
-      "w_hi": 32,
-      "playoff": 0.0025,
+      "w_hi": 31,
+      "playoff": 0.0,
       "top_seed": 0.0,
-      "seed_mean": 12.95,
+      "seed_mean": 12.94,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -453,13 +453,13 @@
       "l": 8,
       "gp": 10,
       "sched_g": 80,
-      "exp_w": 20.8,
+      "exp_w": 21.0,
       "sd_w": 6.0,
-      "w_lo": 11,
+      "w_lo": 12,
       "w_hi": 30,
       "playoff": 0.002,
       "top_seed": 0.0,
-      "seed_mean": 13.08,
+      "seed_mean": 12.99,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -468,18 +468,18 @@
       "team": "MIL",
       "name": "Milwaukee Bucks",
       "conf": "East",
-      "elo": 1265.3,
+      "elo": 1260.9,
       "w": 1,
-      "l": 9,
-      "gp": 10,
+      "l": 10,
+      "gp": 11,
       "sched_g": 80,
-      "exp_w": 19.1,
-      "sd_w": 5.7,
+      "exp_w": 18.7,
+      "sd_w": 5.6,
       "w_lo": 10,
       "w_hi": 28,
       "playoff": 0.0005,
       "top_seed": 0.0,
-      "seed_mean": 13.48,
+      "seed_mean": 13.59,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -493,33 +493,13 @@
       "l": 2,
       "gp": 11,
       "sched_g": 80,
-      "exp_w": 63.7,
+      "exp_w": 63.5,
       "sd_w": 5.5,
-      "w_lo": 54,
+      "w_lo": 53,
       "w_hi": 71,
-      "playoff": 0.982,
-      "top_seed": 0.4335,
+      "playoff": 0.9815,
+      "top_seed": 0.47,
       "seed_mean": 2.19,
-      "final_w": null,
-      "final_l": null,
-      "made_playoffs": null
-    },
-    {
-      "team": "OKC",
-      "name": "Oklahoma City Thunder",
-      "conf": "West",
-      "elo": 1701.2,
-      "w": 8,
-      "l": 2,
-      "gp": 10,
-      "sched_g": 80,
-      "exp_w": 60.4,
-      "sd_w": 6.0,
-      "w_lo": 49,
-      "w_hi": 69,
-      "playoff": 0.9455,
-      "top_seed": 0.2145,
-      "seed_mean": 3.1,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -533,13 +513,33 @@
       "l": 2,
       "gp": 12,
       "sched_g": 80,
-      "exp_w": 59.3,
-      "sd_w": 6.0,
-      "w_lo": 49,
+      "exp_w": 59.4,
+      "sd_w": 6.2,
+      "w_lo": 48,
       "w_hi": 68,
-      "playoff": 0.9285,
-      "top_seed": 0.1675,
-      "seed_mean": 3.41,
+      "playoff": 0.9135,
+      "top_seed": 0.1965,
+      "seed_mean": 3.36,
+      "final_w": null,
+      "final_l": null,
+      "made_playoffs": null
+    },
+    {
+      "team": "OKC",
+      "name": "Oklahoma City Thunder",
+      "conf": "West",
+      "elo": 1666.2,
+      "w": 8,
+      "l": 3,
+      "gp": 11,
+      "sched_g": 80,
+      "exp_w": 57.6,
+      "sd_w": 6.2,
+      "w_lo": 47,
+      "w_hi": 67,
+      "playoff": 0.88,
+      "top_seed": 0.116,
+      "seed_mean": 3.9,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -553,13 +553,13 @@
       "l": 3,
       "gp": 11,
       "sched_g": 80,
-      "exp_w": 56.8,
+      "exp_w": 56.6,
       "sd_w": 6.4,
       "w_lo": 46,
       "w_hi": 66,
-      "playoff": 0.8575,
-      "top_seed": 0.0885,
-      "seed_mean": 4.19,
+      "playoff": 0.837,
+      "top_seed": 0.0905,
+      "seed_mean": 4.26,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -574,12 +574,32 @@
       "gp": 11,
       "sched_g": 80,
       "exp_w": 54.5,
-      "sd_w": 6.6,
+      "sd_w": 6.8,
       "w_lo": 43,
-      "w_hi": 64,
-      "playoff": 0.7725,
-      "top_seed": 0.063,
-      "seed_mean": 4.89,
+      "w_hi": 65,
+      "playoff": 0.7355,
+      "top_seed": 0.0685,
+      "seed_mean": 4.93,
+      "final_w": null,
+      "final_l": null,
+      "made_playoffs": null
+    },
+    {
+      "team": "POR",
+      "name": "Portland Trail Blazers",
+      "conf": "West",
+      "elo": 1612.1,
+      "w": 7,
+      "l": 3,
+      "gp": 10,
+      "sched_g": 80,
+      "exp_w": 51.7,
+      "sd_w": 7.0,
+      "w_lo": 39,
+      "w_hi": 62,
+      "playoff": 0.59,
+      "top_seed": 0.0335,
+      "seed_mean": 5.86,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -593,13 +613,13 @@
       "l": 4,
       "gp": 9,
       "sched_g": 80,
-      "exp_w": 50.6,
+      "exp_w": 50.2,
       "sd_w": 6.8,
-      "w_lo": 38,
-      "w_hi": 61,
-      "playoff": 0.552,
-      "top_seed": 0.018,
-      "seed_mean": 6.15,
+      "w_lo": 37,
+      "w_hi": 60,
+      "playoff": 0.5005,
+      "top_seed": 0.0125,
+      "seed_mean": 6.37,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -613,33 +633,13 @@
       "l": 3,
       "gp": 11,
       "sched_g": 80,
-      "exp_w": 48.1,
+      "exp_w": 48.5,
       "sd_w": 7.0,
-      "w_lo": 35,
+      "w_lo": 36,
       "w_hi": 59,
-      "playoff": 0.3935,
-      "top_seed": 0.008,
-      "seed_mean": 6.96,
-      "final_w": null,
-      "final_l": null,
-      "made_playoffs": null
-    },
-    {
-      "team": "POR",
-      "name": "Portland Trail Blazers",
-      "conf": "West",
-      "elo": 1577.2,
-      "w": 6,
-      "l": 3,
-      "gp": 9,
-      "sched_g": 80,
-      "exp_w": 48.0,
-      "sd_w": 7.2,
-      "w_lo": 35,
-      "w_hi": 59,
-      "playoff": 0.406,
-      "top_seed": 0.006,
-      "seed_mean": 6.99,
+      "playoff": 0.3965,
+      "top_seed": 0.0115,
+      "seed_mean": 6.9,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -648,18 +648,18 @@
       "team": "PHX",
       "name": "Phoenix Suns",
       "conf": "West",
-      "elo": 1484.4,
-      "w": 3,
+      "elo": 1504.8,
+      "w": 4,
       "l": 6,
-      "gp": 9,
+      "gp": 10,
       "sched_g": 80,
-      "exp_w": 38.5,
+      "exp_w": 40.3,
       "sd_w": 7.3,
-      "w_lo": 26,
-      "w_hi": 50,
-      "playoff": 0.059,
-      "top_seed": 0.0005,
-      "seed_mean": 9.77,
+      "w_lo": 28,
+      "w_hi": 52,
+      "playoff": 0.085,
+      "top_seed": 0.001,
+      "seed_mean": 9.33,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -673,13 +673,13 @@
       "l": 4,
       "gp": 11,
       "sched_g": 80,
-      "exp_w": 37.9,
-      "sd_w": 7.2,
-      "w_lo": 25,
+      "exp_w": 38.1,
+      "sd_w": 6.9,
+      "w_lo": 26,
       "w_hi": 50,
-      "playoff": 0.051,
+      "playoff": 0.048,
       "top_seed": 0.0,
-      "seed_mean": 9.93,
+      "seed_mean": 9.89,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -693,13 +693,13 @@
       "l": 3,
       "gp": 10,
       "sched_g": 80,
-      "exp_w": 35.0,
-      "sd_w": 7.2,
+      "exp_w": 35.2,
+      "sd_w": 7.0,
       "w_lo": 23,
       "w_hi": 47,
-      "playoff": 0.031,
-      "top_seed": 0.0005,
-      "seed_mean": 10.65,
+      "playoff": 0.023,
+      "top_seed": 0.0,
+      "seed_mean": 10.63,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -708,18 +708,18 @@
       "team": "LAC",
       "name": "LA Clippers",
       "conf": "West",
-      "elo": 1447.7,
+      "elo": 1427.2,
       "w": 2,
-      "l": 7,
-      "gp": 9,
+      "l": 8,
+      "gp": 10,
       "sched_g": 80,
-      "exp_w": 33.4,
-      "sd_w": 7.3,
-      "w_lo": 21,
-      "w_hi": 46,
-      "playoff": 0.018,
+      "exp_w": 31.5,
+      "sd_w": 7.0,
+      "w_lo": 20,
+      "w_hi": 43,
+      "playoff": 0.0085,
       "top_seed": 0.0,
-      "seed_mean": 11.06,
+      "seed_mean": 11.55,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -733,13 +733,13 @@
       "l": 7,
       "gp": 11,
       "sched_g": 80,
-      "exp_w": 29.0,
-      "sd_w": 6.7,
+      "exp_w": 28.7,
+      "sd_w": 6.4,
       "w_lo": 18,
-      "w_hi": 41,
-      "playoff": 0.0035,
+      "w_hi": 39,
+      "playoff": 0.001,
       "top_seed": 0.0,
-      "seed_mean": 12.15,
+      "seed_mean": 12.17,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -748,18 +748,18 @@
       "team": "SAC",
       "name": "Sacramento Kings",
       "conf": "West",
-      "elo": 1296.5,
+      "elo": 1280.3,
       "w": 1,
-      "l": 9,
-      "gp": 10,
+      "l": 10,
+      "gp": 11,
       "sched_g": 80,
-      "exp_w": 19.8,
-      "sd_w": 5.9,
-      "w_lo": 11,
-      "w_hi": 30,
+      "exp_w": 18.4,
+      "sd_w": 5.5,
+      "w_lo": 10,
+      "w_hi": 27,
       "playoff": 0.0,
       "top_seed": 0.0,
-      "seed_mean": 13.88,
+      "seed_mean": 13.99,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -768,18 +768,18 @@
       "team": "UTAH",
       "name": "Utah Jazz",
       "conf": "West",
-      "elo": 1211.0,
+      "elo": 1202.0,
       "w": 1,
-      "l": 9,
-      "gp": 10,
+      "l": 10,
+      "gp": 11,
       "sched_g": 80,
-      "exp_w": 14.4,
-      "sd_w": 4.9,
+      "exp_w": 14.0,
+      "sd_w": 4.6,
       "w_lo": 7,
       "w_hi": 22,
       "playoff": 0.0,
       "top_seed": 0.0,
-      "seed_mean": 14.69,
+      "seed_mean": 14.68,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
