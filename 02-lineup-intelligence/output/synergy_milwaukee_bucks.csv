@@ -1,137 +1,137 @@
 player_a,player_b,n_lineups,mean_fit,synergy,team_mean_fit
-Kasparas Jakucionis,Jericho Sims,455,39.745,7.167,32.58
-Jericho Sims,Caris LeVert,455,38.556,5.978,32.58
-Jaime Jaquez Jr.,Jericho Sims,455,38.269,5.691,32.58
-Jericho Sims,Kam Jones,455,37.653,5.075,32.58
-Kel'el Ware,Jericho Sims,455,36.729,4.151,32.58
-Tyler Herro,Jaime Jaquez Jr.,455,36.684,4.106,32.58
-Jaime Jaquez Jr.,Kasparas Jakucionis,455,36.607,4.028,32.58
-Myles Turner,Jericho Sims,455,36.589,4.01,32.58
-Ryan Rollins,Jericho Sims,455,36.585,4.007,32.58
-Kyle Kuzma,Jericho Sims,455,36.473,3.894,32.58
-Tyler Herro,Jericho Sims,455,36.456,3.878,32.58
-Brayden Burries,Jericho Sims,455,36.446,3.868,32.58
-Jericho Sims,Bogoljub Markovic,455,36.276,3.698,32.58
-Jaime Jaquez Jr.,Kel'el Ware,455,36.257,3.678,32.58
-Kasparas Jakucionis,Kel'el Ware,455,36.239,3.661,32.58
-Kasparas Jakucionis,Caris LeVert,455,36.148,3.57,32.58
-Kel'el Ware,Caris LeVert,455,36.045,3.466,32.58
-Jericho Sims,Pete Nance,455,36.027,3.448,32.58
-Jaime Jaquez Jr.,Caris LeVert,455,35.997,3.419,32.58
-Jaime Jaquez Jr.,Ryan Rollins,455,35.944,3.366,32.58
-Tyler Herro,Kel'el Ware,455,35.64,3.062,32.58
-Jaime Jaquez Jr.,Brayden Burries,455,35.205,2.627,32.58
-Brayden Burries,Kasparas Jakucionis,455,35.16,2.582,32.58
-Tyler Herro,Caris LeVert,455,34.945,2.366,32.58
-Ousmane Dieng,Jericho Sims,455,34.886,2.307,32.58
-Ryan Rollins,Caris LeVert,455,34.885,2.307,32.58
-AJ Green,Jericho Sims,455,34.828,2.25,32.58
-Tyler Herro,Brayden Burries,455,34.736,2.158,32.58
-Nate Ament,Jericho Sims,455,34.604,2.026,32.58
-Ryan Rollins,Kasparas Jakucionis,455,34.525,1.947,32.58
-Tyler Herro,Kasparas Jakucionis,455,34.51,1.931,32.58
-Tyler Herro,Ryan Rollins,455,34.454,1.876,32.58
-Kyle Kuzma,Kasparas Jakucionis,455,34.407,1.829,32.58
-Jaime Jaquez Jr.,Kyle Kuzma,455,34.299,1.721,32.58
-Ryan Rollins,Kel'el Ware,455,34.28,1.701,32.58
-Kel'el Ware,Kam Jones,455,34.233,1.654,32.58
-Jaime Jaquez Jr.,Bogoljub Markovic,455,34.226,1.648,32.58
-Kasparas Jakucionis,Bogoljub Markovic,455,34.218,1.64,32.58
-Myles Turner,Kasparas Jakucionis,455,34.205,1.627,32.58
-Brayden Burries,Caris LeVert,455,34.108,1.53,32.58
-Jaime Jaquez Jr.,Myles Turner,455,33.974,1.395,32.58
-Myles Turner,Caris LeVert,455,33.97,1.392,32.58
-Tyler Herro,Kyle Kuzma,455,33.958,1.38,32.58
-Jaime Jaquez Jr.,Pete Nance,455,33.85,1.272,32.58
-Ryan Rollins,Brayden Burries,455,33.837,1.258,32.58
-Brayden Burries,Kel'el Ware,455,33.824,1.246,32.58
-Kasparas Jakucionis,Kam Jones,455,33.82,1.242,32.58
-Kyle Kuzma,Caris LeVert,455,33.796,1.218,32.58
-Jaime Jaquez Jr.,Kam Jones,455,33.773,1.195,32.58
-Kyle Kuzma,Kel'el Ware,455,33.637,1.059,32.58
-Bogoljub Markovic,Caris LeVert,455,33.61,1.032,32.58
-Kyle Kuzma,Ryan Rollins,455,33.49,0.912,32.58
-Kel'el Ware,Bogoljub Markovic,455,33.452,0.874,32.58
-Caris LeVert,Kam Jones,455,33.314,0.735,32.58
-Jericho Sims,Gary Trent Jr.,455,33.161,0.583,32.58
-Jaime Jaquez Jr.,AJ Green,455,33.041,0.462,32.58
-Kasparas Jakucionis,Pete Nance,455,32.989,0.411,32.58
-Myles Turner,Ryan Rollins,455,32.988,0.41,32.58
-Tyler Herro,Bogoljub Markovic,455,32.961,0.382,32.58
-Myles Turner,Kel'el Ware,455,32.943,0.364,32.58
-Jaime Jaquez Jr.,Nate Ament,455,32.859,0.281,32.58
-Tyler Herro,Myles Turner,455,32.759,0.181,32.58
-Caris LeVert,Pete Nance,455,32.728,0.15,32.58
-Brayden Burries,Kam Jones,455,32.664,0.086,32.58
-Kel'el Ware,Pete Nance,455,32.568,-0.01,32.58
-Kyle Kuzma,Brayden Burries,455,32.531,-0.048,32.58
-Kasparas Jakucionis,Nate Ament,455,32.39,-0.188,32.58
-Ryan Rollins,Kam Jones,455,32.35,-0.229,32.58
-AJ Green,Kel'el Ware,455,32.198,-0.38,32.58
-AJ Green,Kasparas Jakucionis,455,32.157,-0.421,32.58
-Myles Turner,Kam Jones,455,32.114,-0.464,32.58
-Brayden Burries,Pete Nance,455,32.097,-0.482,32.58
-Ryan Rollins,Bogoljub Markovic,455,32.095,-0.483,32.58
-Brayden Burries,Bogoljub Markovic,455,32.039,-0.539,32.58
-Kyle Kuzma,Myles Turner,455,32.015,-0.563,32.58
-Myles Turner,Brayden Burries,455,32.01,-0.568,32.58
-Jaime Jaquez Jr.,Ousmane Dieng,455,31.936,-0.642,32.58
-Nate Ament,Caris LeVert,455,31.933,-0.645,32.58
-Tyler Herro,Nate Ament,455,31.927,-0.651,32.58
-AJ Green,Caris LeVert,455,31.908,-0.67,32.58
-Kyle Kuzma,Kam Jones,455,31.847,-0.731,32.58
-Tyler Herro,Kam Jones,455,31.729,-0.849,32.58
-Kyle Kuzma,Bogoljub Markovic,455,31.7,-0.878,32.58
-Kasparas Jakucionis,Ousmane Dieng,455,31.692,-0.886,32.58
-Jaime Jaquez Jr.,Gary Trent Jr.,455,31.673,-0.905,32.58
-Bogoljub Markovic,Kam Jones,455,31.611,-0.967,32.58
-Tyler Herro,Pete Nance,455,31.558,-1.02,32.58
-Ousmane Dieng,Caris LeVert,455,31.527,-1.051,32.58
-Kel'el Ware,Nate Ament,455,31.513,-1.066,32.58
-Brayden Burries,AJ Green,455,31.493,-1.086,32.58
-Kyle Kuzma,Pete Nance,455,31.478,-1.1,32.58
-Myles Turner,Bogoljub Markovic,455,31.344,-1.234,32.58
-Kel'el Ware,Ousmane Dieng,455,31.321,-1.257,32.58
-Kel'el Ware,Gary Trent Jr.,455,31.178,-1.4,32.58
-Tyler Herro,Gary Trent Jr.,455,31.12,-1.458,32.58
-Ryan Rollins,Nate Ament,455,31.104,-1.474,32.58
-Tyler Herro,AJ Green,455,31.09,-1.488,32.58
-Ryan Rollins,Pete Nance,455,31.085,-1.493,32.58
-Pete Nance,Kam Jones,455,31.007,-1.571,32.58
-Kasparas Jakucionis,Gary Trent Jr.,455,30.998,-1.58,32.58
-Bogoljub Markovic,Pete Nance,455,30.991,-1.587,32.58
-Tyler Herro,Ousmane Dieng,455,30.932,-1.647,32.58
-Brayden Burries,Nate Ament,455,30.912,-1.667,32.58
-Myles Turner,Pete Nance,455,30.77,-1.808,32.58
-Ryan Rollins,AJ Green,455,30.715,-1.864,32.58
-Kyle Kuzma,AJ Green,455,30.52,-2.058,32.58
-Kyle Kuzma,Nate Ament,455,30.497,-2.082,32.58
-Ryan Rollins,Ousmane Dieng,455,30.496,-2.082,32.58
-Nate Ament,Kam Jones,455,30.461,-2.117,32.58
-Gary Trent Jr.,Caris LeVert,455,30.34,-2.238,32.58
-Brayden Burries,Ousmane Dieng,455,30.23,-2.349,32.58
-AJ Green,Kam Jones,455,30.166,-2.412,32.58
-Ousmane Dieng,Kam Jones,455,30.153,-2.425,32.58
-Brayden Burries,Gary Trent Jr.,455,30.145,-2.433,32.58
-Myles Turner,Ousmane Dieng,455,30.113,-2.465,32.58
-Ryan Rollins,Gary Trent Jr.,455,30.007,-2.571,32.58
-Kyle Kuzma,Ousmane Dieng,455,29.98,-2.599,32.58
-Myles Turner,Nate Ament,455,29.832,-2.746,32.58
-Nate Ament,Bogoljub Markovic,455,29.797,-2.781,32.58
-AJ Green,Bogoljub Markovic,455,29.718,-2.86,32.58
-Myles Turner,AJ Green,455,29.526,-3.053,32.58
-Ousmane Dieng,Bogoljub Markovic,455,29.436,-3.143,32.58
-Nate Ament,Pete Nance,455,29.257,-3.322,32.58
-Ousmane Dieng,Pete Nance,455,29.203,-3.375,32.58
-Kyle Kuzma,Gary Trent Jr.,455,29.152,-3.426,32.58
-AJ Green,Pete Nance,455,28.796,-3.782,32.58
-Gary Trent Jr.,Kam Jones,455,28.555,-4.024,32.58
-Myles Turner,Gary Trent Jr.,455,28.353,-4.226,32.58
-Gary Trent Jr.,Bogoljub Markovic,455,28.187,-4.391,32.58
-AJ Green,Ousmane Dieng,455,28.126,-4.452,32.58
-AJ Green,Nate Ament,455,28.09,-4.488,32.58
-Nate Ament,Ousmane Dieng,455,27.974,-4.605,32.58
-Gary Trent Jr.,Pete Nance,455,27.651,-4.928,32.58
-Ousmane Dieng,Gary Trent Jr.,455,26.681,-5.897,32.58
-AJ Green,Gary Trent Jr.,455,26.646,-5.932,32.58
-Nate Ament,Gary Trent Jr.,455,26.423,-6.156,32.58
+Kasparas Jakucionis,Jericho Sims,455,41.382,8.637,32.74
+Jericho Sims,Caris LeVert,455,40.004,7.26,32.74
+Jaime Jaquez Jr.,Jericho Sims,455,39.666,6.921,32.74
+Jericho Sims,Kam Jones,455,38.749,6.004,32.74
+Kel'el Ware,Jericho Sims,455,38.431,5.686,32.74
+Jericho Sims,Pete Nance,455,38.359,5.614,32.74
+Brayden Burries,Jericho Sims,455,38.091,5.346,32.74
+Kyle Kuzma,Jericho Sims,455,37.804,5.06,32.74
+Myles Turner,Jericho Sims,455,37.743,4.998,32.74
+Jericho Sims,Bogoljub Markovic,455,37.562,4.818,32.74
+Tyler Herro,Jericho Sims,455,37.444,4.7,32.74
+AJ Green,Jericho Sims,455,37.128,4.383,32.74
+Jaime Jaquez Jr.,Kasparas Jakucionis,455,36.841,4.097,32.74
+Kel'el Ware,Kasparas Jakucionis,455,36.635,3.89,32.74
+Ousmane Dieng,Jericho Sims,455,36.623,3.879,32.74
+Jaime Jaquez Jr.,Kel'el Ware,455,36.61,3.865,32.74
+Tyler Herro,Jaime Jaquez Jr.,455,36.589,3.844,32.74
+Nate Ament,Jericho Sims,455,36.56,3.815,32.74
+Ryan Rollins,Jericho Sims,455,36.454,3.709,32.74
+Kasparas Jakucionis,Caris LeVert,455,36.352,3.608,32.74
+Jaime Jaquez Jr.,Caris LeVert,455,36.158,3.413,32.74
+Tyler Herro,Kel'el Ware,455,35.813,3.068,32.74
+Kel'el Ware,Caris LeVert,455,35.803,3.059,32.74
+Brayden Burries,Kasparas Jakucionis,455,35.391,2.647,32.74
+Jericho Sims,Gary Trent Jr.,455,35.365,2.62,32.74
+Jaime Jaquez Jr.,Brayden Burries,455,35.264,2.519,32.74
+Jaime Jaquez Jr.,Ryan Rollins,455,35.147,2.403,32.74
+Tyler Herro,Caris LeVert,455,34.747,2.003,32.74
+Jaime Jaquez Jr.,Pete Nance,455,34.603,1.858,32.74
+Tyler Herro,Kasparas Jakucionis,455,34.551,1.807,32.74
+Kyle Kuzma,Kasparas Jakucionis,455,34.469,1.724,32.74
+Jaime Jaquez Jr.,Bogoljub Markovic,455,34.458,1.714,32.74
+Jaime Jaquez Jr.,Kyle Kuzma,455,34.457,1.712,32.74
+Myles Turner,Kasparas Jakucionis,455,34.348,1.604,32.74
+Ryan Rollins,Kasparas Jakucionis,455,34.179,1.434,32.74
+Ryan Rollins,Caris LeVert,455,34.144,1.399,32.74
+Kasparas Jakucionis,Bogoljub Markovic,455,34.117,1.372,32.74
+Kel'el Ware,Kam Jones,455,34.091,1.346,32.74
+Tyler Herro,Brayden Burries,455,33.99,1.245,32.74
+Brayden Burries,Caris LeVert,455,33.969,1.225,32.74
+Kasparas Jakucionis,Pete Nance,455,33.968,1.224,32.74
+Jaime Jaquez Jr.,Kam Jones,455,33.895,1.151,32.74
+Ryan Rollins,Kel'el Ware,455,33.872,1.127,32.74
+Jaime Jaquez Jr.,Myles Turner,455,33.858,1.113,32.74
+Kasparas Jakucionis,Kam Jones,455,33.68,0.935,32.74
+Tyler Herro,Ryan Rollins,455,33.618,0.874,32.74
+Kyle Kuzma,Caris LeVert,455,33.613,0.868,32.74
+Kyle Kuzma,Kel'el Ware,455,33.536,0.791,32.74
+Kel'el Ware,Pete Nance,455,33.515,0.77,32.74
+Tyler Herro,Kyle Kuzma,455,33.477,0.732,32.74
+Myles Turner,Caris LeVert,455,33.442,0.697,32.74
+Pete Nance,Caris LeVert,455,33.44,0.695,32.74
+Jaime Jaquez Jr.,AJ Green,455,33.419,0.674,32.74
+Brayden Burries,Kel'el Ware,455,33.413,0.668,32.74
+Kel'el Ware,Bogoljub Markovic,455,33.41,0.666,32.74
+Caris LeVert,Kam Jones,455,33.316,0.572,32.74
+Brayden Burries,Kam Jones,455,33.152,0.408,32.74
+Ryan Rollins,Brayden Burries,455,32.974,0.229,32.74
+Myles Turner,Kel'el Ware,455,32.697,-0.048,32.74
+AJ Green,Kasparas Jakucionis,455,32.654,-0.091,32.74
+Bogoljub Markovic,Caris LeVert,455,32.653,-0.092,32.74
+AJ Green,Kel'el Ware,455,32.634,-0.11,32.74
+Kyle Kuzma,Ryan Rollins,455,32.582,-0.162,32.74
+Tyler Herro,Bogoljub Markovic,455,32.554,-0.19,32.74
+Tyler Herro,Myles Turner,455,32.547,-0.198,32.74
+Jaime Jaquez Jr.,Nate Ament,455,32.493,-0.252,32.74
+Brayden Burries,Pete Nance,455,32.327,-0.418,32.74
+Kasparas Jakucionis,Nate Ament,455,32.294,-0.45,32.74
+Jaime Jaquez Jr.,Gary Trent Jr.,455,32.288,-0.457,32.74
+Kasparas Jakucionis,Ousmane Dieng,455,32.223,-0.522,32.74
+Myles Turner,Ryan Rollins,455,32.212,-0.532,32.74
+Kyle Kuzma,Brayden Burries,455,32.178,-0.567,32.74
+Jaime Jaquez Jr.,Ousmane Dieng,455,32.164,-0.581,32.74
+Myles Turner,Kam Jones,455,31.977,-0.768,32.74
+Kyle Kuzma,Pete Nance,455,31.917,-0.828,32.74
+Kyle Kuzma,Kam Jones,455,31.855,-0.89,32.74
+AJ Green,Caris LeVert,455,31.851,-0.894,32.74
+Tyler Herro,Pete Nance,455,31.792,-0.952,32.74
+Pete Nance,Kam Jones,455,31.75,-0.995,32.74
+Kyle Kuzma,Myles Turner,455,31.725,-1.02,32.74
+Kel'el Ware,Gary Trent Jr.,455,31.718,-1.027,32.74
+Kasparas Jakucionis,Gary Trent Jr.,455,31.693,-1.052,32.74
+Brayden Burries,AJ Green,455,31.667,-1.077,32.74
+Ousmane Dieng,Caris LeVert,455,31.664,-1.081,32.74
+Myles Turner,Brayden Burries,455,31.574,-1.171,32.74
+Kel'el Ware,Ousmane Dieng,455,31.553,-1.192,32.74
+Brayden Burries,Bogoljub Markovic,455,31.5,-1.245,32.74
+Ryan Rollins,Kam Jones,455,31.42,-1.325,32.74
+Tyler Herro,Kam Jones,455,31.36,-1.385,32.74
+Ryan Rollins,Bogoljub Markovic,455,31.35,-1.395,32.74
+Bogoljub Markovic,Pete Nance,455,31.3,-1.445,32.74
+Kyle Kuzma,Bogoljub Markovic,455,31.297,-1.448,32.74
+Nate Ament,Caris LeVert,455,31.292,-1.453,32.74
+Myles Turner,Pete Nance,455,31.257,-1.487,32.74
+Kel'el Ware,Nate Ament,455,31.236,-1.508,32.74
+Tyler Herro,Gary Trent Jr.,455,31.209,-1.536,32.74
+Bogoljub Markovic,Kam Jones,455,31.117,-1.628,32.74
+Ryan Rollins,Pete Nance,455,31.016,-1.729,32.74
+Tyler Herro,Nate Ament,455,30.963,-1.781,32.74
+Tyler Herro,AJ Green,455,30.874,-1.871,32.74
+Ousmane Dieng,Kam Jones,455,30.815,-1.93,32.74
+Myles Turner,Bogoljub Markovic,455,30.719,-2.026,32.74
+Tyler Herro,Ousmane Dieng,455,30.716,-2.028,32.74
+AJ Green,Kam Jones,455,30.636,-2.109,32.74
+Kyle Kuzma,AJ Green,455,30.609,-2.136,32.74
+Gary Trent Jr.,Caris LeVert,455,30.571,-2.174,32.74
+Ryan Rollins,AJ Green,455,30.466,-2.279,32.74
+Brayden Burries,Ousmane Dieng,455,30.371,-2.374,32.74
+Ryan Rollins,Nate Ament,455,30.369,-2.376,32.74
+Ousmane Dieng,Pete Nance,455,30.32,-2.425,32.74
+Myles Turner,Ousmane Dieng,455,30.31,-2.435,32.74
+Nate Ament,Kam Jones,455,30.286,-2.458,32.74
+Brayden Burries,Nate Ament,455,30.151,-2.594,32.74
+Brayden Burries,Gary Trent Jr.,455,30.073,-2.672,32.74
+Kyle Kuzma,Nate Ament,455,30.057,-2.688,32.74
+Kyle Kuzma,Ousmane Dieng,455,29.994,-2.75,32.74
+Ryan Rollins,Ousmane Dieng,455,29.872,-2.873,32.74
+Ryan Rollins,Gary Trent Jr.,455,29.865,-2.88,32.74
+AJ Green,Pete Nance,455,29.682,-3.063,32.74
+Myles Turner,AJ Green,455,29.663,-3.082,32.74
+Nate Ament,Pete Nance,455,29.634,-3.11,32.74
+Myles Turner,Nate Ament,455,29.624,-3.121,32.74
+AJ Green,Bogoljub Markovic,455,29.505,-3.24,32.74
+Ousmane Dieng,Bogoljub Markovic,455,29.498,-3.246,32.74
+Kyle Kuzma,Gary Trent Jr.,455,29.4,-3.345,32.74
+Gary Trent Jr.,Kam Jones,455,29.176,-3.569,32.74
+Nate Ament,Bogoljub Markovic,455,28.997,-3.748,32.74
+AJ Green,Ousmane Dieng,455,28.96,-3.785,32.74
+Myles Turner,Gary Trent Jr.,455,28.78,-3.965,32.74
+Gary Trent Jr.,Pete Nance,455,28.509,-4.236,32.74
+Nate Ament,Ousmane Dieng,455,28.416,-4.329,32.74
+Gary Trent Jr.,Bogoljub Markovic,455,28.26,-4.484,32.74
+AJ Green,Nate Ament,455,28.149,-4.596,32.74
+AJ Green,Gary Trent Jr.,455,27.16,-5.585,32.74
+Ousmane Dieng,Gary Trent Jr.,455,27.135,-5.61,32.74
+Nate Ament,Gary Trent Jr.,455,26.423,-6.322,32.74
