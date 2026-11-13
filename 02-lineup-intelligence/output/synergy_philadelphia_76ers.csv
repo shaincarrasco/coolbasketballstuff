@@ -1,137 +1,137 @@
 player_a,player_b,n_lineups,mean_fit,synergy,team_mean_fit
-Jaylen Brown,Dean Wade,455,51.601,8.049,43.55
-Jaylen Brown,LeBron James,455,50.987,7.434,43.55
-Joel Embiid,Dean Wade,455,50.904,7.351,43.55
-LeBron James,Dean Wade,455,50.492,6.939,43.55
-LeBron James,Joel Embiid,455,49.911,6.358,43.55
-Jaylen Brown,Adem Bona,455,49.65,6.097,43.55
-Tyrese Maxey,Jaylen Brown,455,49.526,5.974,43.55
-Jaylen Brown,Joel Embiid,455,49.203,5.65,43.55
-LeBron James,Adem Bona,455,48.985,5.432,43.55
-Tyrese Maxey,Dean Wade,455,48.881,5.328,43.55
-Dean Wade,Adem Bona,455,48.71,5.158,43.55
-Joel Embiid,Adem Bona,455,48.588,5.035,43.55
-Tyrese Maxey,LeBron James,455,48.586,5.034,43.55
-Tyrese Maxey,Joel Embiid,455,48.472,4.919,43.55
-Tyrese Maxey,Adem Bona,455,48.138,4.585,43.55
-Jaylen Brown,Dominick Barlow,455,47.994,4.441,43.55
-Jaylen Brown,Justin Edwards,455,47.917,4.365,43.55
-Jaylen Brown,Ariel Hukporti,455,47.65,4.097,43.55
-Jaylen Brown,VJ Edgecombe,455,47.584,4.031,43.55
-LeBron James,Justin Edwards,455,47.561,4.008,43.55
-Joel Embiid,Dominick Barlow,455,47.413,3.86,43.55
-Jaylen Brown,Kentavious Caldwell-Pope,455,47.376,3.823,43.55
-LeBron James,Dominick Barlow,455,47.311,3.758,43.55
-LeBron James,Ariel Hukporti,455,47.3,3.747,43.55
-VJ Edgecombe,LeBron James,455,47.289,3.736,43.55
-Joel Embiid,Justin Edwards,455,47.288,3.735,43.55
-Joel Embiid,Ariel Hukporti,455,47.167,3.614,43.55
-Jaylen Brown,Jabari Walker,455,47.115,3.562,43.55
-VJ Edgecombe,Joel Embiid,455,47.008,3.455,43.55
-VJ Edgecombe,Dean Wade,455,46.812,3.259,43.55
-LeBron James,Jabari Walker,455,46.775,3.222,43.55
-Tyrese Maxey,Dominick Barlow,455,46.608,3.055,43.55
-Dean Wade,Ariel Hukporti,455,46.6,3.048,43.55
-Dean Wade,Dominick Barlow,455,46.535,2.982,43.55
-Joel Embiid,Kentavious Caldwell-Pope,455,46.438,2.886,43.55
-LeBron James,Kentavious Caldwell-Pope,455,46.402,2.85,43.55
-Adem Bona,Justin Edwards,455,46.38,2.827,43.55
-Joel Embiid,Jabari Walker,455,46.251,2.698,43.55
-Tyrese Maxey,VJ Edgecombe,455,46.175,2.622,43.55
-Tyrese Maxey,Jabari Walker,455,46.105,2.552,43.55
-VJ Edgecombe,Adem Bona,455,46.088,2.535,43.55
-Tyrese Maxey,Justin Edwards,455,45.826,2.273,43.55
-Adem Bona,Dominick Barlow,455,45.803,2.25,43.55
-Tyrese Maxey,Ariel Hukporti,455,45.722,2.169,43.55
-Dean Wade,Justin Edwards,455,45.713,2.16,43.55
-Jaylen Brown,Caleb Love,455,45.699,2.146,43.55
-Dean Wade,Jabari Walker,455,45.419,1.867,43.55
-Tyrese Maxey,Kentavious Caldwell-Pope,455,45.32,1.767,43.55
-Kentavious Caldwell-Pope,Adem Bona,455,45.049,1.497,43.55
-Kentavious Caldwell-Pope,Dean Wade,455,45.033,1.48,43.55
-Adem Bona,Ariel Hukporti,455,45.029,1.476,43.55
-LeBron James,Caleb Love,455,44.918,1.366,43.55
-Jaylen Brown,Labaron Philon Jr.,455,44.844,1.291,43.55
-Joel Embiid,Caleb Love,455,44.799,1.246,43.55
-Adem Bona,Jabari Walker,455,44.634,1.082,43.55
-Jaylen Brown,Anfernee Simons,455,44.535,0.982,43.55
-VJ Edgecombe,Dominick Barlow,455,44.515,0.962,43.55
-Adem Bona,Caleb Love,455,44.458,0.906,43.55
-VJ Edgecombe,Justin Edwards,455,44.362,0.809,43.55
-Dean Wade,Caleb Love,455,44.303,0.75,43.55
-Tyrese Maxey,Caleb Love,455,44.219,0.666,43.55
-Joel Embiid,Anfernee Simons,455,44.165,0.612,43.55
-LeBron James,Labaron Philon Jr.,455,44.149,0.596,43.55
-Justin Edwards,Dominick Barlow,455,44.053,0.5,43.55
-VJ Edgecombe,Jabari Walker,455,44.034,0.481,43.55
-VJ Edgecombe,Ariel Hukporti,455,43.994,0.441,43.55
-LeBron James,Anfernee Simons,455,43.922,0.369,43.55
-Justin Edwards,Ariel Hukporti,455,43.676,0.123,43.55
-VJ Edgecombe,Kentavious Caldwell-Pope,455,43.634,0.082,43.55
-Joel Embiid,Labaron Philon Jr.,455,43.632,0.079,43.55
-Dean Wade,Labaron Philon Jr.,455,43.43,-0.122,43.55
-Tyrese Maxey,Labaron Philon Jr.,455,43.397,-0.156,43.55
-Kentavious Caldwell-Pope,Dominick Barlow,455,43.268,-0.284,43.55
-Jabari Walker,Justin Edwards,455,43.265,-0.287,43.55
-Jabari Walker,Dominick Barlow,455,43.168,-0.385,43.55
-Jaylen Brown,Rayan Rupert,455,43.048,-0.504,43.55
-Adem Bona,Labaron Philon Jr.,455,43.033,-0.519,43.55
-Dominick Barlow,Ariel Hukporti,455,42.996,-0.557,43.55
-Tyrese Maxey,Anfernee Simons,455,42.994,-0.559,43.55
-Anfernee Simons,Adem Bona,455,42.925,-0.628,43.55
-Caleb Love,Dominick Barlow,455,42.685,-0.868,43.55
-VJ Edgecombe,Caleb Love,455,42.64,-0.913,43.55
-Kentavious Caldwell-Pope,Justin Edwards,455,42.633,-0.92,43.55
-Kentavious Caldwell-Pope,Jabari Walker,455,42.625,-0.927,43.55
-Kentavious Caldwell-Pope,Ariel Hukporti,455,42.494,-1.059,43.55
-Anfernee Simons,Dean Wade,455,42.355,-1.198,43.55
-Jabari Walker,Ariel Hukporti,455,42.334,-1.219,43.55
-Jabari Walker,Caleb Love,455,42.223,-1.329,43.55
-LeBron James,Rayan Rupert,455,42.176,-1.376,43.55
-Justin Edwards,Caleb Love,455,42.058,-1.495,43.55
-Caleb Love,Ariel Hukporti,455,41.945,-1.608,43.55
-Joel Embiid,Rayan Rupert,455,41.807,-1.746,43.55
-Kentavious Caldwell-Pope,Caleb Love,455,41.649,-1.904,43.55
-VJ Edgecombe,Labaron Philon Jr.,455,41.56,-1.992,43.55
-Anfernee Simons,Dominick Barlow,455,41.3,-2.253,43.55
-Labaron Philon Jr.,Dominick Barlow,455,41.298,-2.254,43.55
-VJ Edgecombe,Anfernee Simons,455,41.251,-2.301,43.55
-Tyrese Maxey,Rayan Rupert,455,41.246,-2.307,43.55
-Dean Wade,Rayan Rupert,455,41.225,-2.328,43.55
-Labaron Philon Jr.,Justin Edwards,455,41.17,-2.382,43.55
-Adem Bona,Rayan Rupert,455,41.098,-2.455,43.55
-Jaylen Brown,Tacko Fall,455,41.053,-2.499,43.55
-Labaron Philon Jr.,Ariel Hukporti,455,40.972,-2.581,43.55
-Kentavious Caldwell-Pope,Labaron Philon Jr.,455,40.969,-2.584,43.55
-Jabari Walker,Labaron Philon Jr.,455,40.825,-2.728,43.55
-Anfernee Simons,Ariel Hukporti,455,40.777,-2.776,43.55
-Anfernee Simons,Jabari Walker,455,40.612,-2.941,43.55
-LeBron James,Tacko Fall,455,40.455,-3.098,43.55
-Joel Embiid,Tacko Fall,455,40.45,-3.103,43.55
-Anfernee Simons,Justin Edwards,455,40.378,-3.175,43.55
-Labaron Philon Jr.,Caleb Love,455,40.165,-3.387,43.55
-Anfernee Simons,Kentavious Caldwell-Pope,455,40.058,-3.494,43.55
-Dean Wade,Tacko Fall,455,40.02,-3.533,43.55
-Anfernee Simons,Caleb Love,455,39.534,-4.019,43.55
-VJ Edgecombe,Rayan Rupert,455,39.383,-4.17,43.55
-Adem Bona,Tacko Fall,455,39.24,-4.313,43.55
-Tyrese Maxey,Tacko Fall,455,39.239,-4.314,43.55
-Anfernee Simons,Labaron Philon Jr.,455,39.05,-4.502,43.55
-Rayan Rupert,Dominick Barlow,455,38.852,-4.701,43.55
-Kentavious Caldwell-Pope,Rayan Rupert,455,38.376,-5.176,43.55
-Rayan Rupert,Ariel Hukporti,455,38.365,-5.188,43.55
-Justin Edwards,Rayan Rupert,455,38.28,-5.273,43.55
-Jabari Walker,Rayan Rupert,455,37.883,-5.67,43.55
-VJ Edgecombe,Tacko Fall,455,37.865,-5.688,43.55
-Rayan Rupert,Caleb Love,455,37.823,-5.73,43.55
-Tacko Fall,Dominick Barlow,455,37.812,-5.74,43.55
-Justin Edwards,Tacko Fall,455,37.48,-6.073,43.55
-Kentavious Caldwell-Pope,Tacko Fall,455,37.246,-6.307,43.55
-Labaron Philon Jr.,Rayan Rupert,455,37.229,-6.324,43.55
-Jabari Walker,Tacko Fall,455,37.226,-6.327,43.55
-Tacko Fall,Ariel Hukporti,455,37.179,-6.374,43.55
-Anfernee Simons,Rayan Rupert,455,36.546,-7.007,43.55
-Tacko Fall,Caleb Love,455,36.131,-7.422,43.55
-Labaron Philon Jr.,Tacko Fall,455,35.387,-8.165,43.55
-Anfernee Simons,Tacko Fall,455,35.009,-8.544,43.55
-Rayan Rupert,Tacko Fall,455,34.777,-8.776,43.55
+Jaylen Brown,Dean Wade,455,51.701,8.658,43.04
+Joel Embiid,Dean Wade,455,50.944,7.9,43.04
+Jaylen Brown,LeBron James,455,50.798,7.755,43.04
+Jaylen Brown,Adem Bona,455,50.466,7.423,43.04
+LeBron James,Dean Wade,455,49.938,6.895,43.04
+Tyrese Maxey,Jaylen Brown,455,49.524,6.481,43.04
+Joel Embiid,LeBron James,455,49.176,6.133,43.04
+Tyrese Maxey,Dean Wade,455,49.094,6.051,43.04
+Joel Embiid,Adem Bona,455,48.983,5.94,43.04
+LeBron James,Adem Bona,455,48.894,5.851,43.04
+Jaylen Brown,Joel Embiid,455,48.874,5.831,43.04
+Jaylen Brown,Dominick Barlow,455,48.665,5.622,43.04
+Tyrese Maxey,LeBron James,455,48.58,5.537,43.04
+Tyrese Maxey,Adem Bona,455,48.555,5.512,43.04
+Jaylen Brown,Justin Edwards,455,48.22,5.177,43.04
+Tyrese Maxey,Joel Embiid,455,48.2,5.157,43.04
+Dean Wade,Adem Bona,455,48.126,5.083,43.04
+Jaylen Brown,Kentavious Caldwell-Pope,455,48.038,4.995,43.04
+Jaylen Brown,VJ Edgecombe,455,47.795,4.752,43.04
+Joel Embiid,Dominick Barlow,455,47.588,4.545,43.04
+Jaylen Brown,Ariel Hukporti,455,47.569,4.526,43.04
+Joel Embiid,Justin Edwards,455,47.36,4.317,43.04
+Jaylen Brown,Jabari Walker,455,47.339,4.296,43.04
+LeBron James,Justin Edwards,455,47.117,4.074,43.04
+LeBron James,Dominick Barlow,455,47.006,3.963,43.04
+VJ Edgecombe,LeBron James,455,46.982,3.939,43.04
+Tyrese Maxey,Dominick Barlow,455,46.84,3.797,43.04
+Joel Embiid,Kentavious Caldwell-Pope,455,46.814,3.77,43.04
+VJ Edgecombe,Joel Embiid,455,46.69,3.647,43.04
+LeBron James,Ariel Hukporti,455,46.663,3.62,43.04
+Joel Embiid,Ariel Hukporti,455,46.639,3.596,43.04
+VJ Edgecombe,Dean Wade,455,46.469,3.426,43.04
+LeBron James,Kentavious Caldwell-Pope,455,46.431,3.387,43.04
+LeBron James,Jabari Walker,455,46.336,3.293,43.04
+Tyrese Maxey,VJ Edgecombe,455,46.189,3.146,43.04
+Dean Wade,Dominick Barlow,455,46.136,3.092,43.04
+Joel Embiid,Jabari Walker,455,46.034,2.991,43.04
+Tyrese Maxey,Jabari Walker,455,46.023,2.98,43.04
+Adem Bona,Justin Edwards,455,46.005,2.962,43.04
+VJ Edgecombe,Adem Bona,455,45.994,2.951,43.04
+Dean Wade,Ariel Hukporti,455,45.87,2.827,43.04
+Tyrese Maxey,Justin Edwards,455,45.783,2.74,43.04
+Tyrese Maxey,Kentavious Caldwell-Pope,455,45.719,2.676,43.04
+Adem Bona,Dominick Barlow,455,45.575,2.532,43.04
+Jaylen Brown,Caleb Love,455,45.505,2.462,43.04
+Dean Wade,Justin Edwards,455,45.192,2.149,43.04
+Kentavious Caldwell-Pope,Adem Bona,455,45.183,2.14,43.04
+Tyrese Maxey,Ariel Hukporti,455,45.175,2.132,43.04
+Adem Bona,Ariel Hukporti,455,45.109,2.066,43.04
+Kentavious Caldwell-Pope,Dean Wade,455,44.749,1.706,43.04
+Dean Wade,Jabari Walker,455,44.695,1.652,43.04
+Jaylen Brown,Anfernee Simons,455,44.562,1.519,43.04
+Joel Embiid,Caleb Love,455,44.434,1.391,43.04
+LeBron James,Caleb Love,455,44.387,1.344,43.04
+Adem Bona,Jabari Walker,455,44.286,1.243,43.04
+Jaylen Brown,Labaron Philon Jr.,455,44.263,1.22,43.04
+VJ Edgecombe,Dominick Barlow,455,44.208,1.165,43.04
+Adem Bona,Caleb Love,455,44.182,1.138,43.04
+VJ Edgecombe,Justin Edwards,455,43.922,0.879,43.04
+Tyrese Maxey,Caleb Love,455,43.916,0.873,43.04
+VJ Edgecombe,Kentavious Caldwell-Pope,455,43.715,0.672,43.04
+Justin Edwards,Dominick Barlow,455,43.686,0.643,43.04
+Joel Embiid,Anfernee Simons,455,43.614,0.571,43.04
+Dean Wade,Caleb Love,455,43.598,0.555,43.04
+VJ Edgecombe,Jabari Walker,455,43.427,0.384,43.04
+LeBron James,Anfernee Simons,455,43.351,0.307,43.04
+VJ Edgecombe,Ariel Hukporti,455,43.32,0.277,43.04
+Jaylen Brown,Rayan Rupert,455,43.169,0.126,43.04
+Kentavious Caldwell-Pope,Dominick Barlow,455,43.156,0.113,43.04
+Justin Edwards,Ariel Hukporti,455,43.132,0.089,43.04
+Tyrese Maxey,Anfernee Simons,455,43.12,0.077,43.04
+LeBron James,Labaron Philon Jr.,455,43.093,0.05,43.04
+Jabari Walker,Dominick Barlow,455,42.836,-0.207,43.04
+Dominick Barlow,Ariel Hukporti,455,42.794,-0.249,43.04
+Tyrese Maxey,Labaron Philon Jr.,455,42.707,-0.336,43.04
+Jabari Walker,Justin Edwards,455,42.651,-0.392,43.04
+Kentavious Caldwell-Pope,Justin Edwards,455,42.541,-0.502,43.04
+Joel Embiid,Labaron Philon Jr.,455,42.515,-0.528,43.04
+Kentavious Caldwell-Pope,Jabari Walker,455,42.454,-0.589,43.04
+Anfernee Simons,Adem Bona,455,42.36,-0.683,43.04
+Kentavious Caldwell-Pope,Ariel Hukporti,455,42.242,-0.801,43.04
+Dean Wade,Labaron Philon Jr.,455,42.156,-0.887,43.04
+Adem Bona,Labaron Philon Jr.,455,42.11,-0.933,43.04
+Caleb Love,Dominick Barlow,455,42.07,-0.973,43.04
+VJ Edgecombe,Caleb Love,455,41.976,-1.067,43.04
+Joel Embiid,Rayan Rupert,455,41.838,-1.205,43.04
+LeBron James,Rayan Rupert,455,41.744,-1.299,43.04
+Jabari Walker,Ariel Hukporti,455,41.694,-1.35,43.04
+Kentavious Caldwell-Pope,Caleb Love,455,41.366,-1.678,43.04
+Jabari Walker,Caleb Love,455,41.339,-1.704,43.04
+Anfernee Simons,Dean Wade,455,41.267,-1.776,43.04
+Justin Edwards,Caleb Love,455,41.226,-1.817,43.04
+Caleb Love,Ariel Hukporti,455,41.052,-1.992,43.04
+Adem Bona,Rayan Rupert,455,41.041,-2.002,43.04
+Tyrese Maxey,Rayan Rupert,455,40.893,-2.15,43.04
+VJ Edgecombe,Anfernee Simons,455,40.873,-2.17,43.04
+Anfernee Simons,Dominick Barlow,455,40.756,-2.287,43.04
+Dean Wade,Rayan Rupert,455,40.518,-2.525,43.04
+Jaylen Brown,Tacko Fall,455,40.482,-2.561,43.04
+VJ Edgecombe,Labaron Philon Jr.,455,40.446,-2.597,43.04
+Kentavious Caldwell-Pope,Labaron Philon Jr.,455,40.112,-2.931,43.04
+Labaron Philon Jr.,Dominick Barlow,455,40.036,-3.007,43.04
+Anfernee Simons,Jabari Walker,455,39.941,-3.102,43.04
+Labaron Philon Jr.,Justin Edwards,455,39.91,-3.133,43.04
+Kentavious Caldwell-Pope,Anfernee Simons,455,39.894,-3.149,43.04
+Anfernee Simons,Justin Edwards,455,39.884,-3.16,43.04
+Anfernee Simons,Ariel Hukporti,455,39.769,-3.274,43.04
+Jabari Walker,Labaron Philon Jr.,455,39.412,-3.631,43.04
+Joel Embiid,Tacko Fall,455,39.361,-3.682,43.04
+Labaron Philon Jr.,Ariel Hukporti,455,39.304,-3.739,43.04
+LeBron James,Tacko Fall,455,39.19,-3.853,43.04
+Labaron Philon Jr.,Caleb Love,455,38.876,-4.167,43.04
+Anfernee Simons,Caleb Love,455,38.797,-4.246,43.04
+VJ Edgecombe,Rayan Rupert,455,38.611,-4.432,43.04
+Adem Bona,Tacko Fall,455,38.529,-4.514,43.04
+Dean Wade,Tacko Fall,455,38.328,-4.716,43.04
+Tyrese Maxey,Tacko Fall,455,38.31,-4.733,43.04
+Rayan Rupert,Dominick Barlow,455,38.267,-4.776,43.04
+Kentavious Caldwell-Pope,Rayan Rupert,455,37.944,-5.099,43.04
+Rayan Rupert,Ariel Hukporti,455,37.862,-5.181,43.04
+Anfernee Simons,Labaron Philon Jr.,455,37.825,-5.218,43.04
+Justin Edwards,Rayan Rupert,455,37.203,-5.84,43.04
+Jabari Walker,Rayan Rupert,455,37.019,-6.024,43.04
+Rayan Rupert,Caleb Love,455,36.791,-6.252,43.04
+Tacko Fall,Dominick Barlow,455,36.492,-6.551,43.04
+VJ Edgecombe,Tacko Fall,455,36.425,-6.618,43.04
+Labaron Philon Jr.,Rayan Rupert,455,36.139,-6.904,43.04
+Kentavious Caldwell-Pope,Tacko Fall,455,36.038,-7.005,43.04
+Justin Edwards,Tacko Fall,455,35.955,-7.089,43.04
+Anfernee Simons,Rayan Rupert,455,35.953,-7.09,43.04
+Tacko Fall,Ariel Hukporti,455,35.826,-7.217,43.04
+Jabari Walker,Tacko Fall,455,35.631,-7.412,43.04
+Tacko Fall,Caleb Love,455,34.326,-8.717,43.04
+Rayan Rupert,Tacko Fall,455,33.4,-9.643,43.04
+Anfernee Simons,Tacko Fall,455,33.358,-9.685,43.04
+Labaron Philon Jr.,Tacko Fall,455,33.302,-9.741,43.04

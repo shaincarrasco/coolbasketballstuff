@@ -1215,7 +1215,7 @@
   "model": {
     "steps": 250,
     "final_loss": 1.7927674055099487,
-    "train_seconds": 3.3658406734466553,
+    "train_seconds": 3.1787872314453125,
     "n_shots": 3,
     "views_per_shot": 24
   },

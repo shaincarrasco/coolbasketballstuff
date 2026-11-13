@@ -1,12 +1,12 @@
 {
-  "today_et": "2026-11-12",
+  "today_et": "2026-11-13",
   "n_cached_events": 5397,
   "n_games": 5144,
   "n_regular": 4893,
-  "n_final": 3863,
-  "n_scheduled_7d": 56,
-  "n_scheduled_total": 1030,
-  "last_final": "2026-11-11",
+  "n_final": 3867,
+  "n_scheduled_7d": 61,
+  "n_scheduled_total": 1026,
+  "last_final": "2026-11-12",
   "seasons": {
     "2023-24": 1231,
     "2024-25": 1231,
@@ -14,8 +14,8 @@
     "2026-27": 1200
   },
   "source": "espn",
-  "updated_at": "2026-11-12T19:01:02+00:00",
-  "requests": 20,
+  "updated_at": "2026-11-13T18:36:35+00:00",
+  "requests": 14,
   "cache": "/home/runner/work/coolbasketballstuff/coolbasketballstuff/03-game-predictor/data/cache/espn_games.csv",
   "start": "2023-10-24",
   "end": "2027-04-30",
