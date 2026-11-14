@@ -1,121 +1,137 @@
 player_a,player_b,n_lineups,mean_fit,synergy,team_mean_fit
-LaMelo Ball,Rudy Gobert,364,60.951,9.163,51.79
-LaMelo Ball,Joan Beringer,364,59.813,8.026,51.79
-Jonathan Kuminga,LaMelo Ball,364,59.298,7.51,51.79
-Rudy Gobert,Trey Lyles,364,59.287,7.5,51.79
-LaMelo Ball,Trey Lyles,364,59.208,7.421,51.79
-LaMelo Ball,Rocco Zikarsky,364,58.678,6.891,51.79
-Jonathan Kuminga,Rudy Gobert,364,58.558,6.771,51.79
-Rudy Gobert,Donte DiVincenzo,364,58.394,6.606,51.79
-LaMelo Ball,Anthony Edwards,364,58.113,6.325,51.79
-Rudy Gobert,Rocco Zikarsky,364,57.959,6.171,51.79
-Rudy Gobert,Bones Hyland,364,57.54,5.752,51.79
-LaMelo Ball,Jaylen Clark,364,57.304,5.516,51.79
-Rudy Gobert,Jaylen Clark,364,57.301,5.514,51.79
-Jonathan Kuminga,Trey Lyles,364,56.956,5.169,51.79
-Ayo Dosunmu,Rudy Gobert,364,56.698,4.91,51.79
-Rudy Gobert,Joan Beringer,364,56.649,4.862,51.79
-LaMelo Ball,Donte DiVincenzo,364,56.571,4.784,51.79
-Rudy Gobert,Anthony Edwards,364,56.294,4.506,51.79
-LaMelo Ball,Bones Hyland,364,56.133,4.346,51.79
-Ayo Dosunmu,LaMelo Ball,364,56.12,4.333,51.79
-Trey Lyles,Bones Hyland,364,56.067,4.279,51.79
-Trey Lyles,Rocco Zikarsky,364,55.914,4.127,51.79
-Trey Lyles,Joan Beringer,364,55.78,3.993,51.79
-Jonathan Kuminga,Anthony Edwards,364,55.549,3.762,51.79
-Jonathan Kuminga,Joan Beringer,364,55.437,3.65,51.79
-Ayo Dosunmu,Trey Lyles,364,55.218,3.431,51.79
-Joan Beringer,Bones Hyland,364,55.201,3.414,51.79
-Jonathan Kuminga,Rocco Zikarsky,364,55.2,3.413,51.79
-Trey Lyles,Anthony Edwards,364,55.145,3.357,51.79
-Jonathan Kuminga,Bones Hyland,364,55.08,3.293,51.79
-Rudy Gobert,Zyon Pullin,364,54.936,3.149,51.79
-Jonathan Kuminga,Jaylen Clark,364,54.924,3.137,51.79
-Trey Lyles,Jaylen Clark,364,54.914,3.127,51.79
-Joan Beringer,Anthony Edwards,364,54.797,3.01,51.79
-Joan Beringer,Jaylen Clark,364,54.692,2.904,51.79
-Trey Lyles,Donte DiVincenzo,364,54.677,2.889,51.79
-Joan Beringer,Rocco Zikarsky,364,54.658,2.871,51.79
-Joan Beringer,Donte DiVincenzo,364,54.64,2.852,51.79
-Jaden McDaniels,LaMelo Ball,364,54.578,2.79,51.79
-Jonathan Kuminga,Donte DiVincenzo,364,54.534,2.747,51.79
-LaMelo Ball,Zyon Pullin,364,54.505,2.718,51.79
-Ayo Dosunmu,Jonathan Kuminga,364,54.503,2.716,51.79
-LaMelo Ball,Terrence Shannon Jr.,364,54.495,2.708,51.79
-Rudy Gobert,Terrence Shannon Jr.,364,54.431,2.644,51.79
-Anthony Edwards,Rocco Zikarsky,364,54.401,2.613,51.79
-Jaden McDaniels,Rudy Gobert,364,54.372,2.584,51.79
-Jaylen Clark,Rocco Zikarsky,364,54.221,2.433,51.79
-Bones Hyland,Rocco Zikarsky,364,54.011,2.224,51.79
-Ayo Dosunmu,Joan Beringer,364,53.824,2.036,51.79
-Rocco Zikarsky,Donte DiVincenzo,364,53.712,1.924,51.79
-Jaylen Clark,Bones Hyland,364,53.617,1.83,51.79
-Ayo Dosunmu,Jaylen Clark,364,53.415,1.628,51.79
-Ayo Dosunmu,Rocco Zikarsky,364,53.29,1.502,51.79
-Bones Hyland,Anthony Edwards,364,53.25,1.462,51.79
-Anthony Edwards,Donte DiVincenzo,364,53.14,1.352,51.79
-Jaylen Clark,Anthony Edwards,364,53.125,1.337,51.79
-Trey Lyles,Zyon Pullin,364,53.073,1.286,51.79
-Ayo Dosunmu,Anthony Edwards,364,52.863,1.076,51.79
-Jaylen Clark,Donte DiVincenzo,364,52.549,0.762,51.79
-Jonathan Kuminga,Zyon Pullin,364,52.24,0.453,51.79
-Trey Lyles,Terrence Shannon Jr.,364,52.205,0.417,51.79
-Ayo Dosunmu,Donte DiVincenzo,364,52.112,0.325,51.79
-Ayo Dosunmu,Bones Hyland,364,52.071,0.284,51.79
-Jaden McDaniels,Trey Lyles,364,52.054,0.266,51.79
-Bones Hyland,Donte DiVincenzo,364,51.778,-0.009,51.79
-Jonathan Kuminga,Terrence Shannon Jr.,364,51.575,-0.213,51.79
-Joan Beringer,Zyon Pullin,364,51.518,-0.27,51.79
-Anthony Edwards,Zyon Pullin,364,51.38,-0.408,51.79
-Jaylen Clark,Zyon Pullin,364,51.252,-0.535,51.79
-Jaden McDaniels,Jonathan Kuminga,364,51.251,-0.536,51.79
-LaMelo Ball,Cody Williams,364,50.978,-0.81,51.79
-Jaden McDaniels,Rocco Zikarsky,364,50.929,-0.859,51.79
-Terrence Shannon Jr.,Rocco Zikarsky,364,50.878,-0.91,51.79
-Zyon Pullin,Rocco Zikarsky,364,50.855,-0.932,51.79
-Rudy Gobert,Cody Williams,364,50.801,-0.986,51.79
-Joan Beringer,Terrence Shannon Jr.,364,50.722,-1.066,51.79
-Jaden McDaniels,Joan Beringer,364,50.681,-1.106,51.79
-Bones Hyland,Zyon Pullin,364,50.554,-1.233,51.79
-LaMelo Ball,Isaiah Evans,364,50.415,-1.372,51.79
-Zyon Pullin,Donte DiVincenzo,364,50.107,-1.68,51.79
-Terrence Shannon Jr.,Anthony Edwards,364,50.014,-1.774,51.79
-Rudy Gobert,Isaiah Evans,364,49.992,-1.796,51.79
-Ayo Dosunmu,Zyon Pullin,364,49.92,-1.867,51.79
-Jaden McDaniels,Anthony Edwards,364,49.882,-1.905,51.79
-Jaden McDaniels,Jaylen Clark,364,49.857,-1.931,51.79
-Jaden McDaniels,Bones Hyland,364,49.665,-2.122,51.79
-Terrence Shannon Jr.,Jaylen Clark,364,49.594,-2.194,51.79
-Terrence Shannon Jr.,Bones Hyland,364,49.413,-2.374,51.79
-Ayo Dosunmu,Terrence Shannon Jr.,364,49.231,-2.556,51.79
-Jaden McDaniels,Donte DiVincenzo,364,49.201,-2.586,51.79
-Jaden McDaniels,Ayo Dosunmu,364,48.926,-2.862,51.79
-Terrence Shannon Jr.,Donte DiVincenzo,364,48.896,-2.892,51.79
-Trey Lyles,Cody Williams,364,48.525,-3.262,51.79
-Cody Williams,Rocco Zikarsky,364,47.741,-4.046,51.79
-Jonathan Kuminga,Cody Williams,364,47.651,-4.137,51.79
-Jaden McDaniels,Zyon Pullin,364,47.61,-4.177,51.79
-Terrence Shannon Jr.,Zyon Pullin,364,47.596,-4.192,51.79
-Trey Lyles,Isaiah Evans,364,46.74,-5.048,51.79
-Joan Beringer,Cody Williams,364,46.646,-5.142,51.79
-Jonathan Kuminga,Isaiah Evans,364,46.419,-5.369,51.79
-Jaden McDaniels,Terrence Shannon Jr.,364,46.271,-5.517,51.79
-Isaiah Evans,Rocco Zikarsky,364,46.172,-5.615,51.79
-Joan Beringer,Isaiah Evans,364,46.079,-5.708,51.79
-Anthony Edwards,Isaiah Evans,364,45.807,-5.98,51.79
-Bones Hyland,Cody Williams,364,45.788,-5.999,51.79
-Anthony Edwards,Cody Williams,364,45.61,-6.177,51.79
-Jaylen Clark,Cody Williams,364,45.533,-6.255,51.79
-Ayo Dosunmu,Cody Williams,364,45.292,-6.496,51.79
-Cody Williams,Donte DiVincenzo,364,45.039,-6.748,51.79
-Jaylen Clark,Isaiah Evans,364,44.936,-6.851,51.79
-Bones Hyland,Isaiah Evans,364,44.694,-7.094,51.79
-Ayo Dosunmu,Isaiah Evans,364,44.395,-7.392,51.79
-Isaiah Evans,Donte DiVincenzo,364,44.048,-7.739,51.79
-Cody Williams,Zyon Pullin,364,43.715,-8.072,51.79
-Isaiah Evans,Zyon Pullin,364,43.252,-8.535,51.79
-Jaden McDaniels,Cody Williams,364,42.42,-9.367,51.79
-Terrence Shannon Jr.,Cody Williams,364,42.179,-9.609,51.79
-Jaden McDaniels,Isaiah Evans,364,41.803,-9.984,51.79
-Terrence Shannon Jr.,Isaiah Evans,364,41.6,-10.187,51.79
-Cody Williams,Isaiah Evans,364,39.415,-12.372,51.79
+LaMelo Ball,Rudy Gobert,455,60.076,9.599,50.48
+LaMelo Ball,Joan Beringer,455,58.779,8.303,50.48
+Rudy Gobert,Trey Lyles,455,58.515,8.039,50.48
+Jonathan Kuminga,LaMelo Ball,455,58.186,7.71,50.48
+LaMelo Ball,Trey Lyles,455,58.009,7.533,50.48
+Rudy Gobert,Donte DiVincenzo,455,57.615,7.139,50.48
+Jonathan Kuminga,Rudy Gobert,455,57.545,7.069,50.48
+LaMelo Ball,Rocco Zikarsky,455,57.523,7.047,50.48
+LaMelo Ball,Anthony Edwards,455,57.154,6.678,50.48
+Rudy Gobert,Rocco Zikarsky,455,56.854,6.378,50.48
+Rudy Gobert,Bones Hyland,455,56.734,6.258,50.48
+Rudy Gobert,Jaylen Clark,455,56.293,5.817,50.48
+Ayo Dosunmu,Rudy Gobert,455,56.268,5.792,50.48
+Rudy Gobert,Joan Beringer,455,56.097,5.621,50.48
+LaMelo Ball,Jaylen Clark,455,56.057,5.581,50.48
+Jonathan Kuminga,Trey Lyles,455,55.891,5.415,50.48
+Trey Lyles,Joan Beringer,455,55.757,5.281,50.48
+LaMelo Ball,Donte DiVincenzo,455,55.459,4.983,50.48
+Ayo Dosunmu,LaMelo Ball,455,55.355,4.879,50.48
+LaMelo Ball,Bones Hyland,455,55.338,4.862,50.48
+Trey Lyles,Bones Hyland,455,55.227,4.751,50.48
+Rudy Gobert,Anthony Edwards,455,55.175,4.699,50.48
+Joan Beringer,Bones Hyland,455,54.962,4.486,50.48
+Jonathan Kuminga,Joan Beringer,455,54.894,4.417,50.48
+Trey Lyles,Rocco Zikarsky,455,54.817,4.34,50.48
+Jonathan Kuminga,Anthony Edwards,455,54.438,3.962,50.48
+Ayo Dosunmu,Trey Lyles,455,54.362,3.886,50.48
+Jonathan Kuminga,Bones Hyland,455,54.272,3.796,50.48
+Trey Lyles,Donte DiVincenzo,455,54.211,3.735,50.48
+Trey Lyles,Anthony Edwards,455,54.206,3.73,50.48
+Joan Beringer,Donte DiVincenzo,455,54.114,3.638,50.48
+Rudy Gobert,Zyon Pullin,455,54.109,3.633,50.48
+Joan Beringer,Jaylen Clark,455,54.087,3.61,50.48
+Jonathan Kuminga,Jaylen Clark,455,53.941,3.465,50.48
+Joan Beringer,Rocco Zikarsky,455,53.934,3.458,50.48
+Trey Lyles,Jaylen Clark,455,53.911,3.435,50.48
+Joan Beringer,Anthony Edwards,455,53.825,3.349,50.48
+Jonathan Kuminga,Donte DiVincenzo,455,53.818,3.341,50.48
+Jonathan Kuminga,Rocco Zikarsky,455,53.731,3.255,50.48
+Ayo Dosunmu,Jonathan Kuminga,455,53.634,3.158,50.48
+Ayo Dosunmu,Joan Beringer,455,53.587,3.111,50.48
+Jaden McDaniels,LaMelo Ball,455,53.577,3.101,50.48
+Jaden McDaniels,Rudy Gobert,455,53.464,2.988,50.48
+LaMelo Ball,Terrence Shannon Jr.,455,53.074,2.598,50.48
+LaMelo Ball,Zyon Pullin,455,53.038,2.562,50.48
+Rudy Gobert,Terrence Shannon Jr.,455,53.022,2.546,50.48
+LaMelo Ball,Johni Broome,455,52.999,2.523,50.48
+Bones Hyland,Rocco Zikarsky,455,52.938,2.462,50.48
+Anthony Edwards,Rocco Zikarsky,455,52.885,2.409,50.48
+Jaylen Clark,Rocco Zikarsky,455,52.803,2.327,50.48
+Rocco Zikarsky,Donte DiVincenzo,455,52.674,2.198,50.48
+Bones Hyland,Anthony Edwards,455,52.529,2.052,50.48
+Jaylen Clark,Bones Hyland,455,52.411,1.935,50.48
+Ayo Dosunmu,Jaylen Clark,455,52.217,1.741,50.48
+Rudy Gobert,Johni Broome,455,52.192,1.716,50.48
+Ayo Dosunmu,Rocco Zikarsky,455,52.137,1.661,50.48
+Ayo Dosunmu,Anthony Edwards,455,52.08,1.604,50.48
+Trey Lyles,Zyon Pullin,455,51.967,1.491,50.48
+Anthony Edwards,Donte DiVincenzo,455,51.886,1.41,50.48
+Jaylen Clark,Anthony Edwards,455,51.832,1.356,50.48
+Jaylen Clark,Donte DiVincenzo,455,51.673,1.197,50.48
+Jaden McDaniels,Trey Lyles,455,51.277,0.8,50.48
+Ayo Dosunmu,Bones Hyland,455,51.261,0.785,50.48
+Ayo Dosunmu,Donte DiVincenzo,455,51.046,0.569,50.48
+Joan Beringer,Zyon Pullin,455,50.931,0.454,50.48
+Trey Lyles,Terrence Shannon Jr.,455,50.907,0.431,50.48
+Jonathan Kuminga,Zyon Pullin,455,50.889,0.413,50.48
+Bones Hyland,Donte DiVincenzo,455,50.837,0.361,50.48
+LaMelo Ball,Isaiah Evans,455,50.792,0.316,50.48
+LaMelo Ball,Cody Williams,455,50.601,0.125,50.48
+Trey Lyles,Johni Broome,455,50.402,-0.074,50.48
+Jaden McDaniels,Joan Beringer,455,50.251,-0.225,50.48
+Jaden McDaniels,Jonathan Kuminga,455,50.167,-0.309,50.48
+Jaylen Clark,Zyon Pullin,455,50.123,-0.353,50.48
+Jonathan Kuminga,Terrence Shannon Jr.,455,50.115,-0.361,50.48
+Anthony Edwards,Zyon Pullin,455,50.008,-0.468,50.48
+Joan Beringer,Terrence Shannon Jr.,455,49.997,-0.479,50.48
+Zyon Pullin,Rocco Zikarsky,455,49.793,-0.683,50.48
+Jaden McDaniels,Rocco Zikarsky,455,49.773,-0.703,50.48
+Joan Beringer,Johni Broome,455,49.633,-0.843,50.48
+Rudy Gobert,Isaiah Evans,455,49.556,-0.92,50.48
+Jonathan Kuminga,Johni Broome,455,49.514,-0.962,50.48
+Rudy Gobert,Cody Williams,455,49.32,-1.156,50.48
+Bones Hyland,Zyon Pullin,455,49.314,-1.163,50.48
+Terrence Shannon Jr.,Rocco Zikarsky,455,49.251,-1.225,50.48
+Zyon Pullin,Donte DiVincenzo,455,49.202,-1.274,50.48
+Terrence Shannon Jr.,Anthony Edwards,455,48.702,-1.774,50.48
+Jaden McDaniels,Anthony Edwards,455,48.609,-1.867,50.48
+Jaden McDaniels,Bones Hyland,455,48.579,-1.897,50.48
+Ayo Dosunmu,Zyon Pullin,455,48.533,-1.943,50.48
+Jaden McDaniels,Jaylen Clark,455,48.432,-2.044,50.48
+Jaden McDaniels,Donte DiVincenzo,455,48.407,-2.069,50.48
+Anthony Edwards,Johni Broome,455,48.132,-2.344,50.48
+Bones Hyland,Johni Broome,455,48.13,-2.346,50.48
+Rocco Zikarsky,Johni Broome,455,48.044,-2.432,50.48
+Terrence Shannon Jr.,Bones Hyland,455,48.025,-2.452,50.48
+Jaylen Clark,Johni Broome,455,47.996,-2.48,50.48
+Terrence Shannon Jr.,Jaylen Clark,455,47.915,-2.561,50.48
+Jaden McDaniels,Ayo Dosunmu,455,47.891,-2.585,50.48
+Ayo Dosunmu,Terrence Shannon Jr.,455,47.782,-2.694,50.48
+Trey Lyles,Cody Williams,455,47.672,-2.804,50.48
+Ayo Dosunmu,Johni Broome,455,47.514,-2.962,50.48
+Terrence Shannon Jr.,Donte DiVincenzo,455,47.514,-2.962,50.48
+Donte DiVincenzo,Johni Broome,455,47.337,-3.139,50.48
+Trey Lyles,Isaiah Evans,455,47.064,-3.412,50.48
+Jonathan Kuminga,Cody Williams,455,46.54,-3.936,50.48
+Cody Williams,Rocco Zikarsky,455,46.508,-3.968,50.48
+Jonathan Kuminga,Isaiah Evans,455,46.497,-3.979,50.48
+Jaden McDaniels,Zyon Pullin,455,46.457,-4.019,50.48
+Joan Beringer,Isaiah Evans,455,46.237,-4.239,50.48
+Terrence Shannon Jr.,Zyon Pullin,455,46.04,-4.437,50.48
+Joan Beringer,Cody Williams,455,45.962,-4.514,50.48
+Anthony Edwards,Isaiah Evans,455,45.828,-4.648,50.48
+Isaiah Evans,Rocco Zikarsky,455,45.542,-4.934,50.48
+Zyon Pullin,Johni Broome,455,45.298,-5.178,50.48
+Bones Hyland,Isaiah Evans,455,45.059,-5.417,50.48
+Bones Hyland,Cody Williams,455,44.985,-5.491,50.48
+Jaylen Clark,Isaiah Evans,455,44.775,-5.701,50.48
+Ayo Dosunmu,Cody Williams,455,44.703,-5.774,50.48
+Anthony Edwards,Cody Williams,455,44.69,-5.786,50.48
+Jaden McDaniels,Johni Broome,455,44.542,-5.934,50.48
+Jaden McDaniels,Terrence Shannon Jr.,455,44.5,-5.976,50.48
+Ayo Dosunmu,Isaiah Evans,455,44.488,-5.988,50.48
+Cody Williams,Donte DiVincenzo,455,44.472,-6.005,50.48
+Isaiah Evans,Donte DiVincenzo,455,44.404,-6.072,50.48
+Jaylen Clark,Cody Williams,455,44.357,-6.119,50.48
+Terrence Shannon Jr.,Johni Broome,455,43.993,-6.484,50.48
+Isaiah Evans,Zyon Pullin,455,43.811,-6.665,50.48
+Cody Williams,Zyon Pullin,455,43.15,-7.326,50.48
+Jaden McDaniels,Isaiah Evans,455,41.59,-8.886,50.48
+Jaden McDaniels,Cody Williams,455,41.546,-8.93,50.48
+Terrence Shannon Jr.,Isaiah Evans,455,41.271,-9.205,50.48
+Cody Williams,Johni Broome,455,41.038,-9.438,50.48
+Terrence Shannon Jr.,Cody Williams,455,40.774,-9.702,50.48
+Isaiah Evans,Johni Broome,455,39.604,-10.872,50.48
+Cody Williams,Isaiah Evans,455,38.692,-11.784,50.48

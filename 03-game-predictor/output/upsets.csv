@@ -6,6 +6,7 @@ d,winner,loser,score,home_won,p_winner,elo_gap,missed
 2026-10-28,MIA,ATL,117-129,False,0.19,188,margin 12 | H2H favoured winner 75%
 2026-10-29,MEM,POR,103-124,False,0.19,258,margin 21 | no pre-game signal: noise
 2026-10-30,WSH,CHA,95-79,True,0.198,327,margin 16 | no pre-game signal: noise
+2026-11-13,CHI,ATL,125-117,True,0.238,262,margin 8 | H2H favoured winner 75%
 2026-10-30,DAL,HOU,116-111,True,0.25,217,margin 5 | no pre-game signal: noise
 2026-10-30,GS,LAL,112-95,True,0.269,182,margin 17 | no pre-game signal: noise
 2026-11-07,PHX,HOU,102-99,True,0.269,182,margin 3 | no pre-game signal: noise
@@ -17,4 +18,6 @@ d,winner,loser,score,home_won,p_winner,elo_gap,missed
 2026-10-27,NY,DET,111-97,True,0.33,193,margin 14 | no pre-game signal: noise
 2026-10-31,NO,ATL,121-99,True,0.33,202,margin 22 | no pre-game signal: noise
 2026-11-04,BKN,CHA,114-104,True,0.33,231,margin 10 | winner streak edge +3
+2026-11-13,IND,NY,106-104,True,0.33,272,margin 2 | no pre-game signal: noise
+2026-11-13,LAC,OKC,113-112,True,0.33,217,margin 1 | no pre-game signal: noise
 2026-11-09,CHA,CLE,124-112,True,0.336,128,margin 12 | no pre-game signal: noise
