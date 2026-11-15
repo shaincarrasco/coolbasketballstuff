@@ -1,137 +1,137 @@
 player_a,player_b,n_lineups,mean_fit,synergy,team_mean_fit
-Julius Randle,Day'Ron Sharpe,455,35.199,4.183,31.02
-Day'Ron Sharpe,Moritz Wagner,455,34.53,3.514,31.02
-Day'Ron Sharpe,Mikel Brown Jr.,455,34.475,3.459,31.02
-Julius Randle,Moritz Wagner,455,34.372,3.356,31.02
-Moritz Wagner,Mikel Brown Jr.,455,34.099,3.083,31.02
-Julius Randle,Mikel Brown Jr.,455,34.098,3.083,31.02
-Day'Ron Sharpe,Keon Ellis,455,33.942,2.926,31.02
-Day'Ron Sharpe,Grant Nelson,455,33.872,2.857,31.02
-Julius Randle,Michael Porter Jr.,455,33.777,2.761,31.02
-Day'Ron Sharpe,Josh Minott,455,33.64,2.625,31.02
-Julius Randle,Josh Minott,455,33.566,2.55,31.02
-Michael Porter Jr.,Day'Ron Sharpe,455,33.551,2.536,31.02
-Julius Randle,Grant Nelson,455,33.484,2.469,31.02
-Day'Ron Sharpe,Chaney Johnson,455,33.424,2.409,31.02
-Julius Randle,Chaney Johnson,455,33.395,2.379,31.02
-Day'Ron Sharpe,Egor Demin,455,33.247,2.232,31.02
-Julius Randle,Egor Demin,455,33.184,2.169,31.02
-Julius Randle,Danny Wolf,455,33.031,2.015,31.02
-Michael Porter Jr.,Mikel Brown Jr.,455,33.007,1.991,31.02
-Mikel Brown Jr.,Josh Minott,455,32.959,1.944,31.02
-Chaney Johnson,Mikel Brown Jr.,455,32.946,1.931,31.02
-Day'Ron Sharpe,Terance Mann,455,32.941,1.926,31.02
-Chaney Johnson,Moritz Wagner,455,32.905,1.89,31.02
-Moritz Wagner,Grant Nelson,455,32.842,1.827,31.02
-Michael Porter Jr.,Moritz Wagner,455,32.838,1.823,31.02
-Mikel Brown Jr.,Grant Nelson,455,32.783,1.767,31.02
-Day'Ron Sharpe,Danny Wolf,455,32.746,1.73,31.02
-Moritz Wagner,Egor Demin,455,32.733,1.717,31.02
-Keon Ellis,Moritz Wagner,455,32.523,1.508,31.02
-Mikel Brown Jr.,Danny Wolf,455,32.512,1.497,31.02
-Moritz Wagner,Ben Saraf,455,32.479,1.464,31.02
-Mikel Brown Jr.,Egor Demin,455,32.463,1.448,31.02
-Moritz Wagner,Josh Minott,455,32.427,1.411,31.02
-Julius Randle,Keon Ellis,455,32.393,1.377,31.02
-Julius Randle,Ben Saraf,455,32.266,1.251,31.02
-Day'Ron Sharpe,Nolan Traore,455,32.242,1.226,31.02
-Moritz Wagner,Danny Wolf,455,32.234,1.219,31.02
-Keon Ellis,Mikel Brown Jr.,455,32.232,1.216,31.02
-Julius Randle,Nolan Traore,455,32.12,1.104,31.02
-Mikel Brown Jr.,Terance Mann,455,32.11,1.094,31.02
-Mikel Brown Jr.,Ben Saraf,455,32.083,1.067,31.02
-Moritz Wagner,Terance Mann,455,32.065,1.049,31.02
-Nolan Traore,Moritz Wagner,455,32.042,1.027,31.02
-Day'Ron Sharpe,Ben Saraf,455,32.027,1.012,31.02
-Josh Minott,Grant Nelson,455,32.007,0.992,31.02
-Chaney Johnson,Grant Nelson,455,32.007,0.991,31.02
-Julius Randle,Terance Mann,455,31.988,0.972,31.02
-Michael Porter Jr.,Grant Nelson,455,31.946,0.931,31.02
-Keon Ellis,Grant Nelson,455,31.916,0.9,31.02
-Julius Randle,Noah Clowney,455,31.765,0.75,31.02
-Chaney Johnson,Josh Minott,455,31.707,0.692,31.02
-Day'Ron Sharpe,Noah Clowney,455,31.602,0.586,31.02
-Chaney Johnson,Egor Demin,455,31.582,0.566,31.02
-Day'Ron Sharpe,Drake Powell,455,31.545,0.529,31.02
-Keon Ellis,Chaney Johnson,455,31.53,0.515,31.02
-Chaney Johnson,Terance Mann,455,31.522,0.507,31.02
-Nolan Traore,Mikel Brown Jr.,455,31.503,0.487,31.02
-Danny Wolf,Grant Nelson,455,31.457,0.442,31.02
-Noah Clowney,Mikel Brown Jr.,455,31.446,0.43,31.02
-Keon Ellis,Danny Wolf,455,31.434,0.419,31.02
-Chaney Johnson,Danny Wolf,455,31.417,0.401,31.02
-Michael Porter Jr.,Josh Minott,455,31.363,0.347,31.02
-Michael Porter Jr.,Egor Demin,455,31.353,0.337,31.02
-Terance Mann,Ben Saraf,455,31.299,0.284,31.02
-Chaney Johnson,Ben Saraf,455,31.278,0.262,31.02
-Egor Demin,Grant Nelson,455,31.278,0.262,31.02
-Egor Demin,Josh Minott,455,31.203,0.188,31.02
-Michael Porter Jr.,Chaney Johnson,455,31.154,0.138,31.02
-Danny Wolf,Josh Minott,455,31.153,0.138,31.02
-Michael Porter Jr.,Danny Wolf,455,31.134,0.119,31.02
-Terance Mann,Grant Nelson,455,31.076,0.06,31.02
-Michael Porter Jr.,Ben Saraf,455,31.068,0.053,31.02
-Keon Ellis,Josh Minott,455,30.987,-0.028,31.02
-Josh Minott,Ben Saraf,455,30.943,-0.073,31.02
-Noah Clowney,Moritz Wagner,455,30.938,-0.078,31.02
-Ben Saraf,Grant Nelson,455,30.868,-0.148,31.02
-Egor Demin,Terance Mann,455,30.831,-0.185,31.02
-Danny Wolf,Terance Mann,455,30.818,-0.197,31.02
-Michael Porter Jr.,Nolan Traore,455,30.817,-0.198,31.02
-Terance Mann,Josh Minott,455,30.797,-0.219,31.02
-Moritz Wagner,Drake Powell,455,30.763,-0.253,31.02
-Nolan Traore,Chaney Johnson,455,30.759,-0.256,31.02
-Julius Randle,Drake Powell,455,30.758,-0.257,31.02
-Keon Ellis,Egor Demin,455,30.727,-0.289,31.02
-Michael Porter Jr.,Keon Ellis,455,30.702,-0.313,31.02
-Danny Wolf,Egor Demin,455,30.678,-0.338,31.02
-Egor Demin,Ben Saraf,455,30.642,-0.373,31.02
-Keon Ellis,Terance Mann,455,30.64,-0.375,31.02
-Mikel Brown Jr.,Drake Powell,455,30.608,-0.408,31.02
-Danny Wolf,Ben Saraf,455,30.599,-0.417,31.02
-Keon Ellis,Ben Saraf,455,30.557,-0.458,31.02
-Noah Clowney,Ben Saraf,455,30.454,-0.562,31.02
-Nolan Traore,Grant Nelson,455,30.414,-0.602,31.02
-Michael Porter Jr.,Terance Mann,455,30.261,-0.754,31.02
-Nolan Traore,Danny Wolf,455,30.257,-0.759,31.02
-Nolan Traore,Josh Minott,455,30.202,-0.814,31.02
-Drake Powell,Ben Saraf,455,30.139,-0.877,31.02
-Nolan Traore,Ben Saraf,455,30.137,-0.878,31.02
-Keon Ellis,Nolan Traore,455,30.066,-0.95,31.02
-Nolan Traore,Egor Demin,455,30.04,-0.975,31.02
-Noah Clowney,Chaney Johnson,455,30.022,-0.994,31.02
-Noah Clowney,Grant Nelson,455,29.912,-1.104,31.02
-Nolan Traore,Terance Mann,455,29.893,-1.122,31.02
-Chaney Johnson,Drake Powell,455,29.775,-1.241,31.02
-Noah Clowney,Egor Demin,455,29.537,-1.478,31.02
-Michael Porter Jr.,Noah Clowney,455,29.536,-1.48,31.02
-Noah Clowney,Terance Mann,455,29.512,-1.503,31.02
-Danny Wolf,Drake Powell,455,29.457,-1.558,31.02
-Noah Clowney,Josh Minott,455,29.43,-1.586,31.02
-Noah Clowney,Danny Wolf,455,29.425,-1.59,31.02
-Drake Powell,Grant Nelson,455,29.413,-1.602,31.02
-Nolan Traore,Noah Clowney,455,29.339,-1.676,31.02
-Terance Mann,Drake Powell,455,29.272,-1.744,31.02
-Keon Ellis,Noah Clowney,455,29.234,-1.781,31.02
-Josh Minott,Drake Powell,455,29.045,-1.971,31.02
-Egor Demin,Drake Powell,455,28.85,-2.165,31.02
-Keon Ellis,Drake Powell,455,28.721,-2.294,31.02
-Joshua Jefferson,Ben Saraf,455,28.605,-2.41,31.02
-Julius Randle,Joshua Jefferson,455,28.552,-2.464,31.02
-Michael Porter Jr.,Drake Powell,455,28.507,-2.509,31.02
-Noah Clowney,Drake Powell,455,28.481,-2.535,31.02
-Nolan Traore,Drake Powell,455,28.372,-2.643,31.02
-Day'Ron Sharpe,Joshua Jefferson,455,28.156,-2.86,31.02
-Mikel Brown Jr.,Joshua Jefferson,455,28.15,-2.865,31.02
-Chaney Johnson,Joshua Jefferson,455,28.003,-3.012,31.02
-Terance Mann,Joshua Jefferson,455,27.78,-3.235,31.02
-Moritz Wagner,Joshua Jefferson,455,27.77,-3.246,31.02
-Joshua Jefferson,Grant Nelson,455,27.356,-3.66,31.02
-Egor Demin,Joshua Jefferson,455,27.238,-3.777,31.02
-Drake Powell,Joshua Jefferson,455,27.131,-3.885,31.02
-Noah Clowney,Joshua Jefferson,455,27.095,-3.92,31.02
-Michael Porter Jr.,Joshua Jefferson,455,27.026,-3.989,31.02
-Josh Minott,Joshua Jefferson,455,27.002,-4.013,31.02
-Danny Wolf,Joshua Jefferson,455,26.924,-4.091,31.02
-Nolan Traore,Joshua Jefferson,455,26.882,-4.133,31.02
-Keon Ellis,Joshua Jefferson,455,26.768,-4.247,31.02
+Julius Randle,Day'Ron Sharpe,455,35.641,5.102,30.54
+Day'Ron Sharpe,Mikel Brown Jr.,455,34.453,3.914,30.54
+Julius Randle,Michael Porter Jr.,455,34.323,3.785,30.54
+Day'Ron Sharpe,Moritz Wagner,455,34.197,3.659,30.54
+Julius Randle,Moritz Wagner,455,34.165,3.627,30.54
+Julius Randle,Mikel Brown Jr.,455,33.982,3.444,30.54
+Day'Ron Sharpe,Grant Nelson,455,33.951,3.412,30.54
+Day'Ron Sharpe,Keon Ellis,455,33.876,3.338,30.54
+Michael Porter Jr.,Day'Ron Sharpe,455,33.851,3.313,30.54
+Day'Ron Sharpe,Chaney Johnson,455,33.729,3.19,30.54
+Day'Ron Sharpe,Josh Minott,455,33.653,3.114,30.54
+Julius Randle,Grant Nelson,455,33.4,2.861,30.54
+Julius Randle,Josh Minott,455,33.268,2.729,30.54
+Julius Randle,Chaney Johnson,455,33.196,2.657,30.54
+Day'Ron Sharpe,Egor Demin,455,33.059,2.52,30.54
+Day'Ron Sharpe,Terance Mann,455,33.052,2.513,30.54
+Day'Ron Sharpe,Danny Wolf,455,33.036,2.498,30.54
+Julius Randle,Danny Wolf,455,33.019,2.48,30.54
+Day'Ron Sharpe,Nolan Traore,455,32.848,2.309,30.54
+Moritz Wagner,Mikel Brown Jr.,455,32.786,2.247,30.54
+Julius Randle,Egor Demin,455,32.684,2.145,30.54
+Chaney Johnson,Mikel Brown Jr.,455,32.495,1.956,30.54
+Julius Randle,Nolan Traore,455,32.488,1.95,30.54
+Day'Ron Sharpe,Ben Saraf,455,32.353,1.815,30.54
+Julius Randle,Keon Ellis,455,32.337,1.798,30.54
+Julius Randle,Ben Saraf,455,32.313,1.774,30.54
+Moritz Wagner,Chaney Johnson,455,32.274,1.736,30.54
+Moritz Wagner,Grant Nelson,455,32.266,1.728,30.54
+Michael Porter Jr.,Moritz Wagner,455,32.086,1.547,30.54
+Michael Porter Jr.,Mikel Brown Jr.,455,32.071,1.532,30.54
+Chaney Johnson,Grant Nelson,455,32.025,1.486,30.54
+Julius Randle,Terance Mann,455,32.001,1.463,30.54
+Mikel Brown Jr.,Grant Nelson,455,31.857,1.318,30.54
+Moritz Wagner,Egor Demin,455,31.764,1.226,30.54
+Moritz Wagner,Ben Saraf,455,31.679,1.141,30.54
+Michael Porter Jr.,Grant Nelson,455,31.589,1.051,30.54
+Keon Ellis,Moritz Wagner,455,31.572,1.034,30.54
+Mikel Brown Jr.,Josh Minott,455,31.548,1.009,30.54
+Moritz Wagner,Danny Wolf,455,31.539,1.0,30.54
+Keon Ellis,Mikel Brown Jr.,455,31.532,0.993,30.54
+Moritz Wagner,Josh Minott,455,31.519,0.98,30.54
+Day'Ron Sharpe,Noah Clowney,455,31.508,0.969,30.54
+Mikel Brown Jr.,Danny Wolf,455,31.505,0.966,30.54
+Josh Minott,Grant Nelson,455,31.482,0.943,30.54
+Day'Ron Sharpe,Drake Powell,455,31.48,0.941,30.54
+Julius Randle,Noah Clowney,455,31.45,0.911,30.54
+Chaney Johnson,Josh Minott,455,31.401,0.862,30.54
+Moritz Wagner,Terance Mann,455,31.394,0.856,30.54
+Keon Ellis,Grant Nelson,455,31.367,0.828,30.54
+Chaney Johnson,Danny Wolf,455,31.349,0.81,30.54
+Keon Ellis,Chaney Johnson,455,31.343,0.805,30.54
+Mikel Brown Jr.,Ben Saraf,455,31.317,0.778,30.54
+Chaney Johnson,Terance Mann,455,31.263,0.724,30.54
+Danny Wolf,Grant Nelson,455,31.249,0.711,30.54
+Mikel Brown Jr.,Terance Mann,455,31.241,0.702,30.54
+Nolan Traore,Moritz Wagner,455,31.14,0.601,30.54
+Nolan Traore,Mikel Brown Jr.,455,31.116,0.577,30.54
+Chaney Johnson,Ben Saraf,455,31.064,0.525,30.54
+Mikel Brown Jr.,Egor Demin,455,31.031,0.493,30.54
+Chaney Johnson,Egor Demin,455,31.025,0.486,30.54
+Terance Mann,Grant Nelson,455,30.963,0.425,30.54
+Keon Ellis,Danny Wolf,455,30.912,0.374,30.54
+Egor Demin,Grant Nelson,455,30.828,0.289,30.54
+Michael Porter Jr.,Danny Wolf,455,30.8,0.261,30.54
+Danny Wolf,Josh Minott,455,30.788,0.249,30.54
+Michael Porter Jr.,Ben Saraf,455,30.771,0.233,30.54
+Michael Porter Jr.,Josh Minott,455,30.76,0.222,30.54
+Michael Porter Jr.,Chaney Johnson,455,30.702,0.163,30.54
+Nolan Traore,Chaney Johnson,455,30.616,0.077,30.54
+Michael Porter Jr.,Nolan Traore,455,30.58,0.041,30.54
+Terance Mann,Ben Saraf,455,30.559,0.02,30.54
+Ben Saraf,Grant Nelson,455,30.514,-0.025,30.54
+Michael Porter Jr.,Egor Demin,455,30.472,-0.067,30.54
+Danny Wolf,Terance Mann,455,30.468,-0.07,30.54
+Keon Ellis,Josh Minott,455,30.339,-0.199,30.54
+Egor Demin,Josh Minott,455,30.305,-0.234,30.54
+Danny Wolf,Ben Saraf,455,30.274,-0.264,30.54
+Keon Ellis,Terance Mann,455,30.249,-0.29,30.54
+Egor Demin,Terance Mann,455,30.231,-0.308,30.54
+Julius Randle,Drake Powell,455,30.229,-0.31,30.54
+Michael Porter Jr.,Keon Ellis,455,30.215,-0.323,30.54
+Josh Minott,Ben Saraf,455,30.206,-0.332,30.54
+Nolan Traore,Grant Nelson,455,30.2,-0.339,30.54
+Danny Wolf,Egor Demin,455,30.181,-0.358,30.54
+Keon Ellis,Egor Demin,455,30.17,-0.369,30.54
+Noah Clowney,Mikel Brown Jr.,455,30.016,-0.522,30.54
+Keon Ellis,Ben Saraf,455,30.009,-0.529,30.54
+Terance Mann,Josh Minott,455,29.965,-0.574,30.54
+Noah Clowney,Ben Saraf,455,29.965,-0.574,30.54
+Nolan Traore,Danny Wolf,455,29.927,-0.612,30.54
+Noah Clowney,Moritz Wagner,455,29.878,-0.66,30.54
+Mikel Brown Jr.,Drake Powell,455,29.876,-0.662,30.54
+Egor Demin,Ben Saraf,455,29.837,-0.702,30.54
+Nolan Traore,Keon Ellis,455,29.739,-0.799,30.54
+Michael Porter Jr.,Terance Mann,455,29.716,-0.822,30.54
+Nolan Traore,Ben Saraf,455,29.695,-0.844,30.54
+Nolan Traore,Josh Minott,455,29.693,-0.846,30.54
+Moritz Wagner,Drake Powell,455,29.647,-0.891,30.54
+Drake Powell,Ben Saraf,455,29.614,-0.924,30.54
+Noah Clowney,Grant Nelson,455,29.509,-1.03,30.54
+Nolan Traore,Terance Mann,455,29.464,-1.074,30.54
+Noah Clowney,Chaney Johnson,455,29.46,-1.079,30.54
+Nolan Traore,Egor Demin,455,29.427,-1.112,30.54
+Chaney Johnson,Drake Powell,455,29.241,-1.298,30.54
+Drake Powell,Grant Nelson,455,29.125,-1.414,30.54
+Noah Clowney,Danny Wolf,455,28.875,-1.664,30.54
+Danny Wolf,Drake Powell,455,28.851,-1.687,30.54
+Michael Porter Jr.,Noah Clowney,455,28.826,-1.713,30.54
+Noah Clowney,Terance Mann,455,28.673,-1.866,30.54
+Noah Clowney,Nolan Traore,455,28.623,-1.915,30.54
+Noah Clowney,Josh Minott,455,28.547,-1.992,30.54
+Noah Clowney,Egor Demin,455,28.488,-2.051,30.54
+Julius Randle,Joshua Jefferson,455,28.469,-2.069,30.54
+Terance Mann,Drake Powell,455,28.46,-2.078,30.54
+Day'Ron Sharpe,Joshua Jefferson,455,28.424,-2.114,30.54
+Noah Clowney,Keon Ellis,455,28.386,-2.153,30.54
+Keon Ellis,Drake Powell,455,28.299,-2.24,30.54
+Joshua Jefferson,Ben Saraf,455,28.187,-2.352,30.54
+Josh Minott,Drake Powell,455,28.12,-2.419,30.54
+Nolan Traore,Drake Powell,455,28.075,-2.464,30.54
+Egor Demin,Drake Powell,455,27.888,-2.651,30.54
+Michael Porter Jr.,Drake Powell,455,27.863,-2.676,30.54
+Chaney Johnson,Joshua Jefferson,455,27.722,-2.816,30.54
+Noah Clowney,Drake Powell,455,27.682,-2.857,30.54
+Mikel Brown Jr.,Joshua Jefferson,455,27.184,-3.355,30.54
+Terance Mann,Joshua Jefferson,455,26.899,-3.64,30.54
+Moritz Wagner,Joshua Jefferson,455,26.873,-3.665,30.54
+Joshua Jefferson,Grant Nelson,455,26.84,-3.698,30.54
+Danny Wolf,Joshua Jefferson,455,26.455,-4.083,30.54
+Nolan Traore,Joshua Jefferson,455,26.448,-4.091,30.54
+Michael Porter Jr.,Joshua Jefferson,455,26.41,-4.129,30.54
+Josh Minott,Joshua Jefferson,455,26.407,-4.132,30.54
+Drake Powell,Joshua Jefferson,455,26.327,-4.212,30.54
+Noah Clowney,Joshua Jefferson,455,26.31,-4.229,30.54
+Egor Demin,Joshua Jefferson,455,26.266,-4.272,30.54
+Keon Ellis,Joshua Jefferson,455,26.04,-4.499,30.54

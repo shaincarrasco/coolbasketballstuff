@@ -1,186 +1,154 @@
 {
   "season": "2026-27",
-  "date": "2026-11-14",
+  "date": "2026-11-15",
   "n_sims": 2000,
   "seed": 42,
   "sample_data": false,
   "live": true,
-  "schedule_note": "Published schedule as of 2026-11-14: 1017 unplayed games. 30 games are not on the schedule yet (NBA Cup knockout rounds and the extra regular-season games for non-finalists are fixed in December); expected wins are pro-rated to 82 games below.",
-  "games_played": 183,
-  "games_remaining": 1017,
+  "schedule_note": "Published schedule as of 2026-11-15: 1012 unplayed games. 30 games are not on the schedule yet (NBA Cup knockout rounds and the extra regular-season games for non-finalists are fixed in December); expected wins are pro-rated to 82 games below.",
+  "games_played": 188,
+  "games_remaining": 1012,
   "playoff_spots": 6,
   "method": "Elo win probabilities with in-path Elo updates (K=20, +80 home), random tiebreaks",
   "season_complete": false,
   "playoff_brier": null,
-  "focus": "MIA",
+  "focus": "MIN",
   "focus_hist": [
     {
-      "wins": 20,
-      "n": 2
-    },
-    {
-      "wins": 21,
-      "n": 0
-    },
-    {
-      "wins": 22,
-      "n": 0
-    },
-    {
-      "wins": 23,
-      "n": 2
-    },
-    {
-      "wins": 24,
-      "n": 1
-    },
-    {
-      "wins": 25,
-      "n": 4
-    },
-    {
-      "wins": 26,
-      "n": 8
-    },
-    {
-      "wins": 27,
-      "n": 10
-    },
-    {
       "wins": 28,
-      "n": 11
+      "n": 1
     },
     {
       "wins": 29,
-      "n": 17
-    },
-    {
-      "wins": 30,
-      "n": 16
-    },
-    {
-      "wins": 31,
-      "n": 23
-    },
-    {
-      "wins": 32,
-      "n": 29
-    },
-    {
-      "wins": 33,
-      "n": 40
-    },
-    {
-      "wins": 34,
-      "n": 44
-    },
-    {
-      "wins": 35,
-      "n": 67
-    },
-    {
-      "wins": 36,
-      "n": 71
-    },
-    {
-      "wins": 37,
-      "n": 78
-    },
-    {
-      "wins": 38,
-      "n": 99
-    },
-    {
-      "wins": 39,
-      "n": 86
-    },
-    {
-      "wins": 40,
-      "n": 96
-    },
-    {
-      "wins": 41,
-      "n": 93
-    },
-    {
-      "wins": 42,
-      "n": 85
-    },
-    {
-      "wins": 43,
-      "n": 126
-    },
-    {
-      "wins": 44,
-      "n": 131
-    },
-    {
-      "wins": 45,
-      "n": 117
-    },
-    {
-      "wins": 46,
-      "n": 109
-    },
-    {
-      "wins": 47,
-      "n": 92
-    },
-    {
-      "wins": 48,
-      "n": 96
-    },
-    {
-      "wins": 49,
-      "n": 109
-    },
-    {
-      "wins": 50,
-      "n": 69
-    },
-    {
-      "wins": 51,
-      "n": 65
-    },
-    {
-      "wins": 52,
-      "n": 48
-    },
-    {
-      "wins": 53,
-      "n": 49
-    },
-    {
-      "wins": 54,
-      "n": 25
-    },
-    {
-      "wins": 55,
-      "n": 21
-    },
-    {
-      "wins": 56,
-      "n": 24
-    },
-    {
-      "wins": 57,
-      "n": 11
-    },
-    {
-      "wins": 58,
-      "n": 9
-    },
-    {
-      "wins": 59,
-      "n": 8
-    },
-    {
-      "wins": 60,
       "n": 1
     },
     {
-      "wins": 61,
+      "wins": 30,
+      "n": 0
+    },
+    {
+      "wins": 31,
       "n": 2
+    },
+    {
+      "wins": 32,
+      "n": 2
+    },
+    {
+      "wins": 33,
+      "n": 4
+    },
+    {
+      "wins": 34,
+      "n": 5
+    },
+    {
+      "wins": 35,
+      "n": 13
+    },
+    {
+      "wins": 36,
+      "n": 6
+    },
+    {
+      "wins": 37,
+      "n": 15
+    },
+    {
+      "wins": 38,
+      "n": 22
+    },
+    {
+      "wins": 39,
+      "n": 43
+    },
+    {
+      "wins": 40,
+      "n": 43
+    },
+    {
+      "wins": 41,
+      "n": 39
+    },
+    {
+      "wins": 42,
+      "n": 55
+    },
+    {
+      "wins": 43,
+      "n": 65
+    },
+    {
+      "wins": 44,
+      "n": 72
+    },
+    {
+      "wins": 45,
+      "n": 99
+    },
+    {
+      "wins": 46,
+      "n": 101
+    },
+    {
+      "wins": 47,
+      "n": 101
+    },
+    {
+      "wins": 48,
+      "n": 91
+    },
+    {
+      "wins": 49,
+      "n": 119
+    },
+    {
+      "wins": 50,
+      "n": 119
+    },
+    {
+      "wins": 51,
+      "n": 113
+    },
+    {
+      "wins": 52,
+      "n": 119
+    },
+    {
+      "wins": 53,
+      "n": 105
+    },
+    {
+      "wins": 54,
+      "n": 91
+    },
+    {
+      "wins": 55,
+      "n": 99
+    },
+    {
+      "wins": 56,
+      "n": 87
+    },
+    {
+      "wins": 57,
+      "n": 79
+    },
+    {
+      "wins": 58,
+      "n": 77
+    },
+    {
+      "wins": 59,
+      "n": 60
+    },
+    {
+      "wins": 60,
+      "n": 49
+    },
+    {
+      "wins": 61,
+      "n": 31
     },
     {
       "wins": 62,
@@ -188,11 +156,43 @@
     },
     {
       "wins": 63,
-      "n": 4
+      "n": 27
     },
     {
       "wins": 64,
+      "n": 15
+    },
+    {
+      "wins": 65,
+      "n": 10
+    },
+    {
+      "wins": 66,
+      "n": 8
+    },
+    {
+      "wins": 67,
+      "n": 3
+    },
+    {
+      "wins": 68,
+      "n": 5
+    },
+    {
+      "wins": 69,
+      "n": 0
+    },
+    {
+      "wins": 70,
       "n": 2
+    },
+    {
+      "wins": 71,
+      "n": 1
+    },
+    {
+      "wins": 72,
+      "n": 1
     }
   ],
   "teams": [
@@ -205,13 +205,13 @@
       "l": 2,
       "gp": 12,
       "sched_g": 80,
-      "exp_w": 64.8,
-      "sd_w": 5.3,
-      "w_lo": 55,
+      "exp_w": 65.0,
+      "sd_w": 5.1,
+      "w_lo": 56,
       "w_hi": 72,
-      "playoff": 0.9995,
-      "top_seed": 0.7045,
-      "seed_mean": 1.41,
+      "playoff": 1.0,
+      "top_seed": 0.791,
+      "seed_mean": 1.3,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -220,18 +220,18 @@
       "team": "DET",
       "name": "Detroit Pistons",
       "conf": "East",
-      "elo": 1683.8,
+      "elo": 1644.1,
       "w": 8,
-      "l": 3,
-      "gp": 11,
+      "l": 4,
+      "gp": 12,
       "sched_g": 80,
-      "exp_w": 59.2,
-      "sd_w": 6.0,
-      "w_lo": 49,
-      "w_hi": 68,
-      "playoff": 0.99,
-      "top_seed": 0.2225,
-      "seed_mean": 2.34,
+      "exp_w": 55.9,
+      "sd_w": 6.2,
+      "w_lo": 45,
+      "w_hi": 65,
+      "playoff": 0.966,
+      "top_seed": 0.1085,
+      "seed_mean": 2.93,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -245,13 +245,53 @@
       "l": 3,
       "gp": 13,
       "sched_g": 80,
-      "exp_w": 53.4,
-      "sd_w": 6.6,
+      "exp_w": 53.5,
+      "sd_w": 6.4,
       "w_lo": 42,
       "w_hi": 63,
-      "playoff": 0.929,
-      "top_seed": 0.057,
-      "seed_mean": 3.56,
+      "playoff": 0.924,
+      "top_seed": 0.0695,
+      "seed_mean": 3.53,
+      "final_w": null,
+      "final_l": null,
+      "made_playoffs": null
+    },
+    {
+      "team": "CLE",
+      "name": "Cleveland Cavaliers",
+      "conf": "East",
+      "elo": 1556.1,
+      "w": 7,
+      "l": 7,
+      "gp": 14,
+      "sched_g": 80,
+      "exp_w": 46.7,
+      "sd_w": 6.7,
+      "w_lo": 34,
+      "w_hi": 57,
+      "playoff": 0.6885,
+      "top_seed": 0.007,
+      "seed_mean": 5.51,
+      "final_w": null,
+      "final_l": null,
+      "made_playoffs": null
+    },
+    {
+      "team": "MIA",
+      "name": "Miami Heat",
+      "conf": "East",
+      "elo": 1554.6,
+      "w": 7,
+      "l": 6,
+      "gp": 13,
+      "sched_g": 80,
+      "exp_w": 46.7,
+      "sd_w": 6.6,
+      "w_lo": 35,
+      "w_hi": 57,
+      "playoff": 0.686,
+      "top_seed": 0.011,
+      "seed_mean": 5.53,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -266,32 +306,12 @@
       "gp": 12,
       "sched_g": 80,
       "exp_w": 46.7,
-      "sd_w": 6.9,
-      "w_lo": 34,
-      "w_hi": 58,
-      "playoff": 0.7085,
-      "top_seed": 0.009,
-      "seed_mean": 5.39,
-      "final_w": null,
-      "final_l": null,
-      "made_playoffs": null
-    },
-    {
-      "team": "CLE",
-      "name": "Cleveland Cavaliers",
-      "conf": "East",
-      "elo": 1544.1,
-      "w": 6,
-      "l": 7,
-      "gp": 13,
-      "sched_g": 80,
-      "exp_w": 45.4,
-      "sd_w": 6.8,
-      "w_lo": 33,
-      "w_hi": 56,
-      "playoff": 0.669,
-      "top_seed": 0.003,
-      "seed_mean": 5.74,
+      "sd_w": 6.7,
+      "w_lo": 35,
+      "w_hi": 57,
+      "playoff": 0.6835,
+      "top_seed": 0.0085,
+      "seed_mean": 5.51,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -306,32 +326,12 @@
       "gp": 13,
       "sched_g": 80,
       "exp_w": 43.1,
-      "sd_w": 6.6,
+      "sd_w": 6.7,
       "w_lo": 31,
-      "w_hi": 54,
-      "playoff": 0.5125,
-      "top_seed": 0.001,
-      "seed_mean": 6.51,
-      "final_w": null,
-      "final_l": null,
-      "made_playoffs": null
-    },
-    {
-      "team": "MIA",
-      "name": "Miami Heat",
-      "conf": "East",
-      "elo": 1515.0,
-      "w": 6,
-      "l": 6,
-      "gp": 12,
-      "sched_g": 80,
-      "exp_w": 43.1,
-      "sd_w": 7.0,
-      "w_lo": 31,
-      "w_hi": 54,
-      "playoff": 0.5295,
-      "top_seed": 0.0025,
-      "seed_mean": 6.48,
+      "w_hi": 53,
+      "playoff": 0.4735,
+      "top_seed": 0.0045,
+      "seed_mean": 6.69,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -346,12 +346,12 @@
       "gp": 12,
       "sched_g": 80,
       "exp_w": 38.7,
-      "sd_w": 7.1,
+      "sd_w": 6.9,
       "w_lo": 26,
-      "w_hi": 50,
-      "playoff": 0.284,
+      "w_hi": 49,
+      "playoff": 0.2435,
       "top_seed": 0.0,
-      "seed_mean": 7.93,
+      "seed_mean": 8.13,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -365,13 +365,13 @@
       "l": 7,
       "gp": 12,
       "sched_g": 80,
-      "exp_w": 37.5,
-      "sd_w": 6.8,
-      "w_lo": 26,
-      "w_hi": 48,
-      "playoff": 0.2185,
-      "top_seed": 0.0005,
-      "seed_mean": 8.36,
+      "exp_w": 37.2,
+      "sd_w": 7.1,
+      "w_lo": 25,
+      "w_hi": 49,
+      "playoff": 0.188,
+      "top_seed": 0.0,
+      "seed_mean": 8.58,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -385,13 +385,33 @@
       "l": 8,
       "gp": 12,
       "sched_g": 80,
-      "exp_w": 35.4,
-      "sd_w": 6.9,
-      "w_lo": 23,
-      "w_hi": 47,
-      "playoff": 0.1365,
+      "exp_w": 35.2,
+      "sd_w": 6.7,
+      "w_lo": 24,
+      "w_hi": 46,
+      "playoff": 0.1125,
       "top_seed": 0.0,
-      "seed_mean": 9.01,
+      "seed_mean": 9.25,
+      "final_w": null,
+      "final_l": null,
+      "made_playoffs": null
+    },
+    {
+      "team": "CHI",
+      "name": "Chicago Bulls",
+      "conf": "East",
+      "elo": 1379.9,
+      "w": 3,
+      "l": 9,
+      "gp": 12,
+      "sched_g": 80,
+      "exp_w": 29.3,
+      "sd_w": 6.7,
+      "w_lo": 18,
+      "w_hi": 40,
+      "playoff": 0.0225,
+      "top_seed": 0.0,
+      "seed_mean": 11.1,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -405,13 +425,13 @@
       "l": 8,
       "gp": 13,
       "sched_g": 80,
-      "exp_w": 26.4,
-      "sd_w": 6.0,
-      "w_lo": 17,
+      "exp_w": 25.9,
+      "sd_w": 5.9,
+      "w_lo": 16,
       "w_hi": 35,
-      "playoff": 0.008,
+      "playoff": 0.006,
       "top_seed": 0.0,
-      "seed_mean": 11.85,
+      "seed_mean": 12.12,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -420,38 +440,18 @@
       "team": "BKN",
       "name": "Brooklyn Nets",
       "conf": "East",
-      "elo": 1340.5,
+      "elo": 1326.9,
       "w": 3,
-      "l": 8,
-      "gp": 11,
-      "sched_g": 80,
-      "exp_w": 25.7,
-      "sd_w": 6.3,
-      "w_lo": 15,
-      "w_hi": 36,
-      "playoff": 0.0095,
-      "top_seed": 0.0,
-      "seed_mean": 12.02,
-      "final_w": null,
-      "final_l": null,
-      "made_playoffs": null
-    },
-    {
-      "team": "CHI",
-      "name": "Chicago Bulls",
-      "conf": "East",
-      "elo": 1323.6,
-      "w": 2,
       "l": 9,
-      "gp": 11,
+      "gp": 12,
       "sched_g": 80,
-      "exp_w": 24.0,
-      "sd_w": 6.4,
-      "w_lo": 14,
+      "exp_w": 24.4,
+      "sd_w": 6.1,
+      "w_lo": 15,
       "w_hi": 34,
-      "playoff": 0.002,
+      "playoff": 0.0035,
       "top_seed": 0.0,
-      "seed_mean": 12.53,
+      "seed_mean": 12.56,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -465,13 +465,13 @@
       "l": 9,
       "gp": 13,
       "sched_g": 80,
-      "exp_w": 23.3,
-      "sd_w": 5.9,
+      "exp_w": 23.0,
+      "sd_w": 5.7,
       "w_lo": 14,
       "w_hi": 32,
-      "playoff": 0.0035,
+      "playoff": 0.0025,
       "top_seed": 0.0,
-      "seed_mean": 12.76,
+      "seed_mean": 12.96,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -485,13 +485,13 @@
       "l": 12,
       "gp": 13,
       "sched_g": 80,
-      "exp_w": 17.7,
-      "sd_w": 5.5,
+      "exp_w": 17.1,
+      "sd_w": 5.3,
       "w_lo": 9,
-      "w_hi": 27,
+      "w_hi": 26,
       "playoff": 0.0,
       "top_seed": 0.0,
-      "seed_mean": 14.12,
+      "seed_mean": 14.3,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -505,13 +505,13 @@
       "l": 2,
       "gp": 13,
       "sched_g": 80,
-      "exp_w": 64.9,
-      "sd_w": 5.2,
+      "exp_w": 64.7,
+      "sd_w": 5.1,
       "w_lo": 55,
       "w_hi": 72,
-      "playoff": 0.9905,
-      "top_seed": 0.5475,
-      "seed_mean": 1.92,
+      "playoff": 0.9925,
+      "top_seed": 0.5455,
+      "seed_mean": 1.87,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -526,12 +526,12 @@
       "gp": 13,
       "sched_g": 80,
       "exp_w": 59.8,
-      "sd_w": 5.8,
+      "sd_w": 5.9,
       "w_lo": 49,
       "w_hi": 68,
-      "playoff": 0.9275,
-      "top_seed": 0.1745,
-      "seed_mean": 3.33,
+      "playoff": 0.929,
+      "top_seed": 0.183,
+      "seed_mean": 3.24,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -545,33 +545,13 @@
       "l": 3,
       "gp": 13,
       "sched_g": 80,
-      "exp_w": 57.9,
-      "sd_w": 6.0,
+      "exp_w": 58.0,
+      "sd_w": 6.1,
       "w_lo": 48,
       "w_hi": 67,
-      "playoff": 0.8865,
-      "top_seed": 0.103,
-      "seed_mean": 3.91,
-      "final_w": null,
-      "final_l": null,
-      "made_playoffs": null
-    },
-    {
-      "team": "MIN",
-      "name": "Minnesota Timberwolves",
-      "conf": "West",
-      "elo": 1662.1,
-      "w": 9,
-      "l": 3,
-      "gp": 12,
-      "sched_g": 80,
-      "exp_w": 55.5,
-      "sd_w": 6.3,
-      "w_lo": 45,
-      "w_hi": 65,
-      "playoff": 0.7755,
-      "top_seed": 0.0625,
-      "seed_mean": 4.72,
+      "playoff": 0.8875,
+      "top_seed": 0.1275,
+      "seed_mean": 3.79,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -585,13 +565,13 @@
       "l": 3,
       "gp": 12,
       "sched_g": 80,
-      "exp_w": 54.9,
+      "exp_w": 55.2,
       "sd_w": 6.4,
       "w_lo": 44,
-      "w_hi": 64,
-      "playoff": 0.7375,
-      "top_seed": 0.0465,
-      "seed_mean": 4.98,
+      "w_hi": 65,
+      "playoff": 0.781,
+      "top_seed": 0.059,
+      "seed_mean": 4.67,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -605,13 +585,13 @@
       "l": 5,
       "gp": 13,
       "sched_g": 80,
-      "exp_w": 54.1,
+      "exp_w": 53.9,
       "sd_w": 6.3,
       "w_lo": 43,
-      "w_hi": 64,
-      "playoff": 0.7205,
-      "top_seed": 0.0355,
-      "seed_mean": 5.19,
+      "w_hi": 63,
+      "playoff": 0.728,
+      "top_seed": 0.0385,
+      "seed_mean": 5.13,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -620,18 +600,38 @@
       "team": "DEN",
       "name": "Denver Nuggets",
       "conf": "West",
-      "elo": 1625.3,
-      "w": 6,
+      "elo": 1633.0,
+      "w": 7,
       "l": 4,
-      "gp": 10,
+      "gp": 11,
       "sched_g": 80,
-      "exp_w": 51.8,
-      "sd_w": 6.7,
-      "w_lo": 41,
+      "exp_w": 52.8,
+      "sd_w": 6.3,
+      "w_lo": 42,
       "w_hi": 62,
-      "playoff": 0.557,
-      "top_seed": 0.027,
-      "seed_mean": 5.96,
+      "playoff": 0.678,
+      "top_seed": 0.0255,
+      "seed_mean": 5.45,
+      "final_w": null,
+      "final_l": null,
+      "made_playoffs": null
+    },
+    {
+      "team": "MIN",
+      "name": "Minnesota Timberwolves",
+      "conf": "West",
+      "elo": 1605.8,
+      "w": 9,
+      "l": 4,
+      "gp": 13,
+      "sched_g": 80,
+      "exp_w": 50.5,
+      "sd_w": 6.7,
+      "w_lo": 38,
+      "w_hi": 61,
+      "playoff": 0.5195,
+      "top_seed": 0.0155,
+      "seed_mean": 6.24,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -645,13 +645,13 @@
       "l": 5,
       "gp": 13,
       "sched_g": 80,
-      "exp_w": 46.2,
-      "sd_w": 6.6,
-      "w_lo": 35,
+      "exp_w": 46.3,
+      "sd_w": 6.7,
+      "w_lo": 34,
       "w_hi": 57,
-      "playoff": 0.24,
-      "top_seed": 0.0025,
-      "seed_mean": 7.78,
+      "playoff": 0.2795,
+      "top_seed": 0.0045,
+      "seed_mean": 7.64,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -666,32 +666,12 @@
       "gp": 11,
       "sched_g": 80,
       "exp_w": 42.2,
-      "sd_w": 6.8,
+      "sd_w": 7.1,
       "w_lo": 30,
       "w_hi": 53,
-      "playoff": 0.103,
+      "playoff": 0.125,
       "top_seed": 0.001,
-      "seed_mean": 8.94,
-      "final_w": null,
-      "final_l": null,
-      "made_playoffs": null
-    },
-    {
-      "team": "DAL",
-      "name": "Dallas Mavericks",
-      "conf": "West",
-      "elo": 1451.7,
-      "w": 7,
-      "l": 5,
-      "gp": 12,
-      "sched_g": 80,
-      "exp_w": 37.2,
-      "sd_w": 6.8,
-      "w_lo": 26,
-      "w_hi": 48,
-      "playoff": 0.032,
-      "top_seed": 0.0,
-      "seed_mean": 10.13,
+      "seed_mean": 8.82,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -700,18 +680,38 @@
       "team": "MEM",
       "name": "Memphis Grizzlies",
       "conf": "West",
-      "elo": 1455.4,
-      "w": 8,
+      "elo": 1468.9,
+      "w": 9,
       "l": 4,
-      "gp": 12,
+      "gp": 13,
       "sched_g": 80,
-      "exp_w": 36.7,
+      "exp_w": 38.4,
       "sd_w": 6.8,
-      "w_lo": 25,
-      "w_hi": 48,
-      "playoff": 0.0225,
+      "w_lo": 27,
+      "w_hi": 49,
+      "playoff": 0.049,
       "top_seed": 0.0,
-      "seed_mean": 10.3,
+      "seed_mean": 9.85,
+      "final_w": null,
+      "final_l": null,
+      "made_playoffs": null
+    },
+    {
+      "team": "DAL",
+      "name": "Dallas Mavericks",
+      "conf": "West",
+      "elo": 1439.7,
+      "w": 7,
+      "l": 6,
+      "gp": 13,
+      "sched_g": 80,
+      "exp_w": 35.6,
+      "sd_w": 6.7,
+      "w_lo": 24,
+      "w_hi": 47,
+      "playoff": 0.021,
+      "top_seed": 0.0,
+      "seed_mean": 10.53,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -725,13 +725,13 @@
       "l": 8,
       "gp": 11,
       "sched_g": 80,
-      "exp_w": 32.9,
-      "sd_w": 6.9,
-      "w_lo": 21,
+      "exp_w": 33.1,
+      "sd_w": 6.8,
+      "w_lo": 22,
       "w_hi": 44,
-      "playoff": 0.0075,
+      "playoff": 0.01,
       "top_seed": 0.0,
-      "seed_mean": 11.11,
+      "seed_mean": 11.04,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -740,18 +740,18 @@
       "team": "NO",
       "name": "New Orleans Pelicans",
       "conf": "West",
-      "elo": 1299.0,
+      "elo": 1291.3,
       "w": 4,
-      "l": 9,
-      "gp": 13,
+      "l": 10,
+      "gp": 14,
       "sched_g": 80,
-      "exp_w": 21.2,
-      "sd_w": 5.3,
-      "w_lo": 13,
-      "w_hi": 30,
+      "exp_w": 20.4,
+      "sd_w": 5.4,
+      "w_lo": 12,
+      "w_hi": 29,
       "playoff": 0.0,
       "top_seed": 0.0,
-      "seed_mean": 13.26,
+      "seed_mean": 13.34,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -765,13 +765,13 @@
       "l": 11,
       "gp": 12,
       "sched_g": 80,
-      "exp_w": 17.8,
+      "exp_w": 18.1,
       "sd_w": 5.4,
       "w_lo": 10,
       "w_hi": 27,
       "playoff": 0.0,
       "top_seed": 0.0,
-      "seed_mean": 13.85,
+      "seed_mean": 13.78,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
@@ -786,12 +786,12 @@
       "gp": 13,
       "sched_g": 80,
       "exp_w": 12.8,
-      "sd_w": 4.4,
+      "sd_w": 4.5,
       "w_lo": 6,
       "w_hi": 20,
       "playoff": 0.0,
       "top_seed": 0.0,
-      "seed_mean": 14.6,
+      "seed_mean": 14.61,
       "final_w": null,
       "final_l": null,
       "made_playoffs": null
