@@ -4,6 +4,7 @@ d,winner,loser,score,home_won,p_winner,elo_gap,missed
 2026-11-02,SAC,DAL,100-115,False,0.136,218,margin 15 | H2H favoured winner 75%
 2026-11-14,CHI,MIN,106-117,False,0.136,338,margin 11 | no pre-game signal: noise
 2026-10-28,DAL,OKC,120-96,True,0.152,326,margin 24 | no pre-game signal: noise
+2026-11-16,ORL,BOS,105-115,False,0.17,274,margin 10 | favourite on B2B
 2026-10-28,MIA,ATL,117-129,False,0.19,188,margin 12 | H2H favoured winner 75%
 2026-10-29,MEM,POR,103-124,False,0.19,258,margin 21 | no pre-game signal: noise
 2026-10-30,WSH,CHA,95-79,True,0.198,327,margin 16 | no pre-game signal: noise
@@ -11,15 +12,18 @@ d,winner,loser,score,home_won,p_winner,elo_gap,missed
 2026-10-30,DAL,HOU,116-111,True,0.25,217,margin 5 | no pre-game signal: noise
 2026-10-30,GS,LAL,112-95,True,0.269,182,margin 17 | no pre-game signal: noise
 2026-11-07,PHX,HOU,102-99,True,0.269,182,margin 3 | no pre-game signal: noise
+2026-11-16,NO,GS,115-94,True,0.269,252,margin 21 | no pre-game signal: noise
 2026-11-14,MIA,DET,137-117,True,0.293,169,margin 20 | no pre-game signal: noise
 2026-10-23,DAL,IND,105-121,False,0.324,10,margin 16 | no pre-game signal: noise
 2026-10-30,ORL,TOR,114-121,False,0.324,52,margin 7 | no pre-game signal: noise
 2026-11-02,WSH,ORL,94-103,False,0.324,209,margin 9 | favourite on B2B
 2026-11-04,IND,MEM,103-107,False,0.324,145,margin 4 | no pre-game signal: noise
 2026-11-04,MIN,HOU,107-117,False,0.324,109,margin 10 | no pre-game signal: noise
+2026-11-16,PHX,DEN,105-117,False,0.324,132,margin 12 | no pre-game signal: noise
 2026-10-27,NY,DET,111-97,True,0.33,193,margin 14 | no pre-game signal: noise
 2026-10-31,NO,ATL,121-99,True,0.33,202,margin 22 | no pre-game signal: noise
 2026-11-04,BKN,CHA,114-104,True,0.33,231,margin 10 | winner streak edge +3
 2026-11-13,IND,NY,106-104,True,0.33,272,margin 2 | no pre-game signal: noise
 2026-11-13,LAC,OKC,113-112,True,0.33,217,margin 1 | no pre-game signal: noise
 2026-11-09,CHA,CLE,124-112,True,0.336,128,margin 12 | no pre-game signal: noise
+2026-11-16,MIA,HOU,128-110,True,0.336,130,margin 18 | favourite on B2B
