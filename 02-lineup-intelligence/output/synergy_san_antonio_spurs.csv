@@ -1,137 +1,137 @@
 player_a,player_b,n_lineups,mean_fit,synergy,team_mean_fit
-Victor Wembanyama,Tobias Harris,455,73.348,8.867,64.48
-Victor Wembanyama,Devin Vassell,455,72.983,8.502,64.48
-Victor Wembanyama,Julian Champagnie,455,72.918,8.437,64.48
-Dylan Harper,Victor Wembanyama,455,72.773,8.291,64.48
-Victor Wembanyama,Harrison Barnes,455,72.728,8.247,64.48
-Victor Wembanyama,Ja'Kobi Gillespie,455,72.623,8.142,64.48
-Victor Wembanyama,Keldon Johnson,455,71.924,7.443,64.48
-Victor Wembanyama,Maliq Brown,455,71.782,7.301,64.48
-Victor Wembanyama,Jordan McLaughlin,455,71.536,7.055,64.48
-Victor Wembanyama,Stephon Castle,455,71.337,6.856,64.48
-Victor Wembanyama,Carter Bryant,455,71.324,6.843,64.48
-Victor Wembanyama,Luke Kornet,455,70.921,6.439,64.48
-Victor Wembanyama,Jayden Quaintance,455,70.747,6.266,64.48
-Victor Wembanyama,De'Aaron Fox,455,70.606,6.125,64.48
-Dylan Harper,Julian Champagnie,455,69.977,5.495,64.48
-Dylan Harper,Devin Vassell,455,69.875,5.394,64.48
-Julian Champagnie,Tobias Harris,455,69.56,5.079,64.48
-Dylan Harper,Tobias Harris,455,69.491,5.01,64.48
-Victor Wembanyama,Tarris Reed Jr.,455,69.428,4.947,64.48
-Devin Vassell,Tobias Harris,455,69.302,4.821,64.48
-Julian Champagnie,Devin Vassell,455,69.101,4.62,64.48
-Dylan Harper,Harrison Barnes,455,68.581,4.1,64.48
-Dylan Harper,Jordan McLaughlin,455,68.242,3.761,64.48
-Julian Champagnie,Jordan McLaughlin,455,68.179,3.698,64.48
-Devin Vassell,Jordan McLaughlin,455,68.178,3.697,64.48
-Jordan McLaughlin,Tobias Harris,455,68.093,3.612,64.48
-Harrison Barnes,Tobias Harris,455,68.05,3.569,64.48
-Stephon Castle,Julian Champagnie,455,67.644,3.163,64.48
-Stephon Castle,Tobias Harris,455,67.616,3.135,64.48
-Ja'Kobi Gillespie,Tobias Harris,455,67.604,3.123,64.48
-Devin Vassell,Harrison Barnes,455,67.579,3.098,64.48
-Devin Vassell,Ja'Kobi Gillespie,455,67.576,3.095,64.48
-De'Aaron Fox,Julian Champagnie,455,67.574,3.093,64.48
-Stephon Castle,Devin Vassell,455,67.571,3.09,64.48
-Julian Champagnie,Ja'Kobi Gillespie,455,67.541,3.06,64.48
-De'Aaron Fox,Devin Vassell,455,67.522,3.041,64.48
-Dylan Harper,Ja'Kobi Gillespie,455,67.466,2.985,64.48
-De'Aaron Fox,Tobias Harris,455,67.373,2.892,64.48
-Victor Wembanyama,David Jones Garcia,455,67.139,2.658,64.48
-Julian Champagnie,Harrison Barnes,455,67.083,2.602,64.48
-Dylan Harper,Keldon Johnson,455,66.844,2.363,64.48
-Devin Vassell,Keldon Johnson,455,66.644,2.163,64.48
-Keldon Johnson,Tobias Harris,455,66.633,2.152,64.48
-Julian Champagnie,Luke Kornet,455,66.53,2.049,64.48
-Julian Champagnie,Keldon Johnson,455,66.402,1.921,64.48
-Dylan Harper,Stephon Castle,455,66.377,1.896,64.48
-Julian Champagnie,Maliq Brown,455,66.167,1.686,64.48
-Devin Vassell,Luke Kornet,455,66.163,1.682,64.48
-Dylan Harper,De'Aaron Fox,455,66.15,1.669,64.48
-Jordan McLaughlin,Ja'Kobi Gillespie,455,66.147,1.666,64.48
-Harrison Barnes,Jordan McLaughlin,455,66.074,1.593,64.48
-Maliq Brown,Tobias Harris,455,66.068,1.587,64.48
-De'Aaron Fox,Harrison Barnes,455,66.056,1.575,64.48
-Devin Vassell,Maliq Brown,455,65.953,1.472,64.48
-Dylan Harper,Maliq Brown,455,65.846,1.365,64.48
-Dylan Harper,Carter Bryant,455,65.809,1.328,64.48
-Stephon Castle,Harrison Barnes,455,65.776,1.295,64.48
-De'Aaron Fox,Jordan McLaughlin,455,65.559,1.078,64.48
-Harrison Barnes,Ja'Kobi Gillespie,455,65.514,1.033,64.48
-Stephon Castle,De'Aaron Fox,455,65.504,1.023,64.48
-Luke Kornet,Tobias Harris,455,65.429,0.948,64.48
-De'Aaron Fox,Ja'Kobi Gillespie,455,65.418,0.937,64.48
-Stephon Castle,Jordan McLaughlin,455,65.185,0.704,64.48
-Dylan Harper,Luke Kornet,455,65.135,0.653,64.48
-Stephon Castle,Ja'Kobi Gillespie,455,65.131,0.65,64.48
-Carter Bryant,Tobias Harris,455,65.081,0.6,64.48
-Dylan Harper,Jayden Quaintance,455,65.071,0.59,64.48
-Stephon Castle,Keldon Johnson,455,65.026,0.545,64.48
-Julian Champagnie,Jayden Quaintance,455,65.018,0.536,64.48
-Devin Vassell,Jayden Quaintance,455,64.841,0.36,64.48
-Keldon Johnson,Jordan McLaughlin,455,64.826,0.345,64.48
-Devin Vassell,Carter Bryant,455,64.756,0.275,64.48
-Julian Champagnie,Carter Bryant,455,64.725,0.244,64.48
-De'Aaron Fox,Keldon Johnson,455,64.718,0.236,64.48
-Tobias Harris,Jayden Quaintance,455,64.702,0.221,64.48
-Keldon Johnson,Harrison Barnes,455,64.685,0.204,64.48
-Luke Kornet,Harrison Barnes,455,64.539,0.058,64.48
-Harrison Barnes,Maliq Brown,455,64.264,-0.217,64.48
-Luke Kornet,Jordan McLaughlin,455,64.192,-0.289,64.48
-Keldon Johnson,Ja'Kobi Gillespie,455,64.189,-0.292,64.48
-Jordan McLaughlin,Maliq Brown,455,64.152,-0.329,64.48
-De'Aaron Fox,Maliq Brown,455,63.59,-0.891,64.48
-Stephon Castle,Maliq Brown,455,63.444,-1.037,64.48
-Ja'Kobi Gillespie,Maliq Brown,455,63.359,-1.122,64.48
-De'Aaron Fox,Carter Bryant,455,63.291,-1.19,64.48
-Stephon Castle,Carter Bryant,455,63.232,-1.249,64.48
-Harrison Barnes,Jayden Quaintance,455,63.006,-1.475,64.48
-De'Aaron Fox,Jayden Quaintance,455,62.96,-1.521,64.48
-Keldon Johnson,Maliq Brown,455,62.932,-1.549,64.48
-Carter Bryant,Jordan McLaughlin,455,62.902,-1.58,64.48
-Stephon Castle,Jayden Quaintance,455,62.739,-1.742,64.48
-Harrison Barnes,Carter Bryant,455,62.657,-1.824,64.48
-Luke Kornet,Ja'Kobi Gillespie,455,62.58,-1.901,64.48
-Dylan Harper,Tarris Reed Jr.,455,62.527,-1.955,64.48
-Carter Bryant,Ja'Kobi Gillespie,455,62.443,-2.038,64.48
-Jordan McLaughlin,Jayden Quaintance,455,62.22,-2.261,64.48
-De'Aaron Fox,Tarris Reed Jr.,455,62.18,-2.302,64.48
-Julian Champagnie,Tarris Reed Jr.,455,62.112,-2.369,64.48
-Devin Vassell,Tarris Reed Jr.,455,62.045,-2.436,64.48
-Tarris Reed Jr.,Tobias Harris,455,61.997,-2.484,64.48
-De'Aaron Fox,Luke Kornet,455,61.913,-2.568,64.48
-Ja'Kobi Gillespie,Jayden Quaintance,455,61.887,-2.594,64.48
-Luke Kornet,Maliq Brown,455,61.79,-2.691,64.48
-Stephon Castle,Luke Kornet,455,61.705,-2.776,64.48
-Keldon Johnson,Carter Bryant,455,61.642,-2.839,64.48
-Keldon Johnson,Jayden Quaintance,455,61.632,-2.849,64.48
-Keldon Johnson,Luke Kornet,455,61.431,-3.05,64.48
-Stephon Castle,Tarris Reed Jr.,455,61.321,-3.16,64.48
-Luke Kornet,Carter Bryant,455,61.254,-3.227,64.48
-Maliq Brown,Jayden Quaintance,455,61.071,-3.41,64.48
-Carter Bryant,Maliq Brown,455,61.006,-3.475,64.48
-Dylan Harper,David Jones Garcia,455,60.522,-3.96,64.48
-Luke Kornet,Jayden Quaintance,455,60.484,-3.997,64.48
-David Jones Garcia,Tobias Harris,455,59.819,-4.662,64.48
-Harrison Barnes,Tarris Reed Jr.,455,59.8,-4.681,64.48
-Devin Vassell,David Jones Garcia,455,59.745,-4.736,64.48
-Julian Champagnie,David Jones Garcia,455,59.426,-5.055,64.48
-Jordan McLaughlin,Tarris Reed Jr.,455,59.411,-5.07,64.48
-Carter Bryant,Jayden Quaintance,455,59.409,-5.072,64.48
-Tarris Reed Jr.,Ja'Kobi Gillespie,455,59.194,-5.287,64.48
-De'Aaron Fox,David Jones Garcia,455,58.605,-5.876,64.48
-Tarris Reed Jr.,Maliq Brown,455,58.25,-6.231,64.48
-Keldon Johnson,Tarris Reed Jr.,455,58.198,-6.284,64.48
-Stephon Castle,David Jones Garcia,455,58.125,-6.356,64.48
-David Jones Garcia,Ja'Kobi Gillespie,455,57.868,-6.613,64.48
-Jordan McLaughlin,David Jones Garcia,455,57.31,-7.171,64.48
-Harrison Barnes,David Jones Garcia,455,56.999,-7.482,64.48
-Luke Kornet,Tarris Reed Jr.,455,56.533,-7.948,64.48
-Tarris Reed Jr.,Jayden Quaintance,455,56.2,-8.281,64.48
-David Jones Garcia,Maliq Brown,455,56.2,-8.281,64.48
-Keldon Johnson,David Jones Garcia,455,55.86,-8.622,64.48
-Carter Bryant,Tarris Reed Jr.,455,55.796,-8.685,64.48
-Luke Kornet,David Jones Garcia,455,54.431,-10.05,64.48
-David Jones Garcia,Jayden Quaintance,455,54.365,-10.116,64.48
-Carter Bryant,David Jones Garcia,455,53.186,-11.295,64.48
-Tarris Reed Jr.,David Jones Garcia,455,50.633,-13.848,64.48
+Victor Wembanyama,Tobias Harris,455,72.771,9.225,63.55
+Victor Wembanyama,Ja'Kobi Gillespie,455,72.65,9.104,63.55
+Dylan Harper,Victor Wembanyama,455,72.513,8.967,63.55
+Victor Wembanyama,Julian Champagnie,455,72.362,8.816,63.55
+Victor Wembanyama,Harrison Barnes,455,72.325,8.779,63.55
+Victor Wembanyama,Devin Vassell,455,72.315,8.769,63.55
+Victor Wembanyama,Keldon Johnson,455,71.843,8.297,63.55
+Victor Wembanyama,Maliq Brown,455,71.596,8.05,63.55
+Victor Wembanyama,Stephon Castle,455,71.303,7.757,63.55
+Victor Wembanyama,Carter Bryant,455,71.059,7.513,63.55
+Victor Wembanyama,De'Aaron Fox,455,70.779,7.233,63.55
+Victor Wembanyama,Jordan McLaughlin,455,70.677,7.131,63.55
+Victor Wembanyama,Jayden Quaintance,455,70.253,6.706,63.55
+Victor Wembanyama,Luke Kornet,455,69.831,6.285,63.55
+Dylan Harper,Julian Champagnie,455,69.129,5.582,63.55
+Dylan Harper,Devin Vassell,455,68.938,5.392,63.55
+Victor Wembanyama,Tarris Reed Jr.,455,68.828,5.282,63.55
+Julian Champagnie,Tobias Harris,455,68.508,4.962,63.55
+Dylan Harper,Tobias Harris,455,68.448,4.902,63.55
+Devin Vassell,Tobias Harris,455,68.113,4.567,63.55
+Julian Champagnie,Devin Vassell,455,67.791,4.245,63.55
+Jordan McLaughlin,Tobias Harris,455,67.439,3.893,63.55
+Dylan Harper,Jordan McLaughlin,455,67.412,3.866,63.55
+Dylan Harper,Harrison Barnes,455,67.397,3.851,63.55
+De'Aaron Fox,Tobias Harris,455,67.249,3.703,63.55
+Devin Vassell,Jordan McLaughlin,455,67.237,3.69,63.55
+De'Aaron Fox,Devin Vassell,455,67.18,3.634,63.55
+De'Aaron Fox,Julian Champagnie,455,67.178,3.631,63.55
+Julian Champagnie,Jordan McLaughlin,455,67.159,3.613,63.55
+Stephon Castle,Julian Champagnie,455,66.988,3.442,63.55
+Stephon Castle,Tobias Harris,455,66.901,3.355,63.55
+Stephon Castle,Devin Vassell,455,66.837,3.291,63.55
+Harrison Barnes,Tobias Harris,455,66.824,3.278,63.55
+Dylan Harper,Ja'Kobi Gillespie,455,66.482,2.936,63.55
+Devin Vassell,Ja'Kobi Gillespie,455,66.353,2.807,63.55
+Julian Champagnie,Ja'Kobi Gillespie,455,66.313,2.767,63.55
+Ja'Kobi Gillespie,Tobias Harris,455,66.143,2.596,63.55
+Devin Vassell,Harrison Barnes,455,66.045,2.499,63.55
+Dylan Harper,Keldon Johnson,455,66.026,2.48,63.55
+Dylan Harper,De'Aaron Fox,455,66.024,2.478,63.55
+Victor Wembanyama,David Jones Garcia,455,65.827,2.28,63.55
+Julian Champagnie,Harrison Barnes,455,65.736,2.19,63.55
+Dylan Harper,Stephon Castle,455,65.631,2.085,63.55
+Julian Champagnie,Luke Kornet,455,65.601,2.055,63.55
+Devin Vassell,Keldon Johnson,455,65.568,2.022,63.55
+Keldon Johnson,Tobias Harris,455,65.547,2.0,63.55
+De'Aaron Fox,Harrison Barnes,455,65.491,1.945,63.55
+Julian Champagnie,Keldon Johnson,455,65.482,1.936,63.55
+Julian Champagnie,Maliq Brown,455,65.465,1.918,63.55
+De'Aaron Fox,Jordan McLaughlin,455,65.311,1.765,63.55
+De'Aaron Fox,Ja'Kobi Gillespie,455,65.281,1.735,63.55
+Stephon Castle,De'Aaron Fox,455,65.199,1.653,63.55
+Maliq Brown,Tobias Harris,455,65.145,1.599,63.55
+Devin Vassell,Maliq Brown,455,65.106,1.56,63.55
+Devin Vassell,Luke Kornet,455,65.105,1.558,63.55
+Stephon Castle,Harrison Barnes,455,65.021,1.475,63.55
+Dylan Harper,Carter Bryant,455,64.955,1.409,63.55
+Jordan McLaughlin,Ja'Kobi Gillespie,455,64.865,1.319,63.55
+Harrison Barnes,Jordan McLaughlin,455,64.832,1.286,63.55
+Dylan Harper,Maliq Brown,455,64.67,1.124,63.55
+Stephon Castle,Jordan McLaughlin,455,64.633,1.087,63.55
+De'Aaron Fox,Keldon Johnson,455,64.596,1.05,63.55
+Stephon Castle,Ja'Kobi Gillespie,455,64.596,1.049,63.55
+Stephon Castle,Keldon Johnson,455,64.425,0.879,63.55
+Luke Kornet,Tobias Harris,455,64.374,0.828,63.55
+Dylan Harper,Luke Kornet,455,64.37,0.824,63.55
+Keldon Johnson,Jordan McLaughlin,455,64.148,0.602,63.55
+Harrison Barnes,Ja'Kobi Gillespie,455,64.065,0.519,63.55
+Carter Bryant,Tobias Harris,455,63.924,0.377,63.55
+Dylan Harper,Jayden Quaintance,455,63.768,0.222,63.55
+Julian Champagnie,Jayden Quaintance,455,63.696,0.15,63.55
+Devin Vassell,Carter Bryant,455,63.636,0.09,63.55
+Julian Champagnie,Carter Bryant,455,63.483,-0.064,63.55
+Keldon Johnson,Harrison Barnes,455,63.479,-0.068,63.55
+De'Aaron Fox,Maliq Brown,455,63.421,-0.125,63.55
+Luke Kornet,Harrison Barnes,455,63.416,-0.13,63.55
+Luke Kornet,Jordan McLaughlin,455,63.388,-0.158,63.55
+Devin Vassell,Jayden Quaintance,455,63.369,-0.177,63.55
+Harrison Barnes,Maliq Brown,455,63.309,-0.238,63.55
+De'Aaron Fox,Carter Bryant,455,63.256,-0.29,63.55
+Keldon Johnson,Ja'Kobi Gillespie,455,63.206,-0.34,63.55
+Tobias Harris,Jayden Quaintance,455,63.183,-0.363,63.55
+Jordan McLaughlin,Maliq Brown,455,63.091,-0.455,63.55
+Stephon Castle,Maliq Brown,455,62.759,-0.787,63.55
+Stephon Castle,Carter Bryant,455,62.709,-0.837,63.55
+De'Aaron Fox,Jayden Quaintance,455,62.501,-1.045,63.55
+Keldon Johnson,Maliq Brown,455,62.367,-1.179,63.55
+Ja'Kobi Gillespie,Maliq Brown,455,62.298,-1.249,63.55
+Carter Bryant,Jordan McLaughlin,455,62.189,-1.357,63.55
+Stephon Castle,Jayden Quaintance,455,61.776,-1.77,63.55
+De'Aaron Fox,Luke Kornet,455,61.734,-1.812,63.55
+De'Aaron Fox,Tarris Reed Jr.,455,61.62,-1.927,63.55
+Harrison Barnes,Jayden Quaintance,455,61.448,-2.098,63.55
+Luke Kornet,Ja'Kobi Gillespie,455,61.407,-2.139,63.55
+Stephon Castle,Luke Kornet,455,61.377,-2.169,63.55
+Harrison Barnes,Carter Bryant,455,61.281,-2.265,63.55
+Carter Bryant,Ja'Kobi Gillespie,455,61.192,-2.355,63.55
+Dylan Harper,Tarris Reed Jr.,455,61.142,-2.404,63.55
+Luke Kornet,Maliq Brown,455,61.08,-2.466,63.55
+Jordan McLaughlin,Jayden Quaintance,455,61.0,-2.547,63.55
+Julian Champagnie,Tarris Reed Jr.,455,60.879,-2.667,63.55
+Keldon Johnson,Carter Bryant,455,60.871,-2.675,63.55
+Devin Vassell,Tarris Reed Jr.,455,60.568,-2.978,63.55
+Tarris Reed Jr.,Tobias Harris,455,60.433,-3.113,63.55
+Keldon Johnson,Jayden Quaintance,455,60.428,-3.118,63.55
+Keldon Johnson,Luke Kornet,455,60.402,-3.144,63.55
+Ja'Kobi Gillespie,Jayden Quaintance,455,60.313,-3.233,63.55
+Stephon Castle,Tarris Reed Jr.,455,60.311,-3.236,63.55
+Luke Kornet,Carter Bryant,455,60.309,-3.237,63.55
+Carter Bryant,Maliq Brown,455,60.196,-3.35,63.55
+Maliq Brown,Jayden Quaintance,455,59.914,-3.633,63.55
+Dylan Harper,David Jones Garcia,455,59.544,-4.002,63.55
+Luke Kornet,Jayden Quaintance,455,59.026,-4.52,63.55
+Harrison Barnes,Tarris Reed Jr.,455,58.558,-4.989,63.55
+Devin Vassell,David Jones Garcia,455,58.498,-5.048,63.55
+David Jones Garcia,Tobias Harris,455,58.487,-5.059,63.55
+Julian Champagnie,David Jones Garcia,455,58.191,-5.355,63.55
+Jordan McLaughlin,Tarris Reed Jr.,455,58.115,-5.431,63.55
+De'Aaron Fox,David Jones Garcia,455,58.062,-5.484,63.55
+Carter Bryant,Jayden Quaintance,455,58.049,-5.497,63.55
+Tarris Reed Jr.,Ja'Kobi Gillespie,455,57.579,-5.967,63.55
+Keldon Johnson,Tarris Reed Jr.,455,57.188,-6.358,63.55
+Stephon Castle,David Jones Garcia,455,57.168,-6.378,63.55
+Tarris Reed Jr.,Maliq Brown,455,57.159,-6.387,63.55
+David Jones Garcia,Ja'Kobi Gillespie,455,56.239,-7.307,63.55
+Jordan McLaughlin,David Jones Garcia,455,56.134,-7.412,63.55
+Harrison Barnes,David Jones Garcia,455,55.488,-8.058,63.55
+Luke Kornet,Tarris Reed Jr.,455,55.377,-8.169,63.55
+David Jones Garcia,Maliq Brown,455,55.193,-8.353,63.55
+Keldon Johnson,David Jones Garcia,455,54.665,-8.881,63.55
+Carter Bryant,Tarris Reed Jr.,455,54.567,-8.979,63.55
+Tarris Reed Jr.,Jayden Quaintance,455,54.546,-9.0,63.55
+David Jones Garcia,Jayden Quaintance,455,52.691,-10.855,63.55
+Luke Kornet,David Jones Garcia,455,52.491,-11.055,63.55
+Carter Bryant,David Jones Garcia,455,52.061,-11.485,63.55
+Tarris Reed Jr.,David Jones Garcia,455,48.811,-14.735,63.55
