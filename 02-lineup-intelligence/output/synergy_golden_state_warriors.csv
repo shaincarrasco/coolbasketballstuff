@@ -1,137 +1,137 @@
 player_a,player_b,n_lineups,mean_fit,synergy,team_mean_fit
-Stephen Curry,Charles Bassey,455,51.081,8.311,42.77
-Stephen Curry,Gary Payton II,455,50.614,7.844,42.77
-Stephen Curry,Al Horford,455,50.247,7.477,42.77
-Stephen Curry,Brandon Williams,455,49.75,6.98,42.77
-Brandin Podziemski,Stephen Curry,455,49.694,6.924,42.77
-Stephen Curry,Gui Santos,455,49.432,6.662,42.77
-Stephen Curry,Moses Moody,455,49.395,6.625,42.77
-De'Anthony Melton,Stephen Curry,455,49.288,6.518,42.77
-Stephen Curry,Graham Ike,455,48.464,5.694,42.77
-Georges Niang,Stephen Curry,455,48.448,5.678,42.77
-Stephen Curry,Kristaps Porzingis,455,48.028,5.258,42.77
-Will Richard,Stephen Curry,455,47.286,4.517,42.77
-Stephen Curry,Malevy Leons,455,46.922,4.152,42.77
-Yaxel Lendeborg,Stephen Curry,455,46.69,3.92,42.77
-Stephen Curry,LJ Cryer,455,46.574,3.804,42.77
-Draymond Green,Stephen Curry,455,46.565,3.796,42.77
-Gary Payton II,Brandon Williams,455,46.057,3.287,42.77
-Charles Bassey,Brandon Williams,455,45.71,2.94,42.77
-Al Horford,Charles Bassey,455,45.368,2.598,42.77
-Brandin Podziemski,Brandon Williams,455,45.311,2.541,42.77
-Gui Santos,Brandon Williams,455,45.2,2.43,42.77
-Brandon Williams,Moses Moody,455,45.2,2.43,42.77
-Al Horford,Brandon Williams,455,45.2,2.43,42.77
-Brandin Podziemski,Gary Payton II,455,45.036,2.267,42.77
-Al Horford,Gary Payton II,455,44.952,2.183,42.77
-Charles Bassey,Gary Payton II,455,44.833,2.063,42.77
-De'Anthony Melton,Brandon Williams,455,44.751,1.981,42.77
-Gui Santos,Gary Payton II,455,44.565,1.795,42.77
-Brandin Podziemski,Charles Bassey,455,44.423,1.653,42.77
-Georges Niang,Brandon Williams,455,44.4,1.63,42.77
-De'Anthony Melton,Gary Payton II,455,44.39,1.62,42.77
-De'Anthony Melton,Charles Bassey,455,44.339,1.569,42.77
-Gui Santos,Charles Bassey,455,44.331,1.561,42.77
-Charles Bassey,Moses Moody,455,44.307,1.537,42.77
-Gary Payton II,Moses Moody,455,44.304,1.534,42.77
-Brandon Williams,Graham Ike,455,44.226,1.456,42.77
-Brandin Podziemski,Al Horford,455,44.114,1.344,42.77
-Gui Santos,Al Horford,455,44.042,1.272,42.77
-Charles Bassey,Graham Ike,455,44.007,1.237,42.77
-Brandin Podziemski,Gui Santos,455,43.88,1.11,42.77
-De'Anthony Melton,Al Horford,455,43.859,1.089,42.77
-Brandin Podziemski,Moses Moody,455,43.842,1.072,42.77
-Brandin Podziemski,De'Anthony Melton,455,43.809,1.039,42.77
-Gary Payton II,Graham Ike,455,43.73,0.96,42.77
-Gui Santos,Moses Moody,455,43.621,0.851,42.77
-Georges Niang,Gary Payton II,455,43.584,0.814,42.77
-Al Horford,Graham Ike,455,43.517,0.748,42.77
-Al Horford,Moses Moody,455,43.366,0.596,42.77
-Brandon Williams,Kristaps Porzingis,455,43.309,0.539,42.77
-Georges Niang,Charles Bassey,455,43.254,0.484,42.77
-De'Anthony Melton,Gui Santos,455,43.231,0.461,42.77
-Al Horford,Kristaps Porzingis,455,43.208,0.438,42.77
-De'Anthony Melton,Moses Moody,455,43.195,0.425,42.77
-Charles Bassey,Kristaps Porzingis,455,43.174,0.404,42.77
-Brandon Williams,LJ Cryer,455,43.142,0.372,42.77
-Brandin Podziemski,Georges Niang,455,43.06,0.291,42.77
-Gui Santos,Graham Ike,455,43.06,0.29,42.77
-Brandin Podziemski,Graham Ike,455,43.029,0.259,42.77
-Gary Payton II,Kristaps Porzingis,455,43.007,0.237,42.77
-Georges Niang,Gui Santos,455,42.988,0.218,42.77
-Georges Niang,Al Horford,455,42.805,0.035,42.77
-Graham Ike,Moses Moody,455,42.68,-0.089,42.77
-Brandin Podziemski,Kristaps Porzingis,455,42.6,-0.17,42.77
-De'Anthony Melton,Graham Ike,455,42.599,-0.171,42.77
-Will Richard,Brandon Williams,455,42.579,-0.191,42.77
-De'Anthony Melton,Georges Niang,455,42.517,-0.253,42.77
-Gui Santos,Kristaps Porzingis,455,42.475,-0.295,42.77
-Gary Payton II,LJ Cryer,455,42.42,-0.35,42.77
-Brandon Williams,Malevy Leons,455,42.388,-0.382,42.77
-Georges Niang,Moses Moody,455,42.317,-0.453,42.77
-Georges Niang,Graham Ike,455,42.235,-0.534,42.77
-Yaxel Lendeborg,Brandon Williams,455,42.201,-0.569,42.77
-Brandin Podziemski,LJ Cryer,455,42.086,-0.684,42.77
-Charles Bassey,LJ Cryer,455,41.958,-0.812,42.77
-Yaxel Lendeborg,Gary Payton II,455,41.909,-0.861,42.77
-Kristaps Porzingis,Moses Moody,455,41.901,-0.869,42.77
-De'Anthony Melton,Kristaps Porzingis,455,41.866,-0.904,42.77
-Graham Ike,Kristaps Porzingis,455,41.859,-0.911,42.77
-Will Richard,Gary Payton II,455,41.76,-1.01,42.77
-Draymond Green,Brandon Williams,455,41.667,-1.102,42.77
-Gary Payton II,Malevy Leons,455,41.652,-1.118,42.77
-Gui Santos,LJ Cryer,455,41.546,-1.224,42.77
-Brandin Podziemski,Malevy Leons,455,41.523,-1.247,42.77
-Georges Niang,Kristaps Porzingis,455,41.512,-1.257,42.77
-Charles Bassey,Malevy Leons,455,41.472,-1.298,42.77
-Al Horford,Malevy Leons,455,41.446,-1.324,42.77
-De'Anthony Melton,LJ Cryer,455,41.434,-1.336,42.77
-Brandin Podziemski,Will Richard,455,41.384,-1.386,42.77
-Yaxel Lendeborg,Charles Bassey,455,41.321,-1.449,42.77
-Will Richard,Charles Bassey,455,41.293,-1.476,42.77
-Draymond Green,Gary Payton II,455,41.28,-1.49,42.77
-LJ Cryer,Moses Moody,455,41.204,-1.566,42.77
-Gui Santos,Malevy Leons,455,41.187,-1.583,42.77
-Yaxel Lendeborg,Brandin Podziemski,455,41.163,-1.607,42.77
-Yaxel Lendeborg,Al Horford,455,41.117,-1.653,42.77
-Yaxel Lendeborg,Gui Santos,455,41.11,-1.66,42.77
-Will Richard,Gui Santos,455,41.105,-1.665,42.77
-Yaxel Lendeborg,Moses Moody,455,41.025,-1.745,42.77
-Al Horford,LJ Cryer,455,40.9,-1.87,42.77
-Georges Niang,LJ Cryer,455,40.81,-1.96,42.77
-Malevy Leons,Moses Moody,455,40.746,-2.023,42.77
-Will Richard,Al Horford,455,40.593,-2.177,42.77
-Yaxel Lendeborg,Georges Niang,455,40.577,-2.193,42.77
-Graham Ike,Malevy Leons,455,40.576,-2.194,42.77
-De'Anthony Melton,Malevy Leons,455,40.53,-2.24,42.77
-Yaxel Lendeborg,De'Anthony Melton,455,40.468,-2.302,42.77
-Will Richard,Moses Moody,455,40.453,-2.317,42.77
-LJ Cryer,Graham Ike,455,40.398,-2.372,42.77
-De'Anthony Melton,Will Richard,455,40.312,-2.458,42.77
-Will Richard,Graham Ike,455,40.301,-2.469,42.77
-Yaxel Lendeborg,Kristaps Porzingis,455,40.277,-2.493,42.77
-Georges Niang,Malevy Leons,455,40.249,-2.521,42.77
-Draymond Green,Charles Bassey,455,40.229,-2.541,42.77
-Malevy Leons,Kristaps Porzingis,455,40.18,-2.59,42.77
-Draymond Green,Gui Santos,455,40.141,-2.629,42.77
-Yaxel Lendeborg,Graham Ike,455,39.986,-2.784,42.77
-Georges Niang,Will Richard,455,39.924,-2.845,42.77
-LJ Cryer,Kristaps Porzingis,455,39.904,-2.866,42.77
-Brandin Podziemski,Draymond Green,455,39.838,-2.932,42.77
-Draymond Green,Moses Moody,455,39.832,-2.938,42.77
-Draymond Green,Graham Ike,455,39.784,-2.986,42.77
-Yaxel Lendeborg,LJ Cryer,455,39.588,-3.182,42.77
-De'Anthony Melton,Draymond Green,455,39.531,-3.239,42.77
-Draymond Green,Al Horford,455,39.517,-3.253,42.77
-Will Richard,Kristaps Porzingis,455,39.42,-3.35,42.77
-Draymond Green,Georges Niang,455,39.021,-3.749,42.77
-Will Richard,LJ Cryer,455,39.018,-3.752,42.77
-LJ Cryer,Malevy Leons,455,38.971,-3.798,42.77
-Will Richard,Malevy Leons,455,38.858,-3.912,42.77
-Draymond Green,Kristaps Porzingis,455,38.817,-3.953,42.77
-Yaxel Lendeborg,Will Richard,455,38.59,-4.18,42.77
-Yaxel Lendeborg,Malevy Leons,455,38.555,-4.215,42.77
-Draymond Green,Will Richard,455,38.545,-4.225,42.77
-Draymond Green,Malevy Leons,455,38.524,-4.246,42.77
-Draymond Green,LJ Cryer,455,38.362,-4.407,42.77
-Yaxel Lendeborg,Draymond Green,455,37.375,-5.395,42.77
+Stephen Curry,Charles Bassey,455,50.412,7.603,42.81
+Stephen Curry,Gary Payton II,455,49.845,7.036,42.81
+Stephen Curry,Al Horford,455,49.68,6.87,42.81
+Stephen Curry,Brandon Williams,455,49.19,6.381,42.81
+Brandin Podziemski,Stephen Curry,455,49.118,6.309,42.81
+Stephen Curry,Gui Santos,455,48.911,6.102,42.81
+Stephen Curry,Moses Moody,455,48.809,6.0,42.81
+De'Anthony Melton,Stephen Curry,455,48.675,5.866,42.81
+Stephen Curry,Graham Ike,455,48.046,5.237,42.81
+Georges Niang,Stephen Curry,455,47.886,5.076,42.81
+Stephen Curry,Kristaps Porzingis,455,47.541,4.731,42.81
+Stephen Curry,Malevy Leons,455,46.693,3.883,42.81
+Stephen Curry,LJ Cryer,455,46.339,3.529,42.81
+Yaxel Lendeborg,Stephen Curry,455,46.292,3.483,42.81
+Will Richard,Stephen Curry,455,46.274,3.465,42.81
+Gary Payton II,Brandon Williams,455,46.126,3.317,42.81
+Charles Bassey,Brandon Williams,455,45.705,2.896,42.81
+Brandon Williams,Moses Moody,455,45.519,2.709,42.81
+Draymond Green,Stephen Curry,455,45.439,2.629,42.81
+Brandin Podziemski,Brandon Williams,455,45.384,2.575,42.81
+Al Horford,Charles Bassey,455,45.371,2.562,42.81
+Gui Santos,Brandon Williams,455,45.276,2.467,42.81
+Al Horford,Brandon Williams,455,45.125,2.315,42.81
+Brandin Podziemski,Gary Payton II,455,45.0,2.19,42.81
+Charles Bassey,Gary Payton II,455,44.98,2.171,42.81
+Al Horford,Gary Payton II,455,44.935,2.125,42.81
+Brandon Williams,Graham Ike,455,44.706,1.897,42.81
+Gui Santos,Gary Payton II,455,44.676,1.867,42.81
+De'Anthony Melton,Brandon Williams,455,44.615,1.806,42.81
+Gary Payton II,Moses Moody,455,44.593,1.784,42.81
+Georges Niang,Brandon Williams,455,44.567,1.758,42.81
+De'Anthony Melton,Charles Bassey,455,44.547,1.738,42.81
+Brandin Podziemski,Charles Bassey,455,44.518,1.709,42.81
+Gui Santos,Charles Bassey,455,44.432,1.622,42.81
+Charles Bassey,Moses Moody,455,44.402,1.593,42.81
+Gary Payton II,Graham Ike,455,44.287,1.478,42.81
+Charles Bassey,Graham Ike,455,44.269,1.459,42.81
+De'Anthony Melton,Gary Payton II,455,44.112,1.303,42.81
+Gui Santos,Al Horford,455,43.968,1.159,42.81
+Brandin Podziemski,Moses Moody,455,43.903,1.093,42.81
+Brandon Williams,LJ Cryer,455,43.861,1.052,42.81
+Brandin Podziemski,Al Horford,455,43.852,1.043,42.81
+Brandin Podziemski,Gui Santos,455,43.846,1.037,42.81
+Gui Santos,Moses Moody,455,43.802,0.993,42.81
+Al Horford,Graham Ike,455,43.787,0.978,42.81
+Georges Niang,Gary Payton II,455,43.671,0.862,42.81
+De'Anthony Melton,Al Horford,455,43.58,0.771,42.81
+Brandin Podziemski,De'Anthony Melton,455,43.563,0.754,42.81
+Gui Santos,Graham Ike,455,43.5,0.69,42.81
+Brandon Williams,Kristaps Porzingis,455,43.491,0.682,42.81
+Brandin Podziemski,Graham Ike,455,43.456,0.646,42.81
+Al Horford,Moses Moody,455,43.431,0.622,42.81
+Gary Payton II,LJ Cryer,455,43.384,0.574,42.81
+Georges Niang,Charles Bassey,455,43.332,0.523,42.81
+Graham Ike,Moses Moody,455,43.319,0.51,42.81
+Charles Bassey,Kristaps Porzingis,455,43.311,0.502,42.81
+De'Anthony Melton,Gui Santos,455,43.199,0.39,42.81
+De'Anthony Melton,Moses Moody,455,43.189,0.379,42.81
+Gary Payton II,Kristaps Porzingis,455,43.022,0.213,42.81
+Georges Niang,Gui Santos,455,43.006,0.197,42.81
+Al Horford,Kristaps Porzingis,455,42.971,0.161,42.81
+De'Anthony Melton,Graham Ike,455,42.969,0.16,42.81
+Charles Bassey,LJ Cryer,455,42.922,0.112,42.81
+Brandin Podziemski,Georges Niang,455,42.877,0.068,42.81
+Yaxel Lendeborg,Brandon Williams,455,42.767,-0.042,42.81
+Brandon Williams,Malevy Leons,455,42.76,-0.049,42.81
+Georges Niang,Graham Ike,455,42.733,-0.077,42.81
+Brandin Podziemski,LJ Cryer,455,42.718,-0.091,42.81
+Brandin Podziemski,Kristaps Porzingis,455,42.606,-0.203,42.81
+Gui Santos,Kristaps Porzingis,455,42.533,-0.276,42.81
+Georges Niang,Moses Moody,455,42.498,-0.312,42.81
+LJ Cryer,Moses Moody,455,42.41,-0.399,42.81
+Gui Santos,LJ Cryer,455,42.39,-0.419,42.81
+Georges Niang,Al Horford,455,42.376,-0.433,42.81
+Graham Ike,Kristaps Porzingis,455,42.343,-0.467,42.81
+Yaxel Lendeborg,Gary Payton II,455,42.312,-0.497,42.81
+De'Anthony Melton,Georges Niang,455,42.187,-0.622,42.81
+Kristaps Porzingis,Moses Moody,455,42.126,-0.683,42.81
+Will Richard,Brandon Williams,455,42.064,-0.745,42.81
+Gary Payton II,Malevy Leons,455,41.855,-0.954,42.81
+De'Anthony Melton,LJ Cryer,455,41.833,-0.977,42.81
+De'Anthony Melton,Kristaps Porzingis,455,41.832,-0.977,42.81
+Al Horford,LJ Cryer,455,41.743,-1.066,42.81
+Georges Niang,Kristaps Porzingis,455,41.7,-1.109,42.81
+Georges Niang,LJ Cryer,455,41.646,-1.163,42.81
+Brandin Podziemski,Malevy Leons,455,41.626,-1.183,42.81
+Yaxel Lendeborg,Charles Bassey,455,41.625,-1.184,42.81
+LJ Cryer,Graham Ike,455,41.601,-1.209,42.81
+Charles Bassey,Malevy Leons,455,41.56,-1.25,42.81
+Will Richard,Gary Payton II,455,41.483,-1.327,42.81
+Yaxel Lendeborg,Gui Santos,455,41.425,-1.384,42.81
+Yaxel Lendeborg,Brandin Podziemski,455,41.414,-1.395,42.81
+Al Horford,Malevy Leons,455,41.413,-1.396,42.81
+Gui Santos,Malevy Leons,455,41.376,-1.433,42.81
+Draymond Green,Brandon Williams,455,41.354,-1.455,42.81
+Yaxel Lendeborg,Moses Moody,455,41.253,-1.556,42.81
+Malevy Leons,Moses Moody,455,41.21,-1.599,42.81
+Graham Ike,Malevy Leons,455,41.198,-1.611,42.81
+Will Richard,Charles Bassey,455,41.15,-1.659,42.81
+Yaxel Lendeborg,Al Horford,455,40.89,-1.92,42.81
+Brandin Podziemski,Will Richard,455,40.886,-1.923,42.81
+Will Richard,Gui Santos,455,40.855,-1.954,42.81
+Draymond Green,Gary Payton II,455,40.827,-1.982,42.81
+Yaxel Lendeborg,Kristaps Porzingis,455,40.826,-1.983,42.81
+LJ Cryer,Kristaps Porzingis,455,40.824,-1.985,42.81
+Yaxel Lendeborg,De'Anthony Melton,455,40.647,-2.163,42.81
+Yaxel Lendeborg,Georges Niang,455,40.624,-2.185,42.81
+De'Anthony Melton,Malevy Leons,455,40.587,-2.222,42.81
+Yaxel Lendeborg,Graham Ike,455,40.57,-2.239,42.81
+Will Richard,Graham Ike,455,40.528,-2.281,42.81
+Will Richard,Moses Moody,455,40.505,-2.304,42.81
+Georges Niang,Malevy Leons,455,40.385,-2.424,42.81
+Yaxel Lendeborg,LJ Cryer,455,40.323,-2.487,42.81
+Draymond Green,Gui Santos,455,40.289,-2.52,42.81
+Malevy Leons,Kristaps Porzingis,455,40.188,-2.621,42.81
+Will Richard,Al Horford,455,40.154,-2.655,42.81
+Draymond Green,Charles Bassey,455,40.137,-2.673,42.81
+LJ Cryer,Malevy Leons,455,40.007,-2.802,42.81
+Draymond Green,Graham Ike,455,39.885,-2.924,42.81
+Georges Niang,Will Richard,455,39.612,-3.198,42.81
+Draymond Green,Moses Moody,455,39.572,-3.238,42.81
+Brandin Podziemski,Draymond Green,455,39.5,-3.309,42.81
+Will Richard,LJ Cryer,455,39.498,-3.311,42.81
+De'Anthony Melton,Will Richard,455,39.397,-3.412,42.81
+Yaxel Lendeborg,Malevy Leons,455,39.04,-3.769,42.81
+Draymond Green,Al Horford,455,39.022,-3.787,42.81
+De'Anthony Melton,Draymond Green,455,38.941,-3.868,42.81
+Will Richard,Kristaps Porzingis,455,38.834,-3.975,42.81
+Draymond Green,LJ Cryer,455,38.816,-3.993,42.81
+Draymond Green,Georges Niang,455,38.759,-4.05,42.81
+Will Richard,Malevy Leons,455,38.589,-4.22,42.81
+Draymond Green,Kristaps Porzingis,455,38.574,-4.235,42.81
+Yaxel Lendeborg,Will Richard,455,38.188,-4.621,42.81
+Draymond Green,Malevy Leons,455,38.04,-4.769,42.81
+Draymond Green,Will Richard,455,37.936,-4.873,42.81
+Yaxel Lendeborg,Draymond Green,455,37.172,-5.637,42.81
