@@ -1,4 +1,5 @@
 d,winner,loser,score,home_won,p_winner,elo_gap,missed
+2026-11-21,SAC,BOS,97-96,True,0.083,437,margin 1 | no pre-game signal: noise
 2026-10-26,GS,DEN,114-134,False,0.136,320,margin 20 | no pre-game signal: noise
 2026-10-28,GS,MIN,114-119,False,0.136,207,margin 5 | no pre-game signal: noise
 2026-11-02,SAC,DAL,100-115,False,0.136,218,margin 15 | H2H favoured winner 75%
