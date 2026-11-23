@@ -31,6 +31,8 @@ d,winner,loser,score,home_won,p_winner,elo_gap,missed
 2026-11-13,IND,NY,106-104,True,0.33,272,margin 2 | no pre-game signal: noise
 2026-11-13,LAC,OKC,113-112,True,0.33,217,margin 1 | no pre-game signal: noise
 2026-11-18,DEN,BOS,105-101,True,0.33,114,margin 4 | no pre-game signal: noise
+2026-11-22,WSH,ORL,116-96,True,0.33,194,margin 20 | no pre-game signal: noise
+2026-11-22,GS,BOS,88-87,True,0.33,227,margin 1 | favourite on B2B
 2026-11-18,WSH,TOR,99-103,False,0.332,165,margin 4 | favourite on B2B
 2026-11-09,CHA,CLE,124-112,True,0.336,128,margin 12 | no pre-game signal: noise
 2026-11-16,MIA,HOU,128-110,True,0.336,130,margin 18 | favourite on B2B

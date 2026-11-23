@@ -1,137 +1,137 @@
 player_a,player_b,n_lineups,mean_fit,synergy,team_mean_fit
-Jonathan Mogbo,Ben Simmons,455,31.992,3.088,28.9
-Domantas Sabonis,Ben Simmons,455,31.866,2.962,28.9
-Domantas Sabonis,Jonathan Mogbo,455,31.781,2.877,28.9
-Darius Acuff Jr.,Malik Monk,455,31.381,2.477,28.9
-Malik Monk,Jonathan Mogbo,455,31.376,2.472,28.9
-Jonathan Mogbo,Sean Pedulla,455,31.279,2.374,28.9
-Darius Acuff Jr.,Jonathan Mogbo,455,31.216,2.311,28.9
-Ben Simmons,Sean Pedulla,455,30.942,2.038,28.9
-Domantas Sabonis,Mason Plumlee,455,30.902,1.998,28.9
-Malik Monk,Ben Simmons,455,30.829,1.925,28.9
-Darius Acuff Jr.,Ben Simmons,455,30.793,1.889,28.9
-Darius Acuff Jr.,Sean Pedulla,455,30.742,1.837,28.9
-Malik Monk,Sean Pedulla,455,30.728,1.824,28.9
-Precious Achiuwa,Malik Monk,455,30.711,1.807,28.9
-Domantas Sabonis,Leaky Black,455,30.65,1.746,28.9
-Mason Plumlee,Ben Simmons,455,30.641,1.736,28.9
-Domantas Sabonis,Daeqwon Plowden,455,30.568,1.663,28.9
-Domantas Sabonis,De'Andre Hunter,455,30.536,1.632,28.9
-Domantas Sabonis,Keegan Murray,455,30.431,1.526,28.9
-Jonathan Mogbo,Mason Plumlee,455,30.412,1.508,28.9
-Darius Acuff Jr.,Zach LaVine,455,30.398,1.494,28.9
-Domantas Sabonis,Malik Monk,455,30.317,1.413,28.9
-Darius Acuff Jr.,Precious Achiuwa,455,30.234,1.33,28.9
-Precious Achiuwa,Ben Simmons,455,30.232,1.328,28.9
-Domantas Sabonis,Precious Achiuwa,455,30.181,1.277,28.9
-Domantas Sabonis,Emanuel Sharp,455,30.16,1.255,28.9
-Dylan Cardwell,Ben Simmons,455,30.119,1.215,28.9
-Domantas Sabonis,Dylan Cardwell,455,30.109,1.204,28.9
-Darius Acuff Jr.,Domantas Sabonis,455,30.013,1.109,28.9
-Leaky Black,Jonathan Mogbo,455,29.974,1.07,28.9
-Mason Plumlee,Sean Pedulla,455,29.967,1.062,28.9
-Domantas Sabonis,Sean Pedulla,455,29.958,1.054,28.9
-Keegan Murray,Jonathan Mogbo,455,29.929,1.025,28.9
-Precious Achiuwa,Jonathan Mogbo,455,29.798,0.893,28.9
-Keegan Murray,Ben Simmons,455,29.792,0.888,28.9
-Darius Acuff Jr.,Leaky Black,455,29.776,0.872,28.9
-Malik Monk,Mason Plumlee,455,29.765,0.86,28.9
-Darius Acuff Jr.,Mason Plumlee,455,29.742,0.837,28.9
-Keegan Murray,Malik Monk,455,29.738,0.834,28.9
-Darius Acuff Jr.,Dylan Cardwell,455,29.719,0.815,28.9
-Domantas Sabonis,Alex Karaban,455,29.694,0.79,28.9
-Domantas Sabonis,Zach LaVine,455,29.691,0.786,28.9
-Dylan Cardwell,Jonathan Mogbo,455,29.689,0.785,28.9
-Domantas Sabonis,Maxime Raynaud,455,29.683,0.778,28.9
-De'Andre Hunter,Malik Monk,455,29.641,0.736,28.9
-Darius Acuff Jr.,De'Andre Hunter,455,29.641,0.736,28.9
-Leaky Black,Ben Simmons,455,29.598,0.694,28.9
-Zach LaVine,Malik Monk,455,29.576,0.672,28.9
-Precious Achiuwa,Sean Pedulla,455,29.574,0.669,28.9
-Malik Monk,Dylan Cardwell,455,29.565,0.661,28.9
-Ben Simmons,Maxime Raynaud,455,29.542,0.638,28.9
-Malik Monk,Maxime Raynaud,455,29.538,0.634,28.9
-Zach LaVine,Sean Pedulla,455,29.522,0.618,28.9
-Darius Acuff Jr.,Emanuel Sharp,455,29.508,0.604,28.9
-De'Andre Hunter,Jonathan Mogbo,455,29.473,0.569,28.9
-Daeqwon Plowden,Jonathan Mogbo,455,29.456,0.552,28.9
-Emanuel Sharp,Malik Monk,455,29.451,0.547,28.9
-Emanuel Sharp,Jonathan Mogbo,455,29.447,0.543,28.9
-Darius Acuff Jr.,Keegan Murray,455,29.374,0.47,28.9
-Darius Acuff Jr.,Daeqwon Plowden,455,29.367,0.463,28.9
-De'Andre Hunter,Ben Simmons,455,29.362,0.458,28.9
-Malik Monk,Daeqwon Plowden,455,29.28,0.376,28.9
-Darius Acuff Jr.,Maxime Raynaud,455,29.256,0.352,28.9
-Emanuel Sharp,Sean Pedulla,455,29.227,0.323,28.9
-Emanuel Sharp,Ben Simmons,455,29.222,0.317,28.9
-Daeqwon Plowden,Ben Simmons,455,29.221,0.317,28.9
-Zach LaVine,Ben Simmons,455,29.162,0.258,28.9
-Dylan Cardwell,Sean Pedulla,455,29.119,0.215,28.9
-Keegan Murray,Sean Pedulla,455,29.106,0.201,28.9
-Leaky Black,Sean Pedulla,455,29.105,0.2,28.9
-Jonathan Mogbo,Maxime Raynaud,455,28.979,0.075,28.9
-Precious Achiuwa,Leaky Black,455,28.934,0.03,28.9
-Zach LaVine,Jonathan Mogbo,455,28.922,0.018,28.9
-De'Andre Hunter,Sean Pedulla,455,28.907,0.003,28.9
-Malik Monk,Leaky Black,455,28.887,-0.017,28.9
-Precious Achiuwa,Keegan Murray,455,28.776,-0.128,28.9
-Keegan Murray,Mason Plumlee,455,28.744,-0.161,28.9
-Keegan Murray,Dylan Cardwell,455,28.723,-0.181,28.9
-Leaky Black,Mason Plumlee,455,28.698,-0.206,28.9
-Precious Achiuwa,Mason Plumlee,455,28.652,-0.252,28.9
-Daeqwon Plowden,Sean Pedulla,455,28.589,-0.315,28.9
-Keegan Murray,Leaky Black,455,28.578,-0.326,28.9
-De'Andre Hunter,Precious Achiuwa,455,28.571,-0.333,28.9
-Precious Achiuwa,Daeqwon Plowden,455,28.454,-0.45,28.9
-Leaky Black,Dylan Cardwell,455,28.442,-0.462,28.9
-Zach LaVine,Precious Achiuwa,455,28.44,-0.464,28.9
-Alex Karaban,Jonathan Mogbo,455,28.386,-0.518,28.9
-Sean Pedulla,Maxime Raynaud,455,28.369,-0.535,28.9
-Dylan Cardwell,Mason Plumlee,455,28.365,-0.539,28.9
-Emanuel Sharp,Dylan Cardwell,455,28.32,-0.584,28.9
-Precious Achiuwa,Dylan Cardwell,455,28.315,-0.589,28.9
-Dylan Cardwell,Daeqwon Plowden,455,28.298,-0.606,28.9
-Precious Achiuwa,Emanuel Sharp,455,28.242,-0.663,28.9
-De'Andre Hunter,Dylan Cardwell,455,28.241,-0.663,28.9
-De'Andre Hunter,Mason Plumlee,455,28.152,-0.752,28.9
-Daeqwon Plowden,Mason Plumlee,455,28.11,-0.795,28.9
-Mason Plumlee,Maxime Raynaud,455,28.022,-0.882,28.9
-De'Andre Hunter,Keegan Murray,455,27.998,-0.906,28.9
-Emanuel Sharp,Mason Plumlee,455,27.966,-0.938,28.9
-Darius Acuff Jr.,Alex Karaban,455,27.956,-0.949,28.9
-Alex Karaban,Ben Simmons,455,27.888,-1.016,28.9
-Malik Monk,Alex Karaban,455,27.78,-1.124,28.9
-De'Andre Hunter,Leaky Black,455,27.765,-1.139,28.9
-Leaky Black,Maxime Raynaud,455,27.735,-1.17,28.9
-Zach LaVine,Mason Plumlee,455,27.659,-1.246,28.9
-Keegan Murray,Maxime Raynaud,455,27.645,-1.259,28.9
-Leaky Black,Alex Karaban,455,27.621,-1.283,28.9
-Daeqwon Plowden,Maxime Raynaud,455,27.62,-1.284,28.9
-De'Andre Hunter,Maxime Raynaud,455,27.595,-1.309,28.9
-Emanuel Sharp,Leaky Black,455,27.594,-1.31,28.9
-Keegan Murray,Daeqwon Plowden,455,27.579,-1.326,28.9
-Keegan Murray,Emanuel Sharp,455,27.577,-1.327,28.9
-Zach LaVine,Keegan Murray,455,27.573,-1.332,28.9
-Alex Karaban,Mason Plumlee,455,27.455,-1.449,28.9
-Precious Achiuwa,Maxime Raynaud,455,27.447,-1.458,28.9
-Leaky Black,Daeqwon Plowden,455,27.442,-1.462,28.9
-Zach LaVine,Dylan Cardwell,455,27.304,-1.601,28.9
-De'Andre Hunter,Daeqwon Plowden,455,27.216,-1.688,28.9
-Zach LaVine,Maxime Raynaud,455,27.169,-1.735,28.9
-Emanuel Sharp,Maxime Raynaud,455,27.136,-1.768,28.9
-Alex Karaban,Sean Pedulla,455,27.122,-1.783,28.9
-Dylan Cardwell,Maxime Raynaud,455,27.111,-1.794,28.9
-Zach LaVine,De'Andre Hunter,455,27.083,-1.821,28.9
-Zach LaVine,Emanuel Sharp,455,27.076,-1.828,28.9
-Zach LaVine,Daeqwon Plowden,455,26.941,-1.964,28.9
-Dylan Cardwell,Alex Karaban,455,26.91,-1.994,28.9
-De'Andre Hunter,Emanuel Sharp,455,26.873,-2.031,28.9
-Precious Achiuwa,Alex Karaban,455,26.662,-2.242,28.9
-Zach LaVine,Leaky Black,455,26.593,-2.311,28.9
-Emanuel Sharp,Daeqwon Plowden,455,26.438,-2.466,28.9
-Keegan Murray,Alex Karaban,455,26.422,-2.482,28.9
-De'Andre Hunter,Alex Karaban,455,26.031,-2.873,28.9
-Alex Karaban,Maxime Raynaud,455,25.911,-2.993,28.9
-Zach LaVine,Alex Karaban,455,25.484,-3.42,28.9
-Emanuel Sharp,Alex Karaban,455,25.437,-3.467,28.9
-Daeqwon Plowden,Alex Karaban,455,25.257,-3.647,28.9
+Gabe Vincent,Sean Pedulla,455,33.418,4.485,28.93
+Domantas Sabonis,Gabe Vincent,455,33.114,4.181,28.93
+Darius Acuff Jr.,Gabe Vincent,455,32.529,3.596,28.93
+Jonathan Mogbo,Gabe Vincent,455,32.409,3.476,28.93
+Dylan Cardwell,Gabe Vincent,455,32.168,3.235,28.93
+Jonathan Mogbo,Sean Pedulla,455,31.962,3.029,28.93
+Malik Monk,Gabe Vincent,455,31.92,2.987,28.93
+Darius Acuff Jr.,Malik Monk,455,31.67,2.737,28.93
+Darius Acuff Jr.,Jonathan Mogbo,455,31.543,2.61,28.93
+Malik Monk,Jonathan Mogbo,455,31.498,2.566,28.93
+Darius Acuff Jr.,Sean Pedulla,455,31.457,2.524,28.93
+Precious Achiuwa,Gabe Vincent,455,31.297,2.364,28.93
+Domantas Sabonis,Jonathan Mogbo,455,31.266,2.333,28.93
+Malik Monk,Sean Pedulla,455,31.167,2.234,28.93
+Darius Acuff Jr.,Dylan Cardwell,455,30.866,1.933,28.93
+Precious Achiuwa,Malik Monk,455,30.861,1.928,28.93
+Darius Acuff Jr.,Zach LaVine,455,30.837,1.905,28.93
+Dylan Cardwell,Sean Pedulla,455,30.743,1.811,28.93
+Darius Acuff Jr.,Precious Achiuwa,455,30.587,1.655,28.93
+Domantas Sabonis,Dylan Cardwell,455,30.448,1.515,28.93
+Dylan Cardwell,Jonathan Mogbo,455,30.443,1.51,28.93
+Precious Achiuwa,Sean Pedulla,455,30.421,1.489,28.93
+Domantas Sabonis,Daeqwon Plowden,455,30.417,1.484,28.93
+Mason Plumlee,Gabe Vincent,455,30.416,1.483,28.93
+Malik Monk,Dylan Cardwell,455,30.354,1.422,28.93
+Domantas Sabonis,Leaky Black,455,30.339,1.406,28.93
+Domantas Sabonis,Malik Monk,455,30.283,1.35,28.93
+Darius Acuff Jr.,Domantas Sabonis,455,30.229,1.296,28.93
+Domantas Sabonis,Sean Pedulla,455,30.218,1.285,28.93
+Domantas Sabonis,Emanuel Sharp,455,30.206,1.274,28.93
+Domantas Sabonis,Mason Plumlee,455,30.192,1.259,28.93
+Darius Acuff Jr.,Mason Plumlee,455,30.186,1.253,28.93
+Domantas Sabonis,De'Andre Hunter,455,30.177,1.244,28.93
+Domantas Sabonis,Keegan Murray,455,30.104,1.171,28.93
+Gabe Vincent,Maxime Raynaud,455,30.092,1.159,28.93
+Mason Plumlee,Sean Pedulla,455,30.066,1.133,28.93
+Emanuel Sharp,Sean Pedulla,455,30.02,1.088,28.93
+Darius Acuff Jr.,De'Andre Hunter,455,29.93,0.997,28.93
+Keegan Murray,Gabe Vincent,455,29.929,0.997,28.93
+Darius Acuff Jr.,Leaky Black,455,29.924,0.991,28.93
+Darius Acuff Jr.,Emanuel Sharp,455,29.912,0.979,28.93
+Darius Acuff Jr.,Maxime Raynaud,455,29.857,0.924,28.93
+Malik Monk,Maxime Raynaud,455,29.855,0.922,28.93
+Keegan Murray,Malik Monk,455,29.797,0.865,28.93
+Darius Acuff Jr.,Keegan Murray,455,29.772,0.839,28.93
+Emanuel Sharp,Gabe Vincent,455,29.767,0.834,28.93
+Darius Acuff Jr.,Daeqwon Plowden,455,29.724,0.791,28.93
+Keegan Murray,Sean Pedulla,455,29.715,0.782,28.93
+Leaky Black,Gabe Vincent,455,29.706,0.773,28.93
+De'Andre Hunter,Malik Monk,455,29.692,0.759,28.93
+Leaky Black,Sean Pedulla,455,29.649,0.716,28.93
+Emanuel Sharp,Malik Monk,455,29.644,0.711,28.93
+Domantas Sabonis,Precious Achiuwa,455,29.641,0.709,28.93
+Leaky Black,Jonathan Mogbo,455,29.61,0.677,28.93
+Zach LaVine,Sean Pedulla,455,29.599,0.666,28.93
+Precious Achiuwa,Jonathan Mogbo,455,29.552,0.619,28.93
+Malik Monk,Mason Plumlee,455,29.529,0.597,28.93
+Zach LaVine,Malik Monk,455,29.523,0.59,28.93
+De'Andre Hunter,Gabe Vincent,455,29.482,0.549,28.93
+Jonathan Mogbo,Mason Plumlee,455,29.477,0.544,28.93
+Keegan Murray,Jonathan Mogbo,455,29.473,0.54,28.93
+Daeqwon Plowden,Sean Pedulla,455,29.442,0.51,28.93
+Emanuel Sharp,Jonathan Mogbo,455,29.428,0.495,28.93
+Malik Monk,Daeqwon Plowden,455,29.423,0.49,28.93
+De'Andre Hunter,Sean Pedulla,455,29.4,0.467,28.93
+Emanuel Sharp,Dylan Cardwell,455,29.388,0.455,28.93
+Keegan Murray,Dylan Cardwell,455,29.368,0.436,28.93
+Daeqwon Plowden,Jonathan Mogbo,455,29.324,0.391,28.93
+Dylan Cardwell,Daeqwon Plowden,455,29.303,0.37,28.93
+Domantas Sabonis,Zach LaVine,455,29.302,0.369,28.93
+Daeqwon Plowden,Gabe Vincent,455,29.232,0.3,28.93
+De'Andre Hunter,Jonathan Mogbo,455,29.147,0.214,28.93
+Sean Pedulla,Maxime Raynaud,455,29.14,0.207,28.93
+Leaky Black,Dylan Cardwell,455,29.116,0.183,28.93
+Domantas Sabonis,Maxime Raynaud,455,29.087,0.154,28.93
+Zach LaVine,Gabe Vincent,455,28.892,-0.041,28.93
+De'Andre Hunter,Dylan Cardwell,455,28.861,-0.072,28.93
+Malik Monk,Leaky Black,455,28.859,-0.074,28.93
+Precious Achiuwa,Dylan Cardwell,455,28.817,-0.116,28.93
+Domantas Sabonis,Alex Karaban,455,28.744,-0.188,28.93
+Jonathan Mogbo,Maxime Raynaud,455,28.71,-0.223,28.93
+Dylan Cardwell,Mason Plumlee,455,28.695,-0.237,28.93
+Precious Achiuwa,Leaky Black,455,28.663,-0.27,28.93
+Zach LaVine,Jonathan Mogbo,455,28.561,-0.372,28.93
+Precious Achiuwa,Emanuel Sharp,455,28.434,-0.499,28.93
+Precious Achiuwa,Daeqwon Plowden,455,28.428,-0.505,28.93
+Precious Achiuwa,Keegan Murray,455,28.404,-0.529,28.93
+Leaky Black,Mason Plumlee,455,28.178,-0.755,28.93
+De'Andre Hunter,Precious Achiuwa,455,28.153,-0.78,28.93
+Precious Achiuwa,Mason Plumlee,455,28.03,-0.903,28.93
+Zach LaVine,Precious Achiuwa,455,27.981,-0.952,28.93
+Keegan Murray,Mason Plumlee,455,27.959,-0.974,28.93
+Keegan Murray,Leaky Black,455,27.928,-1.005,28.93
+Dylan Cardwell,Maxime Raynaud,455,27.767,-1.166,28.93
+Leaky Black,Maxime Raynaud,455,27.677,-1.256,28.93
+Darius Acuff Jr.,Alex Karaban,455,27.668,-1.265,28.93
+Emanuel Sharp,Mason Plumlee,455,27.579,-1.354,28.93
+Mason Plumlee,Maxime Raynaud,455,27.512,-1.42,28.93
+Zach LaVine,Dylan Cardwell,455,27.489,-1.443,28.93
+Alex Karaban,Jonathan Mogbo,455,27.471,-1.461,28.93
+Daeqwon Plowden,Maxime Raynaud,455,27.467,-1.465,28.93
+Daeqwon Plowden,Mason Plumlee,455,27.466,-1.466,28.93
+Keegan Murray,Maxime Raynaud,455,27.439,-1.494,28.93
+Keegan Murray,Emanuel Sharp,455,27.432,-1.501,28.93
+Emanuel Sharp,Leaky Black,455,27.403,-1.53,28.93
+Alex Karaban,Sean Pedulla,455,27.402,-1.531,28.93
+De'Andre Hunter,Mason Plumlee,455,27.377,-1.556,28.93
+Dylan Cardwell,Alex Karaban,455,27.364,-1.569,28.93
+Precious Achiuwa,Maxime Raynaud,455,27.351,-1.582,28.93
+Emanuel Sharp,Maxime Raynaud,455,27.346,-1.587,28.93
+De'Andre Hunter,Keegan Murray,455,27.329,-1.603,28.93
+Malik Monk,Alex Karaban,455,27.326,-1.607,28.93
+Keegan Murray,Daeqwon Plowden,455,27.254,-1.678,28.93
+De'Andre Hunter,Maxime Raynaud,455,27.162,-1.771,28.93
+Zach LaVine,Keegan Murray,455,27.116,-1.816,28.93
+De'Andre Hunter,Leaky Black,455,27.067,-1.866,28.93
+Alex Karaban,Gabe Vincent,455,27.066,-1.867,28.93
+Leaky Black,Daeqwon Plowden,455,27.039,-1.894,28.93
+Leaky Black,Alex Karaban,455,27.009,-1.924,28.93
+Zach LaVine,Mason Plumlee,455,26.954,-1.979,28.93
+Zach LaVine,Maxime Raynaud,455,26.938,-1.995,28.93
+De'Andre Hunter,Daeqwon Plowden,455,26.851,-2.081,28.93
+Zach LaVine,Emanuel Sharp,455,26.679,-2.254,28.93
+Zach LaVine,De'Andre Hunter,455,26.669,-2.264,28.93
+De'Andre Hunter,Emanuel Sharp,455,26.666,-2.267,28.93
+Zach LaVine,Daeqwon Plowden,455,26.568,-2.365,28.93
+Emanuel Sharp,Daeqwon Plowden,455,26.519,-2.414,28.93
+Alex Karaban,Mason Plumlee,455,26.091,-2.841,28.93
+Precious Achiuwa,Alex Karaban,455,26.09,-2.843,28.93
+Zach LaVine,Leaky Black,455,25.996,-2.937,28.93
+Keegan Murray,Alex Karaban,455,25.558,-3.375,28.93
+Alex Karaban,Maxime Raynaud,455,25.244,-3.689,28.93
+De'Andre Hunter,Alex Karaban,455,25.115,-3.817,28.93
+Emanuel Sharp,Alex Karaban,455,24.948,-3.985,28.93
+Daeqwon Plowden,Alex Karaban,455,24.666,-4.267,28.93
+Zach LaVine,Alex Karaban,455,24.655,-4.278,28.93
