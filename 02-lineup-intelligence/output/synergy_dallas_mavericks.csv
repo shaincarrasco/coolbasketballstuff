@@ -1,137 +1,137 @@
 player_a,player_b,n_lineups,mean_fit,synergy,team_mean_fit
-Cooper Flagg,Kyrie Irving,455,48.121,8.95,39.17
-Kyrie Irving,Moussa Cisse,455,46.216,7.046,39.17
-Kyrie Irving,Marcus Sasser,455,46.054,6.884,39.17
-Kyrie Irving,Zaccharie Risacher,455,45.603,6.433,39.17
-Kyrie Irving,Dereck Lively II,455,45.484,6.313,39.17
-Cooper Flagg,Moussa Cisse,455,45.026,5.856,39.17
-Kyrie Irving,Naji Marshall,455,44.915,5.745,39.17
-Kyrie Irving,Daniel Gafford,455,44.886,5.716,39.17
-Kyrie Irving,Tobi Lawal,455,44.8,5.63,39.17
-Kyrie Irving,Santi Aldama,455,44.659,5.488,39.17
-Cooper Flagg,Zaccharie Risacher,455,44.627,5.457,39.17
-Cooper Flagg,Dereck Lively II,455,44.415,5.244,39.17
-P.J. Washington,Kyrie Irving,455,44.244,5.074,39.17
-Cooper Flagg,Santi Aldama,455,44.22,5.05,39.17
-Cooper Flagg,Marcus Sasser,455,43.749,4.579,39.17
-Kyrie Irving,Jett Howard,455,43.342,4.172,39.17
-Cooper Flagg,Naji Marshall,455,43.024,3.853,39.17
-Kyrie Irving,Morez Johnson Jr.,455,42.91,3.74,39.17
-Kyrie Irving,Sergio de Larrea,455,42.907,3.736,39.17
-Kyrie Irving,Max Christie,455,42.869,3.699,39.17
-Cooper Flagg,Tobi Lawal,455,42.801,3.63,39.17
-Cooper Flagg,Daniel Gafford,455,42.638,3.467,39.17
-Cooper Flagg,P.J. Washington,455,42.433,3.263,39.17
-Kyrie Irving,Caleb Martin,455,42.209,3.039,39.17
-Cooper Flagg,Jett Howard,455,42.13,2.96,39.17
-Moussa Cisse,Dereck Lively II,455,41.623,2.453,39.17
-Kyrie Irving,Walter Clayton Jr.,455,41.56,2.39,39.17
-Cooper Flagg,Morez Johnson Jr.,455,41.31,2.14,39.17
-Cooper Flagg,Caleb Martin,455,41.247,2.077,39.17
-Marcus Sasser,Moussa Cisse,455,41.247,2.077,39.17
-Cooper Flagg,Max Christie,455,41.154,1.983,39.17
-Zaccharie Risacher,Naji Marshall,455,41.111,1.94,39.17
-Naji Marshall,Moussa Cisse,455,40.982,1.812,39.17
-Naji Marshall,Marcus Sasser,455,40.934,1.764,39.17
-Naji Marshall,Dereck Lively II,455,40.923,1.753,39.17
-Marcus Sasser,Tobi Lawal,455,40.863,1.693,39.17
-Zaccharie Risacher,Moussa Cisse,455,40.849,1.679,39.17
-Zaccharie Risacher,Marcus Sasser,455,40.775,1.605,39.17
-Cooper Flagg,Sergio de Larrea,455,40.77,1.6,39.17
-Marcus Sasser,Dereck Lively II,455,40.705,1.535,39.17
-Daniel Gafford,Marcus Sasser,455,40.571,1.401,39.17
-Zaccharie Risacher,Dereck Lively II,455,40.522,1.352,39.17
-Naji Marshall,Santi Aldama,455,40.515,1.345,39.17
-Santi Aldama,Moussa Cisse,455,40.399,1.229,39.17
-Naji Marshall,Tobi Lawal,455,40.349,1.179,39.17
-Santi Aldama,Dereck Lively II,455,40.116,0.946,39.17
-Daniel Gafford,Dereck Lively II,455,40.085,0.914,39.17
-Tobi Lawal,Dereck Lively II,455,40.012,0.842,39.17
-Caleb Martin,Marcus Sasser,455,39.826,0.656,39.17
-Daniel Gafford,Naji Marshall,455,39.569,0.399,39.17
-Zaccharie Risacher,Daniel Gafford,455,39.464,0.294,39.17
-Zaccharie Risacher,Tobi Lawal,455,39.345,0.175,39.17
-Naji Marshall,Jett Howard,455,39.32,0.149,39.17
-Daniel Gafford,Moussa Cisse,455,39.268,0.098,39.17
-Marcus Sasser,Santi Aldama,455,39.177,0.006,39.17
-Cooper Flagg,Walter Clayton Jr.,455,39.13,-0.04,39.17
-P.J. Washington,Marcus Sasser,455,39.119,-0.052,39.17
-P.J. Washington,Naji Marshall,455,39.105,-0.065,39.17
-Zaccharie Risacher,Santi Aldama,455,38.984,-0.187,39.17
-Caleb Martin,Dereck Lively II,455,38.843,-0.327,39.17
-Daniel Gafford,Santi Aldama,455,38.718,-0.452,39.17
-Santi Aldama,Tobi Lawal,455,38.659,-0.511,39.17
-Moussa Cisse,Tobi Lawal,455,38.646,-0.524,39.17
-Morez Johnson Jr.,Marcus Sasser,455,38.59,-0.581,39.17
-Marcus Sasser,Sergio de Larrea,455,38.449,-0.722,39.17
-P.J. Washington,Dereck Lively II,455,38.414,-0.757,39.17
-Jett Howard,Dereck Lively II,455,38.384,-0.786,39.17
-Morez Johnson Jr.,Dereck Lively II,455,38.372,-0.798,39.17
-Naji Marshall,Sergio de Larrea,455,38.352,-0.819,39.17
-Caleb Martin,Tobi Lawal,455,38.347,-0.823,39.17
-Naji Marshall,Caleb Martin,455,38.338,-0.832,39.17
-Marcus Sasser,Jett Howard,455,38.285,-0.885,39.17
-Caleb Martin,Moussa Cisse,455,38.25,-0.92,39.17
-Naji Marshall,Morez Johnson Jr.,455,38.25,-0.92,39.17
-Daniel Gafford,Tobi Lawal,455,38.169,-1.001,39.17
-Tobi Lawal,Jett Howard,455,38.159,-1.012,39.17
-Zaccharie Risacher,Caleb Martin,455,38.067,-1.103,39.17
-P.J. Washington,Moussa Cisse,455,37.97,-1.2,39.17
-Naji Marshall,Max Christie,455,37.877,-1.293,39.17
-Daniel Gafford,Caleb Martin,455,37.851,-1.32,39.17
-Morez Johnson Jr.,Tobi Lawal,455,37.817,-1.354,39.17
-Max Christie,Marcus Sasser,455,37.788,-1.382,39.17
-Walter Clayton Jr.,Marcus Sasser,455,37.714,-1.457,39.17
-Sergio de Larrea,Dereck Lively II,455,37.691,-1.48,39.17
-P.J. Washington,Zaccharie Risacher,455,37.65,-1.52,39.17
-Zaccharie Risacher,Jett Howard,455,37.642,-1.528,39.17
-Caleb Martin,Santi Aldama,455,37.53,-1.641,39.17
-P.J. Washington,Tobi Lawal,455,37.523,-1.647,39.17
-Daniel Gafford,Jett Howard,455,37.481,-1.69,39.17
-Sergio de Larrea,Tobi Lawal,455,37.459,-1.711,39.17
-Zaccharie Risacher,Morez Johnson Jr.,455,37.435,-1.735,39.17
-Moussa Cisse,Jett Howard,455,37.382,-1.788,39.17
-Morez Johnson Jr.,Moussa Cisse,455,37.344,-1.826,39.17
-Zaccharie Risacher,Sergio de Larrea,455,37.337,-1.833,39.17
-Max Christie,Dereck Lively II,455,37.283,-1.887,39.17
-Walter Clayton Jr.,Moussa Cisse,455,37.239,-1.931,39.17
-P.J. Washington,Daniel Gafford,455,37.205,-1.965,39.17
-Zaccharie Risacher,Walter Clayton Jr.,455,37.169,-2.002,39.17
-Morez Johnson Jr.,Santi Aldama,455,37.101,-2.069,39.17
-Max Christie,Moussa Cisse,455,37.04,-2.131,39.17
-P.J. Washington,Santi Aldama,455,37.036,-2.134,39.17
-Walter Clayton Jr.,Dereck Lively II,455,37.025,-2.145,39.17
-Walter Clayton Jr.,Tobi Lawal,455,36.837,-2.333,39.17
-Santi Aldama,Jett Howard,455,36.78,-2.39,39.17
-Walter Clayton Jr.,Caleb Martin,455,36.742,-2.428,39.17
-Caleb Martin,Sergio de Larrea,455,36.73,-2.44,39.17
-Caleb Martin,Jett Howard,455,36.689,-2.481,39.17
-P.J. Washington,Caleb Martin,455,36.626,-2.544,39.17
-Max Christie,Tobi Lawal,455,36.594,-2.577,39.17
-Santi Aldama,Sergio de Larrea,455,36.579,-2.592,39.17
-Daniel Gafford,Max Christie,455,36.578,-2.592,39.17
-Sergio de Larrea,Moussa Cisse,455,36.512,-2.658,39.17
-Zaccharie Risacher,Max Christie,455,36.407,-2.763,39.17
-Daniel Gafford,Sergio de Larrea,455,36.406,-2.764,39.17
-Caleb Martin,Morez Johnson Jr.,455,36.35,-2.821,39.17
-Naji Marshall,Walter Clayton Jr.,455,36.266,-2.904,39.17
-P.J. Washington,Jett Howard,455,36.197,-2.973,39.17
-Morez Johnson Jr.,Jett Howard,455,36.141,-3.029,39.17
-Walter Clayton Jr.,Santi Aldama,455,36.141,-3.029,39.17
-Daniel Gafford,Morez Johnson Jr.,455,36.112,-3.058,39.17
-Caleb Martin,Max Christie,455,36.105,-3.066,39.17
-Max Christie,Santi Aldama,455,35.995,-3.176,39.17
-Sergio de Larrea,Jett Howard,455,35.988,-3.182,39.17
-Daniel Gafford,Walter Clayton Jr.,455,35.945,-3.225,39.17
-Walter Clayton Jr.,Morez Johnson Jr.,455,35.824,-3.346,39.17
-P.J. Washington,Morez Johnson Jr.,455,35.809,-3.361,39.17
-P.J. Washington,Sergio de Larrea,455,35.73,-3.44,39.17
-Morez Johnson Jr.,Sergio de Larrea,455,35.71,-3.46,39.17
-Walter Clayton Jr.,Jett Howard,455,35.708,-3.462,39.17
-P.J. Washington,Walter Clayton Jr.,455,35.396,-3.774,39.17
-Walter Clayton Jr.,Sergio de Larrea,455,35.19,-3.98,39.17
-Morez Johnson Jr.,Max Christie,455,35.181,-3.99,39.17
-P.J. Washington,Max Christie,455,34.829,-4.341,39.17
-Max Christie,Sergio de Larrea,455,34.79,-4.38,39.17
-Max Christie,Jett Howard,455,34.75,-4.42,39.17
-Walter Clayton Jr.,Max Christie,455,34.428,-4.743,39.17
+Cooper Flagg,Kyrie Irving,455,48.309,8.731,39.58
+Kyrie Irving,Marcus Sasser,455,45.678,6.1,39.58
+Kyrie Irving,Moussa Cisse,455,45.587,6.009,39.58
+Kyrie Irving,Dereck Lively II,455,45.48,5.902,39.58
+Kyrie Irving,Zaccharie Risacher,455,45.477,5.899,39.58
+Kyrie Irving,Tobi Lawal,455,45.133,5.555,39.58
+Kyrie Irving,Naji Marshall,455,44.986,5.408,39.58
+Kyrie Irving,Santi Aldama,455,44.805,5.227,39.58
+Cooper Flagg,Dereck Lively II,455,44.617,5.039,39.58
+Kyrie Irving,Daniel Gafford,455,44.457,4.879,39.58
+Cooper Flagg,Moussa Cisse,455,44.429,4.851,39.58
+Cooper Flagg,Zaccharie Risacher,455,44.318,4.74,39.58
+Cooper Flagg,Santi Aldama,455,44.306,4.728,39.58
+P.J. Washington,Kyrie Irving,455,44.165,4.587,39.58
+Cooper Flagg,Marcus Sasser,455,43.832,4.254,39.58
+Kyrie Irving,Morez Johnson Jr.,455,43.366,3.788,39.58
+Kyrie Irving,Jett Howard,455,43.292,3.714,39.58
+Cooper Flagg,Naji Marshall,455,43.256,3.678,39.58
+Kyrie Irving,Sergio de Larrea,455,43.111,3.533,39.58
+Cooper Flagg,Tobi Lawal,455,42.991,3.413,39.58
+Kyrie Irving,Max Christie,455,42.882,3.304,39.58
+Cooper Flagg,P.J. Washington,455,42.338,2.76,39.58
+Kyrie Irving,Caleb Martin,455,42.144,2.566,39.58
+Naji Marshall,Dereck Lively II,455,42.053,2.475,39.58
+Cooper Flagg,Daniel Gafford,455,41.933,2.355,39.58
+Cooper Flagg,Jett Howard,455,41.928,2.35,39.58
+Zaccharie Risacher,Naji Marshall,455,41.907,2.329,39.58
+Naji Marshall,Marcus Sasser,455,41.9,2.322,39.58
+Naji Marshall,Santi Aldama,455,41.881,2.303,39.58
+Kyrie Irving,Walter Clayton Jr.,455,41.85,2.272,39.58
+Marcus Sasser,Tobi Lawal,455,41.808,2.23,39.58
+Cooper Flagg,Morez Johnson Jr.,455,41.579,2.001,39.58
+Naji Marshall,Moussa Cisse,455,41.524,1.946,39.58
+Naji Marshall,Tobi Lawal,455,41.432,1.854,39.58
+Marcus Sasser,Dereck Lively II,455,41.298,1.72,39.58
+Zaccharie Risacher,Marcus Sasser,455,41.247,1.669,39.58
+Cooper Flagg,Max Christie,455,41.16,1.582,39.58
+Marcus Sasser,Moussa Cisse,455,41.033,1.455,39.58
+Cooper Flagg,Caleb Martin,455,40.917,1.339,39.58
+Cooper Flagg,Sergio de Larrea,455,40.816,1.238,39.58
+Caleb Martin,Marcus Sasser,455,40.741,1.163,39.58
+Moussa Cisse,Dereck Lively II,455,40.711,1.133,39.58
+Tobi Lawal,Dereck Lively II,455,40.706,1.129,39.58
+Zaccharie Risacher,Dereck Lively II,455,40.658,1.08,39.58
+Daniel Gafford,Marcus Sasser,455,40.621,1.043,39.58
+Santi Aldama,Dereck Lively II,455,40.433,0.855,39.58
+Naji Marshall,Jett Howard,455,40.229,0.651,39.58
+Marcus Sasser,Santi Aldama,455,40.015,0.437,39.58
+Zaccharie Risacher,Moussa Cisse,455,39.95,0.372,39.58
+Zaccharie Risacher,Tobi Lawal,455,39.946,0.368,39.58
+Naji Marshall,Morez Johnson Jr.,455,39.874,0.296,39.58
+Morez Johnson Jr.,Marcus Sasser,455,39.849,0.271,39.58
+Daniel Gafford,Naji Marshall,455,39.838,0.26,39.58
+P.J. Washington,Naji Marshall,455,39.816,0.238,39.58
+P.J. Washington,Marcus Sasser,455,39.814,0.236,39.58
+Daniel Gafford,Dereck Lively II,455,39.728,0.15,39.58
+Santi Aldama,Moussa Cisse,455,39.708,0.13,39.58
+Naji Marshall,Sergio de Larrea,455,39.705,0.127,39.58
+Santi Aldama,Tobi Lawal,455,39.563,-0.015,39.58
+Caleb Martin,Dereck Lively II,455,39.372,-0.206,39.58
+Cooper Flagg,Walter Clayton Jr.,455,39.335,-0.243,39.58
+Morez Johnson Jr.,Dereck Lively II,455,39.299,-0.279,39.58
+Caleb Martin,Tobi Lawal,455,39.284,-0.294,39.58
+Zaccharie Risacher,Santi Aldama,455,39.253,-0.325,39.58
+Marcus Sasser,Sergio de Larrea,455,39.243,-0.335,39.58
+Naji Marshall,Caleb Martin,455,39.231,-0.347,39.58
+Morez Johnson Jr.,Tobi Lawal,455,39.213,-0.365,39.58
+Tobi Lawal,Jett Howard,455,39.146,-0.432,39.58
+Zaccharie Risacher,Daniel Gafford,455,39.088,-0.49,39.58
+Marcus Sasser,Jett Howard,455,39.008,-0.57,39.58
+Naji Marshall,Max Christie,455,38.901,-0.677,39.58
+Jett Howard,Dereck Lively II,455,38.804,-0.774,39.58
+P.J. Washington,Dereck Lively II,455,38.8,-0.778,39.58
+Zaccharie Risacher,Caleb Martin,455,38.742,-0.836,39.58
+Moussa Cisse,Tobi Lawal,455,38.556,-1.022,39.58
+Daniel Gafford,Moussa Cisse,455,38.536,-1.042,39.58
+Sergio de Larrea,Tobi Lawal,455,38.478,-1.1,39.58
+Zaccharie Risacher,Morez Johnson Jr.,455,38.473,-1.105,39.58
+Max Christie,Marcus Sasser,455,38.448,-1.13,39.58
+Daniel Gafford,Santi Aldama,455,38.408,-1.169,39.58
+Sergio de Larrea,Dereck Lively II,455,38.336,-1.242,39.58
+Daniel Gafford,Tobi Lawal,455,38.263,-1.315,39.58
+Caleb Martin,Santi Aldama,455,38.252,-1.326,39.58
+P.J. Washington,Tobi Lawal,455,38.251,-1.327,39.58
+Morez Johnson Jr.,Santi Aldama,455,38.222,-1.356,39.58
+Walter Clayton Jr.,Marcus Sasser,455,38.143,-1.435,39.58
+Zaccharie Risacher,Jett Howard,455,38.077,-1.501,39.58
+Caleb Martin,Moussa Cisse,455,38.077,-1.501,39.58
+Zaccharie Risacher,Sergio de Larrea,455,37.965,-1.613,39.58
+P.J. Washington,Zaccharie Risacher,455,37.942,-1.636,39.58
+Daniel Gafford,Caleb Martin,455,37.894,-1.684,39.58
+Caleb Martin,Morez Johnson Jr.,455,37.878,-1.7,39.58
+Max Christie,Dereck Lively II,455,37.687,-1.891,39.58
+P.J. Washington,Santi Aldama,455,37.634,-1.944,39.58
+Santi Aldama,Sergio de Larrea,455,37.602,-1.976,39.58
+Walter Clayton Jr.,Dereck Lively II,455,37.591,-1.987,39.58
+Zaccharie Risacher,Walter Clayton Jr.,455,37.521,-2.057,39.58
+Morez Johnson Jr.,Jett Howard,455,37.514,-2.064,39.58
+Morez Johnson Jr.,Moussa Cisse,455,37.509,-2.069,39.58
+Santi Aldama,Jett Howard,455,37.465,-2.113,39.58
+Walter Clayton Jr.,Caleb Martin,455,37.419,-2.159,39.58
+Caleb Martin,Jett Howard,455,37.412,-2.166,39.58
+Max Christie,Tobi Lawal,455,37.409,-2.169,39.58
+P.J. Washington,Moussa Cisse,455,37.389,-2.189,39.58
+Walter Clayton Jr.,Tobi Lawal,455,37.386,-2.192,39.58
+P.J. Washington,Caleb Martin,455,37.338,-2.24,39.58
+Daniel Gafford,Jett Howard,455,37.326,-2.252,39.58
+Caleb Martin,Sergio de Larrea,455,37.302,-2.276,39.58
+Naji Marshall,Walter Clayton Jr.,455,37.172,-2.406,39.58
+Morez Johnson Jr.,Sergio de Larrea,455,37.145,-2.433,39.58
+Walter Clayton Jr.,Santi Aldama,455,37.071,-2.507,39.58
+Walter Clayton Jr.,Moussa Cisse,455,37.058,-2.52,39.58
+Zaccharie Risacher,Max Christie,455,37.051,-2.527,39.58
+Moussa Cisse,Jett Howard,455,37.033,-2.545,39.58
+P.J. Washington,Morez Johnson Jr.,455,37.003,-2.575,39.58
+Walter Clayton Jr.,Morez Johnson Jr.,455,36.914,-2.664,39.58
+P.J. Washington,Jett Howard,455,36.881,-2.697,39.58
+Sergio de Larrea,Jett Howard,455,36.86,-2.718,39.58
+Caleb Martin,Max Christie,455,36.838,-2.74,39.58
+Max Christie,Moussa Cisse,455,36.834,-2.744,39.58
+P.J. Washington,Daniel Gafford,455,36.826,-2.752,39.58
+Max Christie,Santi Aldama,455,36.703,-2.875,39.58
+Morez Johnson Jr.,Max Christie,455,36.652,-2.926,39.58
+Daniel Gafford,Max Christie,455,36.514,-3.064,39.58
+Sergio de Larrea,Moussa Cisse,455,36.407,-3.171,39.58
+P.J. Washington,Sergio de Larrea,455,36.396,-3.182,39.58
+Daniel Gafford,Sergio de Larrea,455,36.346,-3.232,39.58
+Daniel Gafford,Morez Johnson Jr.,455,36.209,-3.369,39.58
+Walter Clayton Jr.,Jett Howard,455,36.153,-3.425,39.58
+P.J. Washington,Walter Clayton Jr.,455,35.874,-3.704,39.58
+Daniel Gafford,Walter Clayton Jr.,455,35.868,-3.71,39.58
+Walter Clayton Jr.,Sergio de Larrea,455,35.611,-3.967,39.58
+Max Christie,Sergio de Larrea,455,35.564,-4.014,39.58
+P.J. Washington,Max Christie,455,35.561,-4.017,39.58
+Max Christie,Jett Howard,455,35.476,-4.102,39.58
+Walter Clayton Jr.,Max Christie,455,35.034,-4.544,39.58

@@ -40,8 +40,8 @@
     "stl_x_blk",
     "spacing_x_rim"
   ],
-  "fit_center": 0.4257934905553037,
-  "fit_scale": 15.850855216979593,
+  "fit_center": 0.4046884972912329,
+  "fit_scale": 15.80587185125862,
   "xgb_params": {
     "n_estimators": 600,
     "learning_rate": 0.02,
@@ -68,34 +68,34 @@
   "ridge_alpha": 100.0,
   "off_rating_model": "xgboost, same params, 500 rounds; def = off - net",
   "evaluation": {
-    "n_rows": 1506,
+    "n_rows": 1518,
     "n_teams": 30,
     "n_features": 39,
     "folds": 10,
     "metrics": {
       "ridge": {
-        "rmse_weighted": 13.431870346070344,
-        "r2_weighted": 0.2819286756431717,
-        "spearman_pooled": 0.4971879239041587,
-        "spearman_fold_mean": 0.4368420440701982,
-        "folds_won": 8
+        "rmse_weighted": 13.427778198872204,
+        "r2_weighted": 0.27827557224096977,
+        "spearman_pooled": 0.49938603900419754,
+        "spearman_fold_mean": 0.43012374392397684,
+        "folds_won": 6
       },
       "xgboost": {
-        "rmse_weighted": 13.591113455871234,
-        "r2_weighted": 0.2648013895243395,
-        "spearman_pooled": 0.4788184279840107,
-        "spearman_fold_mean": 0.41082828623864937,
-        "folds_won": 2
+        "rmse_weighted": 13.514778500255604,
+        "r2_weighted": 0.26889298417231366,
+        "spearman_pooled": 0.4874198834540308,
+        "spearman_fold_mean": 0.4035263413232258,
+        "folds_won": 3
       },
       "hgb": {
-        "rmse_weighted": 13.82403538510543,
-        "r2_weighted": 0.23938606915794836,
-        "spearman_pooled": 0.4668345598792432,
-        "spearman_fold_mean": 0.3927804110596577,
-        "folds_won": 0
+        "rmse_weighted": 13.709886252759455,
+        "r2_weighted": 0.2476311780482906,
+        "spearman_pooled": 0.4710364705105637,
+        "spearman_fold_mean": 0.37809726334139315,
+        "folds_won": 1
       },
       "mean_baseline": {
-        "rmse_weighted": 15.850855216979593,
+        "rmse_weighted": 15.80587185125862,
         "r2_weighted": 0.0,
         "spearman_pooled": 0.0,
         "spearman_fold_mean": 0.0,
@@ -110,148 +110,148 @@
           "New York Knicks"
         ],
         "label": "MEM MIN NY",
-        "n": 148,
-        "ridge_spearman": 0.4802156726282603,
-        "ridge_rmse": 11.674547425584134,
-        "xgb_spearman": 0.4797066617473625,
-        "xgb_rmse": 11.817536421342743,
-        "hgb_spearman": 0.4537026840537865,
-        "hgb_rmse": 12.123416911867022
+        "n": 150,
+        "ridge_spearman": 0.4828926982010891,
+        "ridge_rmse": 11.674486709211621,
+        "xgb_spearman": 0.48096013178989444,
+        "xgb_rmse": 11.8956707662571,
+        "hgb_spearman": 0.4555114145775297,
+        "hgb_rmse": 12.059452286608444
+      },
+      {
+        "held_out_teams": [
+          "Orlando Magic",
+          "Phoenix Suns",
+          "Washington Wizards"
+        ],
+        "label": "ORL PHX WSH",
+        "n": 151,
+        "ridge_spearman": 0.45582435363532914,
+        "ridge_rmse": 13.726825038771889,
+        "xgb_spearman": 0.47994994684562736,
+        "xgb_rmse": 13.65311132812918,
+        "hgb_spearman": 0.47977218115123665,
+        "hgb_rmse": 13.762912228412352
       },
       {
         "held_out_teams": [
           "Houston Rockets",
-          "New Orleans Pelicans",
-          "Washington Wizards"
+          "Indiana Pacers",
+          "New Orleans Pelicans"
         ],
-        "label": "HOU NO WSH",
-        "n": 144,
-        "ridge_spearman": 0.5383817761611399,
-        "ridge_rmse": 11.62459374538055,
-        "xgb_spearman": 0.5125474246691514,
-        "xgb_rmse": 11.841971672774402,
-        "hgb_spearman": 0.5074131085473381,
-        "hgb_rmse": 12.24169296202309
-      },
-      {
-        "held_out_teams": [
-          "Golden State Warriors",
-          "Phoenix Suns",
-          "San Antonio Spurs"
-        ],
-        "label": "GS PHX SA",
-        "n": 149,
-        "ridge_spearman": 0.5038359854808544,
-        "ridge_rmse": 14.806133249186425,
-        "xgb_spearman": 0.36376515192671416,
-        "xgb_rmse": 15.508165333808986,
-        "hgb_spearman": 0.3650494066554933,
-        "hgb_rmse": 15.750683294429926
+        "label": "HOU IND NO",
+        "n": 145,
+        "ridge_spearman": 0.40633183595187883,
+        "ridge_rmse": 11.733140027945955,
+        "xgb_spearman": 0.38552160895802473,
+        "xgb_rmse": 11.871460797443769,
+        "hgb_spearman": 0.342291132679484,
+        "hgb_rmse": 11.986465780752171
       },
       {
         "held_out_teams": [
           "Charlotte Hornets",
-          "Indiana Pacers",
+          "Golden State Warriors",
           "Philadelphia 76ers"
         ],
-        "label": "CHA IND PHI",
-        "n": 148,
-        "ridge_spearman": 0.45798551089116574,
-        "ridge_rmse": 12.819455715482349,
-        "xgb_spearman": 0.39646581503089723,
-        "xgb_rmse": 13.08621447814202,
-        "hgb_spearman": 0.34854682697161116,
-        "hgb_rmse": 13.351033134852306
+        "label": "CHA GS PHI",
+        "n": 149,
+        "ridge_spearman": 0.41023413164686395,
+        "ridge_rmse": 14.638196111597649,
+        "xgb_spearman": 0.3161044273523158,
+        "xgb_rmse": 14.99370446544323,
+        "hgb_spearman": 0.2650571158024502,
+        "hgb_rmse": 14.978759277163276
       },
       {
         "held_out_teams": [
           "Atlanta Hawks",
-          "LA Clippers",
+          "Los Angeles Lakers",
           "Utah Jazz"
         ],
-        "label": "ATL LAC UTAH",
-        "n": 151,
-        "ridge_spearman": 0.4566209648325431,
-        "ridge_rmse": 13.81183762055468,
-        "xgb_spearman": 0.49870946047463366,
-        "xgb_rmse": 13.461625814451413,
-        "hgb_spearman": 0.46701325052669573,
-        "hgb_rmse": 13.614271815066997
+        "label": "ATL LAL UTAH",
+        "n": 152,
+        "ridge_spearman": 0.5380338580435243,
+        "ridge_rmse": 13.447999428883065,
+        "xgb_spearman": 0.5532798650024451,
+        "xgb_rmse": 13.368265947268522,
+        "hgb_spearman": 0.5365319819797687,
+        "hgb_rmse": 13.477311800959159
       },
       {
         "held_out_teams": [
           "Brooklyn Nets",
-          "Los Angeles Lakers",
-          "Portland Trail Blazers"
+          "Cleveland Cavaliers",
+          "Detroit Pistons"
         ],
-        "label": "BKN LAL POR",
-        "n": 154,
-        "ridge_spearman": 0.519501770711182,
-        "ridge_rmse": 14.50033941678345,
-        "xgb_spearman": 0.49469873526480895,
-        "xgb_rmse": 14.582312809438017,
-        "hgb_spearman": 0.4716700442764132,
-        "hgb_rmse": 14.784476723476498
+        "label": "BKN CLE DET",
+        "n": 157,
+        "ridge_spearman": 0.5335130890363895,
+        "ridge_rmse": 13.970502674444607,
+        "xgb_spearman": 0.50877161702841,
+        "xgb_rmse": 13.871350009654751,
+        "hgb_spearman": 0.5035634573195171,
+        "hgb_rmse": 14.00257601817772
       },
       {
         "held_out_teams": [
-          "Cleveland Cavaliers",
-          "Detroit Pistons",
-          "Milwaukee Bucks"
+          "LA Clippers",
+          "Milwaukee Bucks",
+          "Portland Trail Blazers"
         ],
-        "label": "CLE DET MIL",
+        "label": "LAC MIL POR",
         "n": 155,
-        "ridge_spearman": 0.47992201172565113,
-        "ridge_rmse": 14.012454034288881,
-        "xgb_spearman": 0.4672537283533025,
-        "xgb_rmse": 14.260946217426039,
-        "hgb_spearman": 0.4534881286522119,
-        "hgb_rmse": 14.515192900029355
+        "ridge_spearman": 0.437204978052723,
+        "ridge_rmse": 14.499346357064779,
+        "xgb_spearman": 0.4046612167042343,
+        "xgb_rmse": 14.944913563849996,
+        "hgb_spearman": 0.3975794802519588,
+        "hgb_rmse": 15.326620046565642
       },
       {
         "held_out_teams": [
           "Dallas Mavericks",
-          "Denver Nuggets",
-          "Miami Heat"
+          "Sacramento Kings",
+          "Toronto Raptors"
         ],
-        "label": "DAL DEN MIA",
-        "n": 155,
-        "ridge_spearman": 0.3742997811558586,
-        "ridge_rmse": 14.341089546210155,
-        "xgb_spearman": 0.37579186273071774,
-        "xgb_rmse": 14.351764289969982,
-        "hgb_spearman": 0.36861826967318767,
-        "hgb_rmse": 14.504297991823162
+        "label": "DAL SAC TOR",
+        "n": 154,
+        "ridge_spearman": 0.32521563418619176,
+        "ridge_rmse": 12.727843948934815,
+        "xgb_spearman": 0.3410222288974828,
+        "xgb_rmse": 12.789052602653765,
+        "hgb_spearman": 0.3421919924807319,
+        "hgb_rmse": 13.028594440955121
       },
       {
         "held_out_teams": [
           "Chicago Bulls",
-          "Sacramento Kings",
-          "Toronto Raptors"
+          "Denver Nuggets",
+          "Miami Heat"
         ],
-        "label": "CHI SAC TOR",
-        "n": 153,
-        "ridge_spearman": 0.3361808709396968,
-        "ridge_rmse": 12.946887937642762,
-        "xgb_spearman": 0.31843053167632446,
-        "xgb_rmse": 13.121554649715733,
-        "hgb_spearman": 0.31287841989540743,
-        "hgb_rmse": 13.295074522219148
+        "label": "CHI DEN MIA",
+        "n": 155,
+        "ridge_spearman": 0.3988082626568653,
+        "ridge_rmse": 14.491679218073196,
+        "xgb_spearman": 0.41879838522718194,
+        "xgb_rmse": 14.396795742645638,
+        "hgb_spearman": 0.38118195677288225,
+        "hgb_rmse": 14.620953719245684
       },
       {
         "held_out_teams": [
           "Boston Celtics",
           "Oklahoma City Thunder",
-          "Orlando Magic"
+          "San Antonio Spurs"
         ],
-        "label": "BOS OKC ORL",
-        "n": 149,
-        "ridge_spearman": 0.22147609617563047,
-        "ridge_rmse": 13.364339721647351,
-        "xgb_spearman": 0.20091349051258156,
-        "xgb_rmse": 13.41893660975635,
-        "hgb_spearman": 0.17942397134443225,
-        "hgb_rmse": 13.636181258095858
+        "label": "BOS OKC SA",
+        "n": 150,
+        "ridge_spearman": 0.3131785978289135,
+        "ridge_rmse": 13.16528194593086,
+        "xgb_spearman": 0.14619398542664133,
+        "xgb_rmse": 13.175817004348824,
+        "hgb_spearman": 0.0772919203983729,
+        "hgb_rmse": 13.616772307407485
       }
     ],
     "learning_curve": {
@@ -262,231 +262,231 @@
         1.0
       ],
       "n_train": [
-        282,
-        564,
-        847,
-        1129
+        284,
+        569,
+        854,
+        1138
       ],
       "folds": 4,
       "ridge": [
-        0.474083961428304,
-        0.47351462507728936,
-        0.47647995218967865,
-        0.4835741874501066
+        0.4556554890507908,
+        0.4716335268006649,
+        0.4801685171046349,
+        0.48555286873869097
       ],
       "ridge_sd": [
-        0.029284497139430835,
-        0.027823844825372073,
-        0.011250496737760903,
-        0.008523423733606346
+        0.05212810447490524,
+        0.06996636152569506,
+        0.06280724381046394,
+        0.06263945678066077
       ],
       "xgboost": [
-        0.44184408243028994,
-        0.44665077343668347,
-        0.4644809446333696,
-        0.4691857861930316
+        0.4491325033180099,
+        0.47997346380341344,
+        0.47484809858182664,
+        0.486138962114413
       ],
       "xgboost_sd": [
-        0.021345831644176524,
-        0.03344271652262069,
-        0.01749739771331552,
-        0.013943021063124235
+        0.05606503756573377,
+        0.0491566601764952,
+        0.04110791705899694,
+        0.048519328855315444
       ],
       "hgb": [
-        0.4309818935720516,
-        0.4211728763016547,
-        0.44894727236184234,
-        0.4455448466872617
+        0.41338579893077204,
+        0.4630484218199264,
+        0.4585937165651013,
+        0.47209336578478545
       ],
       "hgb_sd": [
-        0.013498701208162904,
-        0.04438029994011038,
-        0.02375212166408511,
-        0.014034319364522308
+        0.04425392444587157,
+        0.051399527906498196,
+        0.03193307802745158,
+        0.04414849900492042
       ]
     }
   },
   "feature_importance": [
     [
       "dbpm_sum",
-      0.15328914682757844
+      0.1836729105420964
     ],
     [
       "bpm_sum",
-      0.12710488541809462
+      0.11256418124734362
     ],
     [
       "obpm_sum",
-      0.10008122377368289
+      0.09743864370252789
     ],
     [
       "def_rating_proxy_mean",
-      0.07348779173340589
+      0.07247787498282617
     ],
     [
       "obpm_min",
-      0.04020328426146967
-    ],
-    [
-      "handlers_x_usage_max",
-      0.020193837987279823
-    ],
-    [
-      "pair_usage_absdiff_mean",
-      0.018734702769137274
+      0.03975399281539751
     ],
     [
       "bigs",
-      0.018283964113198548
-    ],
-    [
-      "height_min",
-      0.017954378610768196
-    ],
-    [
-      "minutes_mean_log",
-      0.01787915055304908
-    ],
-    [
-      "handlers",
-      0.017785428211005334
-    ],
-    [
-      "usage_std",
-      0.017342552828744296
-    ],
-    [
-      "shooters_x_bigs",
-      0.017068884073424065
-    ],
-    [
-      "ast_pct_max",
-      0.01694973118396988
-    ],
-    [
-      "usage_sum",
-      0.01689940792449892
-    ],
-    [
-      "fg3_pct_mean",
-      0.016850076941033094
-    ],
-    [
-      "shooters_x_ast_max",
-      0.01682939143088958
-    ],
-    [
-      "usage_max",
-      0.016705586567813287
-    ],
-    [
-      "fg3_pct_min",
-      0.016680453340618757
-    ],
-    [
-      "ast_pct_sum",
-      0.016620913154454582
-    ],
-    [
-      "reb_pct_sum",
-      0.016587248287405945
-    ],
-    [
-      "spacing_x_rim",
-      0.016489858996032638
-    ],
-    [
-      "pair_height_absdiff_mean",
-      0.016289216195043765
-    ],
-    [
-      "stl_x_blk",
-      0.01578045175225198
-    ],
-    [
-      "tov_pct_sum",
-      0.01574870979765665
-    ],
-    [
-      "fg3a_rate_sum",
-      0.015054162521577681
-    ],
-    [
-      "stl_pct_sum",
-      0.014988715815514508
-    ],
-    [
-      "tov_pct_max",
-      0.014973036404290915
-    ],
-    [
-      "blk_pct_max",
-      0.01471826561196244
-    ],
-    [
-      "height_mean",
-      0.014711108171642845
-    ],
-    [
-      "fg3_pct_std",
-      0.014665358325574343
-    ],
-    [
-      "zero_minute_players",
-      0.0142159479416571
-    ],
-    [
-      "height_std",
-      0.013489672005789207
-    ],
-    [
-      "height_max",
-      0.013373016122701161
+      0.020928194391674298
     ],
     [
       "non_shooters",
-      0.013285804609938345
+      0.02088950658604743
+    ],
+    [
+      "pair_usage_absdiff_mean",
+      0.02000472470483418
+    ],
+    [
+      "shooters_x_bigs",
+      0.01952596727453063
+    ],
+    [
+      "handlers_x_usage_max",
+      0.018729830868481116
+    ],
+    [
+      "usage_max",
+      0.018452465144772046
+    ],
+    [
+      "stl_x_blk",
+      0.01812228264225924
+    ],
+    [
+      "usage_sum",
+      0.017196208465121505
+    ],
+    [
+      "shooters_x_ast_max",
+      0.01711994889402271
+    ],
+    [
+      "ast_pct_sum",
+      0.01653675723284535
+    ],
+    [
+      "fg3_pct_min",
+      0.016408350744997434
+    ],
+    [
+      "reb_pct_sum",
+      0.016299297678429095
+    ],
+    [
+      "minutes_mean_log",
+      0.016241183873218334
+    ],
+    [
+      "spacing_x_rim",
+      0.016235811888890454
+    ],
+    [
+      "usage_std",
+      0.016080483609373235
     ],
     [
       "blk_pct_sum",
-      0.012376013209584277
+      0.01533649412007284
+    ],
+    [
+      "tov_pct_max",
+      0.015321868996848413
+    ],
+    [
+      "stl_pct_sum",
+      0.015213263298188662
+    ],
+    [
+      "fg3a_rate_sum",
+      0.015151595535682802
+    ],
+    [
+      "height_min",
+      0.015120436836772836
     ],
     [
       "shooters",
-      0.0063086225272599794
+      0.014995921021959732
+    ],
+    [
+      "fg3_pct_mean",
+      0.014709887545021736
+    ],
+    [
+      "ast_pct_max",
+      0.014391749471601092
+    ],
+    [
+      "height_mean",
+      0.014183021407229048
+    ],
+    [
+      "fg3_pct_std",
+      0.01371000361200804
+    ],
+    [
+      "blk_pct_max",
+      0.013652819047054216
+    ],
+    [
+      "tov_pct_sum",
+      0.013402892681610826
+    ],
+    [
+      "pair_height_absdiff_mean",
+      0.013345727153589284
+    ],
+    [
+      "height_std",
+      0.012621940608671476
+    ],
+    [
+      "height_max",
+      0.011117193662156449
+    ],
+    [
+      "zero_minute_players",
+      0.010429171563952198
+    ],
+    [
+      "pair_both_nonshooters",
+      0.0026173961478917446
     ]
   ],
   "target_summary": {
-    "net_rating_mean_weighted": 0.4257934905553037,
-    "net_rating_std": 20.094574191790414,
-    "off_rating_mean_weighted": 116.85898701814425,
-    "minutes_total": 1506.0
+    "net_rating_mean_weighted": 0.4046884972912329,
+    "net_rating_std": 20.04564668190563,
+    "off_rating_mean_weighted": 116.89143287491525,
+    "minutes_total": 1518.0
   },
   "data_source": {
     "source": "espn",
     "label": "ESPN",
     "chip": "Live data \u00b7 ESPN",
-    "fetched_at": "2026-11-23 22:42 UTC",
+    "fetched_at": "2026-11-24 21:17 UTC",
     "seasons": [
       "2025-26",
       "2026-27"
     ],
     "current_season": "2026-27",
-    "games_used": 900,
-    "games_current_season": 248,
-    "games_cached": 904,
-    "new_games_fetched": 7,
-    "requests": 50,
-    "latest_game_date": "2026-11-23",
+    "games_used": 910,
+    "games_current_season": 258,
+    "games_cached": 914,
+    "new_games_fetched": 10,
+    "requests": 53,
+    "latest_game_date": "2026-11-24",
     "prev_games_per_team": 40,
     "players": 646,
     "players_active": 510,
     "teams": 30,
-    "lineups": 1506,
-    "lineups_starting": 702,
-    "lineups_closing": 804,
+    "lineups": 1518,
+    "lineups_starting": 710,
+    "lineups_closing": 808,
     "lineup_definition": "starting five / closing five (top-5 minutes) per game; net = sum(+/-)/5 per 100 est. possessions; NOT stint-level data",
-    "seconds": 20.1
+    "seconds": 21.5
   },
   "data_note": "Real NBA data (ESPN public box scores). Lineups are starting / closing-five approximations, not stint data; fit scores are model point predictions."
 }

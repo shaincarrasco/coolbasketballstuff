@@ -1,137 +1,137 @@
 player_a,player_b,n_lineups,mean_fit,synergy,team_mean_fit
-Fred VanVleet,Clint Capela,455,58.145,7.98,50.17
-Marcus Smart,Clint Capela,455,56.556,6.39,50.17
-Reed Sheppard,Clint Capela,455,56.513,6.347,50.17
-Amen Thompson,Fred VanVleet,455,55.985,5.819,50.17
-Amen Thompson,Clint Capela,455,55.908,5.742,50.17
-Fred VanVleet,Marcus Smart,455,55.801,5.635,50.17
-Fred VanVleet,Reed Sheppard,455,55.682,5.516,50.17
-Amen Thompson,Marcus Smart,455,55.329,5.163,50.17
-Tari Eason,Fred VanVleet,455,54.997,4.832,50.17
-Amen Thompson,Reed Sheppard,455,54.774,4.608,50.17
-Jabari Smith Jr.,Clint Capela,455,54.634,4.468,50.17
-Clint Capela,Quadir Copeland,455,54.391,4.225,50.17
-Reed Sheppard,Marcus Smart,455,54.258,4.093,50.17
-Fred VanVleet,Quadir Copeland,455,54.202,4.036,50.17
-Tari Eason,Clint Capela,455,54.201,4.035,50.17
-Amen Thompson,Tari Eason,455,53.841,3.675,50.17
-Fred VanVleet,Oscar Tshiebwe,455,53.687,3.521,50.17
-Kevin Durant,Fred VanVleet,455,53.625,3.46,50.17
-Jabari Smith Jr.,Fred VanVleet,455,53.618,3.453,50.17
-Alperen Sengun,Fred VanVleet,455,53.607,3.441,50.17
-Alperen Sengun,Reed Sheppard,455,53.538,3.372,50.17
-Tari Eason,Reed Sheppard,455,53.505,3.34,50.17
-Jabari Smith Jr.,Amen Thompson,455,53.468,3.302,50.17
-Jabari Smith Jr.,Alperen Sengun,455,53.363,3.198,50.17
-Alperen Sengun,Marcus Smart,455,53.193,3.027,50.17
-Amen Thompson,Quadir Copeland,455,53.186,3.02,50.17
-Tari Eason,Marcus Smart,455,53.131,2.965,50.17
-Reed Sheppard,Quadir Copeland,455,53.109,2.943,50.17
-Kevin Durant,Reed Sheppard,455,53.077,2.911,50.17
-Kevin Durant,Clint Capela,455,53.045,2.879,50.17
-Alperen Sengun,Clint Capela,455,52.922,2.756,50.17
-Jabari Smith Jr.,Reed Sheppard,455,52.861,2.695,50.17
-Kevin Durant,Amen Thompson,455,52.811,2.645,50.17
-Alperen Sengun,Tari Eason,455,52.748,2.582,50.17
-Kevin Durant,Marcus Smart,455,52.739,2.573,50.17
-Kevin Durant,Tari Eason,455,52.676,2.51,50.17
-Marcus Smart,Quadir Copeland,455,52.636,2.471,50.17
-Reed Sheppard,Oscar Tshiebwe,455,52.624,2.459,50.17
-Fred VanVleet,Isaiah Crawford,455,52.533,2.368,50.17
-Kevin Durant,Alperen Sengun,455,52.481,2.315,50.17
-Jabari Smith Jr.,Marcus Smart,455,52.414,2.248,50.17
-Clint Capela,Isaiah Crawford,455,52.357,2.192,50.17
-Amen Thompson,Alperen Sengun,455,52.337,2.172,50.17
-Kevin Durant,Jabari Smith Jr.,455,52.31,2.145,50.17
-Clint Capela,Oscar Tshiebwe,455,52.244,2.078,50.17
-Fred VanVleet,Jae'Sean Tate,455,52.179,2.014,50.17
-Marcus Smart,Oscar Tshiebwe,455,52.098,1.933,50.17
-Amen Thompson,Oscar Tshiebwe,455,51.828,1.662,50.17
-Kevin Durant,Quadir Copeland,455,51.736,1.57,50.17
-Bogdan Bogdanovic,Clint Capela,455,51.7,1.534,50.17
-Amen Thompson,Isaiah Crawford,455,51.647,1.481,50.17
-Clint Capela,Steven Adams,455,51.623,1.457,50.17
-Alperen Sengun,Quadir Copeland,455,51.556,1.39,50.17
-Clint Capela,Jae'Sean Tate,455,51.485,1.32,50.17
-Fred VanVleet,Steven Adams,455,51.457,1.291,50.17
-Fred VanVleet,Julian Phillips,455,51.433,1.267,50.17
-Reed Sheppard,Isaiah Crawford,455,51.391,1.225,50.17
-Clint Capela,Julian Phillips,455,51.329,1.163,50.17
-Fred VanVleet,Bogdan Bogdanovic,455,51.21,1.044,50.17
-Tari Eason,Quadir Copeland,455,51.191,1.025,50.17
-Reed Sheppard,Jae'Sean Tate,455,50.927,0.761,50.17
-Amen Thompson,Bogdan Bogdanovic,455,50.903,0.738,50.17
-Jabari Smith Jr.,Tari Eason,455,50.784,0.618,50.17
-Amen Thompson,Julian Phillips,455,50.781,0.615,50.17
-Marcus Smart,Isaiah Crawford,455,50.73,0.565,50.17
-Reed Sheppard,Steven Adams,455,50.692,0.527,50.17
-Amen Thompson,Steven Adams,455,50.608,0.442,50.17
-Jabari Smith Jr.,Quadir Copeland,455,50.564,0.398,50.17
-Kevin Durant,Oscar Tshiebwe,455,50.551,0.386,50.17
-Amen Thompson,Jae'Sean Tate,455,50.444,0.278,50.17
-Marcus Smart,Steven Adams,455,50.443,0.277,50.17
-Alperen Sengun,Oscar Tshiebwe,455,50.295,0.129,50.17
-Alperen Sengun,Isaiah Crawford,455,50.145,-0.02,50.17
-Marcus Smart,Jae'Sean Tate,455,50.092,-0.074,50.17
-Alperen Sengun,Julian Phillips,455,50.065,-0.101,50.17
-Reed Sheppard,Julian Phillips,455,49.999,-0.166,50.17
-Tari Eason,Oscar Tshiebwe,455,49.923,-0.243,50.17
-Reed Sheppard,Bogdan Bogdanovic,455,49.918,-0.247,50.17
-Kevin Durant,Isaiah Crawford,455,49.871,-0.294,50.17
-Alperen Sengun,Bogdan Bogdanovic,455,49.778,-0.388,50.17
-Marcus Smart,Bogdan Bogdanovic,455,49.754,-0.412,50.17
-Oscar Tshiebwe,Quadir Copeland,455,49.64,-0.526,50.17
-Kevin Durant,Julian Phillips,455,49.551,-0.615,50.17
-Kevin Durant,Steven Adams,455,49.43,-0.736,50.17
-Marcus Smart,Julian Phillips,455,49.398,-0.767,50.17
-Alperen Sengun,Steven Adams,455,49.382,-0.784,50.17
-Jabari Smith Jr.,Oscar Tshiebwe,455,49.326,-0.84,50.17
-Kevin Durant,Bogdan Bogdanovic,455,49.201,-0.965,50.17
-Tari Eason,Isaiah Crawford,455,48.972,-1.193,50.17
-Fred VanVleet,Bruce Thornton,455,48.966,-1.2,50.17
-Isaiah Crawford,Quadir Copeland,455,48.814,-1.352,50.17
-Tari Eason,Steven Adams,455,48.506,-1.66,50.17
-Alperen Sengun,Jae'Sean Tate,455,48.392,-1.773,50.17
-Steven Adams,Quadir Copeland,455,48.241,-1.925,50.17
-Quadir Copeland,Julian Phillips,455,48.214,-1.952,50.17
-Kevin Durant,Jae'Sean Tate,455,48.176,-1.99,50.17
-Jabari Smith Jr.,Isaiah Crawford,455,48.138,-2.028,50.17
-Jabari Smith Jr.,Steven Adams,455,48.09,-2.076,50.17
-Bogdan Bogdanovic,Quadir Copeland,455,48.035,-2.131,50.17
-Tari Eason,Julian Phillips,455,48.027,-2.139,50.17
-Tari Eason,Bogdan Bogdanovic,455,47.935,-2.231,50.17
-Tari Eason,Jae'Sean Tate,455,47.919,-2.247,50.17
-Jae'Sean Tate,Quadir Copeland,455,47.875,-2.291,50.17
-Oscar Tshiebwe,Isaiah Crawford,455,47.462,-2.704,50.17
-Amen Thompson,Bruce Thornton,455,47.452,-2.714,50.17
-Jabari Smith Jr.,Jae'Sean Tate,455,47.42,-2.745,50.17
-Reed Sheppard,Bruce Thornton,455,47.353,-2.813,50.17
-Jabari Smith Jr.,Julian Phillips,455,47.085,-3.08,50.17
-Clint Capela,Bruce Thornton,455,46.991,-3.175,50.17
-Jabari Smith Jr.,Bogdan Bogdanovic,455,46.82,-3.346,50.17
-Marcus Smart,Bruce Thornton,455,46.688,-3.477,50.17
-Oscar Tshiebwe,Steven Adams,455,46.669,-3.497,50.17
-Bogdan Bogdanovic,Oscar Tshiebwe,455,46.547,-3.619,50.17
-Oscar Tshiebwe,Julian Phillips,455,46.482,-3.684,50.17
-Alperen Sengun,Bruce Thornton,455,46.096,-4.07,50.17
-Kevin Durant,Bruce Thornton,455,46.017,-4.149,50.17
-Oscar Tshiebwe,Jae'Sean Tate,455,45.983,-4.182,50.17
-Isaiah Crawford,Steven Adams,455,45.965,-4.201,50.17
-Isaiah Crawford,Jae'Sean Tate,455,45.787,-4.378,50.17
-Bogdan Bogdanovic,Isaiah Crawford,455,45.711,-4.454,50.17
-Isaiah Crawford,Julian Phillips,455,45.609,-4.556,50.17
-Bruce Thornton,Quadir Copeland,455,45.412,-4.753,50.17
-Steven Adams,Julian Phillips,455,45.201,-4.964,50.17
-Bogdan Bogdanovic,Steven Adams,455,45.18,-4.986,50.17
-Bogdan Bogdanovic,Jae'Sean Tate,455,45.156,-5.01,50.17
-Steven Adams,Jae'Sean Tate,455,44.82,-5.345,50.17
-Tari Eason,Bruce Thornton,455,44.79,-5.376,50.17
-Jae'Sean Tate,Julian Phillips,455,44.747,-5.418,50.17
-Bogdan Bogdanovic,Julian Phillips,455,44.479,-5.686,50.17
-Jabari Smith Jr.,Bruce Thornton,455,43.76,-6.405,50.17
-Oscar Tshiebwe,Bruce Thornton,455,43.578,-6.587,50.17
-Isaiah Crawford,Bruce Thornton,455,43.57,-6.595,50.17
-Bruce Thornton,Jae'Sean Tate,455,43.096,-7.07,50.17
-Bogdan Bogdanovic,Bruce Thornton,455,42.882,-7.284,50.17
-Steven Adams,Bruce Thornton,455,42.857,-7.309,50.17
-Bruce Thornton,Julian Phillips,455,42.441,-7.724,50.17
+Fred VanVleet,Clint Capela,455,58.49,7.621,50.87
+Reed Sheppard,Clint Capela,455,57.223,6.355,50.87
+Amen Thompson,Clint Capela,455,57.128,6.259,50.87
+Marcus Smart,Clint Capela,455,57.084,6.215,50.87
+Amen Thompson,Fred VanVleet,455,56.974,6.105,50.87
+Fred VanVleet,Marcus Smart,455,56.745,5.876,50.87
+Amen Thompson,Marcus Smart,455,56.424,5.555,50.87
+Fred VanVleet,Reed Sheppard,455,56.395,5.526,50.87
+Amen Thompson,Reed Sheppard,455,55.977,5.108,50.87
+Fred VanVleet,Tari Eason,455,55.928,5.059,50.87
+Reed Sheppard,Marcus Smart,455,55.324,4.455,50.87
+Amen Thompson,Tari Eason,455,55.024,4.155,50.87
+Clint Capela,Quadir Copeland,455,54.821,3.952,50.87
+Fred VanVleet,Quadir Copeland,455,54.736,3.867,50.87
+Jabari Smith Jr.,Clint Capela,455,54.667,3.799,50.87
+Tari Eason,Clint Capela,455,54.65,3.781,50.87
+Jabari Smith Jr.,Amen Thompson,455,54.631,3.762,50.87
+Amen Thompson,Quadir Copeland,455,54.493,3.624,50.87
+Tari Eason,Reed Sheppard,455,54.468,3.599,50.87
+Fred VanVleet,Oscar Tshiebwe,455,54.259,3.39,50.87
+Jabari Smith Jr.,Fred VanVleet,455,54.228,3.359,50.87
+Kevin Durant,Fred VanVleet,455,54.118,3.249,50.87
+Kevin Durant,Clint Capela,455,54.101,3.233,50.87
+Kevin Durant,Amen Thompson,455,54.074,3.206,50.87
+Alperen Sengun,Fred VanVleet,455,54.073,3.204,50.87
+Reed Sheppard,Quadir Copeland,455,53.987,3.118,50.87
+Alperen Sengun,Clint Capela,455,53.919,3.05,50.87
+Alperen Sengun,Marcus Smart,455,53.794,2.925,50.87
+Tari Eason,Marcus Smart,455,53.738,2.869,50.87
+Fred VanVleet,Jae'Sean Tate,455,53.662,2.793,50.87
+Alperen Sengun,Reed Sheppard,455,53.644,2.775,50.87
+Kevin Durant,Marcus Smart,455,53.596,2.728,50.87
+Kevin Durant,Tari Eason,455,53.504,2.635,50.87
+Jabari Smith Jr.,Alperen Sengun,455,53.378,2.509,50.87
+Kevin Durant,Reed Sheppard,455,53.349,2.48,50.87
+Alperen Sengun,Tari Eason,455,53.335,2.466,50.87
+Kevin Durant,Alperen Sengun,455,53.309,2.44,50.87
+Jabari Smith Jr.,Reed Sheppard,455,53.287,2.418,50.87
+Amen Thompson,Alperen Sengun,455,53.279,2.41,50.87
+Reed Sheppard,Oscar Tshiebwe,455,53.232,2.363,50.87
+Fred VanVleet,Isaiah Crawford,455,53.18,2.312,50.87
+Amen Thompson,Oscar Tshiebwe,455,53.1,2.231,50.87
+Marcus Smart,Quadir Copeland,455,53.067,2.198,50.87
+Amen Thompson,Isaiah Crawford,455,52.811,1.942,50.87
+Clint Capela,Oscar Tshiebwe,455,52.771,1.902,50.87
+Kevin Durant,Jabari Smith Jr.,455,52.735,1.867,50.87
+Clint Capela,Isaiah Crawford,455,52.656,1.788,50.87
+Jabari Smith Jr.,Marcus Smart,455,52.65,1.781,50.87
+Marcus Smart,Oscar Tshiebwe,455,52.647,1.779,50.87
+Kevin Durant,Quadir Copeland,455,52.49,1.621,50.87
+Reed Sheppard,Jae'Sean Tate,455,52.292,1.423,50.87
+Amen Thompson,Julian Phillips,455,52.282,1.414,50.87
+Fred VanVleet,Julian Phillips,455,52.239,1.37,50.87
+Alperen Sengun,Quadir Copeland,455,52.198,1.329,50.87
+Amen Thompson,Jae'Sean Tate,455,52.092,1.223,50.87
+Reed Sheppard,Isaiah Crawford,455,52.065,1.196,50.87
+Amen Thompson,Bogdan Bogdanovic,455,52.025,1.156,50.87
+Tari Eason,Quadir Copeland,455,51.969,1.1,50.87
+Clint Capela,Jae'Sean Tate,455,51.886,1.017,50.87
+Fred VanVleet,Bogdan Bogdanovic,455,51.743,0.874,50.87
+Bogdan Bogdanovic,Clint Capela,455,51.705,0.836,50.87
+Clint Capela,Julian Phillips,455,51.641,0.772,50.87
+Jabari Smith Jr.,Tari Eason,455,51.47,0.601,50.87
+Fred VanVleet,Steven Adams,455,51.333,0.464,50.87
+Kevin Durant,Oscar Tshiebwe,455,51.328,0.459,50.87
+Clint Capela,Steven Adams,455,51.274,0.405,50.87
+Marcus Smart,Isaiah Crawford,455,51.257,0.389,50.87
+Marcus Smart,Jae'Sean Tate,455,51.248,0.379,50.87
+Jabari Smith Jr.,Quadir Copeland,455,51.114,0.245,50.87
+Amen Thompson,Steven Adams,455,51.018,0.15,50.87
+Alperen Sengun,Oscar Tshiebwe,455,50.948,0.079,50.87
+Alperen Sengun,Julian Phillips,455,50.726,-0.143,50.87
+Alperen Sengun,Isaiah Crawford,455,50.688,-0.181,50.87
+Tari Eason,Oscar Tshiebwe,455,50.676,-0.193,50.87
+Kevin Durant,Isaiah Crawford,455,50.651,-0.218,50.87
+Reed Sheppard,Julian Phillips,455,50.626,-0.243,50.87
+Reed Sheppard,Steven Adams,455,50.385,-0.484,50.87
+Kevin Durant,Julian Phillips,455,50.305,-0.564,50.87
+Reed Sheppard,Bogdan Bogdanovic,455,50.282,-0.586,50.87
+Marcus Smart,Steven Adams,455,50.08,-0.789,50.87
+Marcus Smart,Bogdan Bogdanovic,455,50.055,-0.814,50.87
+Oscar Tshiebwe,Quadir Copeland,455,50.052,-0.817,50.87
+Marcus Smart,Julian Phillips,455,49.897,-0.972,50.87
+Alperen Sengun,Bogdan Bogdanovic,455,49.885,-0.984,50.87
+Jabari Smith Jr.,Oscar Tshiebwe,455,49.875,-0.994,50.87
+Tari Eason,Isaiah Crawford,455,49.819,-1.049,50.87
+Fred VanVleet,Bruce Thornton,455,49.784,-1.085,50.87
+Kevin Durant,Bogdan Bogdanovic,455,49.589,-1.28,50.87
+Isaiah Crawford,Quadir Copeland,455,49.441,-1.428,50.87
+Kevin Durant,Steven Adams,455,49.398,-1.47,50.87
+Kevin Durant,Jae'Sean Tate,455,49.291,-1.578,50.87
+Alperen Sengun,Steven Adams,455,49.226,-1.643,50.87
+Alperen Sengun,Jae'Sean Tate,455,49.158,-1.711,50.87
+Tari Eason,Jae'Sean Tate,455,48.995,-1.874,50.87
+Jae'Sean Tate,Quadir Copeland,455,48.96,-1.909,50.87
+Tari Eason,Julian Phillips,455,48.901,-1.968,50.87
+Amen Thompson,Bruce Thornton,455,48.893,-1.976,50.87
+Jabari Smith Jr.,Isaiah Crawford,455,48.778,-2.09,50.87
+Tari Eason,Bogdan Bogdanovic,455,48.761,-2.108,50.87
+Reed Sheppard,Bruce Thornton,455,48.694,-2.175,50.87
+Quadir Copeland,Julian Phillips,455,48.682,-2.187,50.87
+Jabari Smith Jr.,Jae'Sean Tate,455,48.577,-2.291,50.87
+Tari Eason,Steven Adams,455,48.384,-2.485,50.87
+Bogdan Bogdanovic,Quadir Copeland,455,48.312,-2.557,50.87
+Oscar Tshiebwe,Isaiah Crawford,455,48.235,-2.634,50.87
+Steven Adams,Quadir Copeland,455,47.939,-2.93,50.87
+Jabari Smith Jr.,Julian Phillips,455,47.784,-3.085,50.87
+Oscar Tshiebwe,Julian Phillips,455,47.625,-3.243,50.87
+Marcus Smart,Bruce Thornton,455,47.612,-3.257,50.87
+Jabari Smith Jr.,Steven Adams,455,47.587,-3.281,50.87
+Oscar Tshiebwe,Jae'Sean Tate,455,47.501,-3.368,50.87
+Clint Capela,Bruce Thornton,455,47.327,-3.542,50.87
+Bogdan Bogdanovic,Oscar Tshiebwe,455,47.208,-3.661,50.87
+Jabari Smith Jr.,Bogdan Bogdanovic,455,47.107,-3.761,50.87
+Isaiah Crawford,Jae'Sean Tate,455,47.079,-3.79,50.87
+Kevin Durant,Bruce Thornton,455,46.907,-3.962,50.87
+Alperen Sengun,Bruce Thornton,455,46.883,-3.986,50.87
+Bogdan Bogdanovic,Jae'Sean Tate,455,46.655,-4.214,50.87
+Oscar Tshiebwe,Steven Adams,455,46.565,-4.304,50.87
+Isaiah Crawford,Julian Phillips,455,46.494,-4.375,50.87
+Bogdan Bogdanovic,Isaiah Crawford,455,46.404,-4.465,50.87
+Bruce Thornton,Quadir Copeland,455,46.359,-4.509,50.87
+Isaiah Crawford,Steven Adams,455,46.211,-4.658,50.87
+Jae'Sean Tate,Julian Phillips,455,46.035,-4.833,50.87
+Steven Adams,Jae'Sean Tate,455,45.962,-4.906,50.87
+Tari Eason,Bruce Thornton,455,45.898,-4.971,50.87
+Steven Adams,Julian Phillips,455,45.367,-5.502,50.87
+Bogdan Bogdanovic,Steven Adams,455,45.243,-5.626,50.87
+Bogdan Bogdanovic,Julian Phillips,455,45.172,-5.696,50.87
+Bruce Thornton,Jae'Sean Tate,455,45.128,-5.741,50.87
+Isaiah Crawford,Bruce Thornton,455,44.89,-5.979,50.87
+Jabari Smith Jr.,Bruce Thornton,455,44.646,-6.222,50.87
+Oscar Tshiebwe,Bruce Thornton,455,44.609,-6.26,50.87
+Bogdan Bogdanovic,Bruce Thornton,455,44.165,-6.704,50.87
+Bruce Thornton,Julian Phillips,455,43.734,-7.135,50.87
+Steven Adams,Bruce Thornton,455,43.718,-7.151,50.87
