@@ -1,11 +1,11 @@
 {
   "season": "2026-27",
-  "date": "2026-11-26",
+  "date": "2026-11-27",
   "n_sims": 2000,
   "seed": 42,
   "sample_data": false,
   "live": true,
-  "schedule_note": "Published schedule as of 2026-11-26: 930 unplayed games. 30 games are not on the schedule yet (NBA Cup knockout rounds and the extra regular-season games for non-finalists are fixed in December); expected wins are pro-rated to 82 games below.",
+  "schedule_note": "Published schedule as of 2026-11-27: 930 unplayed games. 30 games are not on the schedule yet (NBA Cup knockout rounds and the extra regular-season games for non-finalists are fixed in December); expected wins are pro-rated to 82 games below.",
   "games_played": 270,
   "games_remaining": 930,
   "playoff_spots": 6,

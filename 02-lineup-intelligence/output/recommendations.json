@@ -4,7 +4,7 @@
     "source": "espn",
     "label": "ESPN",
     "chip": "Live data \u00b7 ESPN",
-    "fetched_at": "2026-11-26 20:14 UTC",
+    "fetched_at": "2026-11-27 20:00 UTC",
     "seasons": [
       "2025-26",
       "2026-27"
@@ -13,8 +13,8 @@
     "games_used": 922,
     "games_current_season": 270,
     "games_cached": 926,
-    "new_games_fetched": 9,
-    "requests": 52,
+    "new_games_fetched": 0,
+    "requests": 43,
     "latest_game_date": "2026-11-26",
     "prev_games_per_team": 40,
     "players": 646,
@@ -24,7 +24,7 @@
     "lineups_starting": 716,
     "lineups_closing": 815,
     "lineup_definition": "starting five / closing five (top-5 minutes) per game; net = sum(+/-)/5 per 100 est. possessions; NOT stint-level data",
-    "seconds": 21.5
+    "seconds": 15.5
   },
   "fit_score_transform": "100 * sigmoid((net_pred - 0.415) / 15.790)",
   "metrics": {
@@ -9699,7 +9699,7 @@
               "is_shooter": 0,
               "is_handler": 0,
               "is_big": 1,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             }
           ],
           "predicted_net": -1.95,
@@ -10043,7 +10043,7 @@
               "is_shooter": 0,
               "is_handler": 0,
               "is_big": 1,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             }
           ],
           "predicted_net": -2.1,
@@ -10387,7 +10387,7 @@
               "is_shooter": 0,
               "is_handler": 0,
               "is_big": 1,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             }
           ],
           "predicted_net": -2.44,
@@ -12783,7 +12783,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             },
             {
               "player_id": 5211175,
@@ -12949,7 +12949,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             },
             {
               "player_id": 5211175,
@@ -13101,7 +13101,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             },
             {
               "player_id": 5211175,
@@ -13273,7 +13273,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             },
             {
               "player_id": 4278594,
@@ -13445,7 +13445,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             },
             {
               "player_id": 4278078,
@@ -13637,7 +13637,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             },
             {
               "player_id": 5041939,
@@ -13789,7 +13789,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             },
             {
               "player_id": 4278594,
@@ -13981,7 +13981,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             },
             {
               "player_id": 4278078,
@@ -14127,7 +14127,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             },
             {
               "player_id": 5211175,
@@ -14319,7 +14319,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             },
             {
               "player_id": 5041939,
@@ -14564,7 +14564,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "",
+              "injury_status": "Day-To-Day",
               "minutes_assigned": 25.7,
               "budget": 25.7
             },
@@ -14778,7 +14778,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "",
+              "injury_status": "Day-To-Day",
               "minutes_assigned": 0.0,
               "budget": 25.7
             },
@@ -17807,7 +17807,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "Day-To-Day"
+              "injury_status": "Out"
             },
             {
               "player_id": 3157465,
@@ -18794,7 +18794,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "Day-To-Day",
+              "injury_status": "Out",
               "minutes_assigned": 30.4,
               "budget": 30.4
             },
@@ -24591,7 +24591,7 @@
               "is_shooter": 0,
               "is_handler": 0,
               "is_big": 0,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             },
             {
               "player_id": 4065731,
@@ -24917,7 +24917,7 @@
               "is_shooter": 0,
               "is_handler": 0,
               "is_big": 0,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             },
             {
               "player_id": 4278355,
@@ -27479,7 +27479,7 @@
               "is_shooter": 0,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "Out"
+              "injury_status": ""
             },
             {
               "player_id": 3945274,
@@ -27651,7 +27651,7 @@
               "is_shooter": 0,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "Out"
+              "injury_status": ""
             },
             {
               "player_id": 3945274,
@@ -27843,7 +27843,7 @@
               "is_shooter": 0,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "Out"
+              "injury_status": ""
             },
             {
               "player_id": 3945274,
@@ -27989,7 +27989,7 @@
               "is_shooter": 0,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "Out"
+              "injury_status": ""
             },
             {
               "player_id": 3945274,
@@ -28353,7 +28353,7 @@
               "is_shooter": 0,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "Out"
+              "injury_status": ""
             },
             {
               "player_id": 3945274,
@@ -28505,7 +28505,7 @@
               "is_shooter": 0,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "Out"
+              "injury_status": ""
             },
             {
               "player_id": 5113969,
@@ -28697,7 +28697,7 @@
               "is_shooter": 0,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "Out"
+              "injury_status": ""
             },
             {
               "player_id": 3945274,
@@ -29021,7 +29021,7 @@
               "is_shooter": 0,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "Out"
+              "injury_status": ""
             },
             {
               "player_id": 4592691,
@@ -29308,7 +29308,7 @@
               "is_shooter": 0,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "Out",
+              "injury_status": "",
               "minutes_assigned": 23.4,
               "budget": 23.4
             },
@@ -29522,7 +29522,7 @@
               "is_shooter": 0,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "Out",
+              "injury_status": "",
               "minutes_assigned": 0.0,
               "budget": 23.4
             },
@@ -30179,7 +30179,7 @@
               "is_shooter": 0,
               "is_handler": 0,
               "is_big": 1,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             },
             {
               "player_id": 4594326,
@@ -30689,7 +30689,7 @@
               "is_shooter": 0,
               "is_handler": 0,
               "is_big": 1,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             },
             {
               "player_id": 4594326,
@@ -31225,7 +31225,7 @@
               "is_shooter": 0,
               "is_handler": 0,
               "is_big": 1,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             },
             {
               "player_id": 4594326,
@@ -31533,7 +31533,7 @@
               "is_shooter": 0,
               "is_handler": 1,
               "is_big": 1,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             }
           ],
           "predicted_net": 13.49,
@@ -32652,7 +32652,7 @@
               "is_shooter": 0,
               "is_handler": 1,
               "is_big": 1,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             }
           ],
           "predicted_net": 12.46,
@@ -32824,7 +32824,7 @@
               "is_shooter": 0,
               "is_handler": 1,
               "is_big": 1,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             }
           ],
           "predicted_net": 12.4,
@@ -33237,7 +33237,7 @@
               "is_shooter": 0,
               "is_handler": 1,
               "is_big": 1,
-              "injury_status": "",
+              "injury_status": "Day-To-Day",
               "minutes_assigned": 18.0,
               "budget": 30.4
             },
@@ -33377,7 +33377,7 @@
               "is_shooter": 0,
               "is_handler": 1,
               "is_big": 1,
-              "injury_status": "",
+              "injury_status": "Day-To-Day",
               "minutes_assigned": 0.0,
               "budget": 30.4
             },
@@ -33532,7 +33532,7 @@
               "is_shooter": 1,
               "is_handler": 0,
               "is_big": 0,
-              "injury_status": ""
+              "injury_status": "Out"
             },
             {
               "player_id": 2991043,
@@ -33704,7 +33704,7 @@
               "is_shooter": 1,
               "is_handler": 0,
               "is_big": 0,
-              "injury_status": ""
+              "injury_status": "Out"
             },
             {
               "player_id": 2991043,
@@ -33896,7 +33896,7 @@
               "is_shooter": 1,
               "is_handler": 0,
               "is_big": 0,
-              "injury_status": ""
+              "injury_status": "Out"
             },
             {
               "player_id": 2991043,
@@ -34048,7 +34048,7 @@
               "is_shooter": 1,
               "is_handler": 0,
               "is_big": 0,
-              "injury_status": ""
+              "injury_status": "Out"
             },
             {
               "player_id": 2991043,
@@ -34240,7 +34240,7 @@
               "is_shooter": 1,
               "is_handler": 0,
               "is_big": 0,
-              "injury_status": ""
+              "injury_status": "Out"
             },
             {
               "player_id": 4432848,
@@ -34584,7 +34584,7 @@
               "is_shooter": 1,
               "is_handler": 0,
               "is_big": 0,
-              "injury_status": ""
+              "injury_status": "Out"
             },
             {
               "player_id": 4432848,
@@ -34736,7 +34736,7 @@
               "is_shooter": 1,
               "is_handler": 0,
               "is_big": 0,
-              "injury_status": ""
+              "injury_status": "Out"
             },
             {
               "player_id": 4432848,
@@ -34908,7 +34908,7 @@
               "is_shooter": 1,
               "is_handler": 0,
               "is_big": 0,
-              "injury_status": ""
+              "injury_status": "Out"
             },
             {
               "player_id": 2991043,
@@ -35080,7 +35080,7 @@
               "is_shooter": 1,
               "is_handler": 0,
               "is_big": 0,
-              "injury_status": ""
+              "injury_status": "Out"
             },
             {
               "player_id": 4432848,
@@ -35485,7 +35485,7 @@
               "is_shooter": 1,
               "is_handler": 0,
               "is_big": 0,
-              "injury_status": "",
+              "injury_status": "Out",
               "minutes_assigned": 16.6,
               "budget": 16.6
             },
@@ -35559,7 +35559,7 @@
               "is_shooter": 1,
               "is_handler": 0,
               "is_big": 0,
-              "injury_status": "",
+              "injury_status": "Out",
               "minutes_assigned": 0.0,
               "budget": 16.6
             },
@@ -35874,7 +35874,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "Day-To-Day"
+              "injury_status": "Out"
             },
             {
               "player_id": 3136196,
@@ -36430,7 +36430,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "Day-To-Day"
+              "injury_status": "Out"
             },
             {
               "player_id": 3136196,
@@ -36754,7 +36754,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "Day-To-Day"
+              "injury_status": "Out"
             },
             {
               "player_id": 3136196,
@@ -37605,7 +37605,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "Day-To-Day",
+              "injury_status": "Out",
               "minutes_assigned": 18.0,
               "budget": 28.3
             },
@@ -40100,7 +40100,7 @@
               "is_shooter": 1,
               "is_handler": 0,
               "is_big": 0,
-              "injury_status": "Day-To-Day"
+              "injury_status": "Out"
             },
             {
               "player_id": 3934719,
@@ -40140,7 +40140,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 1,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             }
           ],
           "predicted_net": 15.38,
@@ -40306,7 +40306,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 1,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             }
           ],
           "predicted_net": 15.38,
@@ -40412,7 +40412,7 @@
               "is_shooter": 1,
               "is_handler": 0,
               "is_big": 0,
-              "injury_status": "Day-To-Day"
+              "injury_status": "Out"
             },
             {
               "player_id": 3147657,
@@ -40472,7 +40472,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 1,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             }
           ],
           "predicted_net": 15.07,
@@ -40644,7 +40644,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 1,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             }
           ],
           "predicted_net": 14.98,
@@ -40810,7 +40810,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 1,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             }
           ],
           "predicted_net": 14.73,
@@ -40922,7 +40922,7 @@
               "is_shooter": 1,
               "is_handler": 0,
               "is_big": 0,
-              "injury_status": "Day-To-Day"
+              "injury_status": "Out"
             },
             {
               "player_id": 4433225,
@@ -40982,7 +40982,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 1,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             }
           ],
           "predicted_net": 14.69,
@@ -41326,7 +41326,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 1,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             }
           ],
           "predicted_net": 14.67,
@@ -41418,7 +41418,7 @@
               "is_shooter": 1,
               "is_handler": 0,
               "is_big": 0,
-              "injury_status": "Day-To-Day"
+              "injury_status": "Out"
             },
             {
               "player_id": 4433225,
@@ -41498,7 +41498,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 1,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             }
           ],
           "predicted_net": 14.54,
@@ -41590,7 +41590,7 @@
               "is_shooter": 1,
               "is_handler": 0,
               "is_big": 0,
-              "injury_status": "Day-To-Day"
+              "injury_status": "Out"
             },
             {
               "player_id": 4433225,
@@ -41670,7 +41670,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 1,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             }
           ],
           "predicted_net": 14.52,
@@ -41821,7 +41821,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 1,
-              "injury_status": "",
+              "injury_status": "Day-To-Day",
               "minutes_assigned": 30.6,
               "budget": 30.6
             },
@@ -41939,7 +41939,7 @@
               "is_shooter": 1,
               "is_handler": 0,
               "is_big": 0,
-              "injury_status": "Day-To-Day",
+              "injury_status": "Out",
               "minutes_assigned": 15.2,
               "budget": 15.2
             },
@@ -41961,7 +41961,7 @@
               "is_shooter": 0,
               "is_handler": 0,
               "is_big": 1,
-              "injury_status": "Day-To-Day",
+              "injury_status": "Out",
               "minutes_assigned": 13.6,
               "budget": 13.6
             },
@@ -42057,7 +42057,7 @@
               "is_shooter": 1,
               "is_handler": 1,
               "is_big": 1,
-              "injury_status": "",
+              "injury_status": "Day-To-Day",
               "minutes_assigned": 0.0,
               "budget": 30.6
             },
@@ -42101,7 +42101,7 @@
               "is_shooter": 1,
               "is_handler": 0,
               "is_big": 0,
-              "injury_status": "Day-To-Day",
+              "injury_status": "Out",
               "minutes_assigned": 0.0,
               "budget": 15.2
             },
@@ -46534,7 +46534,7 @@
               "is_shooter": 0,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "Day-To-Day"
+              "injury_status": "Out"
             },
             {
               "player_id": 1966,
@@ -47394,7 +47394,7 @@
               "is_shooter": 0,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "Day-To-Day"
+              "injury_status": "Out"
             },
             {
               "player_id": 4711297,
@@ -48082,7 +48082,7 @@
               "is_shooter": 0,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "Day-To-Day"
+              "injury_status": "Out"
             },
             {
               "player_id": 1966,
@@ -48325,7 +48325,7 @@
               "is_shooter": 0,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "Day-To-Day",
+              "injury_status": "Out",
               "minutes_assigned": 28.0,
               "budget": 28.0
             },
@@ -48539,7 +48539,7 @@
               "is_shooter": 0,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "Day-To-Day",
+              "injury_status": "Out",
               "minutes_assigned": 0.0,
               "budget": 28.0
             },
@@ -52583,7 +52583,7 @@
               "is_shooter": 0,
               "is_handler": 1,
               "is_big": 0,
-              "injury_status": "",
+              "injury_status": "Out",
               "minutes_assigned": 30.0,
               "budget": 30.0
             },
@@ -59235,7 +59235,7 @@
               "is_shooter": 1,
               "is_handler": 0,
               "is_big": 0,
-              "injury_status": "",
+              "injury_status": "Day-To-Day",
               "minutes_assigned": 11.5,
               "budget": 11.5
             },
@@ -59544,7 +59544,7 @@
               "is_shooter": 0,
               "is_handler": 0,
               "is_big": 1,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             }
           ],
           "predicted_net": 5.15,
@@ -59888,7 +59888,7 @@
               "is_shooter": 0,
               "is_handler": 0,
               "is_big": 1,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             }
           ],
           "predicted_net": 4.72,
@@ -60232,7 +60232,7 @@
               "is_shooter": 0,
               "is_handler": 0,
               "is_big": 1,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             }
           ],
           "predicted_net": 4.6,
@@ -60404,7 +60404,7 @@
               "is_shooter": 0,
               "is_handler": 0,
               "is_big": 1,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             }
           ],
           "predicted_net": 4.54,
@@ -60748,7 +60748,7 @@
               "is_shooter": 0,
               "is_handler": 0,
               "is_big": 1,
-              "injury_status": ""
+              "injury_status": "Day-To-Day"
             }
           ],
           "predicted_net": 4.43,
@@ -61417,7 +61417,7 @@
               "is_shooter": 0,
               "is_handler": 0,
               "is_big": 1,
-              "injury_status": "",
+              "injury_status": "Day-To-Day",
               "minutes_assigned": 16.8,
               "budget": 16.8
             },
@@ -61491,7 +61491,7 @@
               "is_shooter": 0,
               "is_handler": 0,
               "is_big": 1,
-              "injury_status": "",
+              "injury_status": "Day-To-Day",
               "minutes_assigned": 0.0,
               "budget": 16.8
             },
